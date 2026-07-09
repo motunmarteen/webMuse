@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-glass-bg: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --color-text-muted: var(--text-muted);
+  --color-text-title: var(--text-title);
+  
+  --color-electric-blue: #0070f3;
+  --color-electric-blue-glow: rgba(0, 112, 243, 0.15);
+  --color-neon-purple: #a855f7;
+  --color-neon-purple-glow: rgba(168, 85, 247, 0.15);
+  --color-soft-cyan: #06b6d4;
+  --color-deep-black: var(--background);
+  
+  --font-display: var(--font-outfit), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+}
+
+:root,
+html,
+body {
+  /* Dark Theme variables (Exclusive) */
+  color-scheme: dark;
+  --background: #030303;
+  --foreground: #f4f4f5;
+  --card-bg: rgba(20, 20, 24, 0.45);
+  --card-border: rgba(255, 255, 255, 0.025);
+  --glass-bg: rgba(10, 10, 12, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.035);
+  --text-muted: #8e9196;
+  --text-title: #f4f4f5;
+  --mesh-glow: rgba(255, 255, 255, 0.02);
+  --border-glow: rgba(255, 255, 255, 0.05);
+  --selection-bg: rgba(255, 255, 255, 0.1);
+  
+  --font-outfit: "Outfit", sans-serif;
+  --font-jetbrains-mono: "JetBrains Mono", monospace;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  font-family: var(--font-outfit);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0070f3;
+}
+
+/* Glassmorphism Helpers */
+.glassmorphism {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+}
+
+.glassmorphism-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glassmorphism-card:hover {
+  border-color: rgba(0, 112, 243, 0.3);
+  box-shadow: 0 10px 30px -10px var(--border-glow);
+}
+
+/* Hide Default Cursor on Devices with Precision Pointers (desktops) */
+@media (pointer: fine) {
+  body, 
+  a, 
+  button, 
+  input, 
+  textarea, 
+  select, 
+  [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* Mesh Gradients */
+.bg-mesh-purple {
+  background-image: radial-gradient(at 0% 0%, rgba(120, 120, 130, 0.05) 0px, transparent 50%),
+                    radial-gradient(at 100% 100%, rgba(100, 100, 110, 0.04) 0px, transparent 50%);
+}
+
+.bg-mesh-blue {
+  background-image: radial-gradient(at 50% 0%, rgba(120, 120, 130, 0.04) 0px, transparent 55%),
+                    radial-gradient(at 100% 0%, rgba(100, 100, 110, 0.03) 0px, transparent 40%);
+}
+
+/* Glow Effect */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px rgba(0, 112, 243, 0.2), 0 0 20px rgba(0, 112, 243, 0.2);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(0, 112, 243, 0.4), 0 0 30px rgba(0, 112, 243, 0.3);
+  }
+}
+
+.glow-text-blue {
+  text-shadow: 0 0 15px rgba(0, 112, 243, 0.3);
+}
+
+.glow-text-purple {
+  text-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+}
+
+/* Selection */
+::selection {
+  background: var(--selection-bg);
+  color: var(--foreground);
+}
+
+/* Hide Scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}

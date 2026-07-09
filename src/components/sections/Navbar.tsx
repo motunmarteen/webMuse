@@ -1,0 +1,254 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { useCursor } from "@/components/ui/CustomCursor";
+import { useMagnetic } from "@/hooks/useMagnetic";
+import { Menu, X, Calendar, Volume2, VolumeX } from "lucide-react";
+import { audioSynth } from "@/utils/audioSynth";
+
+const NAV_ITEMS = [
+  { label: "Home", href: "#" },
+  { label: "Services", href: "#services" },
+  { label: "Our Process", href: "#process" },
+  { label: "Constellation", href: "#universe" },
+  { label: "Innovation Gallery", href: "#gallery" },
+  { label: "Leadership", href: "#team" },
+  { label: "Idea Vault", href: "#vault" },
+];
+
+export default function Navbar({ show }: { show: boolean }) {
+  const [activeItem, setActiveItem] = useState("#");
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const { setCursorType } = useCursor();
+  const bookBtnRef = useMagnetic(30, 0.3);
+
+  useEffect(() => {
+    setIsMuted(audioSynth.isMuted());
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
+  const toggleMute = () => {
+    const nextMuted = !isMuted;
+    audioSynth.setMuted(nextMuted);
+    setIsMuted(nextMuted);
+    if (!nextMuted) {
+      audioSynth.playClick();
+    }
+  };
+
+  const handleLinkClick = (href: string) => {
+    audioSynth.playClick();
+    setActiveItem(href);
+  };
+
+  if (!show) return null;
+
+  return (
+    <>
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-40 flex justify-center p-4 transition-all duration-300 ${
+          scrolled ? "pt-3" : "pt-6"
+        }`}
+      >
+        <div
+          className={`flex w-full max-w-7xl items-center justify-between px-6 py-3 transition-all duration-500 rounded-full ${
+            scrolled
+              ? "glassmorphism shadow-lg shadow-black/20 max-w-5xl"
+              : "border border-white/0 bg-transparent"
+          }`}
+        >
+          {/* Logo */}
+          <a
+            href="#"
+            onClick={() => handleLinkClick("#")}
+            onMouseEnter={() => {
+              setCursorType("pointer");
+              audioSynth.playClick();
+            }}
+            onMouseLeave={() => setCursorType("default")}
+            className="flex items-center gap-2.5 group"
+          >
+            <Image
+              src="/webMuse-Logo.png"
+              alt="WEBMUSE Logo"
+              width={26}
+              height={26}
+              className="object-contain invert"
+            />
+            <span className="font-display font-bold tracking-widest text-lg bg-gradient-to-r from-text-title to-text-muted bg-clip-text text-transparent">
+              WEBMUSE
+            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-electric-blue animate-pulse" />
+          </a>
+
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex items-center gap-1.5">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeItem === item.href;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => handleLinkClick(item.href)}
+                  onMouseEnter={() => {
+                    setCursorType("pointer");
+                    audioSynth.playClick();
+                  }}
+                  onMouseLeave={() => setCursorType("default")}
+                  className={`relative px-4 py-1.5 text-xs font-medium uppercase font-mono tracking-wider transition-colors duration-300 ${
+                    isActive ? "text-text-title" : "text-text-muted hover:text-text-title"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="activePill"
+                      className="absolute inset-0 z-0 rounded-full bg-card-bg border border-card-border"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                </a>
+              );
+            })}
+          </nav>
+
+          {/* Action Button & Menu Toggles */}
+          <div className="flex items-center gap-3">
+            {/* Audio Toggle Button */}
+            <button
+              onClick={toggleMute}
+              onMouseEnter={() => {
+                setCursorType("pointer");
+                audioSynth.playClick();
+              }}
+              onMouseLeave={() => setCursorType("default")}
+              className="flex items-center justify-center p-2 rounded-full border border-card-border bg-card-bg text-foreground transition-all hover:bg-card-bg/85 hover:border-card-border/80 h-9 w-9"
+              title={isMuted ? "Unmute Sound" : "Mute Sound"}
+            >
+              {isMuted ? (
+                <VolumeX className="h-4 w-4 text-text-muted" />
+              ) : (
+                <Volume2 className="h-4 w-4 text-electric-blue" />
+              )}
+            </button>
+
+            {/* Book Consultation */}
+            <div ref={bookBtnRef} className="hidden sm:block">
+              <a
+                href="#booking"
+                onClick={() => handleLinkClick("#booking")}
+                onMouseEnter={() => {
+                  setCursorType("pointer");
+                  audioSynth.playClick();
+                }}
+                onMouseLeave={() => setCursorType("default")}
+                className="flex items-center gap-2 rounded-full border border-card-border bg-card-bg px-5 py-2 text-xs font-semibold uppercase tracking-wider text-foreground backdrop-blur-md transition-all hover:bg-card-bg/85 hover:border-card-border/80 font-mono"
+              >
+                <Calendar className="h-3.5 w-3.5 text-electric-blue" />
+                Book Now
+              </a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => {
+                audioSynth.playClick();
+                setIsOpen(!isOpen);
+              }}
+              onMouseEnter={() => {
+                setCursorType("pointer");
+                audioSynth.playClick();
+              }}
+              onMouseLeave={() => setCursorType("default")}
+              className="flex md:hidden p-2 rounded-full border border-card-border bg-card-bg text-foreground"
+            >
+              {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </button>
+          </div>
+        </div>
+      </motion.header>
+
+      {/* Fullscreen Mobile Drawer Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-30 flex flex-col justify-between bg-background/95 backdrop-blur-xl p-8 pt-32 md:hidden"
+          >
+            <div className="flex flex-col gap-6">
+              {NAV_ITEMS.map((item, idx) => (
+                <motion.a
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.05 + 0.1, ease: "easeOut" }}
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => {
+                    handleLinkClick(item.href);
+                    setIsOpen(false);
+                  }}
+                  onMouseEnter={() => audioSynth.playClick()}
+                  className="font-display text-3xl font-light text-text-muted hover:text-text-title transition-colors tracking-tight"
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="flex flex-col gap-4 border-t border-card-border pt-6"
+            >
+              <a
+                href="#booking"
+                onClick={() => {
+                  handleLinkClick("#booking");
+                  setIsOpen(false);
+                }}
+                onMouseEnter={() => audioSynth.playClick()}
+                className="flex items-center justify-center gap-2 w-full rounded-full bg-foreground py-4 text-sm font-semibold text-background hover:opacity-90 transition-opacity"
+              >
+                <Calendar className="h-4 w-4 text-electric-blue" />
+                Book Consultation
+              </a>
+              <span className="text-center font-mono text-[10px] text-text-muted uppercase tracking-widest">
+                Where Ideas Become Digital Reality
+              </span>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
