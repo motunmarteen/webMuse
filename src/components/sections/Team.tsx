@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { useCursor } from "@/components/ui/CustomCursor";
-import { Cpu, Code, Layers, Activity, Calendar, Terminal as TerminalIcon, Sparkles } from "lucide-react";
+import { Terminal as TerminalIcon } from "lucide-react";
+
+interface WindowWithWebkitAudio extends Window {
+  webkitAudioContext?: typeof AudioContext;
+}
 
 interface TeamMember {
   name: string;
@@ -28,14 +30,14 @@ const FOUNDERS: TeamMember[] = [
   {
     name: "Marteen Motun Mubaraq",
     role: "Co-Founder & Chief Product Architect",
-    bio: "Pioneering the intersection of interface craftsmanship, distributed database ledgers, and modular system blueprints. Leads the product vision and user validation strategies at WEBMUSE.",
-    focus: ["Product Architecture", "Distributed Ledgers", "UX/UI Systems", "Go-to-Market Alignment"],
+    bio: "The pillar behind every project that comes through WEBMUSE — shaping product vision, leading engineering execution, and architecting the systems each build stands on.",
+    focus: ["Product Vision", "Engineering Leadership", "System Architecture", "Go-to-Market Alignment"],
     telemetry: {
       workstation: "Active / Online",
-      commits: "1,420+",
-      commitsLabel: "Architectural Audits",
-      uptime: "99.98%",
-      beverage: "Espresso (4L/day)"
+      commits: "Product, Engineering & Architecture",
+      commitsLabel: "Core Focus",
+      uptime: "Go-to-Market",
+      beverage: "Espresso"
     },
     detailsPanel: {
       title: "Product Spec Validator",
@@ -51,14 +53,14 @@ const validateSpec = (prd) => {
   {
     name: "Oluwatosin Florence Atere",
     role: "Co-Founder & Chief Systems Engineer",
-    bio: "Engineering bulletproof modular monolith backend fortresses, real-time geofenced Socket.IO streams, and micro-latency caching engines. Leads technical execution and cloud orchestration.",
-    focus: ["Modular Monoliths", "PostGIS Geofencing", "Edge Orchestration", "High-Scale Caching"],
+    bio: "Crafting intuitive, high-fidelity user experiences while engineering the resilient systems and cloud infrastructure behind them — real-time geofenced streams, micro-latency caching, and modular backend architecture. Leads UX direction, systems engineering, and cloud orchestration at WEBMUSE.",
+    focus: ["UX/UI Design", "Systems Engineering", "Cloud Orchestration", "Edge Infrastructure"],
     telemetry: {
       workstation: "Active / Online",
-      commits: "3,280+",
-      commitsLabel: "Production Deploys",
-      uptime: "99.99%",
-      beverage: "Cold Brew (3.5L/day)"
+      commits: "UX, Systems & Cloud",
+      commitsLabel: "Core Focus",
+      uptime: "DevOps",
+      beverage: "Cold Brew"
     },
     detailsPanel: {
       title: "Geofence Engine Logs",
@@ -75,13 +77,12 @@ router.post('/geofence/ingress', async (req) => {
 ];
 
 export default function Team() {
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const { setCursorType } = useCursor();
 
   // Synthetic Audio feedback using Web Audio API (simulates futuristic interface clicks/hums)
   const playBeep = (freq: number, type: OscillatorType = "sine") => {
     try {
-      const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const audioCtx = new (window.AudioContext || (window as WindowWithWebkitAudio).webkitAudioContext)();
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
 
@@ -96,20 +97,20 @@ export default function Team() {
 
       osc.start();
       osc.stop(audioCtx.currentTime + 0.3);
-    } catch (e) {
+    } catch {
       // AudioContext not supported or blocked by user interaction policy
     }
   };
 
   return (
-    <section id="team" className="relative bg-background py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
+    <section id="team" className="relative bg-background py-14 md:py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
       {/* Dynamic mist glow */}
-      <div className="absolute top-[40%] left-[20%] h-[400px] w-[400px] rounded-full bg-mesh-blue opacity-10 blur-[130px] pointer-events-none" />
+      <div className="absolute top-[40%] left-[20%] h-[400px] w-[400px] rounded-full bg-mesh-blue opacity-10 blur-[130px] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-20">
+        <div className="max-w-3xl mb-10 md:mb-20">
           <span className="text-xs font-semibold tracking-widest text-electric-blue uppercase font-mono">
             LEADERSHIP
           </span>
@@ -124,24 +125,21 @@ export default function Team() {
         {/* Founders Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {FOUNDERS.map((founder, idx) => {
-            const isHovered = hoveredIdx === idx;
             return (
               <div
                 key={founder.name}
                 onMouseEnter={() => {
-                  setHoveredIdx(idx);
                   setCursorType("expand");
                   playBeep(idx === 0 ? 320 : 380, "triangle");
                 }}
                 onMouseLeave={() => {
-                  setHoveredIdx(null);
                   setCursorType("default");
                 }}
                 className="group flex flex-col justify-between rounded-2xl border border-card-border bg-card-bg p-6 md:p-8 relative overflow-hidden transition-all duration-300 hover:border-card-border/80"
               >
                 {/* Background lighting flare */}
                 <div 
-                  className="absolute -top-32 -right-32 h-64 w-64 rounded-full opacity-10 blur-[80px] pointer-events-none transition-opacity duration-500 group-hover:opacity-20"
+                  className="absolute -top-32 -right-32 h-64 w-64 rounded-full opacity-10 blur-[80px] pointer-events-none transition-opacity duration-500 group-hover:opacity-20" aria-hidden="true"
                   style={{ backgroundColor: founder.avatarColor }}
                 />
 
@@ -234,7 +232,7 @@ export default function Team() {
                     </div>
                     <div>
                       <span className="text-[9px] font-mono uppercase tracking-widest text-text-muted block">
-                        Uptime
+                        Also Leads
                       </span>
                       <span className="text-xs font-semibold text-text-title mt-1 block font-mono">
                         {founder.telemetry.uptime}
@@ -251,7 +249,7 @@ export default function Team() {
                   </div>
 
                   {/* Workspace Telemetry Code Frame Drawer */}
-                  <div className="relative rounded-lg border border-card-border bg-background/50 p-4 font-mono text-[11px] text-text-muted leading-relaxed h-[110px] overflow-hidden">
+                  <div className="relative rounded-lg border border-card-border bg-background/50 p-4 font-mono text-[11px] text-text-muted leading-relaxed">
                     <div className="flex justify-between items-center border-b border-card-border pb-2 mb-2 text-[10px] uppercase">
                       <span className="flex items-center gap-1">
                         <TerminalIcon className="h-3 w-3 text-electric-blue" />
@@ -262,7 +260,7 @@ export default function Team() {
                         ONLINE
                       </span>
                     </div>
-                    <pre className="text-foreground/90 overflow-x-auto select-none">
+                    <pre className="text-foreground/90 overflow-x-auto select-none whitespace-pre">
                       {founder.detailsPanel.codeSnippet}
                     </pre>
                   </div>

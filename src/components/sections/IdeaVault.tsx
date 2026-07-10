@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCursor } from "@/components/ui/CustomCursor";
 import { audioSynth } from "@/utils/audioSynth";
@@ -38,8 +38,7 @@ interface IdeaAnalysis {
 const calculateBlueprint = (
   baseType: "ai" | "web3" | "saas" | "general",
   scale: "mvp" | "growth" | "enterprise",
-  velocity: "sprint" | "balanced" | "robust",
-  promptText: string
+  velocity: "sprint" | "balanced" | "robust"
 ): IdeaAnalysis => {
   let title = "High-Scale Modern Enterprise Web Application";
   let audience = "Consumer-facing digital brands requiring seamless onboarding, accessibility, and high performance.";
@@ -172,21 +171,17 @@ const calculateBlueprint = (
     }
   }
 
-  // Cost and hours calculations based on scale & velocity
-  let baseCost = 25000;
+  // Hours and timeline calculations based on scale & velocity
   let baseHours = 180;
   let baseWeeks = 6;
 
   if (scale === "mvp") {
-    baseCost = 22000;
     baseHours = 180;
     baseWeeks = 5;
   } else if (scale === "growth") {
-    baseCost = 50000;
     baseHours = 340;
     baseWeeks = 10;
   } else {
-    baseCost = 110000;
     baseHours = 850;
     baseWeeks = 20;
   }
@@ -197,21 +192,16 @@ const calculateBlueprint = (
   if (baseType === "web3") multiplier = 1.35;
   if (baseType === "saas") multiplier = 1.1;
 
-  baseCost *= multiplier;
   baseHours *= multiplier;
   baseWeeks *= multiplier;
 
   // Adjustments based on launch velocity
   if (velocity === "sprint") {
-    baseWeeks = Math.max(3, Math.round(baseWeeks * 0.7)); 
-    baseCost = Math.round(baseCost * 1.15); 
+    baseWeeks = Math.max(3, Math.round(baseWeeks * 0.7));
   } else if (velocity === "robust") {
     baseWeeks = Math.round(baseWeeks * 1.25);
-    baseCost = Math.round(baseCost * 1.05);
   }
 
-  const costMin = Math.round(baseCost * 0.9 / 1000) * 1000;
-  const costMax = Math.round(baseCost * 1.15 / 1000) * 1000;
   const hoursMin = Math.round(baseHours * 0.9);
   const hoursMax = Math.round(baseHours * 1.1);
 
@@ -251,9 +241,22 @@ const SUGGESTIONS = [
   "Uber for farmers geolocated matching platform",
 ];
 
+const classifyPrompt = (prompt: string): "ai" | "web3" | "saas" | "general" => {
+  const lower = prompt.toLowerCase();
+  if (lower.includes("ai") || lower.includes("predict") || lower.includes("model") || lower.includes("intelligence") || lower.includes("machine learning")) {
+    return "ai";
+  }
+  if (lower.includes("web3") || lower.includes("defi") || lower.includes("contract") || lower.includes("crypto") || lower.includes("blockchain")) {
+    return "web3";
+  }
+  if (lower.includes("saas") || lower.includes("crm") || lower.includes("dashboard") || lower.includes("marketplace") || lower.includes("uber") || lower.includes("farmer") || lower.includes("b2b") || lower.includes("collaboration") || lower.includes("workspace")) {
+    return "saas";
+  }
+  return "general";
+};
+
 export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: (desc: string) => void }) {
   const [prompt, setPrompt] = useState("");
-  const [isFocused, setIsFocused] = useState(false);
   const [placeholderText, setPlaceholderText] = useState("");
   const [isCursorVisible, setIsCursorVisible] = useState(true);
 
@@ -265,6 +268,15 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
   const [activeAnalysis, setActiveAnalysis] = useState<IdeaAnalysis | null>(null);
   const [activeTab, setActiveTab] = useState<"validation" | "tech" | "roadmap" | "financials" | "risks">("validation");
   const { setCursorType } = useCursor();
+
+  // Instant, non-animated preview of the blueprint shown before the user runs
+  // the full "Simulate" diagnostic sequence, so the results panel is never
+  // empty. Falls back to a generic sample when the prompt is blank.
+  const previewAnalysis = useMemo(() => {
+    const effectivePrompt = prompt.trim() || SUGGESTIONS[0];
+    const baseType = classifyPrompt(effectivePrompt);
+    return calculateBlueprint(baseType, scale, velocity);
+  }, [prompt, scale, velocity]);
 
   // Blinking cursor effect
   useEffect(() => {
@@ -344,18 +356,8 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
         setTimeout(printNextLine, 350 + Math.random() * 150);
       } else {
         setTimeout(() => {
-          const lower = prompt.toLowerCase();
-          let baseType: "ai" | "web3" | "saas" | "general" = "general";
-
-          if (lower.includes("ai") || lower.includes("predict") || lower.includes("model") || lower.includes("intelligence") || lower.includes("machine learning")) {
-            baseType = "ai";
-          } else if (lower.includes("web3") || lower.includes("defi") || lower.includes("contract") || lower.includes("crypto") || lower.includes("blockchain")) {
-            baseType = "web3";
-          } else if (lower.includes("saas") || lower.includes("crm") || lower.includes("dashboard") || lower.includes("marketplace") || lower.includes("uber") || lower.includes("farmer") || lower.includes("b2b") || lower.includes("collaboration") || lower.includes("workspace")) {
-            baseType = "saas";
-          }
-
-          const dynamicAnalysis = calculateBlueprint(baseType, scale, velocity, prompt);
+          const baseType = classifyPrompt(prompt);
+          const dynamicAnalysis = calculateBlueprint(baseType, scale, velocity);
           setActiveAnalysis(dynamicAnalysis);
           setAnalyzing(false);
           setActiveTab("validation");
@@ -385,11 +387,11 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
   };
 
   return (
-    <section id="vault" className="relative bg-background py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
-      <div className="absolute top-[40%] left-[80%] h-[350px] w-[350px] rounded-full bg-mesh-purple opacity-10 blur-[130px] pointer-events-none" />
+    <section id="vault" className="relative bg-background py-14 md:py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
+      <div className="absolute top-[40%] left-[80%] h-[350px] w-[350px] rounded-full bg-mesh-purple opacity-10 blur-[130px] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-8 md:mb-16">
           <span className="text-xs font-semibold tracking-widest text-electric-blue uppercase font-mono">
             IDEAS TO MARKET SIMULATOR
           </span>
@@ -416,15 +418,15 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
               </div>
 
               <div className="relative h-[140px] w-full">
+                <label htmlFor="idea-vault-prompt" className="sr-only">Describe your product idea</label>
                 <textarea
+                  id="idea-vault-prompt"
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
-                  onFocus={() => setIsFocused(true)}
-                  onBlur={() => setIsFocused(false)}
                   className="w-full h-full bg-transparent text-sm font-mono text-foreground border-none outline-none resize-none focus:ring-0 p-0 relative z-10"
                 />
                 {!prompt && (
-                  <div className="absolute inset-0 pointer-events-none text-sm font-mono text-zinc-500 p-0 flex items-start">
+                  <div className="absolute inset-0 pointer-events-none text-sm font-mono text-zinc-500 p-0 flex items-start" aria-hidden="true">
                     <span>{placeholderText}</span>
                     {isCursorVisible && (
                       <span className="w-1.5 h-3.5 bg-electric-blue ml-0.5 mt-[3.5px]" />
@@ -441,21 +443,23 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
                     <span>Target Scaling Parameters</span>
                     <span className="text-electric-blue font-bold">{scale.toUpperCase()}</span>
                   </span>
-                  <div className="grid grid-cols-3 gap-1.5 p-1 rounded-lg border border-card-border bg-black/40">
-                    {[
+                  <div role="group" aria-label="Target Scaling Parameters" className="grid grid-cols-3 gap-1.5 p-1 rounded-lg border border-card-border bg-black/40">
+                    {([
                       { id: "mvp", label: "MVP" },
                       { id: "growth", label: "Growth" },
                       { id: "enterprise", label: "Enterprise" }
-                    ].map((s) => (
+                    ] as const).map((s) => (
                       <button
                         key={s.id}
+                        type="button"
+                        aria-pressed={scale === s.id}
                         onClick={() => {
                           audioSynth.playClick();
-                          setScale(s.id as any);
+                          setScale(s.id);
                         }}
                         onMouseEnter={() => setCursorType("pointer")}
                         onMouseLeave={() => setCursorType("default")}
-                        className={`py-1 text-[10px] font-semibold uppercase tracking-wider font-mono rounded transition-colors ${
+                        className={`py-1 text-[10px] font-semibold uppercase tracking-wider font-mono rounded transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-1 ${
                           scale === s.id
                             ? "bg-foreground text-background font-bold"
                             : "text-text-muted hover:text-foreground hover:bg-card-bg/30"
@@ -473,21 +477,23 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
                     <span>Development Velocity</span>
                     <span className="text-neon-purple font-bold">{velocity.toUpperCase()}</span>
                   </span>
-                  <div className="grid grid-cols-3 gap-1.5 p-1 rounded-lg border border-card-border bg-black/40">
-                    {[
+                  <div role="group" aria-label="Development Velocity" className="grid grid-cols-3 gap-1.5 p-1 rounded-lg border border-card-border bg-black/40">
+                    {([
                       { id: "sprint", label: "Sprint" },
                       { id: "balanced", label: "Balanced" },
                       { id: "robust", label: "Robust" }
-                    ].map((v) => (
+                    ] as const).map((v) => (
                       <button
                         key={v.id}
+                        type="button"
+                        aria-pressed={velocity === v.id}
                         onClick={() => {
                           audioSynth.playClick();
-                          setVelocity(v.id as any);
+                          setVelocity(v.id);
                         }}
                         onMouseEnter={() => setCursorType("pointer")}
                         onMouseLeave={() => setCursorType("default")}
-                        className={`py-1 text-[10px] font-semibold uppercase tracking-wider font-mono rounded transition-colors ${
+                        className={`py-1 text-[10px] font-semibold uppercase tracking-wider font-mono rounded transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-1 ${
                           velocity === v.id
                             ? "bg-foreground text-background font-bold"
                             : "text-text-muted hover:text-foreground hover:bg-card-bg/30"
@@ -573,37 +579,48 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
                 </motion.div>
               )}
 
-              {activeAnalysis ? (
+              {!analyzing && (() => {
+                const displayAnalysis = activeAnalysis ?? previewAnalysis;
+                const isLivePreview = !activeAnalysis;
+                return (
                 <motion.div
-                  key="results"
+                  key={isLivePreview ? "preview" : "results"}
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   className="flex flex-col h-full justify-between"
                 >
                   <div>
-                    <div className="border-b border-card-border pb-4 mb-6">
-                      <span className="text-[10px] font-mono tracking-widest text-electric-blue uppercase font-bold">
-                        ROADMAP PROJECTIONS GENERATED
-                      </span>
-                      <h3 className="text-2xl font-bold text-text-title tracking-tight mt-1">
-                        {activeAnalysis.title}
-                      </h3>
+                    <div className="border-b border-card-border pb-4 mb-6 flex items-start justify-between gap-4">
+                      <div>
+                        <span className={`text-[10px] font-mono tracking-widest uppercase font-bold ${isLivePreview ? "text-text-muted" : "text-electric-blue"}`}>
+                          {isLivePreview ? "LIVE PREVIEW" : "ROADMAP PROJECTIONS GENERATED"}
+                        </span>
+                        <h3 className="text-2xl font-bold text-text-title tracking-tight mt-1">
+                          {displayAnalysis.title}
+                        </h3>
+                      </div>
+                      {isLivePreview && (
+                        <span className="shrink-0 flex items-center gap-1.5 rounded-full border border-card-border bg-card-bg px-2.5 py-1 text-[9px] font-mono uppercase tracking-widest text-text-muted">
+                          <span className="h-1.5 w-1.5 rounded-full bg-electric-blue animate-pulse" />
+                          Example
+                        </span>
+                      )}
                     </div>
 
                     <div className="flex flex-wrap gap-1.5 border-b border-card-border pb-4 mb-6">
-                      {[
+                      {([
                         { id: "validation", label: "Validation" },
                         { id: "tech", label: "Tech Stack" },
                         { id: "roadmap", label: "MVP Roadmap" },
                         { id: "financials", label: "Financials" },
                         { id: "risks", label: "Risks" }
-                      ].map((tab) => (
+                      ] as const).map((tab) => (
                         <button
                           key={tab.id}
                           onClick={() => {
                             audioSynth.playClick();
-                            setActiveTab(tab.id as any);
+                            setActiveTab(tab.id);
                           }}
                           onMouseEnter={() => setCursorType("pointer")}
                           onMouseLeave={() => setCursorType("default")}
@@ -627,7 +644,7 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
                               Target Audience
                             </span>
                             <p className="text-foreground text-sm font-light leading-relaxed">
-                              {activeAnalysis.marketValidation.targetAudience}
+                              {displayAnalysis.marketValidation.targetAudience}
                             </p>
                           </div>
                           <div>
@@ -635,7 +652,7 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
                               Competitor Edge
                             </span>
                             <p className="text-foreground text-sm font-light leading-relaxed">
-                              {activeAnalysis.marketValidation.competitorEdge}
+                              {displayAnalysis.marketValidation.competitorEdge}
                             </p>
                           </div>
                           <div>
@@ -643,7 +660,7 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
                               Validation Loop
                             </span>
                             <p className="text-foreground text-sm font-light leading-relaxed">
-                              {activeAnalysis.marketValidation.validationLoop}
+                              {displayAnalysis.marketValidation.validationLoop}
                             </p>
                           </div>
                         </div>
@@ -655,32 +672,32 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
                             <span className="text-[10px] font-mono uppercase tracking-widest text-text-muted block mb-1">
                               Frontend
                             </span>
-                            <span className="text-foreground text-xs font-mono">{activeAnalysis.tech.frontend}</span>
+                            <span className="text-foreground text-xs font-mono">{displayAnalysis.tech.frontend}</span>
                           </div>
                           <div className="p-3 rounded-lg border border-card-border bg-card-bg/20">
                             <span className="text-[10px] font-mono uppercase tracking-widest text-text-muted block mb-1">
                               Backend
                             </span>
-                            <span className="text-foreground text-xs font-mono">{activeAnalysis.tech.backend}</span>
+                            <span className="text-foreground text-xs font-mono">{displayAnalysis.tech.backend}</span>
                           </div>
                           <div className="p-3 rounded-lg border border-card-border bg-card-bg/20">
                             <span className="text-[10px] font-mono uppercase tracking-widest text-text-muted block mb-1">
                               Database
                             </span>
-                            <span className="text-foreground text-xs font-mono">{activeAnalysis.tech.database}</span>
+                            <span className="text-foreground text-xs font-mono">{displayAnalysis.tech.database}</span>
                           </div>
                           <div className="p-3 rounded-lg border border-card-border bg-card-bg/20">
                             <span className="text-[10px] font-mono uppercase tracking-widest text-text-muted block mb-1">
                               Hosting / Cloud
                             </span>
-                            <span className="text-foreground text-xs font-mono">{activeAnalysis.tech.cloud}</span>
+                            <span className="text-foreground text-xs font-mono">{displayAnalysis.tech.cloud}</span>
                           </div>
                         </div>
                       )}
 
                       {activeTab === "roadmap" && (
                         <ul className="flex flex-col gap-3">
-                          {activeAnalysis.roadmap.map((p) => (
+                          {displayAnalysis.roadmap.map((p) => (
                             <li key={p} className="flex items-start gap-2.5">
                               <CheckCircle2 className="h-4.5 w-4.5 text-electric-blue shrink-0 mt-0.5" />
                               <span>{p}</span>
@@ -695,19 +712,19 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
                             <span className="text-[9px] font-mono uppercase tracking-widest text-text-muted">
                               Release Timeline
                             </span>
-                            <span className="text-lg font-bold text-text-title mt-2 font-mono">{activeAnalysis.financials.timeline}</span>
+                            <span className="text-lg font-bold text-text-title mt-2 font-mono">{displayAnalysis.financials.timeline}</span>
                           </div>
                           <div className="p-4 rounded-lg border border-card-border bg-card-bg/20 flex flex-col justify-between">
                             <span className="text-[9px] font-mono uppercase tracking-widest text-text-muted">
                               Budget Scope
                             </span>
-                            <span className="text-lg font-bold text-electric-blue mt-2 font-mono">{activeAnalysis.financials.costRange}</span>
+                            <span className="text-lg font-bold text-electric-blue mt-2 font-mono">{displayAnalysis.financials.costRange}</span>
                           </div>
                           <div className="p-4 rounded-lg border border-card-border bg-card-bg/20 flex flex-col justify-between">
                             <span className="text-[9px] font-mono uppercase tracking-widest text-text-muted">
                               Engineering Size
                             </span>
-                            <span className="text-xs font-semibold text-text-title mt-2 font-mono leading-tight">{activeAnalysis.financials.hours}</span>
+                            <span className="text-xs font-semibold text-text-title mt-2 font-mono leading-tight">{displayAnalysis.financials.hours}</span>
                           </div>
                         </div>
                       )}
@@ -720,7 +737,7 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
                               Primary Technical Risk
                             </h4>
                             <p className="text-foreground text-sm font-light leading-relaxed">
-                              {activeAnalysis.risks.technical}
+                              {displayAnalysis.risks.technical}
                             </p>
                           </div>
                           <div className="p-4 rounded-lg border border-card-border bg-card-bg/20 flex flex-col gap-2">
@@ -729,7 +746,7 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
                               WEBMUSE Mitigation Strategy
                             </h4>
                             <p className="text-foreground text-sm font-light leading-relaxed">
-                              {activeAnalysis.risks.mitigation}
+                              {displayAnalysis.risks.mitigation}
                             </p>
                           </div>
                         </div>
@@ -742,37 +759,37 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
                     <div className="flex items-center gap-2 text-text-muted text-xs max-w-sm">
                       <AlertCircle className="h-4 w-4 shrink-0" />
                       <span>
-                        Blueprints show conceptual parameters. Full scope validation requires consultation.
+                        {isLivePreview
+                          ? "This is a live example. Hit “Simulate Product Roadmap” to generate your own blueprint."
+                          : "Blueprints show conceptual parameters. Full scope validation requires consultation."}
                       </span>
                     </div>
-                    <button
-                      onClick={transferToBooking}
-                      onMouseEnter={() => setCursorType("pointer")}
-                      onMouseLeave={() => setCursorType("default")}
-                      className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-foreground hover:text-electric-blue transition-colors font-mono whitespace-nowrap"
-                    >
-                      Refine in Consultation
-                      <ArrowRight className="h-4 w-4" />
-                    </button>
+                    {isLivePreview ? (
+                      <button
+                        onClick={handleAnalyze}
+                        disabled={!prompt.trim()}
+                        onMouseEnter={() => setCursorType("pointer")}
+                        onMouseLeave={() => setCursorType("default")}
+                        className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-foreground hover:text-electric-blue transition-colors font-mono whitespace-nowrap disabled:opacity-40 disabled:pointer-events-none"
+                      >
+                        Simulate This Idea
+                        <ArrowRight className="h-4 w-4" />
+                      </button>
+                    ) : (
+                      <button
+                        onClick={transferToBooking}
+                        onMouseEnter={() => setCursorType("pointer")}
+                        onMouseLeave={() => setCursorType("default")}
+                        className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-foreground hover:text-electric-blue transition-colors font-mono whitespace-nowrap"
+                      >
+                        Refine in Consultation
+                        <ArrowRight className="h-4 w-4" />
+                      </button>
+                    )}
                   </div>
                 </motion.div>
-              ) : (
-                <motion.div
-                  key="empty-state"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.5 }}
-                  exit={{ opacity: 0 }}
-                  className="flex-1 flex flex-col items-center justify-center text-center p-8 border border-card-border border-dashed rounded-xl"
-                >
-                  <TerminalIcon className="h-8 w-8 text-text-muted/40 mb-3 animate-pulse" />
-                  <span className="text-xs text-text-muted font-mono uppercase tracking-widest">
-                    Awaiting Diagnostic Input
-                  </span>
-                  <p className="text-text-muted/70 text-xs max-w-xs mt-2">
-                    Enter your product idea in the console prompt and hit analyze to load the mapping logs.
-                  </p>
-                </motion.div>
-              )}
+                );
+              })()}
             </AnimatePresence>
           </div>
         </div>

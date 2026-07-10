@@ -4,10 +4,14 @@
 let audioCtx: AudioContext | null = null;
 let isMuted = true;
 
+interface WindowWithWebkitAudio extends Window {
+  webkitAudioContext?: typeof AudioContext;
+}
+
 const getAudioContext = (): AudioContext | null => {
   if (typeof window === "undefined") return null;
   if (!audioCtx) {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    const AudioContextClass = window.AudioContext || (window as WindowWithWebkitAudio).webkitAudioContext;
     if (AudioContextClass) {
       audioCtx = new AudioContextClass();
     }
@@ -102,7 +106,7 @@ export const audioSynth = {
       
       noiseNode.start(ctx.currentTime);
       noiseNode.stop(ctx.currentTime + 0.015);
-    } catch (e) {
+    } catch {
       // Fallback to simple oscillator click if buffer generation fails
       try {
         const osc = ctx.createOscillator();
@@ -114,7 +118,9 @@ export const audioSynth = {
         gainNode.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.01);
         osc.start(ctx.currentTime);
         osc.stop(ctx.currentTime + 0.01);
-      } catch (inner) {}
+      } catch {
+        // Both primary and fallback synthesis failed; give up silently.
+      }
     }
   },
 

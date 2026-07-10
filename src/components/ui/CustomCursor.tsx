@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useRef } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 type CursorType = "default" | "pointer" | "hover" | "click" | "text" | "expand";

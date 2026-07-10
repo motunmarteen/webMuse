@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCursor } from "@/components/ui/CustomCursor";
-import { Terminal, Shield, Cpu, RefreshCw, Layers, ExternalLink, Activity } from "lucide-react";
+import { Terminal, Shield, RefreshCw, Layers, ExternalLink, Activity } from "lucide-react";
 import { audioSynth } from "@/utils/audioSynth";
 
 interface LogLine {
@@ -69,24 +69,18 @@ export default function LiveTerminal() {
   const { setCursorType } = useCursor();
 
   useEffect(() => {
-    // Reset logs for the current phase
-    setPrintedLogs([]);
-    setLogIndex(0);
-  }, [activePhase]);
-
-  useEffect(() => {
     const currentPhase = TERMINAL_PHASES[activePhase];
     if (logIndex < currentPhase.logs.length) {
       const timer = setTimeout(() => {
         const nextLog = currentPhase.logs[logIndex];
         setPrintedLogs((prev) => [...prev, nextLog]);
-        
+
         if (nextLog.type === "success") {
           audioSynth.playSuccess();
         } else {
           audioSynth.playTypeTick();
         }
-        
+
         setLogIndex((prev) => prev + 1);
       }, 700 + Math.random() * 400); // realistic log printing delays
       return () => clearTimeout(timer);
@@ -94,6 +88,8 @@ export default function LiveTerminal() {
       // All logs printed for this phase, wait and move to next
       const timer = setTimeout(() => {
         setActivePhase((prev) => (prev + 1) % TERMINAL_PHASES.length);
+        setPrintedLogs([]);
+        setLogIndex(0);
       }, 4000);
       return () => clearTimeout(timer);
     }
@@ -102,22 +98,24 @@ export default function LiveTerminal() {
   const handlePhaseButtonClick = (idx: number) => {
     audioSynth.playClick();
     setActivePhase(idx);
+    setPrintedLogs([]);
+    setLogIndex(0);
   };
 
   return (
-    <section id="terminal" className="relative bg-background py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
+    <section id="terminal" className="relative bg-background py-14 md:py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-8 md:mb-16">
           <span className="text-xs font-semibold tracking-widest text-electric-blue uppercase font-mono">
-            LIVE ENGINEERING OBSERVATORY
+            ENGINEERING PROCESS DEMO
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-text-title mt-4">
             Watch ideas compile into digital reality.
           </h2>
           <p className="text-text-muted font-light mt-6 text-lg leading-relaxed">
-            Witness our automated software delivery cycle in real-time. From framework scaffolding and database provisioning to compiler checks and edge deployments, watch code transition into production.
+            A simulated walkthrough of our automated software delivery cycle. From framework scaffolding and database provisioning to compiler checks and edge deployments, this is how code transitions into production on a WEBMUSE build.
           </p>
         </div>
 
@@ -211,10 +209,10 @@ export default function LiveTerminal() {
             <div className="mt-8 border-t border-card-border pt-6 flex items-center justify-between text-[10px] font-mono text-text-muted uppercase">
               <span className="flex items-center gap-1.5">
                 <Activity className="h-3.5 w-3.5 text-electric-blue" />
-                Live Build Logs Stream
+                Simulated Build Log
               </span>
               <span className="flex items-center gap-1">
-                Active Branch: <span className="text-foreground">production</span>
+                Example Branch: <span className="text-foreground">production</span>
               </span>
             </div>
           </div>

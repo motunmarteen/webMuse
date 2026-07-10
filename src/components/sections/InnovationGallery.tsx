@@ -4,27 +4,46 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCursor } from "@/components/ui/CustomCursor";
 import { audioSynth } from "@/utils/audioSynth";
-import { 
-  ArrowRight, 
-  HelpCircle, 
-  Search, 
-  Palette, 
-  Layers, 
-  Cpu, 
-  Rocket, 
+import {
+  ArrowRight,
+  HelpCircle,
+  Search,
+  Palette,
+  Layers,
   TrendingUp,
-  ShieldCheck,
-  Zap,
-  Sparkles
+  Sparkles,
+  type LucideIcon
 } from "lucide-react";
+
+interface StatsMockupData {
+  metrics: { label: string; value: string }[];
+}
+
+interface WireframeMockupData {
+  title: string;
+  items: string[];
+}
+
+interface UiDashboardMockupData {
+  title: string;
+  balance: string;
+  trend: string;
+  vaults: { name: string; apy: string; active: boolean }[];
+}
+
+interface SystemFlowMockupData {
+  nodes: { label: string; x: number; y: number }[];
+}
+
+type MockupData = StatsMockupData | WireframeMockupData | UiDashboardMockupData | SystemFlowMockupData;
 
 interface NarrativeStep {
   label: string;
   title: string;
-  icon: any;
+  icon: LucideIcon;
   content: string;
   mockupType: "text" | "stats" | "ui-dashboard" | "system-flow" | "wireframe";
-  mockupData: any;
+  mockupData: MockupData;
 }
 
 interface Project {
@@ -32,7 +51,6 @@ interface Project {
   title: string;
   tagline: string;
   category: string;
-  image: string;
   steps: NarrativeStep[];
 }
 
@@ -42,7 +60,6 @@ const PROJECTS_DATA: Project[] = [
     title: "Neyborhuud",
     tagline: "Connecting local communities through trusted transactions.",
     category: "Hyperlocal PWA & FinTech",
-    image: "/api/placeholder/400/320",
     steps: [
       {
         label: "Problem",
@@ -120,7 +137,6 @@ const PROJECTS_DATA: Project[] = [
     title: "Seth HSE",
     tagline: "Enforcing Health, Safety, and Environment compliance through verified, real-time geofenced telemetry.",
     category: "HSE Compliance & Geofencing Platform",
-    image: "/api/placeholder/400/320",
     steps: [
       {
         label: "Problem",
@@ -198,7 +214,6 @@ const PROJECTS_DATA: Project[] = [
     title: "Elytse",
     tagline: "Social fashion marketplace utilizing AI and 3D body measurements.",
     category: "AI & Social Commerce",
-    image: "/api/placeholder/400/320",
     steps: [
       {
         label: "Problem",
@@ -276,7 +291,6 @@ const PROJECTS_DATA: Project[] = [
     title: "Novunt",
     tagline: "Automated algorithmic trading bot for decentralized exchanges.",
     category: "Web3 & FinTech",
-    image: "/api/placeholder/400/320",
     steps: [
       {
         label: "Problem",
@@ -354,7 +368,6 @@ const PROJECTS_DATA: Project[] = [
     title: "PODLY",
     tagline: "Proof of Deal infrastructure creating traceable trust through blockchain validation.",
     category: "Web3 & Blockchain Infrastructure",
-    image: "/api/placeholder/400/320",
     steps: [
       {
         label: "Problem",
@@ -449,20 +462,23 @@ export default function InnovationGallery() {
   };
 
   return (
-    <section id="gallery" className="relative bg-background py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
+    <section id="gallery" className="relative bg-background py-14 md:py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-[50%] right-[0%] h-[400px] w-[400px] rounded-full bg-mesh-purple opacity-20 blur-[140px] pointer-events-none" />
+      <div className="absolute top-[50%] right-[0%] h-[400px] w-[400px] rounded-full bg-mesh-purple opacity-20 blur-[140px] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 md:mb-16">
           <div className="max-w-3xl">
             <span className="text-xs font-semibold tracking-widest text-electric-blue uppercase font-mono">
               INNOVATION GALLERY
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-text-title mt-4">
-              Products that define industries.
+              Products we&apos;ve built that define industries.
             </h2>
+            <p className="text-text-muted text-xs font-mono uppercase tracking-widest mt-4">
+              Illustrative concept case studies
+            </p>
           </div>
           {/* Project Toggles */}
           <div className="w-full lg:w-auto overflow-x-auto no-scrollbar py-2 -my-2 flex justify-start mt-8 lg:mt-0">
@@ -607,7 +623,7 @@ export default function InnovationGallery() {
                       exit={{ opacity: 0, scale: 0.95 }}
                       className="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center mt-4 w-full"
                     >
-                      {currentStep.mockupData.metrics.map((m: any, idx: number) => (
+                      {(currentStep.mockupData as StatsMockupData).metrics.map((m, idx) => (
                         <div key={m.label} className="p-4 rounded-xl border border-card-border bg-card-bg/40 flex flex-col justify-between items-center relative overflow-hidden group hover:border-electric-blue/30 transition-colors">
                           <div className="absolute inset-0 bg-gradient-to-br from-electric-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                           <span className="text-[10px] font-mono tracking-widest text-text-muted uppercase block relative z-10">
@@ -639,9 +655,9 @@ export default function InnovationGallery() {
                       className="flex flex-col gap-2 mt-4 w-full"
                     >
                       <span className="text-[10px] font-mono tracking-widest text-text-muted uppercase mb-1">
-                        {currentStep.mockupData.title}
+                        {(currentStep.mockupData as WireframeMockupData).title}
                       </span>
-                      {currentStep.mockupData.items.map((item: string, idx: number) => (
+                      {(currentStep.mockupData as WireframeMockupData).items.map((item, idx) => (
                         <div
                           key={item}
                           className="flex items-center justify-between border border-dashed border-card-border/60 hover:border-electric-blue/40 p-2.5 rounded-lg text-xs font-mono text-text-muted bg-card-bg/10 hover:bg-card-bg/20 hover:text-foreground transition-all duration-300"
@@ -650,7 +666,7 @@ export default function InnovationGallery() {
                             <span className="h-1.5 w-1.5 bg-zinc-600 rounded-full" />
                             <span>{item}</span>
                           </div>
-                          <span className="text-[9px] text-text-muted/40 font-mono tracking-wider">X: 0.{idx + 2} Y: 1.4</span>
+                          <span className="text-[9px] text-text-muted/40 font-mono tracking-wider" aria-hidden="true">X: 0.{idx + 2} Y: 1.4</span>
                         </div>
                       ))}
                     </motion.div>
@@ -668,19 +684,19 @@ export default function InnovationGallery() {
                       <div className="flex justify-between items-end">
                         <div>
                           <span className="text-[10px] font-mono tracking-widest text-text-muted uppercase">
-                            {currentStep.mockupData.title}
+                            {(currentStep.mockupData as UiDashboardMockupData).title}
                           </span>
                           <div className="text-2xl font-bold text-foreground font-mono mt-0.5">
-                            {currentStep.mockupData.balance}
+                            {(currentStep.mockupData as UiDashboardMockupData).balance}
                           </div>
                         </div>
                         <span className="text-xs font-semibold text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full font-mono">
-                          {currentStep.mockupData.trend}
+                          {(currentStep.mockupData as UiDashboardMockupData).trend}
                         </span>
                       </div>
 
                       <div className="flex flex-col gap-2">
-                        {currentStep.mockupData.vaults.map((v: any) => (
+                        {(currentStep.mockupData as UiDashboardMockupData).vaults.map((v) => (
                           <div
                             key={v.name}
                             className="flex items-center justify-between border border-card-border bg-card-bg/20 hover:bg-card-bg/40 p-2.5 rounded-lg text-xs hover:border-electric-blue/20 transition-all duration-300"
@@ -718,7 +734,7 @@ export default function InnovationGallery() {
                         </div>
                       </div>
 
-                      {currentStep.mockupData.nodes.map((node: any) => (
+                      {(currentStep.mockupData as SystemFlowMockupData).nodes.map((node) => (
                         <div
                           key={node.label}
                           className="relative z-10 p-2.5 rounded-xl border border-card-border bg-background/90 text-[9px] font-mono text-text-muted hover:text-foreground hover:border-electric-blue/40 max-w-[120px] text-center shadow-2xl transition-all duration-300"

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import gsap from "gsap";
 import { useCursor } from "@/components/ui/CustomCursor";
 import { useMagnetic } from "@/hooks/useMagnetic";
 import dynamic from "next/dynamic";
@@ -132,72 +131,152 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
       }
 
       draw(c: CanvasRenderingContext2D) {
-        c.save();
         c.globalAlpha = Math.max(0, this.alpha);
-        c.shadowBlur = this.glow;
-        c.shadowColor = this.color;
+        // Shadow blur is a relatively expensive canvas operation; only pay
+        // for it on the few particles that are actually glowing (core
+        // particle, post-flash) instead of every particle every frame.
+        if (this.glow > 0) {
+          c.shadowBlur = this.glow;
+          c.shadowColor = this.color;
+        } else if (c.shadowBlur !== 0) {
+          c.shadowBlur = 0;
+        }
         c.fillStyle = this.color;
-        c.beginPath();
-        c.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        c.fill();
-        c.restore();
+        // fillRect is measurably cheaper than beginPath+arc+fill for these
+        // tiny (1-4px) marks, and at that size a square reads the same as a
+        // dot — this keeps the intro light on low-end devices.
+        c.fillRect(this.x - this.size, this.y - this.size, this.size * 2, this.size * 2);
       }
     }
 
     const particles: Particle[] = [];
-    const particleCount = 1400;
 
-    // Generate monogram logo coordinates
+    // Generate logo coordinates by sampling rendered text on an offscreen canvas.
+    // This guarantees crisp, legible letterforms instead of hand-drawn approximations.
     const logoPoints: { x: number; y: number }[] = [];
-    const scale = Math.min(width, height) * 0.28;
     const centerX = width / 2;
     const centerY = height / 2;
 
-    const addLinePoints = (x1: number, y1: number, x2: number, y2: number, count: number) => {
-      for (let i = 0; i < count; i++) {
-        const t = i / count;
-        logoPoints.push({
-          x: centerX + (x1 + (x2 - x1) * t) * scale,
-          y: centerY + (y1 + (y2 - y1) * t) * scale,
-        });
+    const text = "WEBMUSE";
+    // Small measuring canvas just to compute font metrics before sizing the
+    // real offscreen canvas — avoids allocating/scanning a full-viewport
+    // buffer (a synchronous getImageData over ~2M pixels on a large desktop
+    // screen was the main cause of the intro feeling slow to load).
+    const measureCanvas = document.createElement("canvas");
+    const measureCtx = measureCanvas.getContext("2d");
+    const offscreen = document.createElement("canvas");
+    const offCtx = offscreen.getContext("2d", { willReadFrequently: true });
+
+    const fontFamily = getComputedStyle(document.documentElement).getPropertyValue("--font-outfit") || "Outfit, sans-serif";
+
+    const renderTextPoints = () => {
+      if (!offCtx || !measureCtx) return;
+      logoPoints.length = 0;
+
+      // Fit text to a fraction of viewport width by measuring at a reference size first.
+      const refSize = 100;
+      measureCtx.font = `700 ${refSize}px ${fontFamily}`;
+      const refMetrics = measureCtx.measureText(text);
+      const targetWidth = width * (width < 640 ? 0.86 : 0.5);
+      let fontSize = (targetWidth / refMetrics.width) * refSize;
+      // Clamp so it never dwarfs viewport height either.
+      fontSize = Math.min(fontSize, height * 0.3);
+
+      measureCtx.font = `700 ${fontSize}px ${fontFamily}`;
+      const metrics = measureCtx.measureText(text);
+      const textWidth = metrics.actualBoundingBoxLeft + metrics.actualBoundingBoxRight;
+      const textHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+
+      // Size the offscreen canvas to just the text's bounding box (+ padding),
+      // not the whole viewport, so the pixel scan stays cheap regardless of screen size.
+      const padding = Math.ceil(fontSize * 0.2);
+      const offW = Math.ceil(textWidth) + padding * 2;
+      const offH = Math.ceil(textHeight) + padding * 2;
+      offscreen.width = offW;
+      offscreen.height = offH;
+
+      offCtx.clearRect(0, 0, offW, offH);
+      offCtx.fillStyle = "#fff";
+      offCtx.font = `700 ${fontSize}px ${fontFamily}`;
+      offCtx.textAlign = "center";
+      offCtx.textBaseline = "middle";
+      offCtx.fillText(text, offW / 2, offH / 2);
+
+      const imageData = offCtx.getImageData(0, 0, offW, offH);
+      const data = imageData.data;
+      // Sample step scales with font size so particle count stays roughly
+      // constant regardless of screen size (dense sampling on a huge desktop
+      // headline would otherwise spawn tens of thousands of particles and
+      // tank the frame rate, which is what caused the animation to stall).
+      const targetParticleBudget = 600;
+      const step = Math.max(1, Math.round(fontSize / 45));
+
+      const sampled: { x: number; y: number }[] = [];
+      for (let y = 0; y < offH; y += step) {
+        for (let x = 0; x < offW; x += step) {
+          const alpha = data[(y * offW + x) * 4 + 3];
+          if (alpha > 128) {
+            // Map back to full-canvas coordinates, centered in the viewport.
+            sampled.push({
+              x: centerX + (x - offW / 2),
+              y: centerY + (y - offH / 2),
+            });
+          }
+        }
+      }
+
+      if (sampled.length > targetParticleBudget) {
+        // Evenly thin the sampled points down to the budget.
+        const keepRatio = targetParticleBudget / sampled.length;
+        for (let i = 0; i < sampled.length; i++) {
+          if ((i * keepRatio) % 1 < keepRatio) {
+            logoPoints.push(sampled[i]);
+          }
+        }
+      } else {
+        logoPoints.push(...sampled);
       }
     };
 
-    // Design: Stylized Futuristic "W" and "M" interlocking lines
-    // Line coords relative to center (-1 to 1)
-    // Left 'W' Peak
-    addLinePoints(-0.7, -0.4, -0.4, 0.4, 150);
-    addLinePoints(-0.4, 0.4, -0.15, -0.1, 100);
-    addLinePoints(-0.15, -0.1, 0.1, 0.4, 100);
-    addLinePoints(0.1, 0.4, 0.4, -0.4, 150);
+    renderTextPoints();
 
-    // Interlocking 'M' Peak (Shifted)
-    addLinePoints(-0.4, 0.4, -0.1, -0.4, 150);
-    addLinePoints(-0.1, -0.4, 0.15, 0.1, 100);
-    addLinePoints(0.15, 0.1, 0.4, -0.4, 100);
-    addLinePoints(0.4, -0.4, 0.7, 0.4, 150);
+    // Fallback in case text sampling fails (e.g. font not ready): small dot cluster.
+    if (logoPoints.length === 0) {
+      for (let i = 0; i < 400; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const r = Math.random() * Math.min(width, height) * 0.15;
+        logoPoints.push({
+          x: centerX + Math.cos(angle) * r,
+          y: centerY + Math.sin(angle) * r,
+        });
+      }
+    }
 
-    // Center Diamond Accent
-    addLinePoints(0, -0.15, 0.12, 0, 50);
-    addLinePoints(0.12, 0, 0, 0.15, 50);
-    addLinePoints(0, 0.15, -0.12, 0, 50);
-    addLinePoints(-0.12, 0, 0, -0.15, 50);
+    const particles_seed_count = logoPoints.length;
 
     // Initialize particles
     // Core breathing particle first
     particles.push(new Particle(true));
-    for (let i = 0; i < particleCount; i++) {
+    for (let i = 0; i < particles_seed_count; i++) {
       particles.push(new Particle());
     }
 
-    // Assign logo target coordinates to particles
-    particles.forEach((p, idx) => {
-      if (idx > 0) {
-        const logoIdx = (idx - 1) % logoPoints.length;
-        p.targetX = logoPoints[logoIdx].x + (Math.random() - 0.5) * 8;
-        p.targetY = logoPoints[logoIdx].y + (Math.random() - 0.5) * 8;
-      }
-    });
+    const assignTargets = () => {
+      particles.forEach((p, idx) => {
+        if (idx > 0) {
+          const logoIdx = (idx - 1) % logoPoints.length;
+          p.targetX = logoPoints[logoIdx].x + (Math.random() - 0.5) * 2;
+          p.targetY = logoPoints[logoIdx].y + (Math.random() - 0.5) * 2;
+        }
+      });
+    };
+    assignTargets();
+    // Deliberately not re-sampling on font load: re-running the text scan
+    // mid-animation caused a multi-hundred-ms main-thread stall right as the
+    // particles start swarming (the animation would visibly hang). The
+    // initial synchronous sample above uses whatever font is available at
+    // mount time, which in practice is the brand font almost always (it's
+    // self-hosted and injected before this component mounts).
 
     let phase = 0; // 0: single point, 1: gathering, 2: forming logo
     let explode = false;
@@ -209,23 +288,23 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
 
       timer++;
 
-      if (timer === 60) {
+      if (timer === 35) {
         phase = 1; // start swarming
       }
-      if (timer === 180) {
+      if (timer === 100) {
         phase = 2; // snap to logo
       }
-      if (timer === 290) {
+      if (timer === 260) {
         // Flash glow
         particles.forEach(p => {
           p.glow = 12;
           p.size *= 1.5;
         });
       }
-      if (timer === 310) {
+      if (timer === 275) {
         explode = true; // explode outwards
       }
-      if (timer === 355) {
+      if (timer === 300) {
         setIntroFinished(true);
         return;
       }
@@ -259,13 +338,15 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0 z-50 flex h-full w-full flex-col items-center justify-center bg-[#030303]"
+            role="presentation"
           >
-            <canvas ref={canvasRef} className="block h-full w-full" />
+            <canvas ref={canvasRef} className="block h-full w-full" aria-hidden="true" />
+            <span className="sr-only">Loading WEBMUSE</span>
             <button
               onClick={skipIntro}
               onMouseEnter={() => setCursorType("pointer")}
               onMouseLeave={() => setCursorType("default")}
-              className="absolute bottom-10 right-10 z-50 font-mono text-xs tracking-widest text-zinc-500 hover:text-white uppercase transition-colors duration-300 border border-zinc-800 hover:border-zinc-500 py-2 px-4 rounded-full bg-black/40 backdrop-blur-md"
+              className="absolute bottom-10 right-10 z-50 font-mono text-xs tracking-widest text-zinc-500 hover:text-white uppercase transition-colors duration-300 border border-zinc-800 hover:border-zinc-500 py-2 px-4 rounded-full bg-black/40 backdrop-blur-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2"
             >
               Skip Intro
             </button>
@@ -275,12 +356,13 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
 
       {/* Main Hero Screen */}
       <div className="relative flex min-h-screen w-full flex-col justify-center px-6 lg:px-24">
-        {/* Dynamic 3D Canvas Background */}
-        <Hero3D />
+        {/* Dynamic 3D Canvas Background: deferred until the intro overlay is
+            gone so its WebGL init cost doesn't compete with the intro animation. */}
+        {introFinished && <Hero3D />}
 
         {/* Ambient background glows */}
-        <div className="absolute top-[20%] left-[10%] h-[350px] w-[350px] rounded-full bg-mesh-purple opacity-40 blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[20%] right-[10%] h-[350px] w-[350px] rounded-full bg-mesh-blue opacity-40 blur-[120px] pointer-events-none" />
+        <div className="absolute top-[20%] left-[10%] h-[350px] w-[350px] rounded-full bg-mesh-purple opacity-40 blur-[120px] pointer-events-none" aria-hidden="true" />
+        <div className="absolute bottom-[20%] right-[10%] h-[350px] w-[350px] rounded-full bg-mesh-blue opacity-40 blur-[120px] pointer-events-none" aria-hidden="true" />
 
         {/* Hero Content */}
         <div className="relative z-10 max-w-5xl mt-16 pointer-events-auto">

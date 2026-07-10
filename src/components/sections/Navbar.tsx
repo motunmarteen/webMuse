@@ -22,13 +22,9 @@ export default function Navbar({ show }: { show: boolean }) {
   const [activeItem, setActiveItem] = useState("#");
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(() => audioSynth.isMuted());
   const { setCursorType } = useCursor();
   const bookBtnRef = useMagnetic(30, 0.3);
-
-  useEffect(() => {
-    setIsMuted(audioSynth.isMuted());
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,6 +43,15 @@ export default function Navbar({ show }: { show: boolean }) {
     return () => {
       document.body.style.overflow = "unset";
     };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
   const toggleMute = () => {
@@ -91,7 +96,7 @@ export default function Navbar({ show }: { show: boolean }) {
               audioSynth.playClick();
             }}
             onMouseLeave={() => setCursorType("default")}
-            className="flex items-center gap-2.5 group"
+            className="flex items-center gap-2.5 group focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-4 rounded-full"
           >
             <Image
               src="/webMuse-Logo.png"
@@ -103,11 +108,11 @@ export default function Navbar({ show }: { show: boolean }) {
             <span className="font-display font-bold tracking-widest text-lg bg-gradient-to-r from-text-title to-text-muted bg-clip-text text-transparent">
               WEBMUSE
             </span>
-            <span className="h-1.5 w-1.5 rounded-full bg-electric-blue animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-electric-blue animate-pulse" aria-hidden="true" />
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-1.5">
+          <nav aria-label="Primary" className="hidden md:flex items-center gap-1.5">
             {NAV_ITEMS.map((item) => {
               const isActive = activeItem === item.href;
               return (
@@ -120,7 +125,7 @@ export default function Navbar({ show }: { show: boolean }) {
                     audioSynth.playClick();
                   }}
                   onMouseLeave={() => setCursorType("default")}
-                  className={`relative px-4 py-1.5 text-xs font-medium uppercase font-mono tracking-wider transition-colors duration-300 ${
+                  className={`relative px-4 py-1.5 text-xs font-medium uppercase font-mono tracking-wider transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2 rounded-full ${
                     isActive ? "text-text-title" : "text-text-muted hover:text-text-title"
                   }`}
                 >
@@ -147,7 +152,9 @@ export default function Navbar({ show }: { show: boolean }) {
                 audioSynth.playClick();
               }}
               onMouseLeave={() => setCursorType("default")}
-              className="flex items-center justify-center p-2 rounded-full border border-card-border bg-card-bg text-foreground transition-all hover:bg-card-bg/85 hover:border-card-border/80 h-9 w-9"
+              className="flex items-center justify-center p-2 rounded-full border border-card-border bg-card-bg text-foreground transition-all hover:bg-card-bg/85 hover:border-card-border/80 h-9 w-9 focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2"
+              aria-label={isMuted ? "Unmute interface sound" : "Mute interface sound"}
+              aria-pressed={!isMuted}
               title={isMuted ? "Unmute Sound" : "Mute Sound"}
             >
               {isMuted ? (
@@ -167,9 +174,9 @@ export default function Navbar({ show }: { show: boolean }) {
                   audioSynth.playClick();
                 }}
                 onMouseLeave={() => setCursorType("default")}
-                className="flex items-center gap-2 rounded-full border border-card-border bg-card-bg px-5 py-2 text-xs font-semibold uppercase tracking-wider text-foreground backdrop-blur-md transition-all hover:bg-card-bg/85 hover:border-card-border/80 font-mono"
+                className="flex items-center gap-2 rounded-full border border-card-border bg-card-bg px-5 py-2 text-xs font-semibold uppercase tracking-wider text-foreground backdrop-blur-md transition-all hover:bg-card-bg/85 hover:border-card-border/80 font-mono focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2"
               >
-                <Calendar className="h-3.5 w-3.5 text-electric-blue" />
+                <Calendar className="h-3.5 w-3.5 text-electric-blue" aria-hidden="true" />
                 Book Now
               </a>
             </div>
@@ -185,9 +192,12 @@ export default function Navbar({ show }: { show: boolean }) {
                 audioSynth.playClick();
               }}
               onMouseLeave={() => setCursorType("default")}
-              className="flex md:hidden p-2 rounded-full border border-card-border bg-card-bg text-foreground"
+              className="flex md:hidden p-2 rounded-full border border-card-border bg-card-bg text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-nav-menu"
             >
-              {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+              {isOpen ? <X className="h-4 w-4" aria-hidden="true" /> : <Menu className="h-4 w-4" aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -197,13 +207,17 @@ export default function Navbar({ show }: { show: boolean }) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-nav-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
             className="fixed inset-0 z-30 flex flex-col justify-between bg-background/95 backdrop-blur-xl p-8 pt-32 md:hidden"
           >
-            <div className="flex flex-col gap-6">
+            <nav aria-label="Mobile" className="flex flex-col gap-6">
               {NAV_ITEMS.map((item, idx) => (
                 <motion.a
                   initial={{ opacity: 0, x: -30 }}
@@ -216,12 +230,12 @@ export default function Navbar({ show }: { show: boolean }) {
                     setIsOpen(false);
                   }}
                   onMouseEnter={() => audioSynth.playClick()}
-                  className="font-display text-3xl font-light text-text-muted hover:text-text-title transition-colors tracking-tight"
+                  className="font-display text-3xl font-light text-text-muted hover:text-text-title transition-colors tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-4 rounded"
                 >
                   {item.label}
                 </motion.a>
               ))}
-            </div>
+            </nav>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}

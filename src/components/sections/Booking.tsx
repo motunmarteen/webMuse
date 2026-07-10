@@ -4,15 +4,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCursor } from "@/components/ui/CustomCursor";
 import { audioSynth } from "@/utils/audioSynth";
-import { 
-  Calendar as CalendarIcon, 
-  Clock, 
-  Upload, 
-  Video, 
-  Check, 
-  ArrowRight, 
-  ArrowLeft, 
-  FileText, 
+import {
+  Upload,
+  Video,
+  Check,
+  ArrowRight,
+  ArrowLeft,
   ChevronRight,
   ShieldCheck
 } from "lucide-react";
@@ -51,7 +48,7 @@ const getUpcomingDates = () => {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   
-  let current = new Date();
+  const current = new Date();
   while (dates.length < 5) {
     current.setDate(current.getDate() + 1);
     const day = current.getDay();
@@ -85,11 +82,24 @@ export default function Booking({ initialDescription, onClearDescription }: Book
   const [ticketId, setTicketId] = useState("");
   const [isBooked, setIsBooked] = useState(false);
   const [blockedSlots, setBlockedSlots] = useState<{ date: string; time: string }[]>([]);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [emailDelivered, setEmailDelivered] = useState(false);
 
   const { setCursorType } = useCursor();
   const dates = getUpcomingDates();
 
-  // Load active booking and blocked slots on mount
+  /* eslint-disable react-hooks/set-state-in-effect --
+     localStorage is only available client-side, so restoring a saved
+     booking genuinely needs an effect rather than a lazy useState
+     initializer (there's no SSR-safe way to read it during render). The
+     form has many independently-named fields rather than one combined
+     object, so restoring state means several setState calls in sequence —
+     React batches these into a single re-render either way, so the
+     "cascading renders" concern this lint rule warns about doesn't apply
+     in practice here. */
+
+  // Load active booking and blocked slots on mount.
   useEffect(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("webmuse_active_booking");
@@ -114,7 +124,9 @@ export default function Booking({ initialDescription, onClearDescription }: Book
       if (storedBlocked) {
         try {
           setBlockedSlots(JSON.parse(storedBlocked));
-        } catch (e) {}
+        } catch {
+          // Ignore malformed localStorage data.
+        }
       }
     }
   }, []);
@@ -126,7 +138,9 @@ export default function Booking({ initialDescription, onClearDescription }: Book
       if (storedBlocked) {
         try {
           setBlockedSlots(JSON.parse(storedBlocked));
-        } catch (e) {}
+        } catch {
+          // Ignore malformed localStorage data.
+        }
       }
     }
   }, [isBooked]);
@@ -140,6 +154,7 @@ export default function Booking({ initialDescription, onClearDescription }: Book
       if (el) el.scrollIntoView({ behavior: "smooth" });
     }
   }, [initialDescription]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -151,16 +166,53 @@ export default function Booking({ initialDescription, onClearDescription }: Book
     return blockedSlots.some(s => s.date === dateRaw && s.time === timeVal);
   };
 
-  const submitBooking = () => {
+  const submitBooking = async () => {
     if (!name || !email) {
-      alert("Please fill in your name and email.");
+      setSubmitError("Please fill in your name and email.");
       return;
     }
+
+    setSubmitting(true);
+    setSubmitError("");
+
     // Generate random Ticket ID
     const randomNum = Math.floor(1000 + Math.random() * 9000);
     const newTicketId = `WM-${randomNum}-XM`;
+    const consultationTitle = CONSULTATION_TYPES.find((c) => c.id === consultationType)?.title;
+
+    let delivered = false;
+    try {
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          projectType,
+          consultationType,
+          consultationTitle,
+          selectedDate,
+          selectedTime,
+          platform,
+          description,
+          ticketId: newTicketId,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data?.error || "We couldn't submit your booking. Please try again.");
+      }
+      delivered = true;
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "We couldn't submit your booking. Please try again.");
+      setSubmitting(false);
+      return;
+    }
+
     setTicketId(newTicketId);
+    setEmailDelivered(delivered);
     setIsBooked(true);
+    setSubmitting(false);
 
     const bookingData = {
       name,
@@ -175,13 +227,15 @@ export default function Booking({ initialDescription, onClearDescription }: Book
 
     if (typeof window !== "undefined") {
       localStorage.setItem("webmuse_active_booking", JSON.stringify(bookingData));
-      
+
       const storedBlocked = localStorage.getItem("webmuse_blocked_slots") || "[]";
       try {
         const blocked = JSON.parse(storedBlocked);
         blocked.push({ date: selectedDate, time: selectedTime });
         localStorage.setItem("webmuse_blocked_slots", JSON.stringify(blocked));
-      } catch (e) {}
+      } catch {
+        // Ignore malformed localStorage data.
+      }
     }
 
     if (onClearDescription) {
@@ -219,13 +273,13 @@ export default function Booking({ initialDescription, onClearDescription }: Book
   };
 
   return (
-    <section id="booking" className="relative bg-background py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
+    <section id="booking" className="relative bg-background py-14 md:py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
       {/* Background neon glows */}
-      <div className="absolute top-[50%] left-[10%] h-[400px] w-[400px] rounded-full bg-mesh-blue opacity-10 blur-[130px] pointer-events-none" />
+      <div className="absolute top-[50%] left-[10%] h-[400px] w-[400px] rounded-full bg-mesh-blue opacity-10 blur-[130px] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-4xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <span className="text-xs font-semibold tracking-widest text-electric-blue uppercase font-mono">
             BOOK CONSULTATION
           </span>
@@ -479,10 +533,11 @@ export default function Booking({ initialDescription, onClearDescription }: Book
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {/* Name Input */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-[10px] font-mono uppercase tracking-widest text-text-muted">
+                          <label htmlFor="booking-name" className="text-[10px] font-mono uppercase tracking-widest text-text-muted">
                             Full Name
                           </label>
                           <input
+                            id="booking-name"
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
@@ -493,10 +548,11 @@ export default function Booking({ initialDescription, onClearDescription }: Book
 
                         {/* Email Input */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-[10px] font-mono uppercase tracking-widest text-text-muted">
+                          <label htmlFor="booking-email" className="text-[10px] font-mono uppercase tracking-widest text-text-muted">
                             Email Address
                           </label>
                           <input
+                            id="booking-email"
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -508,10 +564,11 @@ export default function Booking({ initialDescription, onClearDescription }: Book
 
                       {/* Description */}
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-[10px] font-mono uppercase tracking-widest text-text-muted">
+                        <label htmlFor="booking-description" className="text-[10px] font-mono uppercase tracking-widest text-text-muted">
                           Project Description (Brief overview)
                         </label>
                         <textarea
+                          id="booking-description"
                           value={description}
                           onChange={(e) => setDescription(e.target.value)}
                           placeholder="Outline key requirements, budgets, or scopes..."
@@ -521,17 +578,18 @@ export default function Booking({ initialDescription, onClearDescription }: Book
 
                       {/* File Uploader */}
                       <div className="flex flex-col gap-1.5">
-                        <label className="text-[10px] font-mono uppercase tracking-widest text-zinc-500">
+                        <span id="booking-file-label" className="text-[10px] font-mono uppercase tracking-widest text-zinc-500">
                           Upload Supporting Documents (Optional)
-                        </label>
-                        <label className="flex flex-col items-center justify-center border border-dashed border-white/10 hover:border-white/20 rounded-xl py-6 cursor-pointer bg-white/[0.005] hover:bg-white/[0.01] transition-all">
-                          <Upload className="h-5 w-5 text-zinc-500 mb-2" />
+                        </span>
+                        <label className="flex flex-col items-center justify-center border border-dashed border-white/10 hover:border-white/20 rounded-xl py-6 cursor-pointer bg-white/[0.005] hover:bg-white/[0.01] transition-all focus-within:outline focus-within:outline-2 focus-within:outline-electric-blue focus-within:outline-offset-2">
+                          <Upload className="h-5 w-5 text-zinc-500 mb-2" aria-hidden="true" />
                           <span className="text-xs text-zinc-400">
                             {fileName ? fileName : "Drag documents or click to browse (PDF, Figma, PRD)"}
                           </span>
                           <input
                             type="file"
                             onChange={handleFileChange}
+                            aria-labelledby="booking-file-label"
                             className="hidden"
                           />
                         </label>
@@ -568,16 +626,23 @@ export default function Booking({ initialDescription, onClearDescription }: Book
                       <ChevronRight className="h-4 w-4" />
                     </button>
                   ) : (
-                    <button
-                      onClick={submitBooking}
-                      disabled={!name || !email}
-                      onMouseEnter={() => setCursorType("pointer")}
-                      onMouseLeave={() => setCursorType("default")}
-                      className="flex w-full items-center justify-center gap-2 rounded-full bg-foreground py-3.5 text-sm font-semibold text-background hover:opacity-90 transition-opacity"
-                    >
-                      Submit Booking Request
-                      <ArrowRight className="h-4 w-4" />
-                    </button>
+                    <div className="flex flex-col items-end gap-2 w-full">
+                      {submitError && (
+                        <p role="alert" className="text-xs text-red-400 font-mono w-full text-left">
+                          {submitError}
+                        </p>
+                      )}
+                      <button
+                        onClick={submitBooking}
+                        disabled={!name || !email || submitting}
+                        onMouseEnter={() => setCursorType("pointer")}
+                        onMouseLeave={() => setCursorType("default")}
+                        className="flex w-full items-center justify-center gap-2 rounded-full bg-foreground py-3.5 text-sm font-semibold text-background hover:opacity-90 transition-opacity disabled:opacity-50 disabled:pointer-events-none"
+                      >
+                        {submitting ? "Submitting..." : "Submit Booking Request"}
+                        <ArrowRight className="h-4 w-4" />
+                      </button>
+                    </div>
                   )}
                 </div>
               </motion.div>
@@ -616,19 +681,19 @@ export default function Booking({ initialDescription, onClearDescription }: Book
                   <div className="p-6 grid grid-cols-2 gap-4 text-left border-b border-card-border border-dashed relative">
                     {/* Left details */}
                     <div>
-                      <span className="text-[8px] font-mono tracking-widest text-text-muted/60 uppercase">
+                      <span className="text-[8px] font-mono tracking-widest text-text-muted uppercase">
                         CLIENT NAME
                       </span>
                       <div className="text-sm font-semibold text-text-title truncate">{name}</div>
                     </div>
                     <div>
-                      <span className="text-[8px] font-mono tracking-widest text-text-muted/60 uppercase">
+                      <span className="text-[8px] font-mono tracking-widest text-text-muted uppercase">
                         ARCHETYPE
                       </span>
                       <div className="text-sm font-semibold text-text-title uppercase font-mono">{projectType}</div>
                     </div>
                     <div>
-                      <span className="text-[8px] font-mono tracking-widest text-text-muted/60 uppercase">
+                      <span className="text-[8px] font-mono tracking-widest text-text-muted uppercase">
                         CONSULTATION TYPE
                       </span>
                       <div className="text-xs font-semibold text-text-title truncate">
@@ -636,7 +701,7 @@ export default function Booking({ initialDescription, onClearDescription }: Book
                       </div>
                     </div>
                     <div>
-                      <span className="text-[8px] font-mono tracking-widest text-text-muted/60 uppercase">
+                      <span className="text-[8px] font-mono tracking-widest text-text-muted uppercase">
                         PLATFORM
                       </span>
                       <div className="text-xs font-semibold text-text-title uppercase font-mono">{platform}</div>
@@ -650,7 +715,7 @@ export default function Booking({ initialDescription, onClearDescription }: Book
                   {/* Time and ticket number details */}
                   <div className="p-6 text-left flex items-center justify-between">
                     <div>
-                      <span className="text-[8px] font-mono tracking-widest text-text-muted/60 uppercase">
+                      <span className="text-[8px] font-mono tracking-widest text-text-muted uppercase">
                         SCHEDULED TIME
                       </span>
                       <div className="text-xs font-semibold text-text-title font-mono mt-0.5">
@@ -658,7 +723,7 @@ export default function Booking({ initialDescription, onClearDescription }: Book
                       </div>
                     </div>
                     <div className="text-right">
-                      <span className="text-[8px] font-mono tracking-widest text-text-muted/60 uppercase">
+                      <span className="text-[8px] font-mono tracking-widest text-text-muted uppercase">
                         TICKET ID
                       </span>
                       <div className="text-xs font-semibold text-electric-blue font-mono mt-0.5">
@@ -704,7 +769,11 @@ export default function Booking({ initialDescription, onClearDescription }: Book
                 <div className="mt-8 flex flex-col items-center gap-4">
                   <div className="flex items-center gap-2 text-zinc-500 text-xs">
                     <ShieldCheck className="h-4.5 w-4.5 text-emerald-400" />
-                    <span>A calendar invite and technical questionnaire has been sent to {email}.</span>
+                    <span>
+                      {emailDelivered
+                        ? `Your request has been sent to our team — we'll reach out at ${email} to confirm and share a calendar invite.`
+                        : `We've saved your request. If you don't hear from us, please email hello@webmuse.tech directly.`}
+                    </span>
                   </div>
                   <button
                     onClick={cancelBooking}

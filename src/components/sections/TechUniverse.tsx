@@ -65,6 +65,20 @@ const TECH_NODES: TechNode[] = [
   { id: "hardhat", name: "Hardhat", category: "blockchain", description: "Ethereum development environment for compiling, deploying, and debugging smart contracts.", capabilities: ["Solidity compiler checks", "Local node simulators", "Automated deployment logs"], connections: ["solidity", "ethereum"], x3d: 0.1, y3d: -0.3, z3d: 0.8 },
 ];
 
+// Canvas 2D drawing can't resolve CSS custom properties, so these literal
+// values mirror the theme tokens in globals.css (--color-electric-blue,
+// --color-soft-cyan, --color-neon-purple, --color-accent-gold). Keep in sync
+// if the theme palette changes.
+const CATEGORY_COLORS: Record<TechNode["category"], string> = {
+  frontend: "#0070f3", // electric-blue
+  backend: "#0070f3", // electric-blue
+  ai: "#06b6d4", // soft-cyan
+  blockchain: "#eab308", // accent-gold
+  cloud: "#a855f7", // neon-purple
+};
+const CONNECTION_GRADIENT_START = "#0070f3"; // electric-blue
+const CONNECTION_GRADIENT_END = "#a855f7"; // neon-purple
+
 export default function TechUniverse() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -126,12 +140,12 @@ export default function TechUniverse() {
       // 1. Calculate projected coords for each node
       const currentNodes = TECH_NODES.map((node) => {
         // Rotate around Y-axis
-        let x1 = node.x3d * cosY - node.z3d * sinY;
-        let z1 = node.z3d * cosY + node.x3d * sinY;
+        const x1 = node.x3d * cosY - node.z3d * sinY;
+        const z1 = node.z3d * cosY + node.x3d * sinY;
 
         // Rotate around X-axis
-        let y2 = node.y3d * cosX - z1 * sinX;
-        let z2 = z1 * cosX + node.y3d * sinX;
+        const y2 = node.y3d * cosX - z1 * sinX;
+        const z2 = z1 * cosX + node.y3d * sinX;
 
         // Perspective scaling
         const depthScale = fov / (fov + z2 * 120);
@@ -176,12 +190,12 @@ export default function TechUniverse() {
           if (isHighlighted) {
             // Glowing connecting line
             const grad = ctx.createLinearGradient(fromProj.x, fromProj.y, toProj.x, toProj.y);
-            grad.addColorStop(0, "#0070f3");
-            grad.addColorStop(1, "#a855f7");
+            grad.addColorStop(0, CONNECTION_GRADIENT_START);
+            grad.addColorStop(1, CONNECTION_GRADIENT_END);
             ctx.strokeStyle = grad;
             ctx.lineWidth = 2.5;
             ctx.shadowBlur = 8;
-            ctx.shadowColor = "#0070f3";
+            ctx.shadowColor = CONNECTION_GRADIENT_START;
           } else {
             // Dim default connecting line
             ctx.strokeStyle = isDarkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(9, 9, 11, 0.06)";
@@ -203,10 +217,7 @@ export default function TechUniverse() {
         const isHovered = hoveredNode === node.id;
 
         // Base color based on category
-        let color = "#0070f3"; // default blue
-        if (node.category === "ai") color = "#06b6d4"; // cyan
-        if (node.category === "blockchain") color = "#eab308"; // gold/yellow
-        if (node.category === "cloud") color = "#a855f7"; // purple
+        const color = CATEGORY_COLORS[node.category];
 
         ctx.save();
 
@@ -415,11 +426,11 @@ export default function TechUniverse() {
           exit={{ opacity: 0 }}
           className="rounded-2xl border border-card-border bg-card-bg border-dashed p-8 flex flex-col items-center justify-center text-center min-h-[220px]"
         >
-          <Cpu className="h-8 w-8 text-text-muted/40 mb-3 animate-pulse" />
+          <Cpu className="h-8 w-8 text-text-muted/40 mb-3 animate-pulse" aria-hidden="true" />
           <span className="text-xs text-text-muted font-mono uppercase tracking-widest">
             No Node Selected
           </span>
-          <p className="text-text-muted/70 text-xs mt-2 max-w-xs">
+          <p className="text-text-muted text-xs mt-2 max-w-xs">
             Select any technology node in the 3D particle constellation grid to analyze capabilities.
           </p>
         </motion.div>
@@ -428,10 +439,10 @@ export default function TechUniverse() {
   );
 
   return (
-    <section id="universe" className="relative bg-background py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
+    <section id="universe" className="relative bg-background py-14 md:py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
       {/* Mesh glow effects */}
-      <div className="absolute top-[20%] left-[10%] h-[350px] w-[350px] rounded-full bg-mesh-blue opacity-20 blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[10%] h-[350px] w-[350px] rounded-full bg-mesh-purple opacity-20 blur-[130px] pointer-events-none" />
+      <div className="absolute top-[20%] left-[10%] h-[350px] w-[350px] rounded-full bg-mesh-blue opacity-20 blur-[130px] pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-[20%] right-[10%] h-[350px] w-[350px] rounded-full bg-mesh-purple opacity-20 blur-[130px] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 items-stretch">
         {/* Left Column: Heading & Detail Box */}
@@ -465,17 +476,36 @@ export default function TechUniverse() {
           onClick={handleMouseClick}
         >
           {/* Subtle grid indicator background */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--card-border)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
-          
-          <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--card-border)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" aria-hidden="true" />
+
+          <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block" aria-hidden="true" />
 
           {/* User instruction overlay */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full border border-card-border bg-card-bg/60 px-4 py-1.5 pointer-events-none">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full border border-card-border bg-card-bg/60 px-4 py-1.5 pointer-events-none" aria-hidden="true">
             <span className="text-[10px] uppercase font-mono tracking-widest text-text-muted">
               Drag to Orbit 3D Space
             </span>
           </div>
         </div>
+
+        {/* Accessible text alternative: the 3D canvas above is a mouse-only
+            drag/click interface with no keyboard or screen-reader path, so
+            every node is also reachable as a real, focusable button here.
+            Visually hidden — the canvas + detail card already present this
+            content visually for sighted mouse users. */}
+        <fieldset className="sr-only">
+          <legend>Technology stack nodes</legend>
+          {TECH_NODES.map((node) => (
+            <button
+              key={node.id}
+              type="button"
+              onClick={() => setSelectedTech(node)}
+              aria-pressed={selectedTech?.id === node.id}
+            >
+              {node.name} ({node.category}) — {node.description}
+            </button>
+          ))}
+        </fieldset>
 
         {/* Mobile Only Interactive Node Info Card */}
         <div className="block lg:hidden w-full mt-4 min-h-[220px]">

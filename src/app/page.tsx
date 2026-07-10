@@ -13,6 +13,7 @@ import IdeaVault from "@/components/sections/IdeaVault";
 import Booking from "@/components/sections/Booking";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
+import BackToTop from "@/components/ui/BackToTop";
 
 export default function Home() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -35,7 +36,7 @@ export default function Home() {
       {/* Sticky Glassmorphic Header */}
       <Navbar show={showNavbar} />
 
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         {/* Sections layout */}
         <Hero onIntroFinished={handleIntroFinished} />
         
@@ -58,6 +59,7 @@ export default function Home() {
       </main>
 
       {showNavbar && <Footer />}
+      {showNavbar && <BackToTop />}
     </div>
   );
 }

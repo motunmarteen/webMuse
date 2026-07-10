@@ -67,9 +67,10 @@ export default function Hero3D() {
   };
 
   return (
-    <div 
+    <div
       className="absolute inset-0 z-0 h-full w-full bg-transparent"
       onMouseMove={handleMouseMove}
+      aria-hidden="true"
     >
       <Canvas camera={{ position: [0, 0, 1.2] }}>
         <ambientLight intensity={0.5} />

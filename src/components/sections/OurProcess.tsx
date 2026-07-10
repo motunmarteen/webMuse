@@ -2,23 +2,24 @@
 
 import { motion } from "framer-motion";
 import { useCursor } from "@/components/ui/CustomCursor";
-import { 
-  Lightbulb, 
-  Search, 
-  Map, 
-  Paintbrush, 
-  Terminal, 
-  ShieldAlert, 
-  Globe, 
+import {
+  Lightbulb,
+  Search,
+  Map,
+  Paintbrush,
+  Terminal,
+  ShieldAlert,
+  Globe,
   TrendingUp,
-  CheckCircle2
+  CheckCircle2,
+  type LucideIcon
 } from "lucide-react";
 
 interface ProcessStep {
   title: string;
   description: string;
   deliverables: string[];
-  icon: any;
+  icon: LucideIcon;
   color: string;
 }
 
@@ -28,56 +29,56 @@ const PROCESS_STEPS: ProcessStep[] = [
     description: "We evaluate your product concept against market feasibility, explore engineering complexity, define high-level scopes, and validate technical risks.",
     deliverables: ["Product Feasibility Matrix", "Project Scope Specification", "Tech Stack Architecture Draft"],
     icon: Lightbulb,
-    color: "#00f5ff"
+    color: "var(--color-accent-aqua)"
   },
   {
     title: "Deep Research",
     description: "We analyze competitor capabilities, perform target audience audits, define user personas, and map existing data flows to identify friction points.",
     deliverables: ["UX Audit Report", "User Journey Flowcharts", "Competitor Comparison Matrix"],
     icon: Search,
-    color: "#0070f3"
+    color: "var(--color-electric-blue)"
   },
   {
     title: "Product Strategy",
     description: "We define pricing mechanics, product market positioning, phase-by-phase feature backlogs, MVP release parameters, and business KPIs.",
     deliverables: ["Product Roadmap (Gantt)", "Feature Prioritization Matrix", "GTM Strategy Document"],
     icon: Map,
-    color: "#a855f7"
+    color: "var(--color-neon-purple)"
   },
   {
     title: "Product Design",
     description: "We craft visual identity guides, high-fidelity mockups, dark/light modes, design systems, and responsive, interactive clickable prototypes.",
     deliverables: ["Interactive Figma Prototype", "Component Design Library", "Brand Visual Assets Pack"],
     icon: Paintbrush,
-    color: "#d946ef"
+    color: "var(--color-accent-magenta)"
   },
   {
     title: "Engineering",
     description: "Our engineers write modular, type-safe, production-ready source code, establish database structures, set up server-side scripts, and build vector integrations.",
     deliverables: ["Clean GitHub Repository Access", "Database Scheme Diagrams", "Deployed Staging Environment"],
     icon: Terminal,
-    color: "#10b981"
+    color: "var(--color-accent-emerald)"
   },
   {
     title: "Testing & QA",
     description: "We run unit test suites, conduct API endpoints stress tests, audit regulatory compliance, and execute user testing to eliminate edge-case bugs.",
     deliverables: ["QA Audit Reports", "Performance Core Web Vitals Sign-off", "Security Penetration Log"],
     icon: ShieldAlert,
-    color: "#f59e0b"
+    color: "var(--color-accent-amber)"
   },
   {
     title: "Product Launch",
     description: "We configure server containers, verify SSL security, run live production migrations, set up tracking pipelines, and push the product live.",
     deliverables: ["Live Product Mainnet URL", "SSL & Domain Setup Verification", "Analytics Dashboard Integration"],
     icon: Globe,
-    color: "#3b82f6"
+    color: "var(--color-accent-sky)"
   },
   {
     title: "Growth Scale",
     description: "We audit traffic acquisition funnel performance, optimize page load indexing, expand database clusters, and run growth campaign codes.",
     deliverables: ["Conversion Rate Audit Reports", "SEO Keyword Map", "Infrastructure Scaling Blueprint"],
     icon: TrendingUp,
-    color: "#06b6d4"
+    color: "var(--color-soft-cyan)"
   }
 ];
 
@@ -85,13 +86,13 @@ export default function OurProcess() {
   const { setCursorType } = useCursor();
 
   return (
-    <section id="process" className="relative bg-background py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
+    <section id="process" className="relative bg-background py-14 md:py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-[10%] left-[5%] h-[350px] w-[350px] rounded-full bg-mesh-purple opacity-10 blur-[130px] pointer-events-none" />
+      <div className="absolute top-[10%] left-[5%] h-[350px] w-[350px] rounded-full bg-mesh-purple opacity-10 blur-[130px] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="max-w-3xl mb-20">
+        <div className="max-w-3xl mb-10 md:mb-20">
           <span className="text-xs font-semibold tracking-widest text-electric-blue uppercase font-mono">
             OUR PROCESS
           </span>
@@ -109,7 +110,7 @@ export default function OurProcess() {
           <div className="absolute left-4 md:left-1/2 top-4 bottom-4 w-[1px] bg-card-border -translate-x-1/2" />
 
           {/* Process steps */}
-          <div className="flex flex-col gap-16">
+          <div className="flex flex-col gap-8 md:gap-16">
             {PROCESS_STEPS.map((step, idx) => {
               const StepIcon = step.icon;
               const isEven = idx % 2 === 0;
@@ -148,7 +149,7 @@ export default function OurProcess() {
                       onMouseLeave={() => setCursorType("default")}
                     >
                       {/* Step Number Tag */}
-                      <span className="absolute top-4 right-6 font-mono text-text-muted/40 text-sm font-bold uppercase">
+                      <span className="absolute top-4 right-6 font-mono text-text-muted text-sm font-bold uppercase">
                         PHASE 0{idx + 1}
                       </span>
 

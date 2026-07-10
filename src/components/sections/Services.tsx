@@ -4,20 +4,20 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCursor } from "@/components/ui/CustomCursor";
 import { audioSynth } from "@/utils/audioSynth";
-import { 
-  Code, 
-  Cpu, 
-  Database, 
-  Sparkles, 
-  Search, 
-  ArrowUpRight, 
-  ChevronRight, 
-  X, 
+import {
+  Code,
+  Cpu,
+  Database,
+  Sparkles,
+  ArrowUpRight,
+  ChevronRight,
+  X,
   Calendar,
   Layers,
   TrendingUp,
   Workflow,
-  Store
+  Store,
+  type LucideIcon
 } from "lucide-react";
 
 interface ServiceItem {
@@ -31,7 +31,7 @@ interface ServiceItem {
 interface ServiceCategory {
   id: string;
   title: string;
-  icon: any;
+  icon: LucideIcon;
   services: ServiceItem[];
 }
 
@@ -363,16 +363,25 @@ export default function Services() {
     };
   }, [selectedService]);
 
+  useEffect(() => {
+    if (!selectedService) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedService(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedService]);
+
   const currentCategory = SERVICES_DATA.find((c) => c.id === activeCategory);
 
   return (
-    <section id="services" className="relative bg-background py-24 px-6 lg:px-24 border-b border-card-border">
+    <section id="services" className="relative bg-background py-14 md:py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
       {/* Background radial glow */}
-      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-mesh-purple opacity-20 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-mesh-purple opacity-20 blur-[150px] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-8 md:mb-16">
           <span className="text-xs font-semibold tracking-widest text-electric-blue uppercase font-mono">
             CAPABILITIES
           </span>
@@ -412,40 +421,47 @@ export default function Services() {
         </div>
 
         {/* Services Grid list */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
           <AnimatePresence mode="popLayout">
-            {currentCategory?.services.map((service, idx) => (
-              <motion.div
-                key={service.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                onClick={() => setSelectedService(service)}
-                onMouseEnter={() => setCursorType("expand")}
-                onMouseLeave={() => setCursorType("default")}
-                className="glassmorphism-card p-6 rounded-2xl cursor-pointer group flex flex-col justify-between min-h-[180px] hover:border-electric-blue/40"
-              >
-                <div>
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-lg font-bold tracking-tight text-text-title group-hover:text-electric-blue transition-colors">
+            {currentCategory?.services.map((service, idx) => {
+              const CategoryIcon = currentCategory.icon;
+              return (
+                <motion.div
+                  key={service.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4, delay: idx * 0.05 }}
+                  onClick={() => setSelectedService(service)}
+                  onMouseEnter={() => setCursorType("expand")}
+                  onMouseLeave={() => setCursorType("default")}
+                  className="glassmorphism-card p-4 md:p-6 rounded-2xl cursor-pointer group flex flex-col justify-between min-h-[104px] md:min-h-[180px] hover:border-electric-blue/40"
+                >
+                  <div className="flex justify-between items-start mb-2 md:mb-4">
+                    <CategoryIcon className="h-5 w-5 text-electric-blue md:hidden" />
+                    <h3 className="hidden md:block text-lg font-bold tracking-tight text-text-title group-hover:text-electric-blue transition-colors">
                       {service.name}
                     </h3>
-                    <div className="h-8 w-8 rounded-full border border-card-border flex items-center justify-center text-text-muted group-hover:text-foreground group-hover:bg-card-bg transition-all">
+                    <div className="hidden md:flex h-8 w-8 rounded-full border border-card-border items-center justify-center text-text-muted group-hover:text-foreground group-hover:bg-card-bg transition-all">
                       <ArrowUpRight className="h-4 w-4" />
                     </div>
                   </div>
-                  <p className="text-text-muted text-sm font-light line-clamp-2 leading-relaxed">
+
+                  <h3 className="md:hidden text-sm font-bold tracking-tight text-text-title leading-snug line-clamp-2 group-hover:text-electric-blue transition-colors">
+                    {service.name}
+                  </h3>
+
+                  <p className="hidden md:block text-text-muted text-sm font-light line-clamp-2 leading-relaxed">
                     {service.purpose}
                   </p>
-                </div>
 
-                <div className="flex items-center gap-1.5 mt-6 text-xs text-text-muted font-mono group-hover:text-foreground transition-colors">
-                  <span>Learn more</span>
-                  <ChevronRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                </div>
-              </motion.div>
-            ))}
+                  <div className="hidden md:flex items-center gap-1.5 mt-6 text-xs text-text-muted font-mono group-hover:text-foreground transition-colors">
+                    <span>Learn more</span>
+                    <ChevronRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                  </div>
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </div>
       </div>
@@ -465,6 +481,9 @@ export default function Services() {
 
             {/* Drawer (Mobile Bottom Sheet / Desktop Side Drawer) */}
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="service-drawer-title"
               initial={isMobile ? { y: "100%", x: 0 } : { x: "100%", y: 0 }}
               animate={{ x: 0, y: 0 }}
               exit={isMobile ? { y: "100%", x: 0 } : { x: "100%", y: 0 }}
@@ -472,7 +491,7 @@ export default function Services() {
               className="fixed right-0 bottom-0 z-50 w-full lg:max-w-lg lg:top-0 h-[85vh] lg:h-full bg-background border-t lg:border-t-0 lg:border-l border-card-border p-6 md:p-8 flex flex-col justify-between overflow-y-auto rounded-t-3xl lg:rounded-t-none"
             >
               {/* Drag Handle for Mobile */}
-              <div className="w-12 h-1 bg-zinc-800 rounded-full mx-auto mb-4 block lg:hidden shrink-0" />
+              <div className="w-12 h-1 bg-zinc-800 rounded-full mx-auto mb-4 block lg:hidden shrink-0" aria-hidden="true" />
               <div>
                 {/* Drawer Header */}
                 <div className="flex justify-between items-center border-b border-card-border pb-6 mb-8">
@@ -483,14 +502,15 @@ export default function Services() {
                     onClick={() => setSelectedService(null)}
                     onMouseEnter={() => setCursorType("pointer")}
                     onMouseLeave={() => setCursorType("default")}
-                    className="p-2 rounded-full border border-card-border bg-card-bg text-text-muted hover:text-foreground hover:bg-card-bg/80 transition-colors"
+                    className="p-2 rounded-full border border-card-border bg-card-bg text-text-muted hover:text-foreground hover:bg-card-bg/80 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2"
+                    aria-label="Close service details"
                   >
-                    <X className="h-4 w-4" />
+                    <X className="h-4 w-4" aria-hidden="true" />
                   </button>
                 </div>
 
                 {/* Service Title */}
-                <h3 className="text-3xl font-bold tracking-tight text-text-title mb-6">
+                <h3 id="service-drawer-title" className="text-3xl font-bold tracking-tight text-text-title mb-6">
                   {selectedService.name}
                 </h3>
 
@@ -536,11 +556,11 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Reference Case Study */}
+                  {/* Illustrative Scenario */}
                   <div className="rounded-xl border border-card-border bg-card-bg/40 p-4">
                     <h4 className="text-text-muted font-mono text-xs uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                      <Layers className="h-3.5 w-3.5 text-yellow-500" />
-                      Proven Track Record
+                      <Layers className="h-3.5 w-3.5 text-neon-purple" />
+                      Illustrative Scenario
                     </h4>
                     <p className="text-text-muted font-light text-xs leading-relaxed italic">
                       &quot;{selectedService.caseStudy}&quot;

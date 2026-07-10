@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCursor } from "@/components/ui/CustomCursor";
-import { Mail, Phone, Clock, Send, CheckCircle2, ShieldCheck, MapPin } from "lucide-react";
+import { Mail, Clock, Send, ShieldCheck, MapPin } from "lucide-react";
 
 interface OfficeHub {
   id: string;
@@ -56,27 +56,41 @@ export default function Contact() {
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
   const { setCursorType } = useCursor();
 
-  const handleSend = (e: React.FormEvent) => {
+  const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !message) return;
-    
+
     setSending(true);
-    setTimeout(() => {
-      setSending(false);
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data?.error || "Something went wrong. Please try again.");
+      }
       setSent(true);
       setName("");
       setEmail("");
       setMessage("");
-    }, 1800);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
-    <section id="contact" className="relative bg-background py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
+    <section id="contact" className="relative bg-background py-14 md:py-24 px-6 lg:px-24 border-b border-card-border overflow-hidden">
       {/* Background neon glows */}
-      <div className="absolute bottom-[0%] left-[50%] -translate-x-1/2 h-[450px] w-[450px] rounded-full bg-mesh-blue opacity-10 blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-[0%] left-[50%] -translate-x-1/2 h-[450px] w-[450px] rounded-full bg-mesh-blue opacity-10 blur-[130px] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
@@ -131,7 +145,9 @@ export default function Contact() {
                 </span>
                 
                 <div className="flex flex-col gap-1">
+                  <label htmlFor="contact-name" className="sr-only">Your Name</label>
                   <input
+                    id="contact-name"
                     type="text"
                     required
                     value={name}
@@ -142,7 +158,9 @@ export default function Contact() {
                 </div>
 
                 <div className="flex flex-col gap-1">
+                  <label htmlFor="contact-email" className="sr-only">Your Email</label>
                   <input
+                    id="contact-email"
                     type="email"
                     required
                     value={email}
@@ -153,7 +171,9 @@ export default function Contact() {
                 </div>
 
                 <div className="flex flex-col gap-1">
+                  <label htmlFor="contact-message" className="sr-only">Project outline</label>
                   <textarea
+                    id="contact-message"
                     required
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -161,6 +181,12 @@ export default function Contact() {
                     className="w-full h-[80px] bg-card-bg border border-card-border focus:border-electric-blue/40 rounded-xl px-4 py-3 text-xs text-foreground outline-none resize-none transition-colors placeholder-zinc-500"
                   />
                 </div>
+
+                {error && (
+                  <p role="alert" className="text-xs text-red-400 font-mono">
+                    {error}
+                  </p>
+                )}
 
                 <button
                   type="submit"

@@ -16,7 +16,17 @@
   --color-neon-purple-glow: rgba(168, 85, 247, 0.15);
   --color-soft-cyan: #06b6d4;
   --color-deep-black: var(--background);
-  
+
+  /* Extended accent palette: used for per-item identity colors where a
+     single item needs to stand out from its siblings (process step markers,
+     tech category badges) — distinct from the 3 core brand accents above. */
+  --color-accent-aqua: #00f5ff;
+  --color-accent-magenta: #d946ef;
+  --color-accent-emerald: #10b981;
+  --color-accent-amber: #f59e0b;
+  --color-accent-sky: #3b82f6;
+  --color-accent-gold: #eab308;
+
   --font-display: var(--font-outfit), sans-serif;
   --font-mono: var(--font-jetbrains-mono), monospace;
   
@@ -40,20 +50,26 @@ body {
   --mesh-glow: rgba(255, 255, 255, 0.02);
   --border-glow: rgba(255, 255, 255, 0.05);
   --selection-bg: rgba(255, 255, 255, 0.1);
-  
+
   --font-outfit: "Outfit", sans-serif;
   --font-jetbrains-mono: "JetBrains Mono", monospace;
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
-  overflow-x: hidden;
   font-family: var(--font-outfit);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.4s ease, color 0.4s ease;
+  position: relative;
 }
 
 /* Custom Scrollbar */
@@ -95,17 +111,51 @@ body {
   box-shadow: 0 10px 30px -10px var(--border-glow);
 }
 
-/* Hide Default Cursor on Devices with Precision Pointers (desktops) */
-@media (pointer: fine) {
-  body, 
-  a, 
-  button, 
-  input, 
-  textarea, 
-  select, 
+/* Hide default cursor in favor of the custom cursor, but only for users who
+   haven't asked the OS for reduced motion — the custom cursor is a purely
+   decorative animated replacement, and someone who's disabled motion should
+   keep their native, immediately-visible system cursor rather than depend on
+   a JS-animated one that may lag or fail to render. */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
   [role="button"] {
     cursor: none !important;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Global keyboard-focus baseline. The custom cursor above removes the
+   native pointer, and several interactive elements across the site don't
+   set their own focus ring — without this, keyboard/screen-reader users
+   tabbing through the page get no visible indicator of what's focused.
+   :focus-visible only fires for keyboard focus (not mouse clicks), so this
+   doesn't add a ring to every mouse interaction. Components with a more
+   specific focus-visible rule of their own simply override this. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-electric-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* Mesh Gradients */
