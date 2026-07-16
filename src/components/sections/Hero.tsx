@@ -5,17 +5,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCursor } from "@/components/ui/CustomCursor";
 import { useMagnetic } from "@/hooks/useMagnetic";
 import dynamic from "next/dynamic";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 // Dynamically import Three.js Canvas to ensure it compiles only on client-side
 const Hero3D = dynamic(() => import("@/components/ui/Hero3D"), { ssr: false });
 
 const PHRASES = [
-  "Digital Businesses.",
-  "Innovative Ideas.",
+  "Websites.",
+  "Mobile Apps.",
+  "AI Solutions.",
   "Custom Software.",
-  "Scalable Products.",
-  "Digital Futures."
+  "SaaS Products.",
+  "Business Platforms.",
+  "Startup MVPs.",
+  "Automation Systems.",
+  "Digital Products.",
+  "New Ventures."
 ];
 
 export default function Hero({ onIntroFinished }: { onIntroFinished: () => void }) {
@@ -365,20 +370,7 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
         <div className="absolute bottom-[20%] right-[10%] h-[350px] w-[350px] rounded-full bg-mesh-blue opacity-40 blur-[120px] pointer-events-none" aria-hidden="true" />
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mt-16 pointer-events-auto">
-          {/* Subheader Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: introFinished ? 1 : 0, y: introFinished ? 0 : 15 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-4 py-1.5 backdrop-blur-md mb-6"
-          >
-            <Sparkles className="h-4 w-4 text-electric-blue animate-pulse-slow" />
-            <span className="text-xs font-semibold tracking-widest text-zinc-300 uppercase font-mono">
-              Elite Innovation Studio
-            </span>
-          </motion.div>
-
+        <div className="relative z-10 max-w-5xl mx-auto mt-16 flex flex-col items-center text-center pointer-events-auto">
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.05] text-white">
             <motion.span
@@ -389,7 +381,7 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
             >
               We Build
             </motion.span>
-            <div className="h-[1.2em] overflow-hidden relative mt-1 select-none">
+            <div className="h-[1.2em] relative mt-1 select-none">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={phraseIdx}
@@ -397,7 +389,7 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute left-0 top-0 block w-full bg-gradient-to-r from-electric-blue via-soft-cyan to-neon-purple bg-clip-text text-transparent glow-text-blue"
+                  className="absolute left-1/2 top-0 -translate-x-1/2 block w-max max-w-[90vw] bg-gradient-to-r from-electric-blue via-soft-cyan to-neon-purple bg-clip-text text-transparent glow-text-blue"
                 >
                   {PHRASES[phraseIdx]}
                 </motion.span>
@@ -410,9 +402,9 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: introFinished ? 1 : 0, y: introFinished ? 0 : 20 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="mt-8 max-w-xl text-lg md:text-xl text-text-muted font-light leading-relaxed"
+            className="mt-8 max-w-2xl text-lg md:text-xl text-text-muted font-light leading-relaxed"
           >
-            From validation to launch, we combine engineering craftsmanship, data strategy, and premium design to shape products that define industries.
+            We turn bold ideas into websites, mobile apps, custom software, AI solutions, and digital products that people love to use and businesses trust to grow.
           </motion.p>
 
           {/* CTAs */}
@@ -420,7 +412,7 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: introFinished ? 1 : 0, y: introFinished ? 0 : 20 }}
             transition={{ duration: 0.8, delay: 0.85 }}
-            className="mt-10 flex flex-wrap gap-4"
+            className="mt-10 flex flex-row flex-wrap justify-center gap-3 sm:gap-4"
           >
             {/* Primary CTA (Magnetic) */}
             <div ref={ctaRef}>
@@ -428,7 +420,7 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
                 href="#booking"
                 onMouseEnter={() => setCursorType("pointer")}
                 onMouseLeave={() => setCursorType("default")}
-                className="group relative flex h-14 items-center justify-center gap-2 rounded-full bg-foreground px-8 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+                className="group relative flex h-12 sm:h-14 items-center justify-center gap-2 rounded-full bg-foreground px-5 sm:px-8 text-xs sm:text-sm font-semibold text-background transition-opacity hover:opacity-90"
               >
                 Book Consultation
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -441,7 +433,7 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
                 href="#services"
                 onMouseEnter={() => setCursorType("pointer")}
                 onMouseLeave={() => setCursorType("default")}
-                className="flex h-14 items-center justify-center rounded-full border border-card-border bg-card-bg px-8 text-sm font-medium text-foreground backdrop-blur-md transition-all hover:bg-card-bg/85 hover:border-card-border/80"
+                className="flex h-12 sm:h-14 items-center justify-center rounded-full border border-card-border bg-card-bg px-5 sm:px-8 text-xs sm:text-sm font-medium text-foreground backdrop-blur-md transition-all hover:bg-card-bg/85 hover:border-card-border/80"
               >
                 Explore Services
               </a>

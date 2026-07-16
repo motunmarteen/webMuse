@@ -101,9 +101,9 @@ export default function Navbar({ show }: { show: boolean }) {
             <Image
               src="/webMuse-Logo.png"
               alt="WEBMUSE Logo"
-              width={26}
-              height={26}
-              className="object-contain invert"
+              width={36}
+              height={36}
+              className="object-contain"
             />
             <span className="font-display font-bold tracking-widest text-lg bg-gradient-to-r from-text-title to-text-muted bg-clip-text text-transparent">
               WEBMUSE

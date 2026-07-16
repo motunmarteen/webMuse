@@ -24,9 +24,9 @@ export default function StaticPageShell({
             <Image
               src="/webMuse-Logo.png"
               alt="WEBMUSE Logo"
-              width={24}
-              height={24}
-              className="object-contain invert"
+              width={30}
+              height={30}
+              className="object-contain"
             />
             <span className="font-display font-bold tracking-widest text-base text-text-title">
               WEBMUSE

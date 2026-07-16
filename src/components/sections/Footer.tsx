@@ -53,9 +53,9 @@ export default function Footer() {
               <Image
                 src="/webMuse-Logo.png"
                 alt="WEBMUSE Logo"
-                width={26}
-                height={26}
-                className="object-contain invert"
+                width={32}
+                height={32}
+                className="object-contain"
               />
               <span className="font-display font-bold tracking-widest text-lg text-text-title">
                 WEBMUSE
