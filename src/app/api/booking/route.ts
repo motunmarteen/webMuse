@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getResendClient, isEmailConfigured, EMAIL_FROM, EMAIL_TO } from "@/utils/resend";
+import { sendEmail, isEmailConfigured, EMAIL_TO } from "@/utils/oqumail";
 
 interface BookingPayload {
   name?: string;
@@ -39,14 +39,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
   }
 
-  const resend = getResendClient();
-  if (!resend) {
-    return NextResponse.json(
-      { error: "Booking delivery isn't configured yet. Please email hello@webmuse.tech directly to schedule." },
-      { status: 503 }
-    );
-  }
-
   const lines = [
     `New consultation booking request`,
     ``,
@@ -63,23 +55,16 @@ export async function POST(req: NextRequest) {
     body.description || "—",
   ];
 
-  try {
-    const { error } = await resend.emails.send({
-      from: EMAIL_FROM,
-      to: EMAIL_TO,
-      replyTo: email,
-      subject: `New booking request from ${name} (${body.ticketId || "no ticket id"})`,
-      text: lines.join("\n"),
-    });
+  const result = await sendEmail({
+    to: EMAIL_TO,
+    subject: `New booking request from ${name} (${body.ticketId || "no ticket id"})`,
+    text: lines.join("\n"),
+  });
 
-    if (error) {
-      console.error("[booking] resend error:", error);
-      return NextResponse.json({ error: "We couldn't submit your booking. Please try again or email us directly." }, { status: 502 });
-    }
-
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error("[booking] unexpected error:", err);
+  if (!result.ok) {
+    console.error("[booking] oqumail error:", result.error);
     return NextResponse.json({ error: "We couldn't submit your booking. Please try again or email us directly." }, { status: 502 });
   }
+
+  return NextResponse.json({ ok: true });
 }

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getResendClient, isEmailConfigured, EMAIL_FROM, EMAIL_TO } from "@/utils/resend";
+import { sendEmail, isEmailConfigured, EMAIL_TO } from "@/utils/oqumail";
 
 export async function POST(req: NextRequest) {
   if (!isEmailConfigured()) {
@@ -27,31 +27,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Please provide a valid email address." }, { status: 400 });
   }
 
-  const resend = getResendClient();
-  if (!resend) {
-    return NextResponse.json(
-      { error: "Email delivery isn't configured yet. Please reach us directly at hello@webmuse.tech." },
-      { status: 503 }
-    );
-  }
+  const result = await sendEmail({
+    to: EMAIL_TO,
+    subject: `New contact form message from ${name}`,
+    text: `From: ${name} <${email}>\n\n${message}`,
+  });
 
-  try {
-    const { error } = await resend.emails.send({
-      from: EMAIL_FROM,
-      to: EMAIL_TO,
-      replyTo: email,
-      subject: `New contact form message from ${name}`,
-      text: `From: ${name} <${email}>\n\n${message}`,
-    });
-
-    if (error) {
-      console.error("[contact] resend error:", error);
-      return NextResponse.json({ error: "We couldn't send your message. Please try again or email us directly." }, { status: 502 });
-    }
-
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error("[contact] unexpected error:", err);
+  if (!result.ok) {
+    console.error("[contact] oqumail error:", result.error);
     return NextResponse.json({ error: "We couldn't send your message. Please try again or email us directly." }, { status: 502 });
   }
+
+  return NextResponse.json({ ok: true });
 }
