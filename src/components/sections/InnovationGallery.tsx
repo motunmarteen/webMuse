@@ -629,15 +629,15 @@ export default function InnovationGallery() {
                           <span className="text-[10px] font-mono tracking-widest text-text-muted uppercase block relative z-10">
                             {m.label}
                           </span>
-                          <div className="text-3xl md:text-4xl font-bold text-foreground mt-2 bg-gradient-to-r from-electric-blue to-soft-cyan bg-clip-text text-transparent glow-text-blue font-mono relative z-10">
+                          <div className="text-3xl md:text-4xl font-bold text-electric-blue mt-2 glow-text-blue font-mono relative z-10">
                             {m.value}
                           </div>
                           <div className="w-full bg-zinc-900 h-1.5 rounded-full mt-3 overflow-hidden relative z-10">
-                            <motion.div 
+                            <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: idx === 0 ? "85%" : idx === 1 ? "95%" : "70%" }}
                               transition={{ duration: 1.2, ease: "easeOut", delay: idx * 0.1 }}
-                              className="bg-gradient-to-r from-electric-blue to-soft-cyan h-full rounded-full" 
+                              className="bg-electric-blue h-full rounded-full"
                             />
                           </div>
                         </div>
@@ -725,7 +725,7 @@ export default function InnovationGallery() {
                       className="mt-4 relative h-[100px] flex items-center justify-between px-4 w-full"
                     >
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-[85%] h-[1px] bg-gradient-to-r from-electric-blue via-neon-purple to-soft-cyan border-dashed border-t border-card-border/80 relative">
+                        <div className="w-[85%] h-[1px] bg-electric-blue border-dashed border-t border-card-border/80 relative">
                           <motion.div
                             animate={{ x: ["0%", "100%"] }}
                             transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }}

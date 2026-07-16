@@ -657,7 +657,7 @@ export default function Booking({ initialDescription, onClearDescription }: Book
                 {/* Boarding ticket layout */}
                 <div className="w-full max-w-md border border-white/10 rounded-2xl bg-gradient-to-b from-[#080808] to-black overflow-hidden relative shadow-2xl">
                   {/* Neon border glow */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-electric-blue via-soft-cyan to-neon-purple" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-electric-blue" />
                   
                   {/* Ticket Header */}
                   <div className="p-6 border-b border-white/5 flex items-center justify-between text-left">

@@ -351,8 +351,8 @@ export default function TechUniverse() {
           exit={{ opacity: 0, scale: 0.95 }}
           className="rounded-2xl border border-card-border bg-card-bg p-6 relative overflow-hidden"
         >
-          {/* Decorative glowing gradient border */}
-          <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-electric-blue to-neon-purple" />
+          {/* Decorative glowing border */}
+          <div className="absolute top-0 left-0 w-1.5 h-full bg-electric-blue" />
           
           <div className="flex justify-between items-center mb-3 ml-2">
             <div className="flex items-center gap-2">

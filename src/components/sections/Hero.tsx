@@ -389,7 +389,7 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute left-1/2 top-0 -translate-x-1/2 block w-max max-w-[90vw] bg-gradient-to-r from-electric-blue via-soft-cyan to-neon-purple bg-clip-text text-transparent glow-text-blue"
+                  className="absolute left-1/2 top-0 -translate-x-1/2 block w-max max-w-[90vw] text-electric-blue glow-text-blue"
                 >
                   {PHRASES[phraseIdx]}
                 </motion.span>
