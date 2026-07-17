@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 const SITE_URL = "https://www.webmuse.tech";
 const SITE_TITLE = "WEBMUSE | Software & Web Studio in Lagos, Nigeria & UK";
-const SITE_DESCRIPTION = "WEBMUSE builds websites, apps, and software for clients in Lagos, Nigeria and the UK — turning ideas into real digital products.";
+const SITE_DESCRIPTION = "WEBMUSE builds websites, apps, and software for clients in Lagos, Nigeria and the UK, turning ideas into real digital products.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
