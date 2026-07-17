@@ -134,17 +134,10 @@ const SERVICES_DATA: ServiceCategory[] = [
       },
       {
         name: "Product Design",
-        purpose: "Craft the visual aesthetics, interactions, layouts, and brand systems for digital software.",
-        value: "Differentiates your product from competitors with a high-end, premium, and cohesive interface.",
-        tech: ["Figma", "Adobe CC", "Spline", "Principle"],
-        caseStudy: "Designed a SaaS platform UI, resulting in a 30% reduction in user onboarding friction."
-      },
-      {
-        name: "UI Design",
-        purpose: "Design custom visual mockups, style guides, dark/light modes, and custom design systems.",
-        value: "Establishes a beautiful first impression that builds user trust and makes the product feel premium.",
-        tech: ["Figma", "Tailwind CSS", "CSS Modules"],
-        caseStudy: "Created a design system with 200+ reusable styled tokens, streamlining engineering by 40%."
+        purpose: "Craft the visual aesthetics, interactions, layouts, and brand systems for digital software — including custom mockups, style guides, dark/light modes, and reusable design systems.",
+        value: "Differentiates your product from competitors with a high-end, premium, and cohesive interface that builds user trust from the first impression.",
+        tech: ["Figma", "Adobe CC", "Spline", "Principle", "Tailwind CSS"],
+        caseStudy: "Designed a SaaS platform UI resulting in a 30% reduction in onboarding friction, and built a design system with 200+ reusable tokens that streamlined engineering by 40%."
       },
       {
         name: "UX Research",
@@ -155,24 +148,17 @@ const SERVICES_DATA: ServiceCategory[] = [
       },
       {
         name: "MVP Development",
-        purpose: "Build a streamlined, functional version of your product containing core features ready for market launch.",
-        value: "Validates ideas with real users quickly, minimizing initial financial risks.",
-        tech: ["Next.js", "Supabase", "Tailwind CSS", "Vercel"],
+        purpose: "Build a streamlined, functional version of your product ready for market launch, backed by strategic advice on pitch decks, financial structures, team hiring, and technical stack decisions.",
+        value: "Validates ideas with real users quickly, minimizing initial financial risks, while avoiding early-stage pitfalls and framework choices that won't scale.",
+        tech: ["Next.js", "Supabase", "Tailwind CSS", "Vercel", "Architecture Audits"],
         caseStudy: "Developed a social-scheduling MVP in 4 weeks, helping the founder raise $1.2M seed capital."
       },
       {
-        name: "Startup Consulting",
-        purpose: "Provide strategic advice on pitch decks, financial structures, roadmap priorities, and team hiring.",
-        value: "Avoids early-stage pitfalls, aligns engineering milestones with investor goals, and saves capital.",
-        tech: ["Financial Modeling", "Pitch Structuring", "Hiring Rubrics"],
-        caseStudy: "Consulted a fintech startup, restructuring their engineering team to speed up release rate by 2x."
-      },
-      {
-        name: "Technical Consulting",
-        purpose: "Evaluate legacy databases, audit security protocols, recommend tech stacks, and review system code.",
-        value: "Identifies security exploits and prevents selecting incorrect framework stacks that won't scale.",
-        tech: ["Architecture Audits", "Security Reviews", "Tech Valuations"],
-        caseStudy: "Audited a medical records application, updating security parameters to comply with strict HIPAA standards."
+        name: "Product Strategy",
+        purpose: "Establish roadmap milestones, feature prioritization metrics, and go-to-market strategies, grounded in industry trends, competitor analysis, and pricing research.",
+        value: "Provides a single, clear source of truth for engineering, marketing, and investor teams, and positions your brand uniquely in the market.",
+        tech: ["Roadmap Planners", "KPI Dashboards", "Miro", "SEMrush"],
+        caseStudy: "Structured the product strategy for a property tech platform, leading to 25k signups in Month 1."
       },
       {
         name: "Idea Validation",
@@ -180,20 +166,6 @@ const SERVICES_DATA: ServiceCategory[] = [
         value: "Ensures there is real market demand before spending tens of thousands on engineering.",
         tech: ["Landing Page Tests", "A/B Testing", "Google Analytics"],
         caseStudy: "Validated a micro-learning app concept, finding high demand and shifting the target market to corporate HR."
-      },
-      {
-        name: "Market Research",
-        purpose: "Analyze industry trends, competitor feature grids, pricing models, and target demographics.",
-        value: "Positions your brand uniquely in the market and optimizes pricing models for maximum margins.",
-        tech: ["Statista", "SEMrush", "SimilarWeb"],
-        caseStudy: "Conducted market research for a Web3 gaming project, aligning pricing and features with active players."
-      },
-      {
-        name: "Product Strategy",
-        purpose: "Establish the roadmap milestones, feature prioritization metrics, and go-to-market strategies.",
-        value: "Provides a single, clear source of truth for engineering, marketing, and investor teams.",
-        tech: ["Roadmap Planners", "KPI Dashboards", "Miro"],
-        caseStudy: "Structured the product strategy for a property tech platform, leading to 25k signups in Month 1."
       }
     ]
   },
