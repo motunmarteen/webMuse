@@ -17,8 +17,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const SITE_URL = "https://www.webmuse.tech";
-const SITE_TITLE = "WEBMUSE | Software & Web Development Studio in Lagos, Nigeria & UK";
-const SITE_DESCRIPTION = "WEBMUSE is a software engineering and product design studio serving clients across Lagos, Nigeria and the United Kingdom. We build websites, applications, and software that turn ideas into products — Software Engineering, AI Solutions, Web3, and UI/UX Design.";
+const SITE_TITLE = "WEBMUSE | Software & Web Studio in Lagos, Nigeria & UK";
+const SITE_DESCRIPTION = "WEBMUSE builds websites, apps, and software for clients in Lagos, Nigeria and the UK — turning ideas into real digital products.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: SITE_TITLE,
-    description: "Software engineering and product design studio serving clients across Lagos, Nigeria and the United Kingdom.",
+    description: SITE_DESCRIPTION,
     url: SITE_URL,
     siteName: "WEBMUSE",
     type: "website",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
-    description: "Software engineering and product design studio serving clients across Lagos, Nigeria and the United Kingdom.",
+    description: SITE_DESCRIPTION,
   },
 };
 
