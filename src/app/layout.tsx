@@ -16,9 +16,9 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE_URL = "https://webmuse.tech";
-const SITE_TITLE = "WEBMUSE | Where Ideas Become Digital Reality.";
-const SITE_DESCRIPTION = "An elite innovation studio that transforms ideas into world-class, premium digital products. Software Engineering, AI Solutions, Web3, and UI/UX Design.";
+const SITE_URL = "https://www.webmuse.tech";
+const SITE_TITLE = "WEBMUSE | Software & Web Development Studio in Lagos, Nigeria & UK";
+const SITE_DESCRIPTION = "WEBMUSE is a software engineering and product design studio serving clients across Lagos, Nigeria and the United Kingdom. We build websites, applications, and software that turn ideas into products — Software Engineering, AI Solutions, Web3, and UI/UX Design.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -27,7 +27,21 @@ export const metadata: Metadata = {
     template: "%s | WEBMUSE",
   },
   description: SITE_DESCRIPTION,
-  keywords: ["WEBMUSE", "Innovation Studio", "Software Engineering", "AI Solutions", "Web3 Development", "Product Design", "MVP Development"],
+  keywords: [
+    "WEBMUSE",
+    "software development Nigeria",
+    "web development Lagos",
+    "software company Lagos",
+    "web development company UK",
+    "software development agency UK",
+    "app development Nigeria",
+    "Innovation Studio",
+    "Software Engineering",
+    "AI Solutions",
+    "Web3 Development",
+    "Product Design",
+    "MVP Development",
+  ],
   authors: [{ name: "WEBMUSE Team" }],
   alternates: {
     canonical: SITE_URL,
@@ -38,7 +52,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: SITE_TITLE,
-    description: "An elite innovation studio that transforms ideas into world-class, premium digital products.",
+    description: "Software engineering and product design studio serving clients across Lagos, Nigeria and the United Kingdom.",
     url: SITE_URL,
     siteName: "WEBMUSE",
     type: "website",
@@ -47,17 +61,32 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
-    description: "An elite innovation studio that transforms ideas into world-class, premium digital products.",
+    description: "Software engineering and product design studio serving clients across Lagos, Nigeria and the United Kingdom.",
   },
 };
 
 const ORGANIZATION_JSON_LD = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   name: "WEBMUSE",
   url: SITE_URL,
   description: SITE_DESCRIPTION,
   email: "hello@webmuse.tech",
+  areaServed: [
+    {
+      "@type": "Country",
+      name: "Nigeria",
+    },
+    {
+      "@type": "Country",
+      name: "United Kingdom",
+    },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Lagos",
+    addressCountry: "NG",
+  },
   sameAs: [],
 };
 

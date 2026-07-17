@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://webmuse.tech";
+const BASE_URL = "https://www.webmuse.tech";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ["", "/privacy", "/terms", "/status", "/insights"];

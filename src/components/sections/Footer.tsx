@@ -65,6 +65,9 @@ export default function Footer() {
             <p className="text-text-muted font-light text-sm max-w-xs leading-relaxed">
               An elite innovation studio that transforms complex product ideas into high-performance digital reality.
             </p>
+            <p className="text-text-muted/70 font-light text-xs mt-3 max-w-xs leading-relaxed">
+              Building for clients across Lagos, Nigeria and the United Kingdom.
+            </p>
             <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-card-border bg-card-bg px-4 py-1.5 backdrop-blur-md">
               <Sparkles className="h-3.5 w-3.5 text-electric-blue" />
               <span className="text-[9px] font-bold tracking-widest text-text-muted uppercase font-mono">
