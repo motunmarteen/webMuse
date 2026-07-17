@@ -43,16 +43,16 @@ const SERVICES_DATA: ServiceCategory[] = [
     services: [
       {
         name: "Software Engineering",
-        purpose: "Build highly maintainable, type-safe, and scalable custom applications designed for high performance.",
-        value: "Ensures longevity, safety of IP, and matches enterprise growth requirements.",
-        tech: ["TypeScript", "Rust", "Go", "Python"],
-        caseStudy: "Engineered a high-throughput logistical trading engine handling $50M+ daily transaction volume."
+        purpose: "Build highly maintainable, type-safe, and scalable custom applications — from resilient backend server logic and database schemas to full end-to-end systems — designed for high performance.",
+        value: "Ensures longevity, safety of IP, database consistency, and matches enterprise growth requirements.",
+        tech: ["TypeScript", "Rust", "Go", "Python", "PostgreSQL", "Redis"],
+        caseStudy: "Engineered a high-throughput logistical trading engine handling $50M+ daily transaction volume, and migrated a legacy backend into a microservices mesh, reducing latency by 120ms."
       },
       {
         name: "Web Development",
-        purpose: "Create lightning-fast, SEO-optimized, responsive websites utilizing the latest server-rendering architectures.",
-        value: "Improves Google Core Web Vitals, organic search ranks, and boosts visitor-to-client conversion rates.",
-        tech: ["Next.js", "React", "Tailwind CSS", "Node.js"],
+        purpose: "Create lightning-fast, SEO-optimized, responsive websites with interactive, state-managed interfaces, fluid animations, and accessible layouts, built on the latest server-rendering architectures.",
+        value: "Improves Google Core Web Vitals, organic search ranks, and boosts visitor-to-client conversion rates while keeping users engaged and lowering churn.",
+        tech: ["Next.js", "React", "Tailwind CSS", "Node.js", "Framer Motion"],
         caseStudy: "Redesigned a global fintech platform resulting in a 45% increase in mobile signups."
       },
       {
@@ -63,34 +63,6 @@ const SERVICES_DATA: ServiceCategory[] = [
         caseStudy: "Shipped a health-tracking app that reached #5 on the App Store with a 4.8-star rating."
       },
       {
-        name: "Backend Engineering",
-        purpose: "Design highly-available server logic, message queues, and database schemas with strong data integrity.",
-        value: "Guarantees database consistency, fast API responses, and resilient failover configurations.",
-        tech: ["FastAPI", "Express", "PostgreSQL", "Redis", "Kafka"],
-        caseStudy: "Migrated a legacy server backend into a microservices mesh, reducing latency by 120ms."
-      },
-      {
-        name: "Frontend Engineering",
-        purpose: "Build interactive, state-managed user interfaces with fluid animations, micro-interactions, and accessible layouts.",
-        value: "Provides an exceptional customer experience that keeps users engaged and lowers churn.",
-        tech: ["React", "Vue", "Framer Motion", "GSAP", "Vite"],
-        caseStudy: "Developed a dynamic data dashboard representing complex real-time telemetry visually."
-      },
-      {
-        name: "Cloud Engineering",
-        purpose: "Establish multi-region cloud infrastructures with load balancing, automated scaling, and secure vaults.",
-        value: "Mitigates hosting overheads, minimizes downtime, and guarantees regulatory compliance (GDPR/HIPAA).",
-        tech: ["AWS", "Google Cloud", "Azure", "Terraform"],
-        caseStudy: "Architected a hybrid-cloud environment that decreased annual infrastructure spending by 35%."
-      },
-      {
-        name: "DevOps",
-        purpose: "Automate code compilation, linting, testing, and deployments using CI/CD pipelines.",
-        value: "Accelerates time-to-market and reduces manual errors by running automated test suites on every pull request.",
-        tech: ["Docker", "Kubernetes", "GitHub Actions", "ArgoCD"],
-        caseStudy: "Deployed automated pipelines that cut engineering build-and-release times from 4 hours to 6 minutes."
-      },
-      {
         name: "API Development",
         purpose: "Build REST, GraphQL, or gRPC APIs designed for high concurrency with detailed documentation.",
         value: "Facilitates seamless integrations, enabling third-party developer systems to interface with your service.",
@@ -99,10 +71,10 @@ const SERVICES_DATA: ServiceCategory[] = [
       },
       {
         name: "System Architecture",
-        purpose: "Outline the high-level diagrams, technical requirements, and communication protocols between applications.",
-        value: "Prevents bottlenecks, ensures system longevity, and prevents expensive code rewrites down the line.",
-        tech: ["UML", "Kubernetes", "Apache Kafka", "Redis Cache"],
-        caseStudy: "Mapped and designed the entire decoupled system plan for a multi-tenant SaaS CRM platform."
+        purpose: "Outline the high-level diagrams, technical requirements, and communication protocols between applications — including multi-region cloud infrastructure and automated CI/CD deployment pipelines.",
+        value: "Prevents bottlenecks, minimizes downtime, ensures system longevity and regulatory compliance (GDPR/HIPAA), and prevents expensive code rewrites down the line.",
+        tech: ["UML", "Kubernetes", "AWS", "Google Cloud", "Terraform", "Docker", "GitHub Actions"],
+        caseStudy: "Architected a hybrid-cloud environment that cut infrastructure spending by 35%, and deployed automated pipelines that reduced build-and-release times from 4 hours to 6 minutes."
       }
     ]
   },
