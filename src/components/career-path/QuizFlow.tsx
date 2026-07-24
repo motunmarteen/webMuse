@@ -65,7 +65,7 @@ export default function QuizFlow({ onComplete }: { onComplete: (result: QuizResu
   return (
     <div className="max-w-2xl mx-auto">
       {/* Progress header */}
-      <div className="sticky top-[76px] z-30 bg-background/90 backdrop-blur-md pb-4 pt-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+      <div className="sticky top-0 z-30 bg-background pb-4 pt-4">
         <div className="flex items-center justify-between mb-3">
           <span className="text-[10px] font-mono uppercase tracking-widest text-electric-blue">
             {question.category}
@@ -92,7 +92,7 @@ export default function QuizFlow({ onComplete }: { onComplete: (result: QuizResu
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: direction * -40 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-8"
+          className="mt-8 relative z-10"
         >
           <h2 className="text-xl md:text-2xl font-bold text-text-title tracking-tight leading-snug text-balance">
             {question.question}
