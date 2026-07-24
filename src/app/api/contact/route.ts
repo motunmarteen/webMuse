@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  let body: { name?: string; email?: string; message?: string };
+  let body: { name?: string; email?: string; message?: string; referralCode?: string };
   try {
     body = await req.json();
   } catch {
@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
   const name = (body.name || "").trim();
   const email = (body.email || "").trim();
   const message = (body.message || "").trim();
+  const referralCode = (body.referralCode || "").trim();
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: "Name, email, and message are required." }, { status: 400 });
@@ -30,7 +31,7 @@ export async function POST(req: NextRequest) {
   const result = await sendEmail({
     to: EMAIL_TO,
     subject: `New contact form message from ${name}`,
-    text: `From: ${name} <${email}>\n\n${message}`,
+    text: `From: ${name} <${email}>\nReferral code: ${referralCode || "—"}\n\n${message}`,
   });
 
   if (!result.ok) {

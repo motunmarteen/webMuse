@@ -78,7 +78,8 @@ export default function Booking({ initialDescription, onClearDescription }: Book
   const [fileName, setFileName] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  
+  const [referralCode, setReferralCode] = useState("");
+
   // Confirmation State
   const [ticketId, setTicketId] = useState("");
   const [isBooked, setIsBooked] = useState(false);
@@ -128,6 +129,13 @@ export default function Booking({ initialDescription, onClearDescription }: Book
         } catch {
           // Ignore malformed localStorage data.
         }
+      }
+
+      // Auto-fill the referral code from a ?ref= link so the visitor never
+      // has to ask the person who referred them for their code again.
+      const storedRef = getStoredReferralCode();
+      if (storedRef) {
+        setReferralCode(storedRef);
       }
     }
   }, []);
@@ -197,7 +205,7 @@ export default function Booking({ initialDescription, onClearDescription }: Book
           platform,
           description,
           ticketId: newTicketId,
-          referralCode: getStoredReferralCode(),
+          referralCode,
         }),
       });
       const data = await res.json();
@@ -559,6 +567,21 @@ export default function Booking({ initialDescription, onClearDescription }: Book
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="john@example.com"
+                            className="bg-card-bg border border-card-border focus:border-electric-blue/40 rounded-xl px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder-zinc-500"
+                          />
+                        </div>
+
+                        {/* Referral Code Input */}
+                        <div className="flex flex-col gap-1.5 sm:col-span-2">
+                          <label htmlFor="booking-referral" className="text-[10px] font-mono uppercase tracking-widest text-text-muted">
+                            Referred by (optional)
+                          </label>
+                          <input
+                            id="booking-referral"
+                            type="text"
+                            value={referralCode}
+                            onChange={(e) => setReferralCode(e.target.value)}
+                            placeholder="Referrer's code, if someone sent you here"
                             className="bg-card-bg border border-card-border focus:border-electric-blue/40 rounded-xl px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder-zinc-500"
                           />
                         </div>

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCursor } from "@/components/ui/CustomCursor";
+import { getStoredReferralCode } from "@/utils/referral";
 import { Mail, Clock, Send, ShieldCheck, MapPin } from "lucide-react";
 
 interface OfficeHub {
@@ -54,11 +55,17 @@ export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [referralCode, setReferralCode] = useState("");
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
 
   const { setCursorType } = useCursor();
+
+  useEffect(() => {
+    const storedRef = getStoredReferralCode();
+    if (storedRef) setReferralCode(storedRef);
+  }, []);
 
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,7 +77,7 @@ export default function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, message, referralCode }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -179,6 +186,20 @@ export default function Contact() {
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Project outline..."
                     className="w-full h-[80px] bg-card-bg border border-card-border focus:border-electric-blue/40 rounded-xl px-4 py-3 text-xs text-foreground outline-none resize-none transition-colors placeholder-zinc-500"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <label htmlFor="contact-referral" className="text-[9px] font-mono uppercase tracking-widest text-text-muted">
+                    Referred by (optional)
+                  </label>
+                  <input
+                    id="contact-referral"
+                    type="text"
+                    value={referralCode}
+                    onChange={(e) => setReferralCode(e.target.value)}
+                    placeholder="Referrer's code, if someone sent you here"
+                    className="bg-card-bg border border-card-border focus:border-electric-blue/40 rounded-xl px-4 py-3 text-xs text-foreground outline-none transition-colors placeholder-zinc-500"
                   />
                 </div>
 
