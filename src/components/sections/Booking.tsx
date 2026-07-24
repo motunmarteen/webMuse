@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCursor } from "@/components/ui/CustomCursor";
 import { audioSynth } from "@/utils/audioSynth";
+import { getStoredReferralCode } from "@/utils/referral";
 import {
   Upload,
   Video,
@@ -196,6 +197,7 @@ export default function Booking({ initialDescription, onClearDescription }: Book
           platform,
           description,
           ticketId: newTicketId,
+          referralCode: getStoredReferralCode(),
         }),
       });
       const data = await res.json();

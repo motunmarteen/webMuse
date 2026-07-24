@@ -1,22 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useCursor } from "@/components/ui/CustomCursor";
 import { useMagnetic } from "@/hooks/useMagnetic";
-import { Menu, X, Calendar, Volume2, VolumeX } from "lucide-react";
+import { Menu, X, Calendar, Volume2, VolumeX, ChevronDown } from "lucide-react";
 import { audioSynth } from "@/utils/audioSynth";
 
+// Primary items stay visible on one line. Homepage-anchor sections that
+// don't need top-level billing live in the "More" dropdown instead —
+// they're still reachable by scrolling the homepage.
 const NAV_ITEMS = [
   { label: "Home", href: "#" },
   { label: "Services", href: "#services" },
+  { label: "Case Study", href: "/case-study" },
+  { label: "Career Path", href: "/career-path" },
+  { label: "Partners", href: "/partners" },
+];
+
+const MORE_ITEMS = [
+  { label: "Blog", href: "/insights" },
   { label: "Our Process", href: "#process" },
   { label: "Constellation", href: "#universe" },
   { label: "Innovation Gallery", href: "#gallery" },
-  { label: "Case Study", href: "/case-study" },
-  { label: "Career Path", href: "/career-path" },
   { label: "Leadership", href: "#team" },
   { label: "Idea Vault", href: "#vault" },
 ];
@@ -30,8 +38,10 @@ export default function Navbar({ show }: { show: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isMuted, setIsMuted] = useState(() => audioSynth.isMuted());
+  const [moreOpen, setMoreOpen] = useState(false);
   const { setCursorType } = useCursor();
   const bookBtnRef = useMagnetic(30, 0.3);
+  const moreRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,6 +70,24 @@ export default function Navbar({ show }: { show: boolean }) {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
+
+  useEffect(() => {
+    if (!moreOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMoreOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [moreOpen]);
 
   const toggleMute = () => {
     const nextMuted = !isMuted;
@@ -155,6 +183,59 @@ export default function Navbar({ show }: { show: boolean }) {
                 </a>
               );
             })}
+
+            {/* More dropdown — homepage-anchor sections that don't need top-level billing */}
+            <div ref={moreRef} className="relative">
+              <button
+                onClick={() => {
+                  audioSynth.playClick();
+                  setMoreOpen((v) => !v);
+                }}
+                onMouseEnter={() => setCursorType("pointer")}
+                onMouseLeave={() => setCursorType("default")}
+                aria-haspopup="menu"
+                aria-expanded={moreOpen}
+                className={`relative flex items-center gap-1 px-4 py-1.5 text-xs font-medium uppercase font-mono tracking-wider transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2 rounded-full ${
+                  moreOpen ? "text-text-title" : "text-text-muted hover:text-text-title"
+                }`}
+              >
+                More
+                <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${moreOpen ? "rotate-180" : ""}`} aria-hidden="true" />
+              </button>
+              <AnimatePresence>
+                {moreOpen && (
+                  <motion.div
+                    role="menu"
+                    aria-label="More"
+                    initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                    transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute right-0 top-full mt-2 min-w-[190px] glassmorphism rounded-2xl p-1.5 shadow-lg shadow-black/20"
+                  >
+                    {MORE_ITEMS.map((item) => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        role="menuitem"
+                        onClick={() => {
+                          handleLinkClick(item.href);
+                          setMoreOpen(false);
+                        }}
+                        onMouseEnter={() => {
+                          setCursorType("pointer");
+                          audioSynth.playClick();
+                        }}
+                        onMouseLeave={() => setCursorType("default")}
+                        className="block px-4 py-2.5 text-xs font-medium uppercase font-mono tracking-wider text-text-muted hover:text-text-title hover:bg-card-bg rounded-xl transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2"
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </nav>
 
           {/* Action Button & Menu Toggles */}
@@ -232,8 +313,8 @@ export default function Navbar({ show }: { show: boolean }) {
             transition={{ duration: 0.4 }}
             className="fixed inset-0 z-30 flex flex-col justify-between bg-background/95 backdrop-blur-xl p-8 pt-32 md:hidden"
           >
-            <nav aria-label="Mobile" className="flex flex-col gap-6">
-              {NAV_ITEMS.map((item, idx) => {
+            <nav aria-label="Mobile" className="flex flex-col gap-5 overflow-y-auto">
+              {[...NAV_ITEMS, ...MORE_ITEMS].map((item, idx) => {
                 const motionProps = {
                   initial: { opacity: 0, x: -30 },
                   animate: { opacity: 1, x: 0 },

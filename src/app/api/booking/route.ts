@@ -12,6 +12,7 @@ interface BookingPayload {
   platform?: string;
   description?: string;
   ticketId?: string;
+  referralCode?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -50,6 +51,7 @@ export async function POST(req: NextRequest) {
     `Requested time: ${body.selectedTime || "—"}`,
     `Platform: ${body.platform || "—"}`,
     `Ticket ID: ${body.ticketId || "—"}`,
+    `Referral code: ${body.referralCode || "—"}`,
     ``,
     `Project description:`,
     body.description || "—",

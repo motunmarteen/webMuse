@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { captureReferralCode } from "@/utils/referral";
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
@@ -30,6 +31,10 @@ export default function Home() {
   const handleClearDescription = () => {
     setVaultDescription("");
   };
+
+  useEffect(() => {
+    captureReferralCode();
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground transition-colors duration-300">

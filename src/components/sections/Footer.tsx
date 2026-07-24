@@ -85,7 +85,8 @@ export default function Footer() {
               <li><a href="#services" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Services</a></li>
               <li><a href="#process" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Our Process</a></li>
               <li><a href="#universe" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Constellation</a></li>
-              <li><a href="#gallery" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Portfolio</a></li>
+              <li><a href="#gallery" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Innovation Gallery</a></li>
+              <li><a href="#team" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Leadership</a></li>
               <li><a href="#vault" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Idea Vault</a></li>
             </ul>
           </div>
@@ -96,7 +97,10 @@ export default function Footer() {
               Resources
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs text-text-muted font-mono">
-              <li><Link href="/insights" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Insights</Link></li>
+              <li><Link href="/case-study" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Case Study</Link></li>
+              <li><Link href="/career-path" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Career Path</Link></li>
+              <li><Link href="/partners" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Partners</Link></li>
+              <li><Link href="/insights" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Blog</Link></li>
               <li><Link href="/privacy" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Terms of Service</Link></li>
               <li><Link href="/status" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">System Status</Link></li>
