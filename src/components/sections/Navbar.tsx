@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useCursor } from "@/components/ui/CustomCursor";
 import { useMagnetic } from "@/hooks/useMagnetic";
 import { Menu, X, Calendar, Volume2, VolumeX } from "lucide-react";
@@ -14,9 +15,15 @@ const NAV_ITEMS = [
   { label: "Our Process", href: "#process" },
   { label: "Constellation", href: "#universe" },
   { label: "Innovation Gallery", href: "#gallery" },
+  { label: "Case Study", href: "/case-study" },
+  { label: "Career Path", href: "/career-path" },
   { label: "Leadership", href: "#team" },
   { label: "Idea Vault", href: "#vault" },
 ];
+
+function isNavItemExternal(href: string) {
+  return href.startsWith("/");
+}
 
 export default function Navbar({ show }: { show: boolean }) {
   const [activeItem, setActiveItem] = useState("#");
@@ -115,20 +122,19 @@ export default function Navbar({ show }: { show: boolean }) {
           <nav aria-label="Primary" className="hidden md:flex items-center gap-1.5">
             {NAV_ITEMS.map((item) => {
               const isActive = activeItem === item.href;
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => handleLinkClick(item.href)}
-                  onMouseEnter={() => {
-                    setCursorType("pointer");
-                    audioSynth.playClick();
-                  }}
-                  onMouseLeave={() => setCursorType("default")}
-                  className={`relative px-4 py-1.5 text-xs font-medium uppercase font-mono tracking-wider transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2 rounded-full ${
-                    isActive ? "text-text-title" : "text-text-muted hover:text-text-title"
-                  }`}
-                >
+              const linkProps = {
+                onClick: () => handleLinkClick(item.href),
+                onMouseEnter: () => {
+                  setCursorType("pointer");
+                  audioSynth.playClick();
+                },
+                onMouseLeave: () => setCursorType("default"),
+                className: `relative px-4 py-1.5 text-xs font-medium uppercase font-mono tracking-wider transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2 rounded-full ${
+                  isActive ? "text-text-title" : "text-text-muted hover:text-text-title"
+                }`,
+              };
+              const inner = (
+                <>
                   {isActive && (
                     <motion.span
                       layoutId="activePill"
@@ -137,6 +143,15 @@ export default function Navbar({ show }: { show: boolean }) {
                     />
                   )}
                   <span className="relative z-10">{item.label}</span>
+                </>
+              );
+              return isNavItemExternal(item.href) ? (
+                <Link key={item.label} href={item.href} {...linkProps}>
+                  {inner}
+                </Link>
+              ) : (
+                <a key={item.label} href={item.href} {...linkProps}>
+                  {inner}
                 </a>
               );
             })}
@@ -218,23 +233,31 @@ export default function Navbar({ show }: { show: boolean }) {
             className="fixed inset-0 z-30 flex flex-col justify-between bg-background/95 backdrop-blur-xl p-8 pt-32 md:hidden"
           >
             <nav aria-label="Mobile" className="flex flex-col gap-6">
-              {NAV_ITEMS.map((item, idx) => (
-                <motion.a
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.05 + 0.1, ease: "easeOut" }}
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => {
+              {NAV_ITEMS.map((item, idx) => {
+                const motionProps = {
+                  initial: { opacity: 0, x: -30 },
+                  animate: { opacity: 1, x: 0 },
+                  transition: { delay: idx * 0.05 + 0.1, ease: "easeOut" as const },
+                  onClick: () => {
                     handleLinkClick(item.href);
                     setIsOpen(false);
-                  }}
-                  onMouseEnter={() => audioSynth.playClick()}
-                  className="font-display text-3xl font-light text-text-muted hover:text-text-title transition-colors tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-4 rounded"
-                >
-                  {item.label}
-                </motion.a>
-              ))}
+                  },
+                  onMouseEnter: () => audioSynth.playClick(),
+                  className:
+                    "font-display text-3xl font-light text-text-muted hover:text-text-title transition-colors tracking-tight focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-4 rounded",
+                };
+                return isNavItemExternal(item.href) ? (
+                  <motion.div key={item.label} {...motionProps}>
+                    <Link href={item.href} onClick={motionProps.onClick} className="block">
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ) : (
+                  <motion.a key={item.label} href={item.href} {...motionProps}>
+                    {item.label}
+                  </motion.a>
+                );
+              })}
             </nav>
 
             <motion.div
