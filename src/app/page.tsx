@@ -15,6 +15,7 @@ import Booking from "@/components/sections/Booking";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import BackToTop from "@/components/ui/BackToTop";
+import AiConcierge from "@/components/ui/AiConcierge";
 
 import TechMarquee from "@/components/ui/TechMarquee";
 
@@ -75,6 +76,7 @@ export default function Home() {
 
       {showNavbar && <Footer />}
       {showNavbar && <BackToTop />}
+      {showNavbar && <AiConcierge />}
     </div>
   );
 }
