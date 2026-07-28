@@ -34,6 +34,13 @@ export default function Home() {
 
   useEffect(() => {
     captureReferralCode();
+    try {
+      if (typeof window !== "undefined" && sessionStorage.getItem("webmuse_intro_seen") === "true") {
+        setShowNavbar(true);
+      }
+    } catch {
+      // Ignore storage errors
+    }
   }, []);
 
   return (

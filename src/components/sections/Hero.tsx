@@ -34,6 +34,17 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
   const secCtaRef = useMagnetic(40, 0.3);
 
   useEffect(() => {
+    try {
+      if (typeof window !== "undefined" && sessionStorage.getItem("webmuse_intro_seen") === "true") {
+        setIntroFinished(true);
+        onIntroFinished();
+      }
+    } catch {
+      // Ignore storage errors in restricted contexts
+    }
+  }, [onIntroFinished]);
+
+  useEffect(() => {
     if (!introFinished) return;
     const interval = setInterval(() => {
       setPhraseIdx((prev) => (prev + 1) % PHRASES.length);
@@ -41,8 +52,19 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
     return () => clearInterval(interval);
   }, [introFinished]);
 
+  const markIntroSeen = () => {
+    try {
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("webmuse_intro_seen", "true");
+      }
+    } catch {
+      // Ignore storage errors
+    }
+  };
+
   useEffect(() => {
     if (introFinished) {
+      markIntroSeen();
       onIntroFinished();
       return;
     }
@@ -331,6 +353,7 @@ export default function Hero({ onIntroFinished }: { onIntroFinished: () => void 
   }, [introFinished, onIntroFinished]);
 
   const skipIntro = () => {
+    markIntroSeen();
     setIntroFinished(true);
   };
 

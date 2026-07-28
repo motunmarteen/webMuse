@@ -327,7 +327,7 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
     return () => clearTimeout(timer);
   }, []);
 
-  const handleAnalyze = () => {
+  const handleAnalyze = async () => {
     if (!prompt.trim()) return;
 
     setAnalyzing(true);
@@ -345,6 +345,16 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
     ];
 
     let currentLineIndex = 0;
+    let fetchedAnalysis: IdeaAnalysis | null = null;
+
+    // Start API request in parallel
+    const apiPromise = fetch("/api/simulate-blueprint", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt, scale, velocity }),
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .catch(() => null);
     
     const printNextLine = () => {
       if (currentLineIndex < logLines.length) {
@@ -353,16 +363,17 @@ export default function IdeaVault({ onBlueprintCreated }: { onBlueprintCreated: 
         audioSynth.playTypeTick();
         currentLineIndex++;
         
-        setTimeout(printNextLine, 350 + Math.random() * 150);
+        setTimeout(printNextLine, 300 + Math.random() * 100);
       } else {
-        setTimeout(() => {
+        apiPromise.then((data) => {
+          fetchedAnalysis = data;
           const baseType = classifyPrompt(prompt);
-          const dynamicAnalysis = calculateBlueprint(baseType, scale, velocity);
-          setActiveAnalysis(dynamicAnalysis);
+          const finalAnalysis = fetchedAnalysis || calculateBlueprint(baseType, scale, velocity);
+          setActiveAnalysis(finalAnalysis);
           setAnalyzing(false);
           setActiveTab("validation");
           audioSynth.playSuccess();
-        }, 500);
+        });
       }
     };
 

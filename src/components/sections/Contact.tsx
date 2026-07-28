@@ -204,9 +204,18 @@ export default function Contact() {
                 </div>
 
                 {error && (
-                  <p role="alert" className="text-xs text-red-400 font-mono">
-                    {error}
-                  </p>
+                  <div className="flex flex-col gap-2 p-3 rounded-xl border border-red-500/30 bg-red-500/10 text-xs font-mono">
+                    <p role="alert" className="text-red-400">
+                      {error}
+                    </p>
+                    <a
+                      href={`mailto:hello@webmuse.tech?subject=${encodeURIComponent(`Inquiry from ${name || "Website Visitor"}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nReferral: ${referralCode || "N/A"}\n\nMessage:\n${message}`)}`}
+                      className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-electric-blue text-white font-semibold hover:bg-blue-600 transition-colors text-[11px] uppercase tracking-wider text-center"
+                    >
+                      <Mail className="h-3.5 w-3.5" />
+                      Send via Direct Email App
+                    </a>
+                  </div>
                 )}
 
                 <button
