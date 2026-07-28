@@ -194,11 +194,21 @@ export default function AiConcierge() {
 
   // Humanized Jovial AI Response Generator
   const generateHumanJovialReply = (query: string, name: string): Message => {
-    const q = query.toLowerCase().trim();
+    const rawLower = query.toLowerCase().trim();
     const namePrefix = name ? `${name}, ` : "";
     const nameFriendly = name ? ` ${name}` : "";
 
-    // 0. Name Introduction Response
+    // 0. Emoji & Filler Normalization
+    let q = rawLower
+      .replace(/[\u{1F300}-\u{1F6FF}\u{1F900}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "")
+      .trim();
+
+    // Remove introductory greetings like "hi!", "hello", "hey"
+    if (q.startsWith("hi!") || q.startsWith("hi ") || q.startsWith("hello") || q.startsWith("hey")) {
+      q = q.replace(/^(hi!|hi|hello|hey)\s*/i, "").trim();
+    }
+
+    // 1. Name Introduction Response
     if (extractName(query) && messages.length <= 3) {
       return {
         id: `ai-${Date.now()}`,
@@ -212,7 +222,68 @@ export default function AiConcierge() {
       };
     }
 
-    // 1. WHAT IS WEBMUSE / ABOUT AGENCY
+    // 2. WILL WEBMUSE BUILD ME AN APP / CAN YOU BUILD AN APP / APP BUILDING CAPABILITY
+    if (
+      q.includes("build me an app") ||
+      q.includes("build an app") ||
+      q.includes("build my app") ||
+      q.includes("able to build") ||
+      q.includes("can you build") ||
+      q.includes("build apps") ||
+      rawLower.includes("will webmuse be able to build")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: `100% YES${nameFriendly}! 🎉 Building high-performance custom web and mobile apps is our core specialty at WEBMUSE!\n\nWhether you need an iOS & Android mobile app, a SaaS web platform, a custom AI agent, or a Web3 protocol, we build production-grade applications in 3–5 weeks (Sprint MVP) or 8–12 weeks (Full Growth Platform).\n\nTell me a bit about what you want your app to do, and I'll generate a custom architectural blueprint for you right now!`,
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Simulate Your App Concept",
+          action: () => navigateAnchor("#vault"),
+        },
+      };
+    }
+
+    // 3. WHAT IS A WEBSITE / WEBSITE DEFINITION
+    if (
+      q.includes("what is a website") ||
+      q.includes("what is website") ||
+      q.includes("what does is a website") ||
+      q.includes("explain website") ||
+      q === "website"
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: `A website is your digital flagship storefront on the internet${nameFriendly}! 🌐 It connects your product, service, or brand with users worldwide 24 hours a day, 7 days a week.\n\nAt WEBMUSE, we engineer next-generation web applications (using Next.js 16 and React 19) that load in under 100 milliseconds, look stunning on every screen, and turn casual visitors into paying customers!`,
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "View Web Engineering Services",
+          action: () => navigateAnchor("#services"),
+        },
+      };
+    }
+
+    // 4. STARTER PROMPT: WANT TO BUILD AN APP CONCEPT
+    if (
+      q.includes("i want to build an app concept") ||
+      q.includes("app concept") ||
+      q.includes("i want to build") ||
+      q.includes("want to build an app")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: `That's amazing${nameFriendly}! 🚀 We love bringing new product concepts to life! What kind of app are you thinking of?\n\nFor example:\n• A mobile app for iOS & Android\n• An AI chatbot or search engine\n• A fintech & payment platform\n• A Web3 smart contract protocol\n\nDescribe your idea in a sentence or two, and I'll generate a complete architectural blueprint (Tech Stack, Timeline & Scope) for you!`,
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Simulate Product Blueprint",
+          action: () => navigateAnchor("#vault"),
+        },
+      };
+    }
+
+    // 5. WHAT IS WEBMUSE / ABOUT AGENCY
     if (
       q === "what is webmuse" ||
       q === "who is webmuse" ||
@@ -235,7 +306,7 @@ export default function AiConcierge() {
       };
     }
 
-    // 2. TIMELINES, DURATION & FINISHING AN APP
+    // 6. TIMELINES, DURATION & FINISHING AN APP
     if (
       q.includes("how long") ||
       q.includes("finish an app") ||
@@ -260,7 +331,7 @@ export default function AiConcierge() {
       };
     }
 
-    // 3. MVP EXPLANATION (LIKE I'M 5)
+    // 7. MVP EXPLANATION (LIKE I'M 5)
     if (
       q.includes("what is mvp") ||
       q.includes("explain mvp") ||
@@ -280,7 +351,7 @@ export default function AiConcierge() {
       };
     }
 
-    // 4. IDEMPOTENCY EXPLANATION (LIKE I'M 5)
+    // 8. IDEMPOTENCY EXPLANATION (LIKE I'M 5)
     if (q.includes("idempotency") || q.includes("explain idempotency")) {
       return {
         id: `ai-${Date.now()}`,
@@ -294,7 +365,7 @@ export default function AiConcierge() {
       };
     }
 
-    // 5. VECTOR RAG AI EXPLANATION (LIKE I'M 5)
+    // 9. VECTOR RAG AI EXPLANATION (LIKE I'M 5)
     if (q.includes("rag") || q.includes("vector") || q.includes("explain ai")) {
       return {
         id: `ai-${Date.now()}`,
@@ -308,7 +379,7 @@ export default function AiConcierge() {
       };
     }
 
-    // 6. BLOCKCHAIN & WEB3
+    // 10. BLOCKCHAIN & WEB3
     if (
       q.includes("blockchain") ||
       q.includes("crypto") ||
@@ -331,7 +402,7 @@ export default function AiConcierge() {
       };
     }
 
-    // 7. MOBILE APP DEVELOPMENT
+    // 11. MOBILE APP DEVELOPMENT
     if (
       q.includes("mobile") ||
       q.includes("ios") ||
@@ -352,7 +423,7 @@ export default function AiConcierge() {
       };
     }
 
-    // 8. LOCATIONS (LONDON, LAGOS, NY, TOKYO)
+    // 12. LOCATIONS (LONDON, LAGOS, NY, TOKYO)
     if (
       q.includes("where") ||
       q.includes("location") ||
@@ -375,7 +446,7 @@ export default function AiConcierge() {
       };
     }
 
-    // 9. COST & PRICING
+    // 13. COST & PRICING
     if (
       q.includes("cost") ||
       q.includes("price") ||
@@ -396,13 +467,11 @@ export default function AiConcierge() {
       };
     }
 
-    // 10. PRODUCT CONCEPT BLUEPRINT GENERATOR
+    // 14. SPECIFIC CUSTOM PRODUCT CONCEPT BLUEPRINT GENERATOR
     if (
-      q.startsWith("i want to build") ||
       q.startsWith("i want to create") ||
-      q.startsWith("can you build an app") ||
       q.startsWith("can you build a platform") ||
-      (q.includes("build") && q.includes("for"))
+      (q.includes("build") && q.includes("for") && q.split(" ").length > 3)
     ) {
       const isAi = q.includes("ai") || q.includes("agent") || q.includes("model");
       const isWeb3 = q.includes("web3") || q.includes("crypto") || q.includes("blockchain");
@@ -419,7 +488,7 @@ export default function AiConcierge() {
       };
     }
 
-    // 11. FALLBACK WITH hello@webmuse.tech ESCALATION
+    // 15. FALLBACK WITH hello@webmuse.tech ESCALATION
     return {
       id: `ai-${Date.now()}`,
       sender: "ai",
