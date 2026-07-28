@@ -17,6 +17,10 @@ import {
   ShieldCheck,
   Zap,
   RefreshCw,
+  Cpu,
+  Code2,
+  Lock,
+  Globe,
 } from "lucide-react";
 
 interface Message {
@@ -31,10 +35,10 @@ interface Message {
 }
 
 const STARTER_PROMPTS = [
-  "🚀 What services does WEBMUSE offer?",
-  "⏱️ How fast can you deliver an MVP?",
-  "🔒 How do you handle fintech & security?",
-  "📅 How do I schedule an architecture review?",
+  "🚀 I want to build a product concept",
+  "⏱️ How long does it take to finish an app?",
+  "🔒 Explain Novunt's 3 idempotency layers",
+  "📅 How do I book an architecture review?",
   "⚡ What tech stack do you use?",
 ];
 
@@ -50,7 +54,7 @@ export default function AiConcierge() {
     {
       id: "welcome",
       sender: "ai",
-      text: "Hello! I'm the WEBMUSE Architecture Concierge. How can I help you today? Ask me about our custom software engineering, delivery timelines, tech stack choices, or booking a consultation.",
+      text: "Hello! I'm the WEBMUSE Autonomous Lead Architect & Concierge. You can ask me about product timelines, custom app builds, technical case studies (like Novunt or Sentinel AI), or describe a product concept for an instant architectural blueprint!",
       timestamp: getFormattedTime(),
     },
   ]);
@@ -103,17 +107,182 @@ export default function AiConcierge() {
     setIsTyping(true);
 
     setTimeout(() => {
-      const reply = generateAiReply(textToSend);
+      const reply = generateAutonomousArchitectReply(textToSend);
       setMessages((prev) => [...prev, reply]);
       setIsTyping(false);
     }, 750);
   };
 
-  const generateAiReply = (query: string): Message => {
+  // Autonomous Lead Architect Engine
+  const generateAutonomousArchitectReply = (query: string): Message => {
     const q = query.toLowerCase().trim();
 
-    // 1. MVP Definition & Explanation Intent
-    if (q.includes("what is mvp") || q.includes("explain mvp") || q.includes("meaning of mvp") || q.includes("definition of mvp") || q === "mvp") {
+    // --- 1. PRODUCT CONCEPT BLUEPRINT GENERATOR ---
+    // Detects when the user describes an app idea or asks "can you build X for Y"
+    if (
+      q.startsWith("i want to build") ||
+      q.startsWith("i want to create") ||
+      q.startsWith("can you build an app") ||
+      q.startsWith("can you build a platform") ||
+      q.startsWith("can you build a system") ||
+      (q.includes("build") && q.includes("for")) ||
+      (q.includes("idea") && q.split(" ").length > 3)
+    ) {
+      const isAi = q.includes("ai") || q.includes("model") || q.includes("agent") || q.includes("predict");
+      const isWeb3 = q.includes("web3") || q.includes("crypto") || q.includes("blockchain") || q.includes("dex") || q.includes("contract");
+      const isFintech = q.includes("payment") || q.includes("fintech") || q.includes("bank") || q.includes("escrow") || q.includes("money");
+
+      let category = "Custom Enterprise Platform";
+      let frontend = "Next.js 16 (App Router) + React 19 + Tailwind CSS";
+      let backend = "Node.js (TypeScript / Express) + REST/GraphQL";
+      let db = "PostgreSQL (Prisma ORM / Aurora) + Redis Cache";
+      let cloud = "Vercel Edge Platform + AWS S3";
+      let hours = "240 - 380 Engineering Hours";
+      let weeks = "6 - 9 Weeks";
+      let security = "Layered OAuth 2.0 / JWT auth, rate-limiting, and client payload validation.";
+
+      if (isAi) {
+        category = "AI Cognitive Intelligence System";
+        frontend = "Next.js 16 (App Router) + Framer Motion + WebGL";
+        backend = "FastAPI (Asynchronous Python) + LangChain / LlamaIndex";
+        db = "Supabase Vector / Pinecone + PostgreSQL";
+        cloud = "Cloud Vertex Container + Docker Infrastructure";
+        hours = "320 - 450 Engineering Hours";
+        weeks = "8 - 11 Weeks";
+        security = "Proprietary vector cache engine, model context chunking, and strict token rate limits.";
+      } else if (isWeb3) {
+        category = "Decentralized Web3 & Ledger Protocol";
+        frontend = "React + Viem + Wagmi Hooks + RainbowKit";
+        backend = "Solidity (EVM) / Clarity 3 (Bitcoin L2 Stacks) Smart Contracts";
+        db = "The Graph (IPFS Indexer) + TimescaleDB";
+        cloud = "Alchemy RPC Nodes + IPFS Decentralized Storage";
+        hours = "380 - 520 Engineering Hours";
+        weeks = "9 - 14 Weeks";
+        security = "Gas-sponsored transaction relayer, OpenZeppelin audited libraries, and reentrancy guards.";
+      } else if (isFintech) {
+        category = "High-Security Fintech & Payment Engine";
+        frontend = "Next.js 16 PWA + Tailwind CSS";
+        backend = "Node.js (TypeScript) + NOWPayments / Stripe SDK";
+        db = "PostgreSQL (Encrypted at rest) + Redis BullMQ Queue";
+        cloud = "AWS ECS + Cloudflare TLS 1.3 Security";
+        hours = "300 - 440 Engineering Hours";
+        weeks = "7 - 10 Weeks";
+        security = "Layered idempotency keys, 2-sided double-entry accounting ledger, and threshold-gated withdrawals.";
+      }
+
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: `⚡ Architectural Blueprint Generated for: "${query}"\n\n• Category: ${category}\n• Frontend: ${frontend}\n• Backend Engine: ${backend}\n• Database Spec: ${db}\n• Hosting & Cloud: ${cloud}\n• Estimated Scope: ${hours} (${weeks})\n• Security Rule: ${security}`,
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Load Blueprint into Booking Form",
+          action: () => navigateAnchor("#booking"),
+        },
+      };
+    }
+
+    // --- 2. DEEP TECHNICAL CASE STUDY DEEP-DIVES ---
+    if (q.includes("novunt") || (q.includes("idempotency") && q.includes("layer"))) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "🔒 Novunt Architecture Deep-Dive (Custodial Staking Backend):\n1. Layer 1 (Client Key): Client submits SHA-256 request payload hash.\n2. Layer 2 (Database Transaction Claim): MongoDB atomic $setOnInsert lock prevents double-claims.\n3. Layer 3 (Webhook Idempotency): NOWPayments IPN event hashes ensure 0 double-credits on instant deposits.\n4. Ledger: 2-sided immutable double-entry accounting model.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Read Novunt Full Write-Up",
+          action: () => navigatePath("/case-study/novunt"),
+        },
+      };
+    }
+
+    if (q.includes("sentinel") || (q.includes("cluster") && q.includes("spatial"))) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "📡 Sentinel AI Deep-Dive (Geospatial Threat Engine without Spatial DB):\n1. Boundary Resolution: Nearest-LGA matching using Haversine distance formula against static coordinate centroids (capped at 50km).\n2. Temporal Clustering: MongoDB query filters co-occurring threat keywords sharing location.lga within a 30-minute rolling window.\n3. Threat Scoring: Neural engine evaluates threat severity 0–10 combining cluster frequency & text context.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Read Sentinel AI Case Study",
+          action: () => navigatePath("/case-study/sentinel-ai"),
+        },
+      };
+    }
+
+    if (q.includes("neyborhuud") || q.includes("sos ladder") || q.includes("postgis")) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "🛡️ NeyborHuud Deep-Dive (Community Operating System):\n1. Geofencing: PostGIS spatial schemas map Nigerian states, LGAs, and wards.\n2. Self-Terminating SOS Escalation: T+0s User Alert → T+30s Emergency Contacts → T+60s Same-LGA Broadcast → T+90s Response Team Dispatch.\n3. Dynamic Trust Score: Range 0–1,000 (Base 300, ID verification +200, Misconduct penalty −300).",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Read NeyborHuud Case Study",
+          action: () => navigatePath("/case-study/neyborhuud"),
+        },
+      };
+    }
+
+    if (q.includes("stacks") || q.includes("token streaming") || q.includes("clarity")) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "⚡ Stacks Token Streaming Deep-Dive (Bitcoin L2 Protocol):\n1. Decidable Smart Contract: Written in Clarity 3 with 100% test coverage using Clarinet.\n2. Real-Time Balance: Balance calculated on-the-fly via linear block velocity formula: stream = (current_block - start_block) * rate_per_block.\n3. State Machine: Implements Pause, Resume, and Revoke locks with ECDSA signatures.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Read Token Streaming Case Study",
+          action: () => navigatePath("/case-study/stacks-token-streaming"),
+        },
+      };
+    }
+
+    if (q.includes("amm") || q.includes("dex") || q.includes("x*y=k") || q.includes("swap")) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "📊 AMM DEX Deep-Dive (Bitcoin L2 Liquidity Protocol):\n1. Invariant Equation: Constant-product formula (x · y = k) maintains pool liquidity ratios.\n2. SIP-010 Standard: Mints & burns fungible LP tokens representing pool liquidity shares.\n3. Fee Split: 0.3% protocol swap fee distributed back to LP token holders.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Read AMM DEX Case Study",
+          action: () => navigatePath("/case-study/stacks-amm-dex"),
+        },
+      };
+    }
+
+    // --- 3. TIMELINES, DURATION & BUILD VELOCITY INTENT ---
+    if (
+      q.includes("how long") ||
+      q.includes("finish an app") ||
+      q.includes("finish") ||
+      q.includes("take to build") ||
+      q.includes("build time") ||
+      q.includes("duration") ||
+      q.includes("turnaround") ||
+      q.includes("weeks") ||
+      q.includes("delivery time") ||
+      q.includes("when ready") ||
+      q.includes("time to market")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "Engineering timelines depend on product scope and complexity tier:\n• Sprint MVP: 3–5 Weeks (Fastest launch with core features)\n• Growth Platform: 8–12 Weeks (Full production web & mobile app)\n• Enterprise Systems: 16+ Weeks (Distributed microservices & high reliability)\n\nYou can use our Master Simulator to calculate exact engineering hours and timeline weeks for your specific product concept!",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Calculate Exact App Timeline",
+          action: () => navigateAnchor("#vault"),
+        },
+      };
+    }
+
+    // --- 4. MVP DEFINITION & STRATEGY INTENT ---
+    if (
+      q.includes("what is mvp") ||
+      q.includes("explain mvp") ||
+      q.includes("meaning of mvp") ||
+      q.includes("definition of mvp") ||
+      q.includes("why mvp") ||
+      q === "mvp"
+    ) {
       return {
         id: `ai-${Date.now()}`,
         sender: "ai",
@@ -126,78 +295,17 @@ export default function AiConcierge() {
       };
     }
 
-    // 2. Blockchain & Web3 Build Intent
-    if (q.includes("blockchain") || q.includes("crypto") || q.includes("web3") || q.includes("dex") || q.includes("smart contract") || q.includes("solidity") || q.includes("stacks") || q.includes("bitcoin")) {
-      return {
-        id: `ai-${Date.now()}`,
-        sender: "ai",
-        text: "Yes, absolutely! WEBMUSE specializes in Web3 protocol engineering, smart contracts (Solidity for EVM & Clarity 3 for Bitcoin L2 Stacks), automated market maker (AMM) DEXs, continuous token streaming protocols, and wallet integrations. We have verified live case studies in Bitcoin L2 asset streaming and DEX liquidity pools.",
-        timestamp: getFormattedTime(),
-        cta: {
-          label: "Explore Web3 Case Studies",
-          action: () => navigatePath("/case-study/stacks-token-streaming"),
-        },
-      };
-    }
-
-    // 3. Mobile App Development Intent
-    if (q.includes("mobile") || q.includes("ios") || q.includes("android") || q.includes("flutter") || q.includes("react native") || q.includes("app store")) {
-      return {
-        id: `ai-${Date.now()}`,
-        sender: "ai",
-        text: "Yes! WEBMUSE builds high-performance cross-platform mobile apps for iOS and Android using React Native, Flutter, and Next.js Progressive Web Apps (PWAs). We integrate offline background queues, Web Push notifications, location services, and native hardware features.",
-        timestamp: getFormattedTime(),
-        cta: {
-          label: "View Mobile App Services",
-          action: () => navigateAnchor("#services"),
-        },
-      };
-    }
-
-    // 4. AI & Intelligent Agents Intent
-    if (q.includes("ai") || q.includes("rag") || q.includes("machine learning") || q.includes("predictive") || q.includes("neural") || q.includes("agent") || q.includes("model")) {
-      return {
-        id: `ai-${Date.now()}`,
-        sender: "ai",
-        text: "Yes! We engineer custom AI solutions including contextual RAG search agents, neural threat classifiers, vector embedding indices (Pinecone, Supabase Vector), and intelligent task automation. Check out Sentinel AI, our geospatial intelligence engine.",
-        timestamp: getFormattedTime(),
-        cta: {
-          label: "View Sentinel AI Case Study",
-          action: () => navigatePath("/case-study/sentinel-ai"),
-        },
-      };
-    }
-
-    // 5. Fintech & Security Intent
-    if (q.includes("fintech") || q.includes("security") || q.includes("idempotency") || q.includes("payment") || q.includes("ledger") || q.includes("stripe") || q.includes("hipaa")) {
-      return {
-        id: `ai-${Date.now()}`,
-        sender: "ai",
-        text: "We engineer strict zero-trust security architecture:\n• Fintech & Banking: Layered idempotency, double-entry ledgers, atomic deposit claims, and threshold-gated withdrawals (as built in Novunt).\n• Enterprise Safety: Geofenced anti-spoof compliance and NDPR/GDPR posture (as built in Seth HSE).",
-        timestamp: getFormattedTime(),
-        cta: {
-          label: "Read Novunt Case Study",
-          action: () => navigatePath("/case-study/novunt"),
-        },
-      };
-    }
-
-    // 6. Location & Studio Hubs Intent
-    if (q.includes("where") || q.includes("location") || q.includes("located") || q.includes("office") || q.includes("london") || q.includes("new york") || q.includes("tokyo")) {
-      return {
-        id: `ai-${Date.now()}`,
-        sender: "ai",
-        text: "WEBMUSE operates globally with our main studio HQ in London, UK, alongside engineering hubs in New York and Tokyo. We work seamlessly with clients worldwide across all global timezones.",
-        timestamp: getFormattedTime(),
-        cta: {
-          label: "Contact Studio Hubs",
-          action: () => navigateAnchor("#contact"),
-        },
-      };
-    }
-
-    // 7. Pricing & Scope Intent
-    if (q.includes("cost") || q.includes("price") || q.includes("pricing") || q.includes("budget") || q.includes("how much") || q.includes("quote")) {
+    // --- 5. COST, PRICING & BUDGET INTENT ---
+    if (
+      q.includes("cost") ||
+      q.includes("price") ||
+      q.includes("pricing") ||
+      q.includes("budget") ||
+      q.includes("how much") ||
+      q.includes("quote") ||
+      q.includes("expensive") ||
+      q.includes("rates")
+    ) {
       return {
         id: `ai-${Date.now()}`,
         sender: "ai",
@@ -210,8 +318,150 @@ export default function AiConcierge() {
       };
     }
 
-    // 8. Founders & Leadership Intent
-    if (q.includes("team") || q.includes("founder") || q.includes("marteen") || q.includes("florence") || q.includes("mubaraq") || q.includes("atere") || q.includes("who leads") || q.includes("who owns")) {
+    // --- 6. BLOCKCHAIN & WEB3 INTENT ---
+    if (
+      q.includes("blockchain") ||
+      q.includes("crypto") ||
+      q.includes("web3") ||
+      q.includes("smart contract") ||
+      q.includes("solidity") ||
+      q.includes("clarity") ||
+      q.includes("bitcoin")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "Yes, absolutely! WEBMUSE specializes in Web3 protocol engineering, smart contracts (Solidity for EVM & Clarity 3 for Bitcoin L2 Stacks), automated market maker (AMM) DEXs, continuous token streaming protocols, and wallet integrations. We have verified live case studies in Bitcoin L2 asset streaming and DEX liquidity pools.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Explore Web3 Case Studies",
+          action: () => navigatePath("/case-study/stacks-token-streaming"),
+        },
+      };
+    }
+
+    // --- 7. MOBILE APP DEVELOPMENT INTENT ---
+    if (
+      q.includes("mobile") ||
+      q.includes("ios") ||
+      q.includes("android") ||
+      q.includes("flutter") ||
+      q.includes("react native") ||
+      q.includes("app store") ||
+      q.includes("google play")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "Yes! WEBMUSE builds high-performance cross-platform mobile apps for iOS and Android using React Native, Flutter, and Next.js Progressive Web Apps (PWAs). We integrate offline background queues, Web Push notifications, location services, and native hardware features.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "View Mobile App Services",
+          action: () => navigateAnchor("#services"),
+        },
+      };
+    }
+
+    // --- 8. AI & NEURAL AGENTS INTENT ---
+    if (
+      q.includes("ai") ||
+      q.includes("rag") ||
+      q.includes("machine learning") ||
+      q.includes("predictive") ||
+      q.includes("neural") ||
+      q.includes("agent") ||
+      q.includes("model") ||
+      q.includes("chatbot")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "Yes! We engineer custom AI solutions including contextual RAG search agents, neural threat classifiers, vector embedding indices (Pinecone, Supabase Vector), and intelligent task automation. Check out Sentinel AI, our geospatial intelligence engine.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "View Sentinel AI Case Study",
+          action: () => navigatePath("/case-study/sentinel-ai"),
+        },
+      };
+    }
+
+    // --- 9. FINTECH & SECURITY INTENT ---
+    if (
+      q.includes("fintech") ||
+      q.includes("security") ||
+      q.includes("payment") ||
+      q.includes("stripe") ||
+      q.includes("bank") ||
+      q.includes("nowpayments")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "We engineer strict zero-trust security architecture:\n• Fintech & Banking: Layered idempotency, double-entry ledgers, atomic deposit claims, and threshold-gated withdrawals (as built in Novunt).\n• Enterprise Safety: Geofenced anti-spoof compliance and NDPR/GDPR posture (as built in Seth HSE).",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Read Novunt Case Study",
+          action: () => navigatePath("/case-study/novunt"),
+        },
+      };
+    }
+
+    // --- 10. POST-LAUNCH MAINTENANCE & SUPPORT INTENT ---
+    if (
+      q.includes("maintenance") ||
+      q.includes("support") ||
+      q.includes("after launch") ||
+      q.includes("post launch") ||
+      q.includes("hosting") ||
+      q.includes("uptime") ||
+      q.includes("sla")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "Yes! Every platform built by WEBMUSE includes post-launch support, sub-4-hour SLA response guarantees, automated core vitals monitoring, database backup routines, and seamless Vercel/AWS infrastructure scaling.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Check System Uptime Telemetry",
+          action: () => navigatePath("/status"),
+        },
+      };
+    }
+
+    // --- 11. LOCATION & STUDIO HUBS INTENT ---
+    if (
+      q.includes("where") ||
+      q.includes("location") ||
+      q.includes("located") ||
+      q.includes("office") ||
+      q.includes("london") ||
+      q.includes("new york") ||
+      q.includes("tokyo") ||
+      q.includes("country")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "WEBMUSE operates globally with our main studio HQ in London, UK, alongside engineering hubs in New York and Tokyo. We work seamlessly with clients worldwide across all global timezones.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Contact Studio Hubs",
+          action: () => navigateAnchor("#contact"),
+        },
+      };
+    }
+
+    // --- 12. FOUNDERS & LEADERSHIP INTENT ---
+    if (
+      q.includes("team") ||
+      q.includes("founder") ||
+      q.includes("marteen") ||
+      q.includes("florence") ||
+      q.includes("mubaraq") ||
+      q.includes("atere") ||
+      q.includes("who leads") ||
+      q.includes("who owns")
+    ) {
       return {
         id: `ai-${Date.now()}`,
         sender: "ai",
@@ -224,8 +474,15 @@ export default function AiConcierge() {
       };
     }
 
-    // 9. Booking & Consultation Intent
-    if (q.includes("book") || q.includes("schedule") || q.includes("consult") || q.includes("call") || q.includes("meet")) {
+    // --- 13. BOOKING & CONSULTATION INTENT ---
+    if (
+      q.includes("book") ||
+      q.includes("schedule") ||
+      q.includes("consult") ||
+      q.includes("call") ||
+      q.includes("meet") ||
+      q.includes("contact")
+    ) {
       return {
         id: `ai-${Date.now()}`,
         sender: "ai",
@@ -238,7 +495,7 @@ export default function AiConcierge() {
       };
     }
 
-    // 10. Services Overview Intent
+    // --- 14. SERVICES OVERVIEW INTENT ---
     if (q.includes("service") || q.includes("what do you do") || q.includes("offer")) {
       return {
         id: `ai-${Date.now()}`,
@@ -252,11 +509,25 @@ export default function AiConcierge() {
       };
     }
 
-    // 11. General / Niche Query Dynamic Fallback
+    // --- 15. GREETINGS & PLEASANTRIES ---
+    if (q === "hi" || q === "hello" || q === "hey" || q.includes("good morning") || q.includes("good afternoon")) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "Hello! Welcome to WEBMUSE. I'm your Autonomous Lead Architect. Ask me anything about building custom web/mobile apps, AI agents, Web3 protocols, project timelines, or describe an idea for an instant blueprint!",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Simulate Product Concept",
+          action: () => navigateAnchor("#vault"),
+        },
+      };
+    }
+
+    // --- 16. GENERAL DYNAMIC FALLBACK ---
     return {
       id: `ai-${Date.now()}`,
       sender: "ai",
-      text: `Yes! WEBMUSE builds custom digital platforms, mobile apps, AI systems, and Web3 protocols tailored to your exact requirements. You can describe your product concept in our Master Simulator or book a consultation with our lead architects.`,
+      text: `Yes! WEBMUSE engineers custom digital platforms, mobile apps, AI systems, and Web3 protocols tailored to your exact requirements. You can describe your product concept in our Master Simulator or book a consultation with our lead architects.`,
       timestamp: getFormattedTime(),
       cta: {
         label: "Simulate Product Blueprint",
@@ -276,7 +547,7 @@ export default function AiConcierge() {
           onMouseEnter={() => setCursorType("pointer")}
           onMouseLeave={() => setCursorType("default")}
           className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3 rounded-full border border-electric-blue/40 bg-card-bg/90 backdrop-blur-md shadow-xl text-foreground font-mono text-xs hover:border-electric-blue hover:bg-card-bg transition-all group"
-          aria-label="Open WEBMUSE AI Architecture Concierge"
+          aria-label="Open WEBMUSE Autonomous Lead Architect"
         >
           <div className="relative flex items-center justify-center">
             <Bot className="h-4.5 w-4.5 text-electric-blue group-hover:rotate-12 transition-transform" />
@@ -295,7 +566,7 @@ export default function AiConcierge() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] h-[520px] rounded-2xl border border-card-border bg-[#09090c]/95 backdrop-blur-xl shadow-2xl flex flex-col overflow-hidden font-mono"
+            className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[420px] h-[560px] rounded-2xl border border-card-border bg-[#09090c]/95 backdrop-blur-xl shadow-2xl flex flex-col overflow-hidden font-mono"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-3.5 border-b border-card-border/80 bg-black/40">
@@ -308,7 +579,7 @@ export default function AiConcierge() {
                     WEBMUSE Concierge
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                   </h2>
-                  <p className="text-[10px] text-text-muted font-light">AI Architecture Assistant</p>
+                  <p className="text-[10px] text-text-muted font-light">Autonomous Lead Architect</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
@@ -341,12 +612,12 @@ export default function AiConcierge() {
                       <Sparkles className="h-3 w-3" />
                     </div>
                   )}
-                  <div className={`max-w-[82%] space-y-2 ${msg.sender === "user" ? "text-right" : "text-left"}`}>
+                  <div className={`max-w-[85%] space-y-2 ${msg.sender === "user" ? "text-right" : "text-left"}`}>
                     <div
                       className={`p-3 rounded-xl leading-relaxed whitespace-pre-line text-xs ${
                         msg.sender === "user"
-                          ? "bg-electric-blue text-white rounded-br-none"
-                          : "bg-card-bg/80 border border-card-border/80 text-foreground rounded-bl-none"
+                          ? "bg-electric-blue text-white rounded-br-none font-sans"
+                          : "bg-card-bg/80 border border-card-border/80 text-foreground rounded-bl-none font-mono"
                       }`}
                     >
                       {msg.text}
@@ -377,10 +648,9 @@ export default function AiConcierge() {
                   <div className="h-6 w-6 rounded-full border border-electric-blue/30 bg-electric-blue/10 text-electric-blue flex items-center justify-center shrink-0">
                     <Sparkles className="h-3 w-3 animate-pulse" />
                   </div>
-                  <div className="p-3 rounded-xl bg-card-bg/80 border border-card-border/80 text-text-muted text-xs flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-electric-blue animate-bounce" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-electric-blue animate-bounce delay-100" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-electric-blue animate-bounce delay-200" />
+                  <div className="p-3 rounded-xl bg-card-bg/80 border border-card-border/80 text-text-muted text-xs flex items-center gap-1 font-mono">
+                    <span>Synthesizing architectural analysis...</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-electric-blue animate-ping" />
                   </div>
                 </div>
               )}
@@ -414,7 +684,7 @@ export default function AiConcierge() {
                 type="text"
                 value={inputMsg}
                 onChange={(e) => setInputMsg(e.target.value)}
-                placeholder="Ask about services, tech stack, or booking..."
+                placeholder="Ask technical questions or describe an app concept..."
                 className="flex-1 bg-transparent text-xs text-foreground placeholder-zinc-500 outline-none px-2 py-1"
               />
               <button
