@@ -62,6 +62,20 @@ const CASE_STUDIES: CaseStudySummary[] = [
     live: true,
   },
   {
+    slug: "seth-hse",
+    title: "Seth HSE",
+    tagline:
+      "Engineering a high-risk enterprise safety platform — geofenced anti-spoof compliance, dynamic safety protocols, and a 15-module strict modular monolith.",
+    category: "Enterprise Safety & Compliance Platform",
+    stack: ["Node.js / Express", "PostgreSQL / RLS", "Flutter", "Next.js", "Redis"],
+    metrics: [
+      { label: "Bounded modules", value: "15" },
+      { label: "Privacy posture", value: "NDPR + GDPR" },
+      { label: "Cross-module code import", value: "0 ms" },
+    ],
+    live: true,
+  },
+  {
     slug: "career-assessment",
     title: "WEBMUSE Career Assessment",
     tagline:
