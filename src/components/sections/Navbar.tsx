@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCursor } from "@/components/ui/CustomCursor";
 import { useMagnetic } from "@/hooks/useMagnetic";
-import { Menu, X, Calendar, Volume2, VolumeX, ChevronDown, Command } from "lucide-react";
+import { Menu, X, Calendar, Search, ChevronDown, Command } from "lucide-react";
 import { audioSynth } from "@/utils/audioSynth";
 
 // Primary items stay visible on one line. Homepage-anchor sections that
@@ -37,7 +37,6 @@ export default function Navbar({ show }: { show: boolean }) {
   const [activeItem, setActiveItem] = useState("#");
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isMuted, setIsMuted] = useState(() => audioSynth.isMuted());
   const [moreOpen, setMoreOpen] = useState(false);
   const { setCursorType } = useCursor();
   const bookBtnRef = useMagnetic(30, 0.3);
@@ -89,17 +88,7 @@ export default function Navbar({ show }: { show: boolean }) {
     };
   }, [moreOpen]);
 
-  const toggleMute = () => {
-    const nextMuted = !isMuted;
-    audioSynth.setMuted(nextMuted);
-    setIsMuted(nextMuted);
-    if (!nextMuted) {
-      audioSynth.playClick();
-    }
-  };
-
   const handleLinkClick = (href: string) => {
-    audioSynth.playClick();
     setActiveItem(href);
   };
 
@@ -240,44 +229,23 @@ export default function Navbar({ show }: { show: boolean }) {
 
           {/* Action Button & Menu Toggles */}
           <div className="flex items-center gap-3">
-            {/* Command Palette Trigger */}
+            {/* Prominent Global Search Bar Display */}
             <button
               onClick={() => {
-                audioSynth.playClick();
                 window.dispatchEvent(
                   new KeyboardEvent("keydown", { key: "k", metaKey: true, ctrlKey: true })
                 );
               }}
-              onMouseEnter={() => {
-                setCursorType("pointer");
-                audioSynth.playClick();
-              }}
+              onMouseEnter={() => setCursorType("pointer")}
               onMouseLeave={() => setCursorType("default")}
-              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-card-border bg-card-bg text-text-muted hover:text-foreground text-[11px] font-mono transition-all hover:bg-card-bg/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2"
-              title="Open Command Palette (Cmd+K)"
+              className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-card-border/80 bg-card-bg/90 text-text-muted hover:text-foreground text-xs font-mono transition-all hover:border-electric-blue/50 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2"
+              title="Search anything on platform (Cmd+K)"
             >
-              <Command className="h-3 w-3 text-electric-blue" />
-              <span>Cmd+K</span>
-            </button>
-
-            {/* Audio Toggle Button */}
-            <button
-              onClick={toggleMute}
-              onMouseEnter={() => {
-                setCursorType("pointer");
-                audioSynth.playClick();
-              }}
-              onMouseLeave={() => setCursorType("default")}
-              className="flex items-center justify-center p-2 rounded-full border border-card-border bg-card-bg text-foreground transition-all hover:bg-card-bg/85 hover:border-card-border/80 h-9 w-9 focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2"
-              aria-label={isMuted ? "Unmute interface sound" : "Mute interface sound"}
-              aria-pressed={!isMuted}
-              title={isMuted ? "Unmute Sound" : "Mute Sound"}
-            >
-              {isMuted ? (
-                <VolumeX className="h-4 w-4 text-text-muted" />
-              ) : (
-                <Volume2 className="h-4 w-4 text-electric-blue" />
-              )}
+              <Search className="h-3.5 w-3.5 text-electric-blue shrink-0" />
+              <span className="hidden sm:inline-block text-zinc-400 font-light">Search platform...</span>
+              <span className="text-[10px] font-mono border border-card-border bg-black/40 px-1.5 py-0.5 rounded text-electric-blue shrink-0">
+                Cmd+K
+              </span>
             </button>
 
             {/* Book Consultation */}

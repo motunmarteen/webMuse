@@ -13,8 +13,6 @@ import {
   Calendar,
   Layers,
   BookOpen,
-  Volume2,
-  VolumeX,
   Compass,
   Users,
   Terminal as TerminalIcon,
@@ -209,7 +207,7 @@ export default function CommandMenu() {
         description: "Engineering write-ups verified against real running codebases across fintech, geospatial AI, safety, and Bitcoin L2.",
         keywords: ["case study", "case studies", "write-up", "verified", "architecture", "code"],
         location: "Case Study Index",
-        category: "Case Study",
+        category: "Case Study" as const,
         icon: <FileText className="h-4 w-4 text-electric-blue" />,
         action: () => navigatePath("/case-study"),
       },
@@ -238,7 +236,7 @@ export default function CommandMenu() {
         description: "Technical write-ups from the WEBMUSE engineering team on architecture, security, and real system trade-offs.",
         keywords: ["blog", "insights", "writing", "articles", "technical", "engineering", "publication"],
         location: "Blog Index",
-        category: "Blog Article",
+        category: "Blog Article" as const,
         icon: <BookOpen className="h-4 w-4 text-neon-purple" />,
         action: () => navigatePath("/insights"),
       },
@@ -309,25 +307,9 @@ export default function CommandMenu() {
         description: "Live system status, API gateway health, WebSocket node latency, and infrastructure uptime telemetry.",
         keywords: ["status", "uptime", "health", "system", "latency", "telemetry", "api", "nodes"],
         location: "Page → /status",
-        category: "Dedicated Page",
+        category: "Dedicated Page" as const,
         icon: <Activity className="h-4 w-4 text-emerald-400" />,
         action: () => navigatePath("/status"),
-      },
-
-      // --- SYSTEM CONTROLS ---
-      {
-        id: "audio-toggle",
-        title: audioSynth.isMuted() ? "Unmute Interface Sound Synthesizer" : "Mute Interface Sound Synthesizer",
-        description: "Toggle futuristic Web Audio API tactile interface feedback sound effects.",
-        keywords: ["audio", "sound", "mute", "unmute", "synth", "clicks", "volume"],
-        location: "System Control",
-        category: "System Control",
-        icon: audioSynth.isMuted() ? <VolumeX className="h-4 w-4 text-text-muted" /> : <Volume2 className="h-4 w-4 text-electric-blue" />,
-        action: () => {
-          const nextMuted = !audioSynth.isMuted();
-          audioSynth.setMuted(nextMuted);
-          setIsOpen(false);
-        },
       },
     ],
     // eslint-disable-next-deps
