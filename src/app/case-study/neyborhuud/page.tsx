@@ -13,7 +13,7 @@ const STACK_TABLE = [
   { layer: "Client", tech: "Next.js 16 · Service Workers", why: "Offline location-log queues; Web Push without an app store" },
   { layer: "Geo", tech: "Haversine matching + MongoDB tags", why: "Nearest-LGA boundary resolution and location.lga-tagged content queries" },
   { layer: "Async", tech: "Redis + BullMQ", why: "SOS escalation, emergency fan-out, trip monitoring — off the event loop" },
-  { layer: "AI", tech: "Google Gemini 2.0 Flash", why: "Contextual threat scoring and search-intent parsing" },
+  { layer: "AI", tech: "Cognitive AI Threat Classifier", why: "Contextual threat scoring and search-intent parsing" },
   { layer: "Identity", tech: "Better Auth + MongoDB", why: "Session and credential management" },
 ];
 
@@ -223,7 +223,7 @@ export default function NeyborhuudCaseStudyPage() {
               {[
                 { s: "Stage 1", t: "Keyword prefilter", d: "A curated security-keyword list — armed men, gunmen, car snatching, ambush, kidnap, ransom — does a cheap first pass. No match, no cost." },
                 { s: "Stage 2", t: "Cultural dictionary", d: "The detail a generic build misses. Nigerian threat and scam language isn't in any English toxicity model, so Sentinel ships a hand-built cultural dictionary encoding local vernacular with severity and category — 419 and yahoo boy as high-severity scam signals, pidgin insults tagged by type." },
-                { s: "Stage 3", t: "Gemini scoring", d: "Only content clearing the earlier stages reaches Gemini 2.0 Flash, which returns a contextual threat score from 0–10 — informed by keyword matches and same-LGA temporal clustering: are several people nearby reporting the same thing within the last 30 minutes?" },
+                { s: "Stage 3", t: "Neural threat scoring", d: "Only content clearing the earlier stages reaches the Cognitive Classifier, which returns a contextual threat score from 0–10 — informed by keyword matches and same-LGA temporal clustering: are several people nearby reporting the same thing within the last 30 minutes?" },
               ].map((row, i, arr) => (
                 <div key={row.s} className={`py-5 ${i !== arr.length - 1 ? "border-b border-dashed border-card-border" : ""}`}>
                   <div className="flex items-baseline gap-3">
@@ -377,7 +377,7 @@ export default function NeyborhuudCaseStudyPage() {
             </div>
             <div className="grid sm:grid-cols-2 gap-3 mt-4">
               {[
-                { k: "Constrained AI", v: "Gemini is one input to a deterministic safety pipeline — never the pipeline itself." },
+                { k: "Constrained AI", v: "Cognitive AI is one input to a deterministic safety pipeline — never the pipeline itself." },
                 { k: "Durable work", v: "Safety-critical escalation lives on BullMQ workers, resilient to dropped connections." },
                 { k: "Geo primitives", v: "Haversine distance and LGA boundary matching power geofencing, feed ranking, fan-out, and vouching alike." },
                 { k: "Immutable trust", v: "An append-only ledger with a materialized read model keeps reputation fast and auditable." },

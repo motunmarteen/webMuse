@@ -25,7 +25,7 @@ const CASE_STUDIES: CaseStudySummary[] = [
     tagline:
       "Engineering an AI-powered community operating system for the Nigerian neighborhood — safety, commerce, and trust as native primitives.",
     category: "Hyperlocal Safety & Commerce Platform",
-    stack: ["Next.js", "MongoDB", "Redis / BullMQ", "Gemini 2.0"],
+    stack: ["Next.js", "MongoDB", "Redis / BullMQ", "Cognitive AI"],
     metrics: [
       { label: "Backend modules", value: "35" },
       { label: "Threat scale", value: "0–10" },
@@ -39,7 +39,7 @@ const CASE_STUDIES: CaseStudySummary[] = [
     tagline:
       "Designing a geospatial community intelligence engine — administrative-boundary matching, temporal clustering, and hybrid AI threat scoring, without a spatial database.",
     category: "Geospatial Threat Detection Engine",
-    stack: ["Haversine matching", "MongoDB", "Gemini 2.0", "Socket.IO"],
+    stack: ["Haversine matching", "MongoDB", "Cognitive AI", "Socket.IO"],
     metrics: [
       { label: "Threat scale", value: "0–10" },
       { label: "Cluster window", value: "30 min" },

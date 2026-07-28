@@ -12,7 +12,7 @@ interface TechBadge {
 
 const TECH_ROW_1: TechBadge[] = [
   { name: "Next.js 16", category: "Core Framework", color: "#0070f3" },
-  { name: "Gemini 2.0", category: "Cognitive AI", color: "#a855f7" },
+  { name: "Cognitive AI", category: "Neural Engine", color: "#a855f7" },
   { name: "PostGIS", category: "Geospatial GIS", color: "#10b981" },
   { name: "MongoDB Atlas", category: "Document DB", color: "#34d399" },
   { name: "Redis / BullMQ", category: "Queue Engine", color: "#ef4444" },

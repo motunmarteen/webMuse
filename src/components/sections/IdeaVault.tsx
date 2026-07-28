@@ -38,7 +38,8 @@ interface IdeaAnalysis {
 const calculateBlueprint = (
   baseType: "ai" | "web3" | "saas" | "general",
   scale: "mvp" | "growth" | "enterprise",
-  velocity: "sprint" | "balanced" | "robust"
+  velocity: "sprint" | "balanced" | "robust",
+  featureHours = 0
 ): IdeaAnalysis => {
   let title = "High-Scale Modern Enterprise Web Application";
   let audience = "Consumer-facing digital brands requiring seamless onboarding, accessibility, and high performance.";
@@ -76,14 +77,14 @@ const calculateBlueprint = (
         frontend: "Next.js 16 (App Router) + Framer Motion",
         backend: "FastAPI (Asynchronous Python) + LangChain",
         database: "Pinecone (Vector Index) + PostgreSQL",
-        cloud: "Google Cloud Vertex AI + Docker Containers"
+        cloud: "Cloud Vertex Container + Docker Containers"
       };
     } else {
       tech = {
         frontend: "Next.js 16 + Redux Toolkit + WebGL Telemetry",
         backend: "Go Microservices + Python Ray Cluster",
         database: "Milvus Distributed Vector DB + PostgreSQL Clustered + Redis",
-        cloud: "GCP Vertex AI + GKE (Kubernetes Engine) + Terraform"
+        cloud: "AWS Enterprise Landing Zone + EKS + Terraform"
       };
     }
   } else if (baseType === "web3") {
@@ -163,7 +164,7 @@ const calculateBlueprint = (
       };
     } else {
       tech = {
-        frontend: "Next.js Enterprise Design + Tailwind CSS v4",
+        frontend: "Next.js Enterprise Design + Tailwind CSS",
         backend: "NestJS Microservices Architecture",
         database: "PostgreSQL Multi-Region + Redis Distributed Cache",
         cloud: "AWS Enterprise Landing Zone (EKS, RDS, S3) + Cloudflare Enterprise CDN"
@@ -171,7 +172,7 @@ const calculateBlueprint = (
     }
   }
 
-  // Hours and timeline calculations based on scale & velocity
+  // Hours and timeline calculations based on scale & velocity + featureAddons
   let baseHours = 180;
   let baseWeeks = 6;
 
@@ -186,16 +187,14 @@ const calculateBlueprint = (
     baseWeeks = 20;
   }
 
-  // Adjustments based on project type complexity multiplier
   let multiplier = 1.0;
   if (baseType === "ai") multiplier = 1.2;
   if (baseType === "web3") multiplier = 1.35;
   if (baseType === "saas") multiplier = 1.1;
 
-  baseHours *= multiplier;
-  baseWeeks *= multiplier;
+  baseHours = baseHours * multiplier + featureHours;
+  baseWeeks = baseWeeks * multiplier + Math.ceil(featureHours / 30);
 
-  // Adjustments based on launch velocity
   if (velocity === "sprint") {
     baseWeeks = Math.max(3, Math.round(baseWeeks * 0.7));
   } else if (velocity === "robust") {

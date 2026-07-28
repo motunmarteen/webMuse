@@ -103,7 +103,7 @@ ORDER BY dist_meters ASC;`,
       },
       {
         heading: "3. Hybrid Threat Classification Model",
-        body: "Incoming incident reports pass through an on-device anomaly filter combined with Gemini AI threat scoring (0-10) to prevent panic propagation caused by false alarms.",
+        body: "Incoming incident reports pass through an on-device anomaly filter combined with Cognitive AI threat scoring (0-10) to prevent panic propagation caused by false alarms.",
       },
     ],
     takeaways: [

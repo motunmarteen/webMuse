@@ -87,7 +87,7 @@ export default function CommandMenu() {
         title: "Project Scope & Cost Calculator",
         category: "Tools & Actions",
         icon: <Calculator className="h-4 w-4 text-neon-purple" />,
-        action: () => navigateAnchor("#estimator"),
+        action: () => navigateAnchor("#vault"),
         badge: "Calculator",
       },
       {

@@ -42,75 +42,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Prompt is required." }, { status: 400 });
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
-
-  if (apiKey) {
-    try {
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: `You are an elite software architect at WEBMUSE agency. Analyze this product idea and generate a structured JSON architectural blueprint:
-Idea: "${prompt}"
-Scale target: "${scale}"
-Launch velocity: "${velocity}"
-
-Respond ONLY with raw JSON in this exact structure without markdown backticks:
-{
-  "title": "A crisp technical product title",
-  "marketValidation": {
-    "targetAudience": "Specific target user segment",
-    "competitorEdge": "Unique architectural or performance advantage",
-    "validationLoop": "Specific user testing or telemetry loop"
-  },
-  "tech": {
-    "frontend": "Modern framework stack",
-    "backend": "Backend framework & protocols",
-    "database": "Primary DB and indexing/caching layer",
-    "cloud": "Infrastructure, CDN, and hosting platform"
-  },
-  "roadmap": [
-    "Phase 1 description with week duration",
-    "Phase 2 description with week duration",
-    "Phase 3 description with week duration"
-  ],
-  "financials": {
-    "timeline": "X Weeks",
-    "costRange": "Available on Request",
-    "hours": "X - Y Engineering Hours"
-  },
-  "risks": {
-    "technical": "Primary technical or architectural vulnerability",
-    "mitigation": "WEBMUSE concrete engineering mitigation strategy"
-  }
-}`
-                  }
-                ]
-              }
-            ]
-          })
-        }
-      );
-
-      if (response.ok) {
-        const json = await response.json();
-        const rawText = json?.candidates?.[0]?.content?.parts?.[0]?.text || "";
-        const cleanJson = rawText.replace(/```json/g, "").replace(/```/g, "").trim();
-        const parsed: BlueprintResult = JSON.parse(cleanJson);
-        return NextResponse.json(parsed);
-      }
-    } catch {
-      // Fallback to internal heuristic simulation engine
-    }
-  }
-
-  // Enriched Heuristic Engine for when API key is unconfigured or call fails
+  // Pure dynamic heuristic engineering simulator
   const blueprint = generateHeuristicBlueprint(prompt, scale, velocity);
   return NextResponse.json(blueprint);
 }
@@ -136,10 +68,10 @@ function generateHeuristicBlueprint(
 
   if (p.includes("ai") || p.includes("predict") || p.includes("model") || p.includes("gpt") || p.includes("agent")) {
     category = "AI-Driven Cognitive System";
-    frontend = scale === "enterprise" ? "Next.js 16 + Redux Toolkit + WebGL Telemetry" : "Next.js 16 + Vercel AI SDK";
+    frontend = scale === "enterprise" ? "Next.js 16 + Redux Toolkit + WebGL Telemetry" : "Next.js 16 + Neural AI SDK";
     backend = "FastAPI (Asynchronous Python) + LangChain / LlamaIndex";
     database = "Supabase Vector / Pinecone + PostgreSQL";
-    cloud = "Google Cloud Vertex AI + Docker Containers";
+    cloud = "Cloud Vertex Container + Docker Infrastructure";
     audience = "Enterprise operational teams seeking automated cognitive synthesis and workflow execution.";
     edge = "Proprietary vector cache engine reducing model latency by 60% and cutting token consumption costs.";
     validation = "Deploy synthetic benchmark prompts to verify accuracy metrics and token saturation levels.";

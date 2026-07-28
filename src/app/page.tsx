@@ -17,7 +17,6 @@ import Footer from "@/components/sections/Footer";
 import BackToTop from "@/components/ui/BackToTop";
 
 import TechMarquee from "@/components/ui/TechMarquee";
-import ScopeEstimator from "@/components/sections/ScopeEstimator";
 
 export default function Home() {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -59,7 +58,6 @@ export default function Home() {
           <>
             <TechMarquee />
             <Services />
-            <ScopeEstimator onTransferScope={handleBlueprintCreated} />
             <OurProcess />
             <LiveTerminal />
             <TechUniverse />

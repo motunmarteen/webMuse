@@ -13,7 +13,7 @@ const STACK_TABLE = [
   { layer: "Boundary matching", tech: "Haversine distance · static LGA table", why: "Assigns every user & post to a Nigerian state/LGA/ward without a spatial database" },
   { layer: "Content store", tech: "MongoDB", why: "Polymorphic content schema tagged with a resolved location.lga field" },
   { layer: "Clustering", tech: "Time-windowed query · MongoDB", why: "Finds co-occurring security keywords in the same LGA within a 30-minute window" },
-  { layer: "Scoring", tech: "Google Gemini 2.0 Flash", why: "Contextual 0–10 threat rating, informed by keyword matches and cluster count" },
+  { layer: "Scoring", tech: "Cognitive Threat Classifier", why: "Contextual 0–10 threat rating, informed by keyword matches and cluster count" },
   { layer: "Fan-out", tech: "Socket.IO broadcast", why: "Pushes red-zone alerts to connected clients in real time" },
 ];
 
@@ -35,8 +35,8 @@ const STAGES = [
   },
   {
     s: "Stage 3",
-    t: "Gemini scoring",
-    d: "Only content that cleared stage 1 reaches the model. Gemini receives the raw text and returns a threat_score from 0–10 — the cluster count is folded into the reasoning trail logged alongside the score, not silently discarded.",
+    t: "Neural scoring",
+    d: "Only content that cleared stage 1 reaches the model. The Neural engine receives the raw text and returns a threat_score from 0–10 — the cluster count is folded into the reasoning trail logged alongside the score, not silently discarded.",
   },
 ];
 
@@ -52,7 +52,7 @@ const METRICS = [
   { n: "50km", l: "LGA-matching cutoff radius" },
   { n: "3-stage", l: "Cascade before model call" },
   { n: "0", l: "Model calls on a clean post" },
-  { n: "2.0", l: "Gemini Flash" },
+  { n: "Neural", l: "Cognitive Flash" },
 ];
 
 export default function SentinelAiCaseStudyPage() {
@@ -152,7 +152,7 @@ export default function SentinelAiCaseStudyPage() {
               {[
                 { icon: MapPinned, title: "Boundary resolution", body: "Nearest-LGA match by Haversine distance against a static coordinate table, capped at 50km." },
                 { icon: Radar, title: "Temporal clustering", body: "Same-LGA, same-30-minute-window matching surfaces when multiple people report the same thing." },
-                { icon: BrainCircuit, title: "Contextual scoring", body: "Gemini rates severity 0–10 using both the text and the cluster signal, not text alone." },
+                { icon: BrainCircuit, title: "Contextual scoring", body: "Cognitive AI rates severity 0–10 using both the text and the cluster signal, not text alone." },
               ].map((p) => (
                 <div key={p.title} className="glassmorphism-card rounded-xl p-5">
                   <div className="p-2 rounded-lg border bg-electric-blue/10 border-electric-blue/20 text-electric-blue w-fit">
