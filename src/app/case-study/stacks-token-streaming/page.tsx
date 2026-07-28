@@ -15,12 +15,14 @@ import {
   ShieldCheck,
   Coins,
   Key,
+  Database,
+  FileCheck,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Stacks Token Streaming — Engineering a Decentralized Payroll & Streaming Protocol",
+  title: "Stacks Token Streaming — Engineering a Decentralized Asset Protocol",
   description:
-    "An in-depth engineering breakdown of the Stacks Token Streaming Protocol: real-time asset streaming on Bitcoin Layer 2 using Clarity smart contracts, pause/resume state machines, and cryptographic ECDSA authorization.",
+    "An in-depth engineering case study of the Stacks Token Streaming Protocol: continuous token distribution on Bitcoin Layer 2 using Clarity 3 smart contracts, pause/resume state machines, and cryptographic ECDSA authorization.",
 };
 
 const STACK_TABLE = [
@@ -28,6 +30,15 @@ const STACK_TABLE = [
   { layer: "Frontend UI", tech: "React 19 · TypeScript · Tailwind CSS", why: "Modern Web3 dashboard for stream management, live balance tickers, and signature generation" },
   { layer: "Blockchain SDK", tech: "@stacks/connect · @stacks/transactions", why: "Seamless wallet connection (Leather & Xverse) and cryptographic message signing" },
   { layer: "Testing Suite", tech: "Clarinet · Vitest · TypeScript", why: "Comprehensive unit and integration test suite covering stream creation, pause/resume, and refunds" },
+];
+
+const ERROR_CODES = [
+  { code: "ERR_UNAUTHORIZED (u0)", desc: "Triggered when a principal attempts an action restricted to sender or recipient." },
+  { code: "ERR_INVALID_SIGNATURE (u1)", desc: "Raised when ECDSA signature verification fails over parameter update hash." },
+  { code: "ERR_STREAM_STILL_ACTIVE (u2)", desc: "Prevents sender from executing refund before stop-block expiry." },
+  { code: "ERR_INVALID_STREAM_ID (u3)", desc: "Raised on lookup of non-existent stream ID key in data map." },
+  { code: "ERR_STREAM_ALREADY_PAUSED (u5)", desc: "Blocks duplicate pause calls on an already paused stream state." },
+  { code: "ERR_STREAM_CANCELLED (u6)", desc: "Blocks withdrawal or parameter mutation on a cancelled stream." },
 ];
 
 const CONTRACT_FUNCTIONS = [
@@ -159,16 +170,44 @@ export default function StacksTokenStreamingCaseStudyPage() {
             </div>
           </section>
 
-          {/* Architecture & Clarity */}
+          {/* Clarity Data Model */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">02 — Smart Contract Architecture</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">02 — Contract State Schema</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
-              Decidable Clarity 3 State Machine (`contracts/stream.clar`).
+              Clarity 3 Data Model & Tuple Structure.
             </h2>
             <p className="text-text-muted font-light mt-4 leading-relaxed">
-              Clarity is a decidable, non-Turing complete smart contract language native to Stacks. Because Clarity forbids reentrancy and compiler loops,
-              stream calculations are mathematically guaranteed against EVM-style reentrancy attacks.
+              Every stream is stored in the <code className="px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-electric-blue">streams</code> map
+              keyed by an incrementing <code className="px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-electric-blue">uint</code> stream ID:
             </p>
+
+            <div className="glassmorphism-card rounded-xl p-6 mt-6">
+              <pre className="text-xs font-mono text-emerald-400 overflow-x-auto whitespace-pre">
+{`;; Clarity Data Map Definition in contracts/stream.clar
+(define-map streams
+  uint ;; stream-id
+  {
+    sender: principal,
+    recipient: principal,
+    balance: uint,
+    withdrawn-balance: uint,
+    payment-per-block: uint,
+    timeframe: (tuple (start-block uint) (stop-block uint)),
+    status: (response uint uint),
+    pause-block: uint,
+    total-paused-blocks: uint
+  }
+)`}
+              </pre>
+            </div>
+          </section>
+
+          {/* Functions & Error Codes */}
+          <section>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">03 — Protocol Operations</span>
+            <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
+              Contract Public Interface & Invariant Guardrails.
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
               {CONTRACT_FUNCTIONS.map((f) => (
@@ -183,54 +222,84 @@ export default function StacksTokenStreamingCaseStudyPage() {
                 </div>
               ))}
             </div>
+
+            <h3 className="text-lg font-bold text-text-title mt-8 tracking-tight">Error Code Mapping</h3>
+            <div className="grid gap-3 mt-4">
+              {ERROR_CODES.map((err) => (
+                <div key={err.code} className="glassmorphism-card rounded-xl p-4 flex gap-4">
+                  <span className="text-xs font-mono text-red-400 shrink-0 w-44 font-semibold">{err.code}</span>
+                  <p className="text-xs text-text-muted font-light leading-relaxed m-0">{err.desc}</p>
+                </div>
+              ))}
+            </div>
           </section>
 
           {/* Mathematical Invariants */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">03 — Mathematical Mechanics</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">04 — Mathematical Mechanics</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
-              Linear Accrual Math & Balance Formula.
+              Linear Accrual Math & Balance Implementation.
             </h2>
             <p className="text-text-muted font-light mt-4 leading-relaxed">
-              At block height <code className="px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-electric-blue">b</code>, the withdrawable balance
-              <code className="mx-1 px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-electric-blue">W(b)</code> for a stream starting at block
-              <code className="mx-1 px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-text-title">b_start</code> and ending at
-              <code className="mx-1 px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-text-title">b_end</code> is calculated deterministically:
+              At current block height <code className="px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-electric-blue">stacks-block-height</code>,
+              the withdrawable balance for a recipient is calculated deterministically inside the smart contract:
             </p>
 
             <div className="glassmorphism-card rounded-xl p-6 mt-6">
               <pre className="text-xs font-mono text-emerald-400 overflow-x-auto whitespace-pre">
-{`;; Stream Balance Calculation in Clarity 3
-(define-read-only (balance-of (stream-id uint))
-  (let
-    ((stream (unwrap! (map-get? streams stream-id) ERR_STREAM_NOT_FOUND))
-     (current-block block-height))
-    (if (<= current-block (get start-block stream))
+{`;; Actual Clarity Balance Function from stream.clar
+(define-read-only (balance-of (stream-id uint) (user principal))
+  (let (
+    (stream (unwrap! (map-get? streams stream-id) u0))
+    (start-block (get start-block (get timeframe stream)))
+    (stop-block (get stop-block (get timeframe stream)))
+    (current-block stacks-block-height)
+    (payment-per-block (get payment-per-block stream))
+  )
+    (if (is-eq user (get recipient stream))
+      ;; Recipient accrued balance calculation
+      (if (<= current-block start-block)
         u0
-        (if (>= current-block (get stop-block stream))
-            (- (get deposit stream) (get withdrawn stream))
-            (- (/ (* (get deposit stream) (- current-block (get start-block stream)))
-                   (- (get stop-block stream) (get start-block stream)))
-               (get withdrawn stream))))))`}
+        (if (>= current-block stop-block)
+          (- (get balance stream) (get withdrawn-balance stream))
+          (- (* (- current-block start-block) payment-per-block) (get withdrawn-balance stream))
+        )
+      )
+      u0
+    )
+  )
+)`}
               </pre>
             </div>
           </section>
 
           {/* Cryptographic Verification */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">04 — Security</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">05 — Security</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
               Cryptographic ECDSA Signature Verification.
             </h2>
             <p className="text-text-muted font-light mt-4 leading-relaxed">
-              To prevent unilateral modifications, stream detail updates (<code className="px-1 py-0.5 rounded bg-card-border font-mono text-xs text-electric-blue">update-details</code>)
-              require a SHA-256 hash digest of the proposed parameter changes signed by both parties using ECDSA. The Clarity smart contract verifies the signatures against the sender and recipient public keys before mutating state.
+              To modify parameters on an active stream (<code className="px-1 py-0.5 rounded bg-card-border font-mono text-xs text-electric-blue">update-details</code>),
+              the caller must present a 65-byte ECDSA signature over the SHA-256 hash digest of the proposed new parameters:
             </p>
+            <div className="glassmorphism-card rounded-xl p-6 mt-6">
+              <pre className="text-xs font-mono text-emerald-400 overflow-x-auto whitespace-pre">
+{`;; SHA-256 Hash Digest & ECDSA Signature Verification
+(define-read-only (hash-stream (stream-id uint) (payment-per-block uint) (timeframe (tuple (start-block uint) (stop-block uint))))
+  (sha256 (unwrap-panic (to-consensus-buff? {stream-id: stream-id, payment-per-block: payment-per-block, timeframe: timeframe})))
+)
+
+(define-read-only (validate-signature (hash (buff 32)) (signature (buff 65)) (signer principal))
+  (is-eq (principal-of? (unwrap! (secp256k1-recover? hash signature) false)) (ok signer))
+)`}
+              </pre>
+            </div>
           </section>
 
           {/* Tech Stack */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">05 — Technology Stack</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">06 — Technology Stack</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
               Production Stack & Technical Choices.
             </h2>
@@ -260,7 +329,7 @@ export default function StacksTokenStreamingCaseStudyPage() {
 
           {/* Verified Metrics */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">06 — Codebase Metrics</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">07 — Codebase Metrics</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
               Verified Smart Contract Metrics.
             </h2>

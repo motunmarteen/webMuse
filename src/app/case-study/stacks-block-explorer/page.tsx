@@ -14,12 +14,14 @@ import {
   Wallet,
   Globe,
   Radio,
+  FileCode,
+  Database,
 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Stacks Blockchain Explorer — Real-Time Bitcoin L2 Intelligence Engine",
   description:
-    "An in-depth engineering breakdown of the Stacks Blockchain Explorer: live transaction indexing, smart contract execution decoding, Hiro REST API integration, and multi-wallet authentication.",
+    "An in-depth engineering case study of the Stacks Blockchain Explorer: live transaction indexing, smart contract execution decoding, Hiro REST API integration, and multi-wallet authentication.",
 };
 
 const STACK_TABLE = [
@@ -31,11 +33,11 @@ const STACK_TABLE = [
 ];
 
 const TXN_TYPES = [
-  { type: "Coinbase", desc: "Block reward distribution and miner mint transactions on Bitcoin L2." },
-  { type: "Token Transfer", desc: "Native STX asset transfers between accounts with memo validation." },
-  { type: "Smart Contract Deploy", desc: "Clarity smart contract deployments with source code preview and byte verification." },
-  { type: "Contract Call", desc: "Smart contract function execution with parameter decoding and print event logs." },
-  { type: "Microblock Txn", desc: "Fast-confirmation microblock transaction indexing prior to anchor block commit." },
+  { type: "Coinbase", desc: "Block reward distribution and miner mint transactions on Bitcoin L2.", icon: "BlocksIcon" },
+  { type: "Token Transfer", desc: "Native STX asset transfers between accounts formatted from microSTX (÷ 1,000,000).", icon: "ArrowLeftRightIcon" },
+  { type: "Smart Contract Deploy", desc: "Clarity smart contract deployments with source code preview and byte verification.", icon: "CodeSquareIcon" },
+  { type: "Contract Call", desc: "Smart contract function execution with parameter decoding and print event logs.", icon: "FunctionSquareIcon" },
+  { type: "Microblock Txn", desc: "Fast-confirmation microblock transaction indexing prior to anchor block commit.", icon: "ActivityIcon" },
 ];
 
 const METRICS = [
@@ -155,15 +157,49 @@ export default function StacksBlockExplorerCaseStudyPage() {
             </div>
           </section>
 
-          {/* Transaction Parsing Architecture */}
+          {/* Transaction Parsing Code */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">02 — Architecture</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">02 — Code Architecture</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
-              Polymorphic Transaction Payload Decoder.
+              Polymorphic Transaction Payload Decoder (`components/txn-details.tsx`).
             </h2>
             <p className="text-text-muted font-light mt-4 leading-relaxed">
-              The explorer implements a strict TypeScript parser that matches transaction payloads against type discriminants:
+              The explorer implements TypeScript discriminant matching to parse each transaction type and convert microSTX to STX:
             </p>
+
+            <div className="glassmorphism-card rounded-xl p-6 mt-6">
+              <pre className="text-xs font-mono text-emerald-400 overflow-x-auto whitespace-pre">
+{`// Actual Transaction Decoder Implementation
+function getTransactionInformationByType(result: TransactionDetailProps["result"]): TransactionInformationByType {
+  if (result.tx.tx_type === "coinbase") {
+    return { primaryTitle: \`Block #\${result.tx.block_height}\`, secondaryTitle: "", tags: ["Coinbase"] };
+  }
+  if (result.tx.tx_type === "token_transfer") {
+    const stxAmount = (Number.parseFloat(result.tx.token_transfer.amount) / 1_000_000).toFixed(2);
+    return { primaryTitle: \`Transfer \${stxAmount} STX\`, secondaryTitle: "", tags: ["Token Transfer"] };
+  }
+  if (result.tx.tx_type === "smart_contract") {
+    return { primaryTitle: result.tx.smart_contract.contract_id, secondaryTitle: "", tags: ["Contract Deployment"] };
+  }
+  if (result.tx.tx_type === "contract_call") {
+    return {
+      primaryTitle: result.tx.contract_call.function_name,
+      secondaryTitle: result.tx.contract_call.contract_id.split(".")[1],
+      tags: ["Contract Call"],
+    };
+  }
+  return { primaryTitle: result.tx.tx_id, secondaryTitle: "", tags: ["Transaction"] };
+}`}
+              </pre>
+            </div>
+          </section>
+
+          {/* Decoded Payloads */}
+          <section>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">03 — Parsed Transaction Types</span>
+            <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
+              Supported Stacks Transaction Payloads.
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
               {TXN_TYPES.map((t) => (
@@ -180,7 +216,7 @@ export default function StacksBlockExplorerCaseStudyPage() {
 
           {/* API & Wallet Integration */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">03 — API & Wallet Integration</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">04 — API & Wallet Integration</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
               Hiro REST API Indexing & Multi-Wallet Authentication.
             </h2>
@@ -192,7 +228,7 @@ export default function StacksBlockExplorerCaseStudyPage() {
 
           {/* Tech Stack */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">04 — Technology Stack</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">05 — Technology Stack</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
               Production Tech Stack.
             </h2>
@@ -222,7 +258,7 @@ export default function StacksBlockExplorerCaseStudyPage() {
 
           {/* Verified Metrics */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">05 — System Metrics</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">06 — System Metrics</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
               Verified Codebase Metrics.
             </h2>

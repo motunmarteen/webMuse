@@ -13,6 +13,8 @@ import {
   CheckCircle2,
   Lock,
   Zap,
+  Database,
+  Code,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -28,12 +30,22 @@ const STACK_TABLE = [
   { layer: "Contract Testing", tech: "Clarinet · Vitest", why: "Simulated Stacks blockchain environment verifying pool creation, liquidity minting, and swap slippage" },
 ];
 
+const ERROR_CODES = [
+  { code: "ERR_POOL_ALREADY_EXISTS (u200)", desc: "Pool already exists for the given pair of SIP-010 tokens and fee tier." },
+  { code: "ERR_INCORRECT_TOKEN_ORDERING (u201)", desc: "Enforces lexicographical principal ordering (token-0 < token-1) to avoid duplicate reciprocal pools." },
+  { code: "ERR_INSUFFICIENT_LIQUIDITY_MINTED (u202)", desc: "Initial liquidity deposit does not meet the MINIMUM_LIQUIDITY (u1000) threshold." },
+  { code: "ERR_INSUFFICIENT_LIQUIDITY_OWNED (u203)", desc: "Provider does not own enough LP tokens to execute requested withdrawal." },
+  { code: "ERR_INSUFFICIENT_INPUT_AMOUNT (u205)", desc: "Swap input token amount is zero or below minimum execution amount." },
+  { code: "ERR_INSUFFICIENT_LIQUIDITY_FOR_SWAP (u206)", desc: "Pool reserves are lower than requested swap output amount." },
+];
+
 const AMM_FUNCTIONS = [
   { func: "create-pool", type: "public", purpose: "Initialize a new trading pool between two SIP-010 tokens with initial liquidity deposit." },
   { func: "add-liquidity", type: "public", purpose: "Deposit proportional token reserves into pool, minting LP tokens to liquidity provider." },
   { func: "remove-liquidity", type: "public", purpose: "Burn LP tokens to redeem proportional underlying token reserves plus accumulated 0.3% fees." },
   { func: "swap-exact-tokens-for-tokens", type: "public", purpose: "Execute token swap along x*y=k curve with minimum output amount slippage protection." },
   { func: "get-reserves", type: "read-only", purpose: "Query current token reserves and pool invariant for exact price impact calculation." },
+  { func: "get-pool-id", type: "read-only", purpose: "Compute 20-byte SHA-160 hash of token-0, token-1, and fee as unique pool identifier." },
 ];
 
 const METRICS = [
@@ -153,16 +165,53 @@ export default function StacksAmmDexCaseStudyPage() {
             </div>
           </section>
 
-          {/* Constant Product Math */}
+          {/* Clarity Token Traits & Ordering */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">02 — Mathematical Model</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">02 — Contract Architecture</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
-              The Constant Product Invariant ($x \cdot y = k$).
+              SIP-010 Trait Implementation & Token Ordering.
             </h2>
             <p className="text-text-muted font-light mt-4 leading-relaxed">
-              The pool maintains reserves of Token A (<code className="px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-electric-blue">x</code>) and Token B
-              (<code className="px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-electric-blue">y</code>) such that the invariant product
-              <code className="mx-1 px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-emerald-400">k = x * y</code> remains constant during swaps (minus accumulated 0.3% LP fees):
+              To prevent duplicate pools for reciprocal pairs (e.g. STX/ALEX vs ALEX/STX), the contract enforces lexicographical principal sorting
+              by comparing consensus buffers before pool instantiation:
+            </p>
+
+            <div className="glassmorphism-card rounded-xl p-6 mt-6">
+              <pre className="text-xs font-mono text-emerald-400 overflow-x-auto whitespace-pre">
+{`;; SIP-010 Trait & Token Ordering Enforcement in contracts/amm.clar
+(use-trait ft-trait 'SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.sip-010-trait)
+
+(define-private (correct-token-ordering (token-0 principal) (token-1 principal)) 
+  (let (
+    (token-0-buff (unwrap-panic (to-consensus-buff? token-0)))
+    (token-1-buff (unwrap-panic (to-consensus-buff? token-1)))
+  )
+    (asserts! (< token-0-buff token-1-buff) ERR_INCORRECT_TOKEN_ORDERING)
+    (ok true)
+  )
+)
+
+(define-read-only (get-pool-id (pool-info {token-0: <ft-trait>, token-1: <ft-trait>, fee: uint})) 
+  (let (
+    (buff (unwrap-panic (to-consensus-buff? pool-info)))
+  )
+    (hash160 buff)
+  )
+)`}
+              </pre>
+            </div>
+          </section>
+
+          {/* Constant Product Math */}
+          <section>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">03 — Mathematical Model</span>
+            <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
+              Constant Product Curve ($x \cdot y = k$) & Swap Pricing.
+            </h2>
+            <p className="text-text-muted font-light mt-4 leading-relaxed">
+              When swapping token input <code className="px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-electric-blue">dx</code> for output
+              <code className="px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-electric-blue">dy</code>, a 0.3% liquidity provider fee is deducted
+              (<code className="px-1.5 py-0.5 rounded bg-card-border font-mono text-xs text-emerald-400">dx * 997 / 1000</code>):
             </p>
 
             <div className="glassmorphism-card rounded-xl p-6 mt-6">
@@ -178,11 +227,11 @@ export default function StacksAmmDexCaseStudyPage() {
             </div>
           </section>
 
-          {/* Contract Functions */}
+          {/* Functions & Error Codes */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">03 — Smart Contract Functions</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">04 — Smart Contract Functions</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
-              Clarity Smart Contract Interface (`contracts/amm.clar`).
+              Clarity Smart Contract Public Functions & Errors.
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
@@ -198,11 +247,21 @@ export default function StacksAmmDexCaseStudyPage() {
                 </div>
               ))}
             </div>
+
+            <h3 className="text-lg font-bold text-text-title mt-8 tracking-tight">AMM Protocol Error Codes</h3>
+            <div className="grid gap-3 mt-4">
+              {ERROR_CODES.map((err) => (
+                <div key={err.code} className="glassmorphism-card rounded-xl p-4 flex gap-4">
+                  <span className="text-xs font-mono text-red-400 shrink-0 w-52 font-semibold">{err.code}</span>
+                  <p className="text-xs text-text-muted font-light leading-relaxed m-0">{err.desc}</p>
+                </div>
+              ))}
+            </div>
           </section>
 
           {/* Tech Stack */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">04 — Technology Stack</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">05 — Technology Stack</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
               Production Tech Stack & Architecture.
             </h2>
@@ -232,7 +291,7 @@ export default function StacksAmmDexCaseStudyPage() {
 
           {/* Verified Metrics */}
           <section>
-            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">05 — System Metrics</span>
+            <span className="text-xs font-semibold uppercase font-mono text-text-muted tracking-wider">06 — System Metrics</span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-title tracking-tight mt-3">
               Verified Protocol Metrics.
             </h2>
@@ -254,7 +313,7 @@ export default function StacksAmmDexCaseStudyPage() {
           <span className="text-[10px] font-mono text-text-muted uppercase tracking-wider">
             © {new Date().getFullYear()} WEBMUSE INC. ALL RIGHTS RESERVED.
           </span>
-          <nav aria-label="Legal" className="flex items-center gap-4 text-[10px] font-mono text-text-muted uppercase tracking-widest">
+          <nav aria-label="Legal" className="flex items-label gap-4 text-[10px] font-mono text-text-muted uppercase tracking-widest">
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
             <Link href="/status" className="hover:text-foreground transition-colors">Status</Link>
