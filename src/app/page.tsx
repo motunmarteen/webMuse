@@ -16,6 +16,9 @@ import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import BackToTop from "@/components/ui/BackToTop";
 
+import TechMarquee from "@/components/ui/TechMarquee";
+import ScopeEstimator from "@/components/sections/ScopeEstimator";
+
 export default function Home() {
   const [showNavbar, setShowNavbar] = useState(false);
   const [vaultDescription, setVaultDescription] = useState("");
@@ -54,7 +57,9 @@ export default function Home() {
         
         {showNavbar && (
           <>
+            <TechMarquee />
             <Services />
+            <ScopeEstimator onTransferScope={handleBlueprintCreated} />
             <OurProcess />
             <LiveTerminal />
             <TechUniverse />

@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCursor } from "@/components/ui/CustomCursor";
 import { useMagnetic } from "@/hooks/useMagnetic";
-import { Menu, X, Calendar, Volume2, VolumeX, ChevronDown } from "lucide-react";
+import { Menu, X, Calendar, Volume2, VolumeX, ChevronDown, Command } from "lucide-react";
 import { audioSynth } from "@/utils/audioSynth";
 
 // Primary items stay visible on one line. Homepage-anchor sections that
@@ -240,6 +240,26 @@ export default function Navbar({ show }: { show: boolean }) {
 
           {/* Action Button & Menu Toggles */}
           <div className="flex items-center gap-3">
+            {/* Command Palette Trigger */}
+            <button
+              onClick={() => {
+                audioSynth.playClick();
+                window.dispatchEvent(
+                  new KeyboardEvent("keydown", { key: "k", metaKey: true, ctrlKey: true })
+                );
+              }}
+              onMouseEnter={() => {
+                setCursorType("pointer");
+                audioSynth.playClick();
+              }}
+              onMouseLeave={() => setCursorType("default")}
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-card-border bg-card-bg text-text-muted hover:text-foreground text-[11px] font-mono transition-all hover:bg-card-bg/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-electric-blue focus-visible:outline-offset-2"
+              title="Open Command Palette (Cmd+K)"
+            >
+              <Command className="h-3 w-3 text-electric-blue" />
+              <span>Cmd+K</span>
+            </button>
+
             {/* Audio Toggle Button */}
             <button
               onClick={toggleMute}

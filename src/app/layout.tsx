@@ -90,6 +90,8 @@ const ORGANIZATION_JSON_LD = {
   sameAs: [],
 };
 
+import CommandMenu from "@/components/ui/CommandMenu";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -111,12 +113,13 @@ export default function RootLayout({
         />
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-foreground focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-background focus:outline focus:outline-2 focus:outline-electric-blue focus:outline-offset-2"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-foreground focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-background focus:outline focus:outline-2 focus:outline-electric-blue focus-visible:outline-offset-2"
         >
           Skip to main content
         </a>
         <CursorProvider>
           <CustomCursor />
+          <CommandMenu />
           {children}
         </CursorProvider>
       </body>
