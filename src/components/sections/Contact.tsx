@@ -16,6 +16,7 @@ interface OfficeHub {
 
 const OFFICE_HUBS: OfficeHub[] = [
   { id: "london", name: "London HQ (Main Studio)", coords: { x: 44, y: 14 }, details: "Our primary studio for product architecture, design engineering, and client briefings.", staff: "London, United Kingdom" },
+  { id: "lagos", name: "Lagos Hub", coords: { x: 46, y: 26 }, details: "West Africa engineering hub, mobile application optimization, and real-time backend research.", staff: "Lagos, Nigeria" },
   { id: "ny", name: "New York Hub", coords: { x: 25, y: 15 }, details: "Strategy partnership, US branding campaigns, and marketing support.", staff: "New York, USA" },
   { id: "tokyo", name: "Tokyo Hub", coords: { x: 84, y: 16 }, details: "APAC user validation, local UI customisation, and mobile automation testing.", staff: "Tokyo, Japan" }
 ];
