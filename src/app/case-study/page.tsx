@@ -76,6 +76,48 @@ const CASE_STUDIES: CaseStudySummary[] = [
     live: true,
   },
   {
+    slug: "stacks-token-streaming",
+    title: "Stacks Token Streaming Protocol",
+    tagline:
+      "Engineering a real-time continuous asset streaming protocol on Bitcoin L2 — Clarity 3 smart contracts, pause/resume state machines, and cryptographic ECDSA authorization.",
+    category: "Decentralized Payroll & Asset Streaming",
+    stack: ["Clarity 3", "Stacks Blockchain", "React", "TypeScript", "Clarinet"],
+    metrics: [
+      { label: "Decidable contracts", value: "Clarity 3" },
+      { label: "Test coverage", value: "100%" },
+      { label: "Balance calculation", value: "Real-time" },
+    ],
+    live: true,
+  },
+  {
+    slug: "stacks-amm-dex",
+    title: "Stacks AMM Decentralized Exchange",
+    tagline:
+      "Building a constant-product Automated Market Maker (x*y=k) on Bitcoin L2 — permissionless SIP-010 liquidity pools, dynamic swap routing, and LP token yield distribution.",
+    category: "Automated Market Maker & DEX",
+    stack: ["Clarity 3", "SIP-010", "Next.js 15", "Stacks Connect", "TypeScript"],
+    metrics: [
+      { label: "Invariant", value: "x · y = k" },
+      { label: "Protocol LP fee", value: "0.3%" },
+      { label: "Token standard", value: "SIP-010" },
+    ],
+    live: true,
+  },
+  {
+    slug: "stacks-block-explorer",
+    title: "Stacks Blockchain Explorer",
+    tagline:
+      "Designing a high-throughput Stacks network explorer — live transaction indexing, smart contract execution decoding, Leather/Xverse wallet integration, and Hiro API.",
+    category: "Real-Time Blockchain Intelligence",
+    stack: ["Next.js 16", "React 19", "TypeScript", "Hiro API", "@stacks/connect"],
+    metrics: [
+      { label: "Decoded tx types", value: "5" },
+      { label: "Wallet support", value: "Multi" },
+      { label: "App Router", value: "Next.js 16" },
+    ],
+    live: true,
+  },
+  {
     slug: "career-assessment",
     title: "WEBMUSE Career Assessment",
     tagline:
