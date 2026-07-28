@@ -117,6 +117,66 @@ export default function AiConcierge() {
   const generateAutonomousArchitectReply = (query: string): Message => {
     const q = query.toLowerCase().trim();
 
+    // --- 0. WHAT IS WEBMUSE & AGENCY IDENTITY INTENT ---
+    if (
+      q === "what is webmuse" ||
+      q === "who is webmuse" ||
+      q.includes("what is webmuse") ||
+      q.includes("who is webmuse") ||
+      q.includes("tell me about webmuse") ||
+      q.includes("explain webmuse") ||
+      q.includes("about webmuse") ||
+      q.includes("what does webmuse do") ||
+      q.includes("what is web muse")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "WEBMUSE is an elite digital product development studio & software engineering firm specializing in high-performance Web Applications, Cross-Platform Mobile Apps, AI & Neural Agents, and Web3 Blockchain Protocols.\n\nCo-founded by Marteen Motun Mubaraq (Chief Product Architect) and Oluwatosin Florence Atere (Chief Systems Engineer), WEBMUSE operates from studio hubs in London (HQ), New York, and Tokyo, delivering production-grade software systems built for speed, security, and extreme scalability.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "View Core Engineering Services",
+          action: () => navigateAnchor("#services"),
+        },
+      };
+    }
+
+    if (
+      q.includes("why webmuse") ||
+      q.includes("why choose webmuse") ||
+      q.includes("different") ||
+      q.includes("why work with you")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "Unlike traditional agencies that deliver slow, bloated codebases, WEBMUSE builds strict modular monoliths, sub-100ms edge architectures, zero-trust security postures (layered idempotency, double-entry ledgers), and production-tested systems with verified 100% test coverage and transparent sprint velocity.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Explore Verified Case Studies",
+          action: () => navigatePath("/case-study"),
+        },
+      };
+    }
+
+    if (
+      q.includes("client") ||
+      q.includes("who do you work with") ||
+      q.includes("who do you build for") ||
+      q.includes("target audience")
+    ) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "WEBMUSE engineers software for high-growth tech startups, fintech protocols, geospatial platforms, digital consumer brands, and enterprise engineering teams seeking high-performance web applications, mobile products, AI agents, and Web3 protocols.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Simulate Your Product Scope",
+          action: () => navigateAnchor("#vault"),
+        },
+      };
+    }
+
     // --- 1. PRODUCT CONCEPT BLUEPRINT GENERATOR ---
     // Detects when the user describes an app idea or asks "can you build X for Y"
     if (
