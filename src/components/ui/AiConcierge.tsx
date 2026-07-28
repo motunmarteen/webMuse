@@ -110,39 +110,70 @@ export default function AiConcierge() {
   };
 
   const generateAiReply = (query: string): Message => {
-    const q = query.toLowerCase();
+    const q = query.toLowerCase().trim();
 
-    if (q.includes("service") || q.includes("build") || q.includes("offer") || q.includes("what do you do")) {
+    // 1. MVP Definition & Explanation Intent
+    if (q.includes("what is mvp") || q.includes("explain mvp") || q.includes("meaning of mvp") || q.includes("definition of mvp") || q === "mvp") {
       return {
         id: `ai-${Date.now()}`,
         sender: "ai",
-        text: "WEBMUSE specializes in 6 core engineering verticals:\n• Custom Software & Web Apps (Next.js 16, Node.js)\n• AI Solutions & Intelligent Agents\n• Cross-Platform Mobile Apps (Flutter, React Native)\n• Web3 & Bitcoin L2 Smart Contracts (Solidity, Clarity 3)\n• Cloud Architecture & Microservices (AWS, GCP, Vercel)\n• UI/UX Strategy & Systems Architecture",
+        text: "An MVP (Minimum Viable Product) is the leanest, fully functional version of your software product built to launch into market quickly with high-impact core features. At WEBMUSE, our Sprint MVP tier delivers a production-ready application in 3–5 weeks, allowing you to validate user demand and collect real feedback with minimal capital risk.",
         timestamp: getFormattedTime(),
         cta: {
-          label: "View All Services",
-          action: () => navigateAnchor("#services"),
-        },
-      };
-    }
-
-    if (q.includes("fast") || q.includes("time") || q.includes("delivery") || q.includes("mvp") || q.includes("sprint")) {
-      return {
-        id: `ai-${Date.now()}`,
-        sender: "ai",
-        text: "Our delivery velocity is structured into 3 launch tiers:\n• Sprint MVP: 3–5 Weeks (Fastest launch path with core features)\n• Growth Build: 8–12 Weeks (Full scalable production platform)\n• Enterprise Systems: 16+ Weeks (Distributed microservices & high reliability)",
-        timestamp: getFormattedTime(),
-        cta: {
-          label: "Simulate Product & Scope",
+          label: "Simulate Sprint MVP Scope",
           action: () => navigateAnchor("#vault"),
         },
       };
     }
 
-    if (q.includes("security") || q.includes("fintech") || q.includes("health") || q.includes("hipaa") || q.includes("idempotency")) {
+    // 2. Blockchain & Web3 Build Intent
+    if (q.includes("blockchain") || q.includes("crypto") || q.includes("web3") || q.includes("dex") || q.includes("smart contract") || q.includes("solidity") || q.includes("stacks") || q.includes("bitcoin")) {
       return {
         id: `ai-${Date.now()}`,
         sender: "ai",
-        text: "We engineering strict zero-trust security architecture:\n• Fintech Backends: Layered idempotency, double-entry ledgers, atomic deposit claims, and threshold-gated withdrawals (as built in Novunt).\n• Geospatial & Safety: Self-terminating SOS ladders, PostGIS boundary matching, and NDPR/GDPR compliance (as built in NeyborHuud & Seth HSE).",
+        text: "Yes, absolutely! WEBMUSE specializes in Web3 protocol engineering, smart contracts (Solidity for EVM & Clarity 3 for Bitcoin L2 Stacks), automated market maker (AMM) DEXs, continuous token streaming protocols, and wallet integrations. We have verified live case studies in Bitcoin L2 asset streaming and DEX liquidity pools.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Explore Web3 Case Studies",
+          action: () => navigatePath("/case-study/stacks-token-streaming"),
+        },
+      };
+    }
+
+    // 3. Mobile App Development Intent
+    if (q.includes("mobile") || q.includes("ios") || q.includes("android") || q.includes("flutter") || q.includes("react native") || q.includes("app store")) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "Yes! WEBMUSE builds high-performance cross-platform mobile apps for iOS and Android using React Native, Flutter, and Next.js Progressive Web Apps (PWAs). We integrate offline background queues, Web Push notifications, location services, and native hardware features.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "View Mobile App Services",
+          action: () => navigateAnchor("#services"),
+        },
+      };
+    }
+
+    // 4. AI & Intelligent Agents Intent
+    if (q.includes("ai") || q.includes("rag") || q.includes("machine learning") || q.includes("predictive") || q.includes("neural") || q.includes("agent") || q.includes("model")) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "Yes! We engineer custom AI solutions including contextual RAG search agents, neural threat classifiers, vector embedding indices (Pinecone, Supabase Vector), and intelligent task automation. Check out Sentinel AI, our geospatial intelligence engine.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "View Sentinel AI Case Study",
+          action: () => navigatePath("/case-study/sentinel-ai"),
+        },
+      };
+    }
+
+    // 5. Fintech & Security Intent
+    if (q.includes("fintech") || q.includes("security") || q.includes("idempotency") || q.includes("payment") || q.includes("ledger") || q.includes("stripe") || q.includes("hipaa")) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "We engineer strict zero-trust security architecture:\n• Fintech & Banking: Layered idempotency, double-entry ledgers, atomic deposit claims, and threshold-gated withdrawals (as built in Novunt).\n• Enterprise Safety: Geofenced anti-spoof compliance and NDPR/GDPR posture (as built in Seth HSE).",
         timestamp: getFormattedTime(),
         cta: {
           label: "Read Novunt Case Study",
@@ -151,50 +182,26 @@ export default function AiConcierge() {
       };
     }
 
-    if (q.includes("book") || q.includes("schedule") || q.includes("call") || q.includes("consult") || q.includes("contact")) {
+    // 6. Location & Studio Hubs Intent
+    if (q.includes("where") || q.includes("location") || q.includes("located") || q.includes("office") || q.includes("london") || q.includes("new york") || q.includes("tokyo")) {
       return {
         id: `ai-${Date.now()}`,
         sender: "ai",
-        text: "You can book a 1-on-1 strategy and technical architecture review directly with our leadership team. Choose your project category, preferred date, and receive an instant booking confirmation ticket.",
+        text: "WEBMUSE operates globally with our main studio HQ in London, UK, alongside engineering hubs in New York and Tokyo. We work seamlessly with clients worldwide across all global timezones.",
         timestamp: getFormattedTime(),
         cta: {
-          label: "Book Strategy Call",
-          action: () => navigateAnchor("#booking"),
+          label: "Contact Studio Hubs",
+          action: () => navigateAnchor("#contact"),
         },
       };
     }
 
-    if (q.includes("stack") || q.includes("tech") || q.includes("next") || q.includes("react") || q.includes("database")) {
+    // 7. Pricing & Scope Intent
+    if (q.includes("cost") || q.includes("price") || q.includes("pricing") || q.includes("budget") || q.includes("how much") || q.includes("quote")) {
       return {
         id: `ai-${Date.now()}`,
         sender: "ai",
-        text: "Our production constellation stack includes:\n• Frontend: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS\n• Backend & Async: Node.js (TypeScript), Express, FastAPI, Redis + BullMQ\n• Databases: PostgreSQL (RLS / Aurora), MongoDB Atlas, PostGIS, Supabase Vector\n• Smart Contracts: Solidity, Clarity 3 (Stacks / Bitcoin L2)",
-        timestamp: getFormattedTime(),
-        cta: {
-          label: "Explore Tech Constellation",
-          action: () => navigateAnchor("#universe"),
-        },
-      };
-    }
-
-    if (q.includes("team") || q.includes("founder") || q.includes("marteen") || q.includes("florence") || q.includes("mubaraq") || q.includes("atere")) {
-      return {
-        id: `ai-${Date.now()}`,
-        sender: "ai",
-        text: "WEBMUSE is co-founded by Marteen Motun Mubaraq (Co-Founder & Chief Product Architect) and Oluwatosin Florence Atere (Co-Founder & Chief Systems Engineer), guiding dedicated engineering teams across our London HQ, New York, and Tokyo hubs.",
-        timestamp: getFormattedTime(),
-        cta: {
-          label: "Meet the Leadership",
-          action: () => navigateAnchor("#team"),
-        },
-      };
-    }
-
-    if (q.includes("cost") || q.includes("price") || q.includes("budget") || q.includes("quote")) {
-      return {
-        id: `ai-${Date.now()}`,
-        sender: "ai",
-        text: "Project investments are custom-tailored based on engineering scope, feature add-ons, scale targets, and launch velocity. Use our Master Simulator to calculate engineering hours and generate a structured architectural blueprint.",
+        text: "Project investments are custom-tailored based on engineering scope, feature add-ons, scale targets, and launch velocity. We provide transparent sprint proposals with zero hidden fees. You can use our Master Simulator to calculate engineering hours and budget scope in real time!",
         timestamp: getFormattedTime(),
         cta: {
           label: "Calculate Scope & Budget",
@@ -203,14 +210,57 @@ export default function AiConcierge() {
       };
     }
 
+    // 8. Founders & Leadership Intent
+    if (q.includes("team") || q.includes("founder") || q.includes("marteen") || q.includes("florence") || q.includes("mubaraq") || q.includes("atere") || q.includes("who leads") || q.includes("who owns")) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "WEBMUSE was co-founded by Marteen Motun Mubaraq (Co-Founder & Chief Product Architect) and Oluwatosin Florence Atere (Co-Founder & Chief Systems Engineer), guiding dedicated engineering teams across London, New York, and Tokyo.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Meet the Leadership",
+          action: () => navigateAnchor("#team"),
+        },
+      };
+    }
+
+    // 9. Booking & Consultation Intent
+    if (q.includes("book") || q.includes("schedule") || q.includes("consult") || q.includes("call") || q.includes("meet")) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "You can schedule a 1-on-1 strategy and architecture consultation directly with our lead architects. Select your project category, preferred date, and receive an instant booking confirmation ticket.",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "Book Strategy Call",
+          action: () => navigateAnchor("#booking"),
+        },
+      };
+    }
+
+    // 10. Services Overview Intent
+    if (q.includes("service") || q.includes("what do you do") || q.includes("offer")) {
+      return {
+        id: `ai-${Date.now()}`,
+        sender: "ai",
+        text: "WEBMUSE specializes in 6 core engineering verticals:\n• Custom Web Applications & SaaS (Next.js 16, Node.js)\n• AI Solutions & Intelligent Agents\n• Cross-Platform Mobile Apps (Flutter, React Native)\n• Web3 & Smart Contracts (Solidity, Clarity 3)\n• Cloud Architecture & Microservices (AWS, GCP, Vercel)\n• UI/UX Strategy & Systems Architecture",
+        timestamp: getFormattedTime(),
+        cta: {
+          label: "View All Services",
+          action: () => navigateAnchor("#services"),
+        },
+      };
+    }
+
+    // 11. General / Niche Query Dynamic Fallback
     return {
       id: `ai-${Date.now()}`,
       sender: "ai",
-      text: `I've analyzed your query regarding "${query}". WEBMUSE engineers high-performance web applications, mobile platforms, AI agents, and Web3 systems. You can simulate your product roadmap or schedule a direct consultation with our lead architects.`,
+      text: `Yes! WEBMUSE builds custom digital platforms, mobile apps, AI systems, and Web3 protocols tailored to your exact requirements. You can describe your product concept in our Master Simulator or book a consultation with our lead architects.`,
       timestamp: getFormattedTime(),
       cta: {
-        label: "Book Strategy Review",
-        action: () => navigateAnchor("#booking"),
+        label: "Simulate Product Blueprint",
+        action: () => navigateAnchor("#vault"),
       },
     };
   };
