@@ -77,7 +77,7 @@ const CASE_STUDIES: CaseStudySummary[] = [
   },
   {
     slug: "stacks-token-streaming",
-    title: "Stacks Token Streaming Protocol",
+    title: "Token Streaming Protocol",
     tagline:
       "Engineering a real-time continuous asset streaming protocol on Bitcoin L2 — Clarity 3 smart contracts, pause/resume state machines, and cryptographic ECDSA authorization.",
     category: "Decentralized Payroll & Asset Streaming",
@@ -91,7 +91,7 @@ const CASE_STUDIES: CaseStudySummary[] = [
   },
   {
     slug: "stacks-amm-dex",
-    title: "Stacks AMM Decentralized Exchange",
+    title: "AMM Decentralized Exchange",
     tagline:
       "Building a constant-product Automated Market Maker (x*y=k) on Bitcoin L2 — permissionless SIP-010 liquidity pools, dynamic swap routing, and LP token yield distribution.",
     category: "Automated Market Maker & DEX",

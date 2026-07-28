@@ -20,9 +20,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Stacks Token Streaming — Engineering a Decentralized Asset Protocol",
+  title: "Token Streaming — Engineering a Decentralized Asset Protocol",
   description:
-    "An in-depth engineering case study of the Stacks Token Streaming Protocol: continuous token distribution on Bitcoin Layer 2 using Clarity 3 smart contracts, pause/resume state machines, and cryptographic ECDSA authorization.",
+    "An in-depth engineering case study of the Token Streaming Protocol: continuous token distribution on Bitcoin Layer 2 using Clarity 3 smart contracts, pause/resume state machines, and cryptographic ECDSA authorization.",
 };
 
 const STACK_TABLE = [
@@ -94,7 +94,7 @@ export default function StacksTokenStreamingCaseStudyPage() {
         <section className="relative z-10 px-6 lg:px-24 pt-14 pb-10 md:pt-20 md:pb-14">
           <div className="max-w-4xl mx-auto">
             <span className="text-xs font-semibold tracking-widest text-electric-blue uppercase font-mono">
-              Case Study · Stacks Token Streaming
+              Case Study · Token Streaming Protocol
             </span>
             <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-text-title mt-4 max-w-3xl">
               Engineering a Real-Time Token Streaming Protocol on Bitcoin L2.

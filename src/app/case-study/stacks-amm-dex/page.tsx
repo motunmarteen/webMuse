@@ -18,9 +18,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Stacks AMM DEX — Engineering an Automated Market Maker on Bitcoin L2",
+  title: "AMM DEX — Engineering an Automated Market Maker on Bitcoin L2",
   description:
-    "An in-depth engineering breakdown of the Stacks AMM Decentralized Exchange: constant-product liquidity pools (x*y=k) for SIP-010 tokens, dynamic swap routing, LP token minting, and Stacks wallet integration.",
+    "An in-depth engineering breakdown of the AMM Decentralized Exchange: constant-product liquidity pools (x*y=k) for SIP-010 tokens, dynamic swap routing, LP token minting, and wallet integration.",
 };
 
 const STACK_TABLE = [
@@ -90,7 +90,7 @@ export default function StacksAmmDexCaseStudyPage() {
         <section className="relative z-10 px-6 lg:px-24 pt-14 pb-10 md:pt-20 md:pb-14">
           <div className="max-w-4xl mx-auto">
             <span className="text-xs font-semibold tracking-widest text-electric-blue uppercase font-mono">
-              Case Study · Stacks AMM DEX
+              Case Study · AMM Decentralized Exchange
             </span>
             <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-text-title mt-4 max-w-3xl">
               Engineering an Automated Market Maker DEX on Bitcoin L2.
