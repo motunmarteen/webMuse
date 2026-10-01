@@ -1,0 +1,308 @@
+{
+  "clients": [
+    {
+      "id": "cli_apex_01",
+      "name": "Alex Vance",
+      "email": "client@apexlabs.io",
+      "company": "Apex Labs Inc.",
+      "telegramHandle": "@alexvance_apex",
+      "createdAt": "2026-10-01T18:08:09.625Z",
+      "updatedAt": "2026-10-01T18:08:09.625Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj_apex_01",
+      "clientId": "cli_apex_01",
+      "title": "Apex Protocol AI Platform",
+      "slug": "apex-protocol",
+      "tagline": "Autonomous Algorithmic Trading & Liquidity Engine",
+      "description": "High-performance institutional DeFi execution portal featuring AI-driven multi-chain arbitrage, mempool telemetry, and biometric authorization.",
+      "status": "active",
+      "currentPhaseIndex": 0,
+      "techStack": [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS v4",
+        "Supabase",
+        "FastAPI",
+        "WebSockets",
+        "Vercel"
+      ],
+      "stagingUrl": "https://staging.apex-protocol.webmuse.dev",
+      "repoUrl": "https://github.com/webmuse-studios/apex-protocol-core",
+      "designUrl": "https://figma.com/file/sample-apex-design-tokens",
+      "totalBudgetUsd": 18500,
+      "totalBudgetNgn": 27750000,
+      "prd": {
+        "version": "1.0.0",
+        "title": "Apex Protocol Platform Architecture (PRD v1.0)",
+        "summary": "A dual-sided algorithmic dashboard allowing liquidity providers and quantitative funds to deploy automated trading strategies with sub-millisecond execution.",
+        "problemStatement": "Decentralized liquidity providers suffer from high impermanent loss, fragmented cross-chain bridges, and lack of institutional-grade automated risk management.",
+        "targetAudience": "Hedge fund managers, accredited crypto investors, decentralized autonomous organizations (DAOs), and liquidity allocators.",
+        "coreArchitecture": "Microservices event-mesh with Next.js 16 edge frontend, high-speed Python/Rust execution sidecars, and Supabase realtime state synchronization.",
+        "featureMatrix": [
+          {
+            "category": "Telemetry & Mempool Swarm",
+            "features": [
+              "Live gas price forecasting & front-running evasion algorithms",
+              "Sub-millisecond WebSocket market data feed",
+              "Visual depth-of-market orderbook visualizer"
+            ]
+          },
+          {
+            "category": "AI Portfolio Optimization",
+            "features": [
+              "Automated delta-neutral yield harvesting",
+              "Predictive slippage reduction models",
+              "Dynamic capital rebalancing triggers"
+            ]
+          },
+          {
+            "category": "Institutional Security & Audit",
+            "features": [
+              "Multi-signature withdrawal quorum engine",
+              "Hardware key (WebAuthn/YubiKey) approval workflows",
+              "Exportable tax-compliant IRS/IFRS audit ledgers"
+            ]
+          }
+        ],
+        "techStack": [
+          "Next.js 16 (App Router)",
+          "React 19",
+          "TypeScript & Tailwind v4",
+          "Supabase Realtime PostgreSQL",
+          "FastAPI & ZeroMQ"
+        ],
+        "kpis": [
+          "Sub-80ms dashboard latency on 4G connections",
+          "99.99% uptime during high-volatility market events",
+          "100% adherence to scope baseline agreed upon in Milestone 1"
+        ]
+      },
+      "milestones": [
+        {
+          "id": "ms_01_discovery",
+          "projectId": "proj_apex_01",
+          "orderIndex": 0,
+          "phaseNumber": 1,
+          "title": "Genesis Discovery & PRD Sign-Off",
+          "subtitle": "Foundational Scoping & Scope Creep Shield",
+          "description": "Deep architectural discovery, technical stack consensus, user journey mapping, and finalization of the Living Genesis PRD.",
+          "costUsd": 2500,
+          "costNgn": 3750000,
+          "status": "in_progress",
+          "targetCompletionDays": 7,
+          "deliverables": [
+            {
+              "id": "del_01",
+              "title": "Technical Discovery Matrix & Stakeholder Consensus",
+              "status": "approved",
+              "description": "Mapped all 14 integration endpoints and security constraints."
+            },
+            {
+              "id": "del_02",
+              "title": "Living Genesis PRD Canvas (v1.0)",
+              "status": "ready_for_review",
+              "description": "Ready for digital scope approval by Apex Labs."
+            },
+            {
+              "id": "del_03",
+              "title": "Database ERD & System Topology Document",
+              "status": "in_progress",
+              "description": "PostgreSQL schema models & Supabase RLS security policies."
+            }
+          ]
+        },
+        {
+          "id": "ms_02_design",
+          "projectId": "proj_apex_01",
+          "orderIndex": 1,
+          "phaseNumber": 2,
+          "title": "UI/UX Design Architecture & Design System",
+          "subtitle": "Figma High-Fidelity & Interactive Prototypes",
+          "description": "Dark-mode cyberpunk visual system, component tokens, interactive prototype walkthrough, and micro-interaction specs.",
+          "costUsd": 4000,
+          "costNgn": 6000000,
+          "status": "locked",
+          "targetCompletionDays": 14,
+          "deliverables": [
+            {
+              "id": "del_04",
+              "title": "Institutional Dark Design Tokens & Figma Library",
+              "status": "backlog"
+            },
+            {
+              "id": "del_05",
+              "title": "Live Orderbook & Chart Interaction Prototypes",
+              "status": "backlog"
+            },
+            {
+              "id": "del_06",
+              "title": "Mobile & Tablet Viewport Responsive Specs",
+              "status": "backlog"
+            }
+          ]
+        },
+        {
+          "id": "ms_03_engineering",
+          "projectId": "proj_apex_01",
+          "orderIndex": 2,
+          "phaseNumber": 3,
+          "title": "Core Engine Sprint & Full-Stack Build",
+          "subtitle": "Frontend, WebSocket Telemetry & API Integration",
+          "description": "Implementation of responsive Next.js frontend, Supabase real-time subscriptions, API connectivity, and trading bot execution hooks.",
+          "costUsd": 7000,
+          "costNgn": 10500000,
+          "status": "locked",
+          "targetCompletionDays": 21,
+          "deliverables": [
+            {
+              "id": "del_07",
+              "title": "Next.js 16 Reactive Dashboard & Charting Subsystems",
+              "status": "backlog"
+            },
+            {
+              "id": "del_08",
+              "title": "Supabase Data Mesh & Auth Integrations",
+              "status": "backlog"
+            },
+            {
+              "id": "del_09",
+              "title": "FastAPI Execution Sidecar Connectivity",
+              "status": "backlog"
+            }
+          ]
+        },
+        {
+          "id": "ms_04_qa",
+          "projectId": "proj_apex_01",
+          "orderIndex": 3,
+          "phaseNumber": 4,
+          "title": "Staging QA, Stress Audits & User Testing",
+          "subtitle": "Live Staging Review Deck & Security Hardening",
+          "description": "Deployment to isolated staging environment, load testing, penetration audits, and client pinpoint feedback iterations.",
+          "costUsd": 3000,
+          "costNgn": 4500000,
+          "status": "locked",
+          "targetCompletionDays": 10,
+          "deliverables": [
+            {
+              "id": "del_10",
+              "title": "Live Staging Deployment & Review Studio Ingestion",
+              "status": "backlog"
+            },
+            {
+              "id": "del_11",
+              "title": "Penetration & Cross-Site Vulnerability Audit",
+              "status": "backlog"
+            },
+            {
+              "id": "del_12",
+              "title": "Visual Regression & Performance 100/100 Lighthouse Pass",
+              "status": "backlog"
+            }
+          ]
+        },
+        {
+          "id": "ms_05_handoff",
+          "projectId": "proj_apex_01",
+          "orderIndex": 4,
+          "phaseNumber": 5,
+          "title": "Handoff, Digital Safe Release & 30-Day SLA",
+          "subtitle": "Production Cutover & Warranty Activation",
+          "description": "Custom domain routing, SSL issuance, GitHub repository transfer, master credential release, and launch of 30-day maintenance SLA clock.",
+          "costUsd": 2000,
+          "costNgn": 3000000,
+          "status": "locked",
+          "targetCompletionDays": 5,
+          "deliverables": [
+            {
+              "id": "del_13",
+              "title": "Production DNS & Cloudflare Edge SSL Setup",
+              "status": "backlog"
+            },
+            {
+              "id": "del_14",
+              "title": "GitHub Organization Transfer & Source Delivery",
+              "status": "backlog"
+            },
+            {
+              "id": "del_15",
+              "title": "Handoff Digital Safe Unlock & 30-Day Warranty Activation",
+              "status": "backlog"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-01T18:08:09.626Z",
+      "updatedAt": "2026-10-01T18:08:09.626Z"
+    }
+  ],
+  "magicTokens": [
+    {
+      "tokenHash": "84b36e5da2677550dfe1e9d53925c562309b565a63f8869407880afcb267b80c",
+      "rawTokenPreview": "ce805d6e",
+      "email": "client@apexlabs.io",
+      "projectId": "proj_apex_01",
+      "expiresAt": 1790879687347,
+      "used": true,
+      "createdAt": 1790878787347
+    }
+  ],
+  "vaultSecrets": [
+    {
+      "id": "sec_01",
+      "projectId": "proj_apex_01",
+      "category": "staging_auth",
+      "toolName": "Staging Vercel Preview",
+      "keyLabel": "Staging Admin Password",
+      "encryptedValue": "9f6fb2ee0edee754983468a1969ba88a0fe86db847488c",
+      "iv": "b6362e08bc3669355f5078ad",
+      "authTag": "dbeef744fe48cbadf207b6384e0b4f31",
+      "isClientVisible": true,
+      "notes": "Use this to bypass staging basic-auth gate on preview builds.",
+      "updatedAt": "2026-10-01T18:08:09.626Z"
+    },
+    {
+      "id": "sec_02",
+      "projectId": "proj_apex_01",
+      "category": "database",
+      "toolName": "Supabase PostgreSQL",
+      "keyLabel": "Transaction Pooler URL",
+      "encryptedValue": "b7bcb72d9efbb945a06f4312bb767a990410028c95e357be82e80b41e25979e9e6542594ede0d321342c1e36919dff4dc2ce459e6e1565d384f14b80c5129ebe280ff26795aefd953bb1b7d9b9310810017732e603ba505eea137dbc16",
+      "iv": "958f574aa7d5d3a01056fc0e",
+      "authTag": "da8772c7bb9a6df37b0a966c21af2720",
+      "isClientVisible": false,
+      "notes": "Agency internal connection string for database schema migrations.",
+      "updatedAt": "2026-10-01T18:08:09.626Z"
+    },
+    {
+      "id": "sec_03",
+      "projectId": "proj_apex_01",
+      "category": "apis",
+      "toolName": "WebMuse API Dispatcher",
+      "keyLabel": "Telemetry Secret Key",
+      "encryptedValue": "c9101e14369f144f312aceb5d01e58efb09a1786d813ad92d3f710875304128ebc",
+      "iv": "2e3e10be4316bb328e958b6c",
+      "authTag": "1a2c15e0e1f626f4107c02c22ca44483",
+      "isClientVisible": true,
+      "notes": "Client API credential for ingesting live algorithmic signals.",
+      "updatedAt": "2026-10-01T18:08:09.626Z"
+    }
+  ],
+  "payments": [],
+  "reviewPins": [],
+  "activityLogs": [
+    {
+      "id": "act_01",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "WebMuse Studio",
+      "action": "PROJECT_INITIALIZED",
+      "details": "Project workspace provisioned and Genesis PRD draft initialized.",
+      "timestamp": "2026-10-01T18:08:09.626Z"
+    }
+  ]
+}
