@@ -1,4 +1,4 @@
-export interface CaseStudySummary {
+﻿export interface CaseStudySummary {
   slug: string;
   title: string;
   tagline: string;
@@ -9,6 +9,20 @@ export interface CaseStudySummary {
 }
 
 export const CASE_STUDIES: CaseStudySummary[] = [
+  {
+    slug: "crown-wheels",
+    title: "Crown Wheels",
+    tagline:
+      "Engineering a luxury private car hire and multi-tier vehicle sales platform for Nigeria — database-level double-booking exclusion, sub-150ms emergency SOS telemetry, transactional Paystack settlement, and lint-enforced domain boundaries.",
+    category: "Luxury Mobility & Fleet Operations Platform",
+    stack: ["Next.js 15", "PostgreSQL", "Prisma ORM", "PostGIS EXCLUDE", "Paystack", "Resend"],
+    metrics: [
+      { label: "Double-booking guard", value: "Postgres EXCLUDE" },
+      { label: "SOS telemetry", value: "<150ms Next.js after()" },
+      { label: "Architecture", value: "22 domains / 0 leaks" },
+    ],
+    live: true,
+  },
   {
     slug: "neyborhuud",
     title: "NeyborHuud",
