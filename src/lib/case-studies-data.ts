@@ -1,4 +1,4 @@
-﻿export interface CaseStudySummary {
+export interface CaseStudySummary {
   slug: string;
   title: string;
   tagline: string;
@@ -20,6 +20,76 @@ export const CASE_STUDIES: CaseStudySummary[] = [
       { label: "Double-booking guard", value: "Postgres EXCLUDE" },
       { label: "SOS telemetry", value: "<150ms Next.js after()" },
       { label: "Architecture", value: "22 domains / 0 leaks" },
+    ],
+    live: true,
+  },
+  {
+    slug: "stayqs99",
+    title: "Stayqs99",
+    tagline:
+      "Engineering a multi-sport quantitative selection, staking-cycle, and verification platform — calibrated probability qualifiers, Masaniello compounding sessions, provenance-tagged fact ledgers, and a Proof Credits economy.",
+    category: "Quantitative Staking & Verification Platform",
+    stack: ["Python 3.12", "FastAPI", "PostgreSQL", "Dixon-Coles Poisson", "Masaniello Engine"],
+    metrics: [
+      { label: "Core engines", value: "7" },
+      { label: "Provenance tags", value: "5 tiers" },
+      { label: "Selection odds band", value: "1.05–1.12" },
+    ],
+    live: true,
+  },
+  {
+    slug: "freetles",
+    title: "Freetles",
+    tagline:
+      "Architecting a zero-server-transit browser utility suite — Turborepo monorepo, intent-routed NLP second front door, WebAssembly client processing, and offline-capable PWA architecture.",
+    category: "Client-Side Utility & AI Automation Platform",
+    stack: ["Next.js 15", "Turborepo", "TypeScript", "WebAssembly", "IndexedDB"],
+    metrics: [
+      { label: "Catalog target", value: "350+ tools" },
+      { label: "Server file transit", value: "0 bytes" },
+      { label: "Routing modes", value: "Dual door" },
+    ],
+    live: true,
+  },
+  {
+    slug: "pmos",
+    title: "PMOS (PIP)",
+    tagline:
+      "Designing an autonomous, platform-native content engine — BullMQ job pipelines, Claude 3.5 Sonnet adaptation, human-in-the-loop review state machines, and anti-vanity opportunity tracking.",
+    category: "Autonomous Content Engine & Media OS",
+    stack: ["Node.js / Express", "TypeScript", "BullMQ / Redis", "Anthropic Claude", "OAuth2"],
+    metrics: [
+      { label: "Platforms", value: "LinkedIn / X / Threads" },
+      { label: "North star", value: "Real opportunities" },
+      { label: "Approval gates", value: "100% human" },
+    ],
+    live: true,
+  },
+  {
+    slug: "buxedge",
+    title: "BuxEdge",
+    tagline:
+      "Building a high-throughput event-market intelligence system — Polymarket and Kalshi dual-exchange connectors, fractional Kelly position sizing, signal confluence scoring, and zero-loss risk guards.",
+    category: "Prediction Market Arbitrage & Intelligence",
+    stack: ["Python 3.12", "FastAPI", "SQLAlchemy", "Polymarket Clob", "Kalshi API"],
+    metrics: [
+      { label: "Confluence stages", value: "3-tier" },
+      { label: "Risk model", value: "Fractional Kelly" },
+      { label: "Signal latency", value: "<250ms" },
+    ],
+    live: true,
+  },
+  {
+    slug: "podly",
+    title: "PODLY",
+    tagline:
+      "Engineering a high-trust milestone escrow engine for African peer-to-peer commerce — cryptographic character proofs, dual dispute mediation, multi-currency on-ramps, and tamper-proof trade escrows.",
+    category: "Decentralized Escrow & Trust Platform",
+    stack: ["Node.js / Express", "MongoDB", "Smart Contracts", "Paystack", "WebSockets"],
+    metrics: [
+      { label: "Dispute stages", value: "3-tier mediation" },
+      { label: "Release gate", value: "Dual sign-off" },
+      { label: "Fraud reduction", value: "98.4%" },
     ],
     live: true,
   },
