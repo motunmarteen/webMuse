@@ -8,6 +8,30 @@
       "telegramHandle": "@alexvance_apex",
       "createdAt": "2026-10-01T18:08:09.625Z",
       "updatedAt": "2026-10-01T18:08:09.625Z"
+    },
+    {
+      "id": "cli_test_1790896442449",
+      "name": "Sarah Connor",
+      "email": "sarah_1790896442449@cyberdyne-defense.org",
+      "company": "Cyberdyne Systems Defense",
+      "createdAt": "2026-10-01T23:14:02.449Z",
+      "updatedAt": "2026-10-01T23:14:02.450Z"
+    },
+    {
+      "id": "cli_test_1790897350893",
+      "name": "Sarah Connor",
+      "email": "sarah_1790897350893@cyberdyne-defense.org",
+      "company": "Cyberdyne Systems Defense",
+      "createdAt": "2026-10-01T23:29:10.893Z",
+      "updatedAt": "2026-10-01T23:29:10.894Z"
+    },
+    {
+      "id": "cli_1790898412123_luy1",
+      "name": "David Miller",
+      "email": "david@vanguard.io",
+      "company": "Vanguard Robotics",
+      "createdAt": "2026-10-01T23:46:52.123Z",
+      "updatedAt": "2026-10-01T23:46:52.123Z"
     }
   ],
   "projects": [
@@ -79,7 +103,11 @@
           "Sub-80ms dashboard latency on 4G connections",
           "99.99% uptime during high-volatility market events",
           "100% adherence to scope baseline agreed upon in Milestone 1"
-        ]
+        ],
+        "signedOffAt": "2026-10-02T00:14:30.019Z",
+        "signedOffBy": "motun marteen",
+        "signedOffIp": "::1",
+        "signatureHash": "bb741beb7e320d520c94c96dd195dbdcef12b4d9df5944709d908083deb24f77"
       },
       "milestones": [
         {
@@ -104,7 +132,7 @@
             {
               "id": "del_02",
               "title": "Living Genesis PRD Canvas (v1.0)",
-              "status": "ready_for_review",
+              "status": "approved",
               "description": "Ready for digital scope approval by Apex Labs."
             },
             {
@@ -237,18 +265,471 @@
         }
       ],
       "createdAt": "2026-10-01T18:08:09.626Z",
-      "updatedAt": "2026-10-01T18:08:09.626Z"
+      "updatedAt": "2026-10-02T00:14:30.019Z"
+    },
+    {
+      "id": "proj_test_1790896442450",
+      "clientId": "cli_test_1790896442449",
+      "title": "Cyberdyne Threat Monitor",
+      "slug": "cyberdyne-threat-monitor-2449",
+      "tagline": "Autonomous AI Risk Telemetry & Edge Defense",
+      "description": "High-speed event ingestion with biometric override circuit breakers.",
+      "status": "active",
+      "currentPhaseIndex": 0,
+      "techStack": [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS v4",
+        "Supabase"
+      ],
+      "totalBudgetUsd": 18000,
+      "totalBudgetNgn": 27000000,
+      "prd": {
+        "version": "1.0.0",
+        "title": "Cyberdyne Architecture PRD",
+        "summary": "Executive telemetry specifications.",
+        "problemStatement": "Distributed anomalous algorithmic events.",
+        "targetAudience": "Infrastructure security leads.",
+        "coreArchitecture": "Edge rendering with real-time WebSocket state.",
+        "featureMatrix": [],
+        "techStack": [
+          "Next.js 16",
+          "Supabase"
+        ],
+        "kpis": [
+          "Sub-50ms latency"
+        ]
+      },
+      "milestones": [
+        {
+          "id": "ms_01_1790896442450",
+          "projectId": "proj_test_1790896442450",
+          "orderIndex": 0,
+          "phaseNumber": 1,
+          "title": "Genesis Discovery & PRD Sign-Off",
+          "subtitle": "Foundational Scoping",
+          "description": "Threat matrix and baseline scope consensus.",
+          "costUsd": 3000,
+          "costNgn": 4500000,
+          "status": "in_progress",
+          "targetCompletionDays": 7,
+          "deliverables": [
+            {
+              "id": "del_1",
+              "title": "Architecture Matrix",
+              "status": "in_progress"
+            }
+          ]
+        },
+        {
+          "id": "ms_02_1790896442450",
+          "projectId": "proj_test_1790896442450",
+          "orderIndex": 1,
+          "phaseNumber": 2,
+          "title": "UI/UX Architecture & Design System",
+          "subtitle": "Cyberpunk Command Deck Wireframes",
+          "description": "Design tokens and clickable prototype.",
+          "costUsd": 5000,
+          "costNgn": 7500000,
+          "status": "in_progress",
+          "targetCompletionDays": 14,
+          "deliverables": [
+            {
+              "id": "del_2",
+              "title": "Interactive Wireframes",
+              "status": "backlog"
+            }
+          ],
+          "paymentTxRef": "WIRE_SETTLEMENT_REF_9918",
+          "paymentGateway": "manual",
+          "unlockedAt": "2026-10-01T23:14:02.452Z"
+        }
+      ],
+      "createdAt": "2026-10-01T23:14:02.450Z",
+      "updatedAt": "2026-10-01T23:14:02.450Z"
+    },
+    {
+      "id": "proj_test_1790897350894",
+      "clientId": "cli_test_1790897350893",
+      "title": "Cyberdyne Threat Monitor",
+      "slug": "cyberdyne-threat-monitor-0893",
+      "tagline": "Autonomous AI Risk Telemetry & Edge Defense",
+      "description": "High-speed event ingestion with biometric override circuit breakers.",
+      "status": "active",
+      "currentPhaseIndex": 0,
+      "techStack": [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS v4",
+        "Supabase"
+      ],
+      "totalBudgetUsd": 18000,
+      "totalBudgetNgn": 27000000,
+      "prd": {
+        "version": "1.0.0",
+        "title": "Cyberdyne Architecture PRD",
+        "summary": "Executive telemetry specifications.",
+        "problemStatement": "Distributed anomalous algorithmic events.",
+        "targetAudience": "Infrastructure security leads.",
+        "coreArchitecture": "Edge rendering with real-time WebSocket state.",
+        "featureMatrix": [],
+        "techStack": [
+          "Next.js 16",
+          "Supabase"
+        ],
+        "kpis": [
+          "Sub-50ms latency"
+        ]
+      },
+      "milestones": [
+        {
+          "id": "ms_01_1790897350894",
+          "projectId": "proj_test_1790897350894",
+          "orderIndex": 0,
+          "phaseNumber": 1,
+          "title": "Genesis Discovery & PRD Sign-Off",
+          "subtitle": "Foundational Scoping",
+          "description": "Threat matrix and baseline scope consensus.",
+          "costUsd": 3000,
+          "costNgn": 4500000,
+          "status": "in_progress",
+          "targetCompletionDays": 7,
+          "deliverables": [
+            {
+              "id": "del_1",
+              "title": "Architecture Matrix",
+              "status": "in_progress"
+            }
+          ]
+        },
+        {
+          "id": "ms_02_1790897350894",
+          "projectId": "proj_test_1790897350894",
+          "orderIndex": 1,
+          "phaseNumber": 2,
+          "title": "UI/UX Architecture & Design System",
+          "subtitle": "Cyberpunk Command Deck Wireframes",
+          "description": "Design tokens and clickable prototype.",
+          "costUsd": 5000,
+          "costNgn": 7500000,
+          "status": "in_progress",
+          "targetCompletionDays": 14,
+          "deliverables": [
+            {
+              "id": "del_2",
+              "title": "Interactive Wireframes",
+              "status": "backlog"
+            }
+          ],
+          "paymentTxRef": "WIRE_SETTLEMENT_REF_9918",
+          "paymentGateway": "manual",
+          "unlockedAt": "2026-10-01T23:29:10.898Z"
+        }
+      ],
+      "createdAt": "2026-10-01T23:29:10.894Z",
+      "updatedAt": "2026-10-01T23:29:10.894Z"
+    },
+    {
+      "id": "proj_1790898412123_z20n",
+      "clientId": "cli_1790898412123_luy1",
+      "title": "Vanguard Autonomy Engine",
+      "slug": "vanguard-autonomy-engine",
+      "tagline": "this is a test project",
+      "description": "This is a test project for hat i am buiding",
+      "status": "active",
+      "currentPhaseIndex": 1,
+      "techStack": [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS v4",
+        "Supabase",
+        "Vercel",
+        "PostgreSQL",
+        "FastAPI",
+        "WebSockets",
+        "Three.js",
+        "GSAP",
+        "Cloudflare Edge",
+        "Paystack (NGN Fiat)"
+      ],
+      "totalBudgetUsd": 18500,
+      "totalBudgetNgn": 27750000,
+      "prd": {
+        "version": "1.0.0",
+        "title": "Vanguard Autonomy Engine Architectural Specification (PRD v1.0)",
+        "summary": "This is a test project for hat i am buiding",
+        "problemStatement": "Deliver high-ticket digital infrastructure with zero architectural compromises and sub-second performance.",
+        "targetAudience": "Enterprise users, institutional clients, and digital native consumers.",
+        "coreArchitecture": "Next.js 16 edge rendering, resilient cloud services, microservices backend, and state synchronization.",
+        "featureMatrix": [
+          {
+            "category": "Core System Capabilities",
+            "features": [
+              "Stakeholder Discovery & Architecture Matrix",
+              "Living Genesis PRD Canvas (v1.0)",
+              "Database Schema & Infrastructure Topology",
+              "Design Tokens & Figma Component Library",
+              "Desktop & Mobile High-Fidelity UI Screens",
+              "Interactive Prototype Walkthrough",
+              "Next.js 16 Responsive Frontend & Animations",
+              "Database Integration, Auth & Security Policies"
+            ]
+          },
+          {
+            "category": "Security & Integrity",
+            "features": [
+              "Cryptographic magic link identity assertion",
+              "AES-256-GCM encrypted credential vault protection",
+              "Scope Creep Shield v1.0 immutable signature locking"
+            ]
+          }
+        ],
+        "techStack": [
+          "Next.js 16",
+          "React 19",
+          "TypeScript",
+          "Tailwind CSS v4",
+          "Supabase",
+          "Vercel",
+          "PostgreSQL",
+          "FastAPI",
+          "WebSockets",
+          "Three.js",
+          "GSAP",
+          "Cloudflare Edge",
+          "Paystack (NGN Fiat)"
+        ],
+        "kpis": [
+          "100% adherence to agreed Milestone deliverables",
+          "Sub-80ms responsive edge rendering",
+          "Zero unhandled security vulnerabilities on staging and production cutover"
+        ]
+      },
+      "milestones": [
+        {
+          "id": "ms_1_8uvo",
+          "projectId": "proj_1790898412123_z20n",
+          "orderIndex": 0,
+          "phaseNumber": 1,
+          "title": "Genesis Discovery & PRD Sign-Off",
+          "subtitle": "Scope Freezing & System Architecture Consensus",
+          "description": "Stakeholder alignment interviews, technical architecture design, database ERD mapping, and finalization of the Living Genesis PRD with digital scope sign-off.",
+          "costUsd": 2500,
+          "costNgn": 3750000,
+          "status": "completed",
+          "unlockedAt": "2026-10-01T23:49:17.940Z",
+          "targetCompletionDays": 7,
+          "deliverables": [
+            {
+              "id": "del_1_1_hlz",
+              "title": "Stakeholder Discovery & Architecture Matrix",
+              "description": "",
+              "status": "in_progress"
+            },
+            {
+              "id": "del_1_2_u9l",
+              "title": "Living Genesis PRD Canvas (v1.0)",
+              "description": "",
+              "status": "in_progress"
+            },
+            {
+              "id": "del_1_3_37t",
+              "title": "Database Schema & Infrastructure Topology",
+              "description": "",
+              "status": "in_progress"
+            }
+          ],
+          "paymentTxRef": "GTB-WIRE-2026-9012",
+          "paymentGateway": "manual",
+          "completedAt": "2026-10-01T23:49:26.415Z"
+        },
+        {
+          "id": "ms_2_eorp",
+          "projectId": "proj_1790898412123_z20n",
+          "orderIndex": 1,
+          "phaseNumber": 2,
+          "title": "UI/UX Architecture & Design System",
+          "subtitle": "Cyberpunk Visual Identity & Interactive Prototypes",
+          "description": "High-fidelity Figma wireframes, responsive viewport tokens, micro-interaction specifications, and clickable interactive prototype walkthrough.",
+          "costUsd": 4000,
+          "costNgn": 6000000,
+          "status": "completed",
+          "targetCompletionDays": 14,
+          "deliverables": [
+            {
+              "id": "del_2_1_goa",
+              "title": "Design Tokens & Figma Component Library",
+              "description": "",
+              "status": "backlog"
+            },
+            {
+              "id": "del_2_2_15e",
+              "title": "Desktop & Mobile High-Fidelity UI Screens",
+              "description": "",
+              "status": "backlog"
+            },
+            {
+              "id": "del_2_3_5ww",
+              "title": "Interactive Prototype Walkthrough",
+              "description": "",
+              "status": "backlog"
+            }
+          ],
+          "paymentTxRef": "MANUAL_WIRE_1790898475926",
+          "paymentGateway": "manual",
+          "unlockedAt": "2026-10-01T23:47:56.029Z",
+          "completedAt": "2026-10-01T23:48:33.879Z"
+        },
+        {
+          "id": "ms_3_cwnq",
+          "projectId": "proj_1790898412123_z20n",
+          "orderIndex": 2,
+          "phaseNumber": 3,
+          "title": "Core Engine Sprint & Full-Stack Build",
+          "subtitle": "Frontend, WebSocket Telemetry & API Integration",
+          "description": "Execution of reactive frontend interfaces, server-side data mutations, real-time subscriptions, API connectivity, and edge optimizations.",
+          "costUsd": 7000,
+          "costNgn": 10500000,
+          "status": "completed",
+          "targetCompletionDays": 21,
+          "deliverables": [
+            {
+              "id": "del_3_1_3vm",
+              "title": "Next.js 16 Responsive Frontend & Animations",
+              "description": "",
+              "status": "backlog"
+            },
+            {
+              "id": "del_3_2_fmh",
+              "title": "Database Integration, Auth & Security Policies",
+              "description": "",
+              "status": "backlog"
+            },
+            {
+              "id": "del_3_3_uzd",
+              "title": "Real-time WebSocket & Backend API Mesh",
+              "description": "",
+              "status": "backlog"
+            }
+          ],
+          "paymentTxRef": "GTB-WIRE-2026-9012",
+          "paymentGateway": "manual",
+          "unlockedAt": "2026-10-01T23:48:52.226Z",
+          "completedAt": "2026-10-01T23:49:31.386Z"
+        },
+        {
+          "id": "ms_4_w0tn",
+          "projectId": "proj_1790898412123_z20n",
+          "orderIndex": 3,
+          "phaseNumber": 4,
+          "title": "Staging QA, Stress Audits & User Testing",
+          "subtitle": "Live Staging Review Deck & Security Hardening",
+          "description": "Isolated staging deployment, penetration testing, performance Lighthouse 100/100 tuning, and pinpoint client annotation review rounds.",
+          "costUsd": 3000,
+          "costNgn": 4500000,
+          "status": "in_progress",
+          "targetCompletionDays": 10,
+          "deliverables": [
+            {
+              "id": "del_4_1_mjm",
+              "title": "Staging Environment Deployment & Review Studio",
+              "description": "",
+              "status": "backlog"
+            },
+            {
+              "id": "del_4_2_qqi",
+              "title": "Cross-device Quality Assurance & Bug Fixes",
+              "description": "",
+              "status": "backlog"
+            },
+            {
+              "id": "del_4_3_z0p",
+              "title": "Security Audit & Performance Optimization",
+              "description": "",
+              "status": "backlog"
+            }
+          ],
+          "paymentTxRef": "MANUAL_WIRE_1790898608769",
+          "paymentGateway": "manual",
+          "unlockedAt": "2026-10-01T23:50:08.832Z"
+        },
+        {
+          "id": "ms_5_n6dk",
+          "projectId": "proj_1790898412123_z20n",
+          "orderIndex": 4,
+          "phaseNumber": 5,
+          "title": "Handoff, Digital Safe Release & 30-Day SLA",
+          "subtitle": "Production Cutover & Warranty Activation",
+          "description": "Custom domain DNS propagation, GitHub repo transfer, environment credential packaging into the Handoff Safe, and 30-day post-launch warranty initiation.",
+          "costUsd": 2000,
+          "costNgn": 3000000,
+          "status": "locked",
+          "targetCompletionDays": 5,
+          "deliverables": [
+            {
+              "id": "del_5_1_bl9",
+              "title": "Production Domain DNS & Edge SSL Cutover",
+              "description": "",
+              "status": "backlog"
+            },
+            {
+              "id": "del_5_2_ade",
+              "title": "GitHub Organization Repository Transfer",
+              "description": "",
+              "status": "backlog"
+            },
+            {
+              "id": "del_5_3_5wn",
+              "title": "Handoff Digital Safe Unlock & 30-Day Warranty",
+              "description": "",
+              "status": "backlog"
+            }
+          ]
+        }
+      ],
+      "createdAt": "2026-10-01T23:46:52.124Z",
+      "updatedAt": "2026-10-01T23:50:08.832Z"
     }
   ],
   "magicTokens": [
     {
-      "tokenHash": "84b36e5da2677550dfe1e9d53925c562309b565a63f8869407880afcb267b80c",
-      "rawTokenPreview": "ce805d6e",
+      "tokenHash": "c623358bccbbdce5c0b4529effa18843ba1274066801393e8bf285a8096d1a96",
+      "rawTokenPreview": "c103d661",
+      "email": "sarah_1790896442449@cyberdyne-defense.org",
+      "projectId": "proj_test_1790896442450",
+      "expiresAt": 1791501242450,
+      "used": false,
+      "createdAt": 1790896442450
+    },
+    {
+      "tokenHash": "84abe606884a753e4ecc247f37ac6c653a6d316d3d041ff171bff7f0de3100ca",
+      "rawTokenPreview": "e7cd3ffa",
+      "email": "sarah_1790897350893@cyberdyne-defense.org",
+      "projectId": "proj_test_1790897350894",
+      "expiresAt": 1791502150895,
+      "used": false,
+      "createdAt": 1790897350895
+    },
+    {
+      "tokenHash": "b1f2f8fd698e16ca3ffc78ee9a403bd5807e5ed6bc7a196e65d60b3c258b695b",
+      "rawTokenPreview": "171569af",
+      "email": "david@vanguard.io",
+      "projectId": "proj_1790898412123_z20n",
+      "expiresAt": 1791503212124,
+      "used": false,
+      "createdAt": 1790898412124
+    },
+    {
+      "tokenHash": "31a8ad0805cbeda4214b4243b284ce1078b4e6b385f50d7c2d2875fbc1d7f0ac",
+      "rawTokenPreview": "0497bc10",
       "email": "client@apexlabs.io",
       "projectId": "proj_apex_01",
-      "expiresAt": 1790879687347,
+      "expiresAt": 1790900463800,
       "used": true,
-      "createdAt": 1790878787347
+      "createdAt": 1790899563800
     }
   ],
   "vaultSecrets": [
@@ -295,6 +776,213 @@
   "payments": [],
   "reviewPins": [],
   "activityLogs": [
+    {
+      "id": "act_1790900070020_f1jfm",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "motun marteen",
+      "action": "SCOPE_BASELINE_SIGNED_OFF",
+      "details": "Client approved Scope v1.0.0 baseline. Cryptographic signature locked: bb741beb7e320d52...",
+      "timestamp": "2026-10-02T00:14:30.019Z"
+    },
+    {
+      "id": "act_signoff_1790899968958",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "SCOPE_BASELINE_SIGNED_OFF",
+      "details": "Client approved Scope v1.0.0 baseline. Cryptographic signature locked: 7def2f4b082e76e3...",
+      "timestamp": "2026-10-02T00:12:48.954Z"
+    },
+    {
+      "id": "act_signoff_1790898988356",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "SCOPE_BASELINE_SIGNED_OFF",
+      "details": "Client approved Scope v1.0.0 baseline. Cryptographic signature locked: fbcbc245b4dc94f7...",
+      "timestamp": "2026-10-01T23:56:28.353Z"
+    },
+    {
+      "id": "act_signoff_1790898965710",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "SCOPE_BASELINE_SIGNED_OFF",
+      "details": "Client approved Scope v1.0.0 baseline. Cryptographic signature locked: d4c1e64c4b8cb49b...",
+      "timestamp": "2026-10-01T23:56:05.708Z"
+    },
+    {
+      "id": "act_signoff_1790898935465",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "SCOPE_BASELINE_SIGNED_OFF",
+      "details": "Client approved Scope v1.0.0 baseline. Cryptographic signature locked: 1c7f2916c8b9e890...",
+      "timestamp": "2026-10-01T23:55:35.464Z"
+    },
+    {
+      "id": "act_1790898608832_1x7ka",
+      "projectId": "proj_1790898412123_z20n",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 4 (Staging QA, Stress Audits & User Testing) updated to in_progress. Settled via offline bank wire / manual agency override",
+      "timestamp": "2026-10-01T23:50:08.832Z"
+    },
+    {
+      "id": "act_1790898571386_idif4",
+      "projectId": "proj_1790898412123_z20n",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 3 (Core Engine Sprint & Full-Stack Build) updated to completed. ",
+      "timestamp": "2026-10-01T23:49:31.386Z"
+    },
+    {
+      "id": "act_1790898566415_3aass",
+      "projectId": "proj_1790898412123_z20n",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 1 (Genesis Discovery & PRD Sign-Off) updated to completed. ",
+      "timestamp": "2026-10-01T23:49:26.415Z"
+    },
+    {
+      "id": "act_1790898557940_9j4t4",
+      "projectId": "proj_1790898412123_z20n",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 1 (Genesis Discovery & PRD Sign-Off) updated to in_progress. Settled via offline bank wire / manual agency override",
+      "timestamp": "2026-10-01T23:49:17.940Z"
+    },
+    {
+      "id": "act_1790898545186_3ry88",
+      "projectId": "proj_1790898412123_z20n",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 1 (Genesis Discovery & PRD Sign-Off) updated to locked. ",
+      "timestamp": "2026-10-01T23:49:05.186Z"
+    },
+    {
+      "id": "act_1790898532226_jv3lt",
+      "projectId": "proj_1790898412123_z20n",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 3 (Core Engine Sprint & Full-Stack Build) updated to in_progress. Settled via offline bank wire / manual agency override",
+      "timestamp": "2026-10-01T23:48:52.226Z"
+    },
+    {
+      "id": "act_1790898513879_0x81a",
+      "projectId": "proj_1790898412123_z20n",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 2 (UI/UX Architecture & Design System) updated to completed. ",
+      "timestamp": "2026-10-01T23:48:33.879Z"
+    },
+    {
+      "id": "act_1790898476029_an8oi",
+      "projectId": "proj_1790898412123_z20n",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 2 (UI/UX Architecture & Design System) updated to in_progress. Settled via offline bank wire / manual agency override",
+      "timestamp": "2026-10-01T23:47:56.029Z"
+    },
+    {
+      "id": "act_1790898412124_zp6p4",
+      "projectId": "proj_1790898412123_z20n",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "PROJECT_GENESIS",
+      "details": "Created project \"Vanguard Autonomy Engine\" for David Miller (Vanguard Robotics) with 5 milestones.",
+      "timestamp": "2026-10-01T23:46:52.124Z"
+    },
+    {
+      "id": "act_1790898066315_wojcv",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MAGIC_INVITE_DISPATCHED",
+      "details": "Fresh magic token generated for client Alex Vance (client@apexlabs.io).",
+      "timestamp": "2026-10-01T23:41:06.315Z"
+    },
+    {
+      "id": "act_1790897918617_xicof",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 1 (Genesis Discovery & PRD Sign-Off) updated to locked. ",
+      "timestamp": "2026-10-01T23:38:38.617Z"
+    },
+    {
+      "id": "act_1790897912499_0m8wm",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 1 (Genesis Discovery & PRD Sign-Off) updated to in_progress. ",
+      "timestamp": "2026-10-01T23:38:32.499Z"
+    },
+    {
+      "id": "act_1790897872586_j9ehs",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 1 (Genesis Discovery & PRD Sign-Off) updated to locked. ",
+      "timestamp": "2026-10-01T23:37:52.586Z"
+    },
+    {
+      "id": "act_1790897865611_0h5e5",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 1 (Genesis Discovery & PRD Sign-Off) updated to completed. ",
+      "timestamp": "2026-10-01T23:37:45.611Z"
+    },
+    {
+      "id": "act_1790897350898_override",
+      "projectId": "proj_test_1790897350894",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 2 marked Paid & Unlocked via offline bank wire.",
+      "timestamp": "2026-10-01T23:29:10.898Z"
+    },
+    {
+      "id": "act_1790897350895",
+      "projectId": "proj_test_1790897350894",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "PROJECT_GENESIS",
+      "details": "Created project \"Cyberdyne Threat Monitor\" for Sarah Connor.",
+      "timestamp": "2026-10-01T23:29:10.895Z"
+    },
+    {
+      "id": "act_1790896442452_override",
+      "projectId": "proj_test_1790896442450",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 2 marked Paid & Unlocked via offline bank wire.",
+      "timestamp": "2026-10-01T23:14:02.452Z"
+    },
+    {
+      "id": "act_1790896442450",
+      "projectId": "proj_test_1790896442450",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "PROJECT_GENESIS",
+      "details": "Created project \"Cyberdyne Threat Monitor\" for Sarah Connor.",
+      "timestamp": "2026-10-01T23:14:02.450Z"
+    },
     {
       "id": "act_01",
       "projectId": "proj_apex_01",

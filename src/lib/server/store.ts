@@ -9,7 +9,7 @@ import type {
   ReviewPin,
   ActivityLog,
 } from '@/lib/types/portal';
-import { hashToken, encryptSecret } from '@/lib/server/crypto';
+import { hashToken, encryptSecret, generateMagicToken, generateScopeSignature } from '@/lib/server/crypto';
 
 interface DatabaseSchema {
   clients: Client[];
@@ -562,3 +562,450 @@ export async function recordPayment(payment: PaymentRecord): Promise<PaymentReco
   writeDatabase(db);
   return payment;
 }
+
+// ------------------------------------------
+// Phase 2 Admin & Project Operations
+// ------------------------------------------
+
+export async function addActivityLog(
+  log: Omit<ActivityLog, 'id' | 'timestamp'>
+): Promise<ActivityLog> {
+  const db = readDatabase();
+  const newLog: ActivityLog = {
+    ...log,
+    id: `act_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+    timestamp: new Date().toISOString(),
+  };
+  db.activityLogs.unshift(newLog);
+  if (db.activityLogs.length > 150) {
+    db.activityLogs = db.activityLogs.slice(0, 150);
+  }
+  writeDatabase(db);
+  return newLog;
+}
+
+export async function getActivityLogs(projectId?: string): Promise<ActivityLog[]> {
+  const db = readDatabase();
+  if (projectId) {
+    return db.activityLogs.filter((a) => a.projectId === projectId);
+  }
+  return db.activityLogs;
+}
+
+export async function getProjectsWithClients(): Promise<Array<Project & { client: Client | null }>> {
+  const db = readDatabase();
+  return db.projects.map((p) => ({
+    ...p,
+    client: db.clients.find((c) => c.id === p.clientId) || null,
+  }));
+}
+
+export async function getAgencyStats() {
+  const db = readDatabase();
+  const activeProjects = db.projects.filter((p) => p.status === 'active');
+
+  let activeSprints = 0;
+  let pendingApprovals = 0;
+  let awaitingPayment = 0;
+  let pipelineUsd = 0;
+  let pipelineNgn = 0;
+
+  for (const p of db.projects) {
+    pipelineUsd += p.totalBudgetUsd || 0;
+    pipelineNgn += p.totalBudgetNgn || 0;
+
+    for (const m of p.milestones) {
+      if (m.status === 'in_progress') activeSprints++;
+      if (m.status === 'in_review') pendingApprovals++;
+      if (m.status === 'awaiting_payment') awaitingPayment++;
+
+      for (const d of m.deliverables) {
+        if (d.status === 'ready_for_review') pendingApprovals++;
+      }
+    }
+  }
+
+  return {
+    totalProjects: db.projects.length,
+    activeRetainers: activeProjects.length,
+    activeSprints,
+    pendingApprovals,
+    awaitingPayment,
+    pipelineUsd,
+    pipelineNgn,
+  };
+}
+
+export async function overrideMilestone(
+  projectId: string,
+  milestoneId: string,
+  updates: {
+    status?: 'locked' | 'awaiting_payment' | 'in_progress' | 'in_review' | 'completed';
+    paymentRef?: string;
+    gateway?: 'nowpayments' | 'paystack' | 'moniepoint' | 'manual';
+    notes?: string;
+  }
+): Promise<Project | null> {
+  const db = readDatabase();
+  const project = db.projects.find((p) => p.id === projectId);
+  if (!project) return null;
+
+  const milestoneIndex = project.milestones.findIndex((m) => m.id === milestoneId);
+  if (milestoneIndex === -1) return null;
+
+  const milestone = project.milestones[milestoneIndex];
+
+  if (updates.status) {
+    milestone.status = updates.status;
+  }
+
+  if (updates.paymentRef) {
+    milestone.paymentTxRef = updates.paymentRef;
+  }
+
+  if (updates.gateway) {
+    milestone.paymentGateway = updates.gateway;
+  }
+
+  if (updates.status === 'in_progress') {
+    milestone.unlockedAt = new Date().toISOString();
+  }
+
+  if (updates.status === 'completed') {
+    milestone.completedAt = new Date().toISOString();
+    // Advance project phase index if this was the current phase
+    if (project.currentPhaseIndex === milestoneIndex && milestoneIndex < project.milestones.length - 1) {
+      project.currentPhaseIndex = milestoneIndex + 1;
+      const nextMilestone = project.milestones[project.currentPhaseIndex];
+      if (nextMilestone && nextMilestone.status === 'locked') {
+        nextMilestone.status = 'awaiting_payment';
+      }
+    } else if (milestoneIndex === project.milestones.length - 1) {
+      project.status = 'completed';
+    }
+  }
+
+  project.updatedAt = new Date().toISOString();
+
+  // Log administrative override
+  db.activityLogs.unshift({
+    id: `act_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+    projectId: project.id,
+    actor: 'agency',
+    actorName: 'Agency Administrator',
+    action: 'MILESTONE_OVERRIDE',
+    details: `Phase ${milestone.phaseNumber} (${milestone.title}) updated to ${milestone.status}. ${updates.notes || ''}`,
+    timestamp: new Date().toISOString(),
+  });
+
+  writeDatabase(db);
+  return project;
+}
+
+export async function createFullProject(payload: {
+  client: {
+    name: string;
+    email: string;
+    company: string;
+    telegramHandle?: string;
+    discordHandle?: string;
+    phone?: string;
+  };
+  project: {
+    title: string;
+    slug?: string;
+    tagline?: string;
+    description: string;
+    techStack: string[];
+    stagingUrl?: string;
+    repoUrl?: string;
+    designUrl?: string;
+    milestones: Array<{
+      title: string;
+      subtitle: string;
+      description: string;
+      costUsd: number;
+      costNgn: number;
+      targetCompletionDays: number;
+      deliverables: Array<{ title: string; description?: string }>;
+    }>;
+    prdSummary?: string;
+    problemStatement?: string;
+    targetAudience?: string;
+    coreArchitecture?: string;
+  };
+}): Promise<{
+  project: Project;
+  client: Client;
+  rawToken: string;
+  magicToken: MagicToken;
+}> {
+  const db = readDatabase();
+
+  // 1. Resolve or Create Client
+  const normalizedEmail = payload.client.email.trim().toLowerCase();
+  let client = db.clients.find((c) => c.email.toLowerCase() === normalizedEmail);
+
+  if (!client) {
+    client = {
+      id: `cli_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+      name: payload.client.name.trim(),
+      email: normalizedEmail,
+      company: payload.client.company.trim(),
+      telegramHandle: payload.client.telegramHandle?.trim() || undefined,
+      discordHandle: payload.client.discordHandle?.trim() || undefined,
+      phone: payload.client.phone?.trim() || undefined,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    db.clients.push(client);
+  } else {
+    client.name = payload.client.name.trim() || client.name;
+    client.company = payload.client.company.trim() || client.company;
+    if (payload.client.telegramHandle) client.telegramHandle = payload.client.telegramHandle.trim();
+    if (payload.client.discordHandle) client.discordHandle = payload.client.discordHandle.trim();
+    if (payload.client.phone) client.phone = payload.client.phone.trim();
+    client.updatedAt = new Date().toISOString();
+  }
+
+  // 2. Generate slug
+  const baseSlug = (payload.project.slug || payload.project.title)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)+/g, '');
+
+  let slug = baseSlug || `project-${Date.now().toString().slice(-4)}`;
+  let counter = 1;
+  while (db.projects.some((p) => p.slug === slug)) {
+    slug = `${baseSlug}-${counter++}`;
+  }
+
+  const projectId = `proj_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+
+  // 3. Assemble Milestones
+  let totalUsd = 0;
+  let totalNgn = 0;
+
+  const milestones = payload.project.milestones.map((m, index) => {
+    totalUsd += Number(m.costUsd) || 0;
+    totalNgn += Number(m.costNgn) || 0;
+
+    return {
+      id: `ms_${index + 1}_${Math.random().toString(36).slice(2, 6)}`,
+      projectId,
+      orderIndex: index,
+      phaseNumber: index + 1,
+      title: m.title,
+      subtitle: m.subtitle,
+      description: m.description,
+      costUsd: Number(m.costUsd) || 0,
+      costNgn: Number(m.costNgn) || 0,
+      status: index === 0 ? ('in_progress' as const) : ('locked' as const),
+      unlockedAt: index === 0 ? new Date().toISOString() : undefined,
+      targetCompletionDays: Number(m.targetCompletionDays) || 7,
+      deliverables: (m.deliverables || []).map((d, dIdx) => ({
+        id: `del_${index + 1}_${dIdx + 1}_${Math.random().toString(36).slice(2, 5)}`,
+        title: d.title,
+        description: d.description || '',
+        status: index === 0 ? ('in_progress' as const) : ('backlog' as const),
+      })),
+    };
+  });
+
+  // 4. Assemble Living Genesis PRD
+  const prd = {
+    version: '1.0.0',
+    title: `${payload.project.title} Architectural Specification (PRD v1.0)`,
+    summary:
+      payload.project.prdSummary ||
+      payload.project.description ||
+      'Executive specifications and deliverables baseline agreed upon with client.',
+    problemStatement:
+      payload.project.problemStatement ||
+      'Deliver high-ticket digital infrastructure with zero architectural compromises and sub-second performance.',
+    targetAudience:
+      payload.project.targetAudience || 'Enterprise users, institutional clients, and digital native consumers.',
+    coreArchitecture:
+      payload.project.coreArchitecture ||
+      'Next.js 16 edge rendering, resilient cloud services, microservices backend, and state synchronization.',
+    featureMatrix: [
+      {
+        category: 'Core System Capabilities',
+        features: milestones.flatMap((m) => m.deliverables.map((d) => d.title)).slice(0, 8),
+      },
+      {
+        category: 'Security & Integrity',
+        features: [
+          'Cryptographic magic link identity assertion',
+          'AES-256-GCM encrypted credential vault protection',
+          'Scope Creep Shield v1.0 immutable signature locking',
+        ],
+      },
+    ],
+    techStack: payload.project.techStack,
+    kpis: [
+      '100% adherence to agreed Milestone deliverables',
+      'Sub-80ms responsive edge rendering',
+      'Zero unhandled security vulnerabilities on staging and production cutover',
+    ],
+  };
+
+  const newProject: Project = {
+    id: projectId,
+    clientId: client.id,
+    title: payload.project.title,
+    slug,
+    tagline: payload.project.tagline || 'Bespoke Engineering & Design Sprint',
+    description: payload.project.description,
+    status: 'active',
+    currentPhaseIndex: 0,
+    techStack: payload.project.techStack,
+    stagingUrl: payload.project.stagingUrl,
+    repoUrl: payload.project.repoUrl,
+    designUrl: payload.project.designUrl,
+    totalBudgetUsd: totalUsd,
+    totalBudgetNgn: totalNgn,
+    prd,
+    milestones,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+
+  db.projects.push(newProject);
+
+  // 5. Activity log
+  db.activityLogs.unshift({
+    id: `act_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+    projectId: newProject.id,
+    actor: 'agency',
+    actorName: 'Agency Administrator',
+    action: 'PROJECT_GENESIS',
+    details: `Created project "${newProject.title}" for ${client.name} (${client.company}) with ${milestones.length} milestones.`,
+    timestamp: new Date().toISOString(),
+  });
+
+  // 6. Generate Magic Link
+  const { rawToken, tokenHash } = generateMagicToken();
+  const magicToken: MagicToken = {
+    tokenHash,
+    rawTokenPreview: rawToken.slice(0, 8),
+    email: client.email,
+    projectId: newProject.id,
+    expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 days initial invite validity
+    used: false,
+    createdAt: Date.now(),
+  };
+  db.magicTokens.push(magicToken);
+
+  writeDatabase(db);
+
+  return {
+    project: newProject,
+    client,
+    rawToken,
+    magicToken,
+  };
+}
+
+export async function generateProjectInvite(projectId: string): Promise<{
+  rawToken: string;
+  magicLink: string;
+  client: Client;
+  project: Project;
+} | null> {
+  const db = readDatabase();
+  const project = db.projects.find((p) => p.id === projectId);
+  if (!project) return null;
+
+  const client = db.clients.find((c) => c.id === project.clientId);
+  if (!client) return null;
+
+  const { rawToken, tokenHash } = generateMagicToken();
+  const magicToken: MagicToken = {
+    tokenHash,
+    rawTokenPreview: rawToken.slice(0, 8),
+    email: client.email,
+    projectId: project.id,
+    expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    used: false,
+    createdAt: Date.now(),
+  };
+
+  // Filter out any stale unused tokens for this project
+  db.magicTokens = db.magicTokens.filter(
+    (t) => !(t.projectId === project.id && t.email === client.email && !t.used)
+  );
+  db.magicTokens.push(magicToken);
+
+  db.activityLogs.unshift({
+    id: `act_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+    projectId: project.id,
+    actor: 'agency',
+    actorName: 'Agency Administrator',
+    action: 'MAGIC_INVITE_DISPATCHED',
+    details: `Fresh magic token generated for client ${client.name} (${client.email}).`,
+    timestamp: new Date().toISOString(),
+  });
+
+  writeDatabase(db);
+
+  return {
+    rawToken,
+    magicLink: `/portal/verify?token=${rawToken}`,
+    client,
+    project,
+  };
+}
+
+export async function signOffPRDScope(
+  projectId: string,
+  signerName: string,
+  signerEmail: string,
+  clientIp = '127.0.0.1'
+): Promise<Project | null> {
+  const db = readDatabase();
+  const project = db.projects.find((p) => p.id === projectId);
+  if (!project) return null;
+
+  const timestamp = new Date().toISOString();
+  const signatureHash = generateScopeSignature(
+    project.id,
+    signerEmail,
+    project.prd.version,
+    timestamp
+  );
+
+  project.prd.signedOffAt = timestamp;
+  project.prd.signedOffBy = signerName;
+  project.prd.signedOffIp = clientIp;
+  project.prd.signatureHash = signatureHash;
+
+  // Mark the PRD deliverable as approved if in milestone 1
+  const m1 = project.milestones[0];
+  if (m1) {
+    const prdDeliverable = m1.deliverables.find(
+      (d) => d.id === 'del_02' || d.title.toLowerCase().includes('prd')
+    );
+    if (prdDeliverable) {
+      prdDeliverable.status = 'approved';
+    }
+  }
+
+  project.updatedAt = timestamp;
+
+  // Record audit log
+  db.activityLogs.unshift({
+    id: `act_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+    projectId: project.id,
+    actor: 'client',
+    actorName: signerName,
+    action: 'SCOPE_BASELINE_SIGNED_OFF',
+    details: `Client approved Scope v${project.prd.version} baseline. Cryptographic signature locked: ${signatureHash.slice(0, 16)}...`,
+    timestamp,
+  });
+
+  writeDatabase(db);
+  return project;
+}
+
+
