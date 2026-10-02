@@ -8,6 +8,8 @@ import { DynamicStatusBanner } from '@/components/portal/DynamicStatusBanner';
 import { MilestoneStepper } from '@/components/portal/MilestoneStepper';
 import { GenesisPRDCanvas } from '@/components/portal/GenesisPRDCanvas';
 import { DeliverablesChecklist } from '@/components/portal/DeliverablesChecklist';
+import { DocumentEnclave } from '@/components/portal/DocumentEnclave';
+import type { AgencyDocument } from '@/lib/types/portal';
 import {
   ShieldCheck,
   ShieldAlert,
@@ -21,12 +23,14 @@ import {
   Calendar,
   DollarSign,
   Sparkles,
+  FolderLock,
 } from 'lucide-react';
 
 interface ClientWorkspaceViewProps {
   initialProject: Project;
   client: Client | null;
   clientEmail: string;
+  initialDocuments?: AgencyDocument[];
   isImpersonating?: boolean;
 }
 
@@ -34,13 +38,15 @@ export function ClientWorkspaceView({
   initialProject,
   client,
   clientEmail,
+  initialDocuments = [],
   isImpersonating,
 }: ClientWorkspaceViewProps) {
   const [project, setProject] = useState<Project>(initialProject);
+  const [documents, setDocuments] = useState<AgencyDocument[]>(initialDocuments);
   const [selectedMilestoneIndex, setSelectedMilestoneIndex] = useState<number>(
     project.currentPhaseIndex
   );
-  const [activeTab, setActiveTab] = useState<'sprint' | 'prd' | 'overview'>('sprint');
+  const [activeTab, setActiveTab] = useState<'sprint' | 'prd' | 'docs' | 'overview'>('sprint');
 
   const selectedMilestone = project.milestones[selectedMilestoneIndex] || project.milestones[0];
   const activeMilestone = project.milestones[project.currentPhaseIndex] || project.milestones[0];
@@ -216,6 +222,18 @@ export function ClientWorkspaceView({
           </button>
 
           <button
+            onClick={() => setActiveTab('docs')}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all ${
+              activeTab === 'docs'
+                ? 'bg-card-bg border border-card-border text-electric-blue font-bold shadow-md'
+                : 'text-text-muted hover:text-foreground'
+            }`}
+          >
+            <FolderLock className="w-4 h-4" />
+            <span>Document Safe ({documents.length})</span>
+          </button>
+
+          <button
             onClick={() => setActiveTab('overview')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all ${
               activeTab === 'overview'
@@ -259,7 +277,19 @@ export function ClientWorkspaceView({
           </div>
         )}
 
-        {/* ================= TAB 3: TECH UNIVERSE & SPECS ================= */}
+        {/* ================= TAB 3: DOCUMENT SAFE (12 ASSETS) ================= */}
+        {activeTab === 'docs' && (
+          <div className="animate-fade-in">
+            <DocumentEnclave
+              documents={documents}
+              projectName={project.title}
+              clientName={client?.name || clientEmail}
+              companyName={client?.company || 'Enterprise Partner'}
+            />
+          </div>
+        )}
+
+        {/* ================= TAB 4: TECH UNIVERSE & SPECS ================= */}
         {activeTab === 'overview' && (
           <div className="space-y-6 animate-fade-in text-xs">
             <div className="glassmorphism-card rounded-2xl p-6 sm:p-8 border border-card-border space-y-6">

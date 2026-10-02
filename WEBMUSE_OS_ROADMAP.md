@@ -46,11 +46,37 @@ Unlike conventional off-the-shelf project tools where clients sign up freely and
 
 ### Core Architecture Pillars:
 1. **Agency-Initiated Exclusivity**: Zero public registrations. The agency creates the project record, configures scope and milestone deliverables, and dispatches single-use, time-bound cryptographic magic links.
-2. **Milestone Gatekeeper Engine**: Phase $N+1$ remains mathematically and visually locked until the corresponding milestone payment is settled through automated multi-rail payment APIs (Crypto USDT via NOWPayments / Naira via Paystack & Moniepoint).
-3. **The Living "Genesis Canvas" (PRD)**: Interactive Product Requirement Document replacing clunky static PDFs. Features digital scope sign-off ("Approve Scope v1.0") to establish an immutable contract baseline and defend against scope creep.
-4. **"Black Box" Project Vault**: Zero-knowledge, AES-256 encrypted credential repository storing database URLs, staging logins, API keys, repository links, and tech stack inventory for quick lookup during sprints and future maintenance.
-5. **Staging Review Deck**: Responsive embedded iframe preview enabling clients to test desktop/mobile viewports and drop pinpoint visual annotations on UI elements.
-6. **Handoff Digital Safe & Warranty Clock**: Automatic release of production repository transfers, `.env` exports, Loom walkthrough archives, and an active 30-day post-launch SLA warranty countdown.
+2. **The 11-Stage WCOS Process Lifecycle**:
+   - `01. Initial Consultation`: High-level vision alignment, budget calibration, and stakeholder discovery.
+   - `02. Discovery`: Technical domain analysis, integration endpoint mapping, and constraint auditing.
+   - `03. Proposal`: Commercial investment terms, timeline consensus, and milestone breakdown.
+   - `04. Product Requirements Document (PRD)`: Feature matrix, user personas, and scope creep baseline locking.
+   - `05. Technical Requirements Document (TRD)`: Architecture diagrams, database ERD, API specs, and edge routing.
+   - `06. Design`: UI/UX tokens, high-fidelity Figma components, and interactive prototypes.
+   - `07. Development`: Next.js 16 core full-stack build, WebSocket telemetry, and Supabase data mesh.
+   - `08. Testing`: Cross-device QA, load stress testing, penetration audit, and Lighthouse 100/100 tuning.
+   - `09. Deployment`: Cloudflare DNS cutover, edge SSL issuance, and zero-downtime production cutover.
+   - `10. Handover`: Digital Safe release, GitHub repository transfer, and master credential export.
+   - `11. Maintenance`: 30-day post-launch warranty clock and ongoing retainer SLA support.
+3. **The Standard 12-Document Institutional Suite**:
+   Every high-ticket engagement provisions an immutable, in-portal Document Enclave:
+   - `01_Project_Proposal.pdf` (Executive strategy, commercial framework, and high-level milestones)
+   - `02_Product_Requirements_Document.pdf` (Living Genesis PRD & Scope Creep Shield baseline)
+   - `03_Technical_Requirements_Document.pdf` (TRD: Engineering specs, ERD models, security policies)
+   - `04_Statement_of_Work.pdf` (SOW: Deliverables schedule, acceptance criteria, out-of-scope exclusions)
+   - `05_Master_Service_Agreement.pdf` (MSA: Contractual IP transfer, mutual NDA, liability bounds)
+   - `06_Project_Timeline.pdf` (Gantt sprint roadmap and phase dependency gatekeepers)
+   - `07_UIUX_Guide.pdf` (Design system, cyberpunk tokens, typography, responsive specs)
+   - `08_Testing_Report.pdf` (QA matrix, security penetration audit, Lighthouse 100/100 score)
+   - `09_Deployment_Guide.pdf` (DNS cutover, Cloudflare SSL, edge routing rules)
+   - `10_Handover_Document.pdf` (Repository transfer link, .env manifest, Loom video archive index)
+   - `11_Maintenance_Agreement.pdf` (30-day SLA warranty terms & monthly retainer options)
+   - `12_Invoice.pdf` (Multi-rail crypto USDT & NGN fiat payment receipts and billing ledgers)
+4. **Milestone Gatekeeper Engine**: Phase $N+1$ remains mathematically and visually locked until the corresponding milestone payment is settled through automated multi-rail payment APIs (Crypto USDT via NOWPayments / Naira via Paystack & Moniepoint).
+5. **The Living "Genesis Canvas" (PRD)**: Interactive Product Requirement Document replacing clunky static PDFs. Features digital scope sign-off ("Approve Scope v1.0") to establish an immutable contract baseline and defend against scope creep.
+6. **"Black Box" Project Vault**: Zero-knowledge, AES-256 encrypted credential repository storing database URLs, staging logins, API keys, repository links, and tech stack inventory for quick lookup during sprints and future maintenance.
+7. **Staging Review Deck**: Responsive embedded iframe preview enabling clients to test desktop/mobile viewports and drop pinpoint visual annotations on UI elements.
+8. **Handoff Digital Safe & Warranty Clock**: Automatic release of production repository transfers, `.env` exports, Loom walkthrough archives, and an active 30-day post-launch SLA warranty countdown.
 
 ---
 

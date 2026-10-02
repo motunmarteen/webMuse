@@ -66,6 +66,42 @@ export interface PRDDocument {
   signatureHash?: string;
 }
 
+export type DocumentStatus =
+  | 'drafting'
+  | 'awaiting_signature'
+  | 'executed'
+  | 'released';
+
+export type DocumentCategory =
+  | 'strategy'
+  | 'technical'
+  | 'legal'
+  | 'design'
+  | 'assurance'
+  | 'handoff'
+  | 'financial';
+
+export interface DocumentSection {
+  heading: string;
+  body: string;
+}
+
+export interface AgencyDocument {
+  id: string;
+  orderIndex: number;
+  filename: string;
+  title: string;
+  category: DocumentCategory;
+  description: string;
+  status: DocumentStatus;
+  unlockedAtPhase: number;
+  signedAt?: string;
+  signedBy?: string;
+  signatureHash?: string;
+  downloadUrl?: string;
+  sections: DocumentSection[];
+}
+
 export type ProjectStatus = 'draft' | 'active' | 'in_review' | 'completed';
 
 export interface Project {
@@ -86,6 +122,7 @@ export interface Project {
   totalBudgetNgn: number;
   prd: PRDDocument;
   milestones: Milestone[];
+  documents?: AgencyDocument[];
   warrantyDaysRemaining?: number;
   createdAt: string;
   updatedAt: string;

@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getClientSession, getAdminSession } from '@/lib/server/session';
 import { getProjectBySlug, getClientById } from '@/lib/server/store';
+import { generateDefaultDocuments } from '@/lib/server/documents';
 import { ClientWorkspaceView } from '@/components/portal/ClientWorkspaceView';
 import { LogoutButton } from '@/components/portal/LogoutButton';
 import { Lock } from 'lucide-react';
@@ -69,12 +70,16 @@ export default async function ProjectPortalPage({
   }
 
   const client = await getClientById(project.clientId);
+  const documents = project.documents?.length
+    ? project.documents
+    : generateDefaultDocuments(project, client);
 
   return (
     <ClientWorkspaceView
       initialProject={project}
       client={client}
       clientEmail={session.email}
+      initialDocuments={documents}
       isImpersonating={isImpersonating}
     />
   );
