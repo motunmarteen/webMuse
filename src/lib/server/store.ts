@@ -48,12 +48,125 @@ interface DatabaseSchema {
 const DATA_DIR = path.join(process.cwd(), 'data');
 const DB_FILE = path.join(DATA_DIR, 'webmuse-db.json');
 
+export function getDefaultVaultSecretsForProject(projectId: string, clientEmail?: string): VaultSecret[] {
+  const email = clientEmail || 'client@apexlabs.io';
+
+  const secretsConfig = [
+    {
+      category: 'infrastructure' as VaultCategory,
+      toolName: 'Vercel Enterprise Edge Hosting',
+      keyLabel: 'Production Deployment & Cloud Console',
+      usernameOrEmail: email,
+      loginUrl: 'https://vercel.com/login',
+      plainValue: 'Vercel_Apex_Prod!2026#Edge',
+      notes: 'Master credentials for Next.js 16 production edge deployments, environment variables, and CDN invalidation.',
+      isClientVisible: true,
+    },
+    {
+      category: 'database' as VaultCategory,
+      toolName: 'Supabase Cloud PostgreSQL',
+      keyLabel: 'PostgreSQL Database Master Password',
+      usernameOrEmail: 'postgres.apex',
+      loginUrl: 'https://supabase.com/dashboard',
+      plainValue: 'ApexPostgres_Secure#991_Prod',
+      notes: 'Realtime database connection, Row Level Security policies, and SQL editor console access.',
+      isClientVisible: true,
+    },
+    {
+      category: 'apis' as VaultCategory,
+      toolName: 'Stripe Global Merchant Gateway',
+      keyLabel: 'Stripe Merchant Dashboard',
+      usernameOrEmail: email,
+      loginUrl: 'https://dashboard.stripe.com/login',
+      plainValue: 'Stripe_Apex_Pay#Live2026$',
+      notes: 'Access to Stripe merchant accounts, instant card settlement analytics, and billing webhook endpoints.',
+      isClientVisible: true,
+    },
+    {
+      category: 'apis' as VaultCategory,
+      toolName: 'NOWPayments Crypto Settlement',
+      keyLabel: 'Crypto Custody & IPN Engine',
+      usernameOrEmail: email,
+      loginUrl: 'https://account.nowpayments.io/login',
+      plainValue: 'NOWPay_Apex#USDT_Solana_2026',
+      notes: 'Instant multi-chain crypto settlement dashboard for BTC, ETH, and USDT payments.',
+      isClientVisible: true,
+    },
+    {
+      category: 'domain_dns' as VaultCategory,
+      toolName: 'Cloudflare Zero Trust & Edge DNS',
+      keyLabel: 'DNS Management Console & WAF Firewall',
+      usernameOrEmail: email,
+      loginUrl: 'https://dash.cloudflare.com/login',
+      plainValue: 'Cloudflare_Apex_Edge#TLS13_Sec',
+      notes: 'Edge firewall rules, DDoS mitigation, SSL certificates, and custom apex domain DNS routing.',
+      isClientVisible: true,
+    },
+    {
+      category: 'repositories' as VaultCategory,
+      toolName: 'GitHub Enterprise Repository',
+      keyLabel: 'Source Code & CI/CD Pipeline Token',
+      usernameOrEmail: 'apex-robot-deployer',
+      loginUrl: 'https://github.com/login',
+      plainValue: 'ghp_ApexCoreSourceRepositoryToken2026',
+      notes: 'Full read/write repository access to source code, branch protections, and automated GitHub Actions workflows.',
+      isClientVisible: true,
+    },
+    {
+      category: 'apis' as VaultCategory,
+      toolName: 'Resend Transactional Mailer',
+      keyLabel: 'Email Dispatch API & SMTP Relay',
+      usernameOrEmail: email,
+      loginUrl: 'https://resend.com/login',
+      plainValue: 're_ApexTransactionalMailer_2026Secret',
+      notes: 'Transactional notification system, magic login links dispatch, and domain DKIM/SPF verification.',
+      isClientVisible: true,
+    },
+    {
+      category: 'staging_auth' as VaultCategory,
+      toolName: 'WebMuse Staging Sandbox Gate',
+      keyLabel: 'QA Staging Environment Access',
+      usernameOrEmail: 'partner-qa',
+      loginUrl: 'https://staging.apex-protocol.webmuse.tech',
+      plainValue: 'ApexStaging2026!BasicAuthGate#',
+      notes: 'HTTP Basic Auth credentials to unlock the staging sandbox environment on preview builds.',
+      isClientVisible: true,
+    },
+    {
+      category: 'infrastructure' as VaultCategory,
+      toolName: 'Sentry Telemetry & Error APM',
+      keyLabel: 'Application Performance Monitoring',
+      usernameOrEmail: email,
+      loginUrl: 'https://sentry.io/auth/login',
+      plainValue: 'Sentry_Apex_APM#Telemetry2026',
+      notes: 'Real-time crash diagnostics, distributed tracing, and user session replay monitoring.',
+      isClientVisible: true,
+    },
+  ];
+
+  const now = new Date().toISOString();
+  return secretsConfig.map((item, index) => {
+    const enc = encryptSecret(item.plainValue);
+    return {
+      id: `sec_${projectId}_${index + 1}`,
+      projectId,
+      category: item.category,
+      toolName: item.toolName,
+      keyLabel: item.keyLabel,
+      usernameOrEmail: item.usernameOrEmail,
+      loginUrl: item.loginUrl,
+      encryptedValue: enc.encryptedValue,
+      iv: enc.iv,
+      authTag: enc.authTag,
+      isClientVisible: item.isClientVisible,
+      notes: item.notes,
+      updatedAt: now,
+    };
+  });
+}
+
 // Ensure directory and initialize store
 function getInitialData(): DatabaseSchema {
-  const sampleStagingPass = encryptSecret('Staging2026!ApexSecure#');
-  const sampleDbUrl = encryptSecret('postgresql://postgres.apex:ApexSecure991@aws-0-eu-central-1.pooler.supabase.com:6543/postgres');
-  const sampleApiKey = encryptSecret('wm_test_api_key_mock_placeholder_sample');
-
   const demoClient: Client = {
     id: 'cli_apex_01',
     name: 'Alex Vance',
@@ -84,7 +197,7 @@ function getInitialData(): DatabaseSchema {
       'WebSockets',
       'Vercel',
     ],
-    stagingUrl: 'https://staging.apex-protocol.webmuse.dev',
+    stagingUrl: 'https://staging.apex-protocol.webmuse.tech',
     repoUrl: 'https://github.com/webmuse-studios/apex-protocol-core',
     designUrl: 'https://figma.com/file/sample-apex-design-tokens',
     totalBudgetUsd: 18500,
@@ -303,47 +416,7 @@ function getInitialData(): DatabaseSchema {
     updatedAt: new Date().toISOString(),
   };
 
-  const demoSecrets: VaultSecret[] = [
-    {
-      id: 'sec_01',
-      projectId: 'proj_apex_01',
-      category: 'staging_auth',
-      toolName: 'Staging Vercel Preview',
-      keyLabel: 'Staging Admin Password',
-      encryptedValue: sampleStagingPass.encryptedValue,
-      iv: sampleStagingPass.iv,
-      authTag: sampleStagingPass.authTag,
-      isClientVisible: true,
-      notes: 'Use this to bypass staging basic-auth gate on preview builds.',
-      updatedAt: new Date().toISOString(),
-    },
-    {
-      id: 'sec_02',
-      projectId: 'proj_apex_01',
-      category: 'database',
-      toolName: 'Supabase PostgreSQL',
-      keyLabel: 'Transaction Pooler URL',
-      encryptedValue: sampleDbUrl.encryptedValue,
-      iv: sampleDbUrl.iv,
-      authTag: sampleDbUrl.authTag,
-      isClientVisible: false,
-      notes: 'Agency internal connection string for database schema migrations.',
-      updatedAt: new Date().toISOString(),
-    },
-    {
-      id: 'sec_03',
-      projectId: 'proj_apex_01',
-      category: 'apis',
-      toolName: 'WebMuse API Dispatcher',
-      keyLabel: 'Telemetry Secret Key',
-      encryptedValue: sampleApiKey.encryptedValue,
-      iv: sampleApiKey.iv,
-      authTag: sampleApiKey.authTag,
-      isClientVisible: true,
-      notes: 'Client API credential for ingesting live algorithmic signals.',
-      updatedAt: new Date().toISOString(),
-    },
-  ];
+  const demoSecrets: VaultSecret[] = getDefaultVaultSecretsForProject('proj_apex_01', 'client@apexlabs.io');
 
   return {
     clients: [demoClient],
@@ -425,7 +498,7 @@ function ensureProjectEnrichment(p: Project): void {
       },
       {
         id: `dom_${p.id}_2`,
-        domain: `staging.${p.slug}.webmuse.dev`,
+        domain: `staging.${p.slug}.webmuse.tech`,
         registrar: 'WebMuse Cloudflare Edge DNS',
         registeredAt: '2026-01-10T00:00:00.000Z',
         expiresAt: '2028-01-10T00:00:00.000Z',
@@ -434,7 +507,7 @@ function ensureProjectEnrichment(p: Project): void {
         sslStatus: 'active',
         sslIssuer: "Let's Encrypt Authority X3",
         sslExpiresAt: '2027-01-10T00:00:00.000Z',
-        nameservers: ['ns1.webmuse.dev', 'ns2.webmuse.dev'],
+        nameservers: ['ns1.webmuse.tech', 'ns2.webmuse.tech'],
         status: 'healthy',
       },
     ];
@@ -792,6 +865,24 @@ function readDatabase(): DatabaseSchema {
       }
     }
 
+    if (!parsed.vaultSecrets || parsed.vaultSecrets.length === 0) {
+      parsed.vaultSecrets = [];
+      for (const proj of parsed.projects || []) {
+        const client = (parsed.clients || []).find((c) => c.id === proj.clientId);
+        parsed.vaultSecrets.push(...getDefaultVaultSecretsForProject(proj.id, client?.email));
+      }
+      needsSave = true;
+    } else {
+      for (const proj of parsed.projects || []) {
+        const hasSecrets = parsed.vaultSecrets.some((s) => s.projectId === proj.id);
+        if (!hasSecrets) {
+          const client = (parsed.clients || []).find((c) => c.id === proj.clientId);
+          parsed.vaultSecrets.push(...getDefaultVaultSecretsForProject(proj.id, client?.email));
+          needsSave = true;
+        }
+      }
+    }
+
     if (needsSave) {
       writeDatabase(parsed);
     }
@@ -998,6 +1089,8 @@ export async function createVaultSecret(data: {
   category: VaultCategory;
   toolName: string;
   keyLabel: string;
+  usernameOrEmail?: string;
+  loginUrl?: string;
   plainValue: string;
   isClientVisible: boolean;
   notes?: string;
@@ -1014,6 +1107,8 @@ export async function createVaultSecret(data: {
     category: data.category,
     toolName: data.toolName,
     keyLabel: data.keyLabel,
+    usernameOrEmail: data.usernameOrEmail,
+    loginUrl: data.loginUrl,
     encryptedValue: encrypted.encryptedValue,
     iv: encrypted.iv,
     authTag: encrypted.authTag,
@@ -1044,6 +1139,8 @@ export async function updateVaultSecret(
     category?: VaultCategory;
     toolName?: string;
     keyLabel?: string;
+    usernameOrEmail?: string;
+    loginUrl?: string;
     plainValue?: string;
     isClientVisible?: boolean;
     notes?: string;
@@ -1059,6 +1156,8 @@ export async function updateVaultSecret(
   if (data.category) secret.category = data.category;
   if (data.toolName) secret.toolName = data.toolName;
   if (data.keyLabel) secret.keyLabel = data.keyLabel;
+  if (data.usernameOrEmail !== undefined) secret.usernameOrEmail = data.usernameOrEmail;
+  if (data.loginUrl !== undefined) secret.loginUrl = data.loginUrl;
   if (data.isClientVisible !== undefined) secret.isClientVisible = data.isClientVisible;
   if (data.notes !== undefined) secret.notes = data.notes;
 
@@ -1759,7 +1858,12 @@ export async function createFullProject(payload: {
     timestamp: new Date().toISOString(),
   });
 
-  // 6. Generate Magic Link
+  // 6. Generate Default Tool Passwords for Product Owner Vault
+  const initialSecrets = getDefaultVaultSecretsForProject(newProject.id, client.email);
+  if (!db.vaultSecrets) db.vaultSecrets = [];
+  db.vaultSecrets.push(...initialSecrets);
+
+  // 7. Generate Magic Link
   const { rawToken, tokenHash } = generateMagicToken();
   const magicToken: MagicToken = {
     tokenHash,

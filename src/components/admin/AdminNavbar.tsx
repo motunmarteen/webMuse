@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AdminLogoutButton } from '@/components/admin/AdminLogoutButton';
-import { LayoutDashboard, PlusCircle, ShieldAlert } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, ShieldAlert, BookOpen } from 'lucide-react';
 
 export function AdminNavbar({ adminEmail }: { adminEmail?: string }) {
   const pathname = usePathname();
@@ -47,6 +47,18 @@ export function AdminNavbar({ adminEmail }: { adminEmail?: string }) {
               <PlusCircle className="w-3.5 h-3.5 text-emerald-400" />
               <span>New Genesis Project</span>
             </Link>
+
+            <Link
+              href="/manual"
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-colors ${
+                pathname === '/manual'
+                  ? 'bg-card-bg border border-card-border text-foreground font-medium'
+                  : 'text-text-muted hover:text-foreground'
+              }`}
+            >
+              <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Operational Manual</span>
+            </Link>
           </nav>
         </div>
 
@@ -54,7 +66,7 @@ export function AdminNavbar({ adminEmail }: { adminEmail?: string }) {
           <div className="hidden sm:flex items-center gap-2 text-right font-mono text-xs">
             <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-card-border bg-card-bg text-text-muted text-[11px]">
               <ShieldAlert className="w-3 h-3 text-electric-blue" />
-              <span>{adminEmail || 'admin@webmuse.io'}</span>
+              <span>{adminEmail || 'admin@webmuse.tech'}</span>
             </div>
           </div>
 

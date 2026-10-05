@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 
     const amountUsd = milestone.costUsd;
     const amountNgn = milestone.costNgn;
-    const payerEmail = clientSession?.email || adminSession?.email || 'client@webmuse.dev';
+    const payerEmail = clientSession?.email || adminSession?.email || 'client@webmuse.tech';
     const txRef = `WM_${gateway ? gateway.toUpperCase() : 'INTENT'}_${milestone.phaseNumber}_${Date.now().toString(36).toUpperCase()}`;
 
     // Record pending intent in store

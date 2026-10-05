@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Determine author info
-    let authorEmail = 'developer@webmuse.dev';
+    let authorEmail = 'developer@webmuse.tech';
     let authorName = 'WebMuse Engineering';
 
     if (clientSession) {

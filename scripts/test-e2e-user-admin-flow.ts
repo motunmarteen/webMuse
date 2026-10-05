@@ -124,7 +124,7 @@ async function runEndToEndFlowAudit() {
   assert.ok(pinBroadcast, 'Visual annotation must broadcast alert into team comms');
 
   // Resolve pin
-  const resolvedPin = await resolveReviewPin(testPin.id, 'resolved', 'martins@webmuse.dev');
+  const resolvedPin = await resolveReviewPin(testPin.id, 'resolved', 'martins@webmuse.tech');
   assert.ok(resolvedPin, 'Pin must be resolvable by engineering lead');
   assert.strictEqual(resolvedPin.status, 'resolved');
 

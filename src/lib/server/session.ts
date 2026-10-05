@@ -39,7 +39,7 @@ export async function setClientSession(client: Client, project: Project): Promis
 /**
  * Sets an HTTP-only, secure signed cookie for the agency administrator
  */
-export async function setAdminSession(adminEmail = 'admin@webmuse.io'): Promise<void> {
+export async function setAdminSession(adminEmail = 'admin@webmuse.tech'): Promise<void> {
   const cookieStore = await cookies();
   const now = Date.now();
 

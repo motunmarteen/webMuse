@@ -87,7 +87,7 @@ async function runPhase5Tests() {
   assert.strictEqual(blocked, true, 'Client role must be blocked from decrypting internal developer keys');
 
   // Verify admin can decrypt it
-  const adminDecrypted = await getDecryptedVaultSecret(devOnlySecret.id, false, 'admin@webmuse.dev');
+  const adminDecrypted = await getDecryptedVaultSecret(devOnlySecret.id, false, 'admin@webmuse.tech');
   assert.ok(adminDecrypted, 'Admin must be able to decrypt developer-only secrets');
   console.log(`         • Client access to developer-only credential "${devOnlySecret.keyLabel}" blocked with ACCESS_DENIED.`);
   console.log('         • Admin successfully authenticated and authorized to access internal database credentials.');
@@ -104,18 +104,18 @@ async function runPhase5Tests() {
     plainValue: 'mock_stripe_restricted_test_key_sample_12345',
     isClientVisible: false,
     notes: 'Restricted key for processing milestone checkout charges',
-    actorName: 'admin@webmuse.dev',
+    actorName: 'admin@webmuse.tech',
   });
   assert.ok(createdSecret.id, 'Created secret must have ID');
   assert.notStrictEqual(createdSecret.encryptedValue, 'mock_stripe_restricted_test_key_sample_12345');
 
   const updatedSecret = await updateVaultSecret(createdSecret.id, {
     notes: 'Updated note: Verified with Stripe webhook endpoint',
-    actorName: 'admin@webmuse.dev',
+    actorName: 'admin@webmuse.tech',
   });
   assert.strictEqual(updatedSecret?.notes, 'Updated note: Verified with Stripe webhook endpoint');
 
-  const deleted = await deleteVaultSecret(createdSecret.id, 'admin@webmuse.dev');
+  const deleted = await deleteVaultSecret(createdSecret.id, 'admin@webmuse.tech');
   assert.strictEqual(deleted, true, 'Secret must be successfully deleted');
   console.log('         • Created, updated, and purged test secret through hardware-grade lifecycle.');
 

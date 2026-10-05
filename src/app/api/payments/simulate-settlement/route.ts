@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Milestone not found' }, { status: 404 });
     }
 
-    const payerEmail = clientSession?.email || adminSession?.email || 'client@webmuse.dev';
+    const payerEmail = clientSession?.email || adminSession?.email || 'client@webmuse.tech';
     const chosenCurrency = currency || (gateway === 'nowpayments' ? 'USDT' : gateway === 'paystack' ? 'NGN' : 'USD');
     const amount = chosenCurrency === 'NGN' ? milestone.costNgn : milestone.costUsd;
 

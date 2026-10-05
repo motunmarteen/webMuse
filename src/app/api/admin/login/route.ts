@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json().catch(() => ({}));
     const passphrase = typeof body.passphrase === 'string' ? body.passphrase : '';
-    const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : 'ops@webmuse.io';
+    const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : 'ops@webmuse.tech';
 
     const clientIp =
       req.headers.get('x-forwarded-for')?.split(',')[0].trim() ||

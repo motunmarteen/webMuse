@@ -7,7 +7,7 @@ import { Lock, KeyRound, ShieldAlert, ArrowRight, Eye, EyeOff, Terminal, Sparkle
 export function AdminLoginForm() {
   const router = useRouter();
   const [passphrase, setPassphrase] = useState('');
-  const [email, setEmail] = useState('ops@webmuse.io');
+  const [email, setEmail] = useState('ops@webmuse.tech');
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -108,7 +108,7 @@ export function AdminLoginForm() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-full rounded-xl border border-card-border bg-card-bg px-4 py-3 text-foreground placeholder:text-text-muted/50 focus:border-electric-blue focus:outline-none transition-colors"
-                placeholder="ops@webmuse.io"
+                placeholder="ops@webmuse.tech"
               />
             </div>
           </div>

@@ -41,6 +41,8 @@ export async function GET(request: NextRequest) {
       category: s.category,
       toolName: s.toolName,
       keyLabel: s.keyLabel,
+      usernameOrEmail: s.usernameOrEmail,
+      loginUrl: s.loginUrl,
       isClientVisible: s.isClientVisible,
       notes: s.notes,
       updatedAt: s.updatedAt,
@@ -112,7 +114,17 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: 'Admin authorization required to create secrets' }, { status: 403 });
       }
 
-      const { projectId, category, toolName, keyLabel, plainValue, isClientVisible, notes } = body;
+      const {
+        projectId,
+        category,
+        toolName,
+        keyLabel,
+        usernameOrEmail,
+        loginUrl,
+        plainValue,
+        isClientVisible,
+        notes,
+      } = body;
 
       if (!projectId || !category || !toolName || !keyLabel || !plainValue) {
         return NextResponse.json(
@@ -131,6 +143,8 @@ export async function POST(request: NextRequest) {
         category: category as VaultCategory,
         toolName,
         keyLabel,
+        usernameOrEmail,
+        loginUrl,
         plainValue,
         isClientVisible: !!isClientVisible,
         notes,

@@ -164,6 +164,17 @@ export function ClientWorkspaceView({
               <span className="hidden sm:inline">Founder Guide (Start Here)</span>
             </button>
 
+            {/* Platform Manual (Printable PDF / Full Guide) */}
+            <Link
+              href="/manual"
+              target="_blank"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-card-border hover:border-electric-blue bg-card-bg text-text-muted hover:text-foreground text-xs font-semibold transition-all"
+              title="Open full printable Operational Manual (PDF)"
+            >
+              <FileText className="w-3.5 h-3.5 text-electric-blue" />
+              <span className="hidden sm:inline">Platform Manual</span>
+            </Link>
+
             {/* Client Identity Pill */}
             <div className="hidden sm:flex items-center gap-2.5 text-right font-mono">
               <div>

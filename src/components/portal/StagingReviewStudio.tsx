@@ -59,7 +59,7 @@ export function StagingReviewStudio({ project, clientEmail }: StagingReviewStudi
   const [iframeKey, setIframeKey] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const stagingUrl = project.stagingUrl || `https://staging.${project.slug}.webmuse.dev`;
+  const stagingUrl = project.stagingUrl || `https://staging.${project.slug}.webmuse.tech`;
 
   // Fetch pins
   const fetchPins = async () => {
@@ -380,7 +380,7 @@ export function StagingReviewStudio({ project, clientEmail }: StagingReviewStudi
                     <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
                     <span className="ml-2 font-mono text-[10px] text-text-muted/60 truncate max-w-xs">
-                      {previewSource === 'simulation' ? `https://staging.${project.slug}.webmuse.dev (Simulated)` : stagingUrl}
+                      {previewSource === 'simulation' ? `https://staging.${project.slug}.webmuse.tech (Simulated)` : stagingUrl}
                     </span>
                   </div>
                   <div className="flex items-center gap-3 text-[10px] uppercase font-semibold text-text-muted">

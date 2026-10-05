@@ -260,7 +260,7 @@ ${project.milestones
                 <Globe className="w-3.5 h-3.5" /> Edge Staging Environment
               </span>
               <div className="text-white text-xs font-mono mt-0.5">
-                {project.stagingUrl || 'https://staging.webmuse.dev/' + project.slug}
+                {project.stagingUrl || 'https://staging.webmuse.tech/' + project.slug}
               </div>
             </div>
             <div className="text-right text-[11px] text-zinc-400">

@@ -510,7 +510,7 @@ export function ProjectCockpit({
               <span>Online &amp; Serving</span>
             </div>
             <div className="text-[11px] text-zinc-400 truncate">
-              {project.stagingUrl || `https://staging.webmuse.dev/${project.slug}`}
+              {project.stagingUrl || `https://staging.webmuse.tech/${project.slug}`}
             </div>
           </div>
 

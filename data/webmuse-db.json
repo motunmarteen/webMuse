@@ -62,7 +62,7 @@
         "WebSockets",
         "Vercel"
       ],
-      "stagingUrl": "https://staging.apex-protocol.webmuse.dev",
+      "stagingUrl": "https://staging.apex-protocol.webmuse.tech",
       "repoUrl": "https://github.com/webmuse-studios/apex-protocol-core",
       "designUrl": "https://figma.com/file/sample-apex-design-tokens",
       "totalBudgetUsd": 18500,
@@ -112,7 +112,7 @@
           "99.99% uptime during high-volatility market events",
           "100% adherence to scope baseline agreed upon in Milestone 1"
         ],
-        "signedOffAt": "2026-10-05T15:51:34.588Z",
+        "signedOffAt": "2026-10-05T16:24:23.484Z",
         "signedOffBy": "Alex Vance",
         "signedOffIp": "127.0.0.1",
         "signatureHash": "b34c1b6f52734159aae54049471b80149e8ff0b8e40aa965db13396563ff9a72"
@@ -184,7 +184,7 @@
           "unlockedAt": "2026-10-05T10:36:20.619Z",
           "paymentTxRef": "TEST_INTENT_REF_1791196580601",
           "paymentGateway": "nowpayments",
-          "completedAt": "2026-10-05T15:51:34.670Z"
+          "completedAt": "2026-10-05T16:24:23.510Z"
         },
         {
           "id": "ms_03_engineering",
@@ -319,7 +319,7 @@
         }
       ],
       "createdAt": "2026-10-01T18:08:09.626Z",
-      "updatedAt": "2026-10-05T15:51:35.038Z",
+      "updatedAt": "2026-10-05T16:24:23.808Z",
       "domains": [
         {
           "id": "dom_proj_apex_01_1",
@@ -340,7 +340,7 @@
         },
         {
           "id": "dom_proj_apex_01_2",
-          "domain": "staging.apex-protocol.webmuse.dev",
+          "domain": "staging.apex-protocol.webmuse.tech",
           "registrar": "WebMuse Cloudflare Edge DNS",
           "registeredAt": "2026-01-10T00:00:00.000Z",
           "expiresAt": "2028-01-10T00:00:00.000Z",
@@ -350,8 +350,8 @@
           "sslIssuer": "Let's Encrypt Authority X3",
           "sslExpiresAt": "2027-01-10T00:00:00.000Z",
           "nameservers": [
-            "ns1.webmuse.dev",
-            "ns2.webmuse.dev"
+            "ns1.webmuse.tech",
+            "ns2.webmuse.tech"
           ],
           "status": "healthy"
         }
@@ -672,7 +672,7 @@
         },
         {
           "id": "dom_proj_test_1790896442450_2",
-          "domain": "staging.cyberdyne-threat-monitor-2449.webmuse.dev",
+          "domain": "staging.cyberdyne-threat-monitor-2449.webmuse.tech",
           "registrar": "WebMuse Cloudflare Edge DNS",
           "registeredAt": "2026-01-10T00:00:00.000Z",
           "expiresAt": "2028-01-10T00:00:00.000Z",
@@ -682,8 +682,8 @@
           "sslIssuer": "Let's Encrypt Authority X3",
           "sslExpiresAt": "2027-01-10T00:00:00.000Z",
           "nameservers": [
-            "ns1.webmuse.dev",
-            "ns2.webmuse.dev"
+            "ns1.webmuse.tech",
+            "ns2.webmuse.tech"
           ],
           "status": "healthy"
         }
@@ -1004,7 +1004,7 @@
         },
         {
           "id": "dom_proj_test_1790897350894_2",
-          "domain": "staging.cyberdyne-threat-monitor-0893.webmuse.dev",
+          "domain": "staging.cyberdyne-threat-monitor-0893.webmuse.tech",
           "registrar": "WebMuse Cloudflare Edge DNS",
           "registeredAt": "2026-01-10T00:00:00.000Z",
           "expiresAt": "2028-01-10T00:00:00.000Z",
@@ -1014,8 +1014,8 @@
           "sslIssuer": "Let's Encrypt Authority X3",
           "sslExpiresAt": "2027-01-10T00:00:00.000Z",
           "nameservers": [
-            "ns1.webmuse.dev",
-            "ns2.webmuse.dev"
+            "ns1.webmuse.tech",
+            "ns2.webmuse.tech"
           ],
           "status": "healthy"
         }
@@ -1516,7 +1516,7 @@
         },
         {
           "id": "dom_proj_1790898412123_z20n_2",
-          "domain": "staging.vanguard-autonomy-engine.webmuse.dev",
+          "domain": "staging.vanguard-autonomy-engine.webmuse.tech",
           "registrar": "WebMuse Cloudflare Edge DNS",
           "registeredAt": "2026-01-10T00:00:00.000Z",
           "expiresAt": "2028-01-10T00:00:00.000Z",
@@ -1526,8 +1526,8 @@
           "sslIssuer": "Let's Encrypt Authority X3",
           "sslExpiresAt": "2027-01-10T00:00:00.000Z",
           "nameservers": [
-            "ns1.webmuse.dev",
-            "ns2.webmuse.dev"
+            "ns1.webmuse.tech",
+            "ns2.webmuse.tech"
           ],
           "status": "healthy"
         }
@@ -1848,7 +1848,7 @@
         },
         {
           "id": "dom_proj_test_1791041087698_2",
-          "domain": "staging.cyberdyne-threat-monitor-7697.webmuse.dev",
+          "domain": "staging.cyberdyne-threat-monitor-7697.webmuse.tech",
           "registrar": "WebMuse Cloudflare Edge DNS",
           "registeredAt": "2026-01-10T00:00:00.000Z",
           "expiresAt": "2028-01-10T00:00:00.000Z",
@@ -1858,8 +1858,8 @@
           "sslIssuer": "Let's Encrypt Authority X3",
           "sslExpiresAt": "2027-01-10T00:00:00.000Z",
           "nameservers": [
-            "ns1.webmuse.dev",
-            "ns2.webmuse.dev"
+            "ns1.webmuse.tech",
+            "ns2.webmuse.tech"
           ],
           "status": "healthy"
         }
@@ -2170,6 +2170,15 @@
       "expiresAt": 1791820294458,
       "used": true,
       "createdAt": 1791215494458
+    },
+    {
+      "tokenHash": "eab6d4e8d8f5654440b91cbd77338c8ef5104e76da497181ec4463180ad04f05",
+      "rawTokenPreview": "6d79f91c",
+      "email": "client@apexlabs.io",
+      "projectId": "proj_apex_01",
+      "expiresAt": 1791822263455,
+      "used": true,
+      "createdAt": 1791217463455
     }
   ],
   "vaultSecrets": [
@@ -2211,6 +2220,546 @@
       "isClientVisible": true,
       "notes": "Client API credential for ingesting live algorithmic signals.",
       "updatedAt": "2026-10-01T18:08:09.626Z"
+    },
+    {
+      "id": "sec_proj_test_1790896442450_1",
+      "projectId": "proj_test_1790896442450",
+      "category": "infrastructure",
+      "toolName": "Vercel Enterprise Edge Hosting",
+      "keyLabel": "Production Deployment & Cloud Console",
+      "usernameOrEmail": "sarah_1790896442449@cyberdyne-defense.org",
+      "loginUrl": "https://vercel.com/login",
+      "encryptedValue": "59c55fe7de0f661b09dc5964e4df642d6f5c06a47cf665fa0c2e",
+      "iv": "da44129b50ceff3c8f7e63e0",
+      "authTag": "9375595158952dd7873828389d450dd0",
+      "isClientVisible": true,
+      "notes": "Master credentials for Next.js 16 production edge deployments, environment variables, and CDN invalidation.",
+      "updatedAt": "2026-10-05T16:23:36.969Z"
+    },
+    {
+      "id": "sec_proj_test_1790896442450_2",
+      "projectId": "proj_test_1790896442450",
+      "category": "database",
+      "toolName": "Supabase Cloud PostgreSQL",
+      "keyLabel": "PostgreSQL Database Master Password",
+      "usernameOrEmail": "postgres.apex",
+      "loginUrl": "https://supabase.com/dashboard",
+      "encryptedValue": "beee987f3f705aae9c17647c0696eb72f33b065aed6c70611b46a2b9",
+      "iv": "991b0c8c6168699c07d2b8e4",
+      "authTag": "a9eae71db75ed217726c05239c49df33",
+      "isClientVisible": true,
+      "notes": "Realtime database connection, Row Level Security policies, and SQL editor console access.",
+      "updatedAt": "2026-10-05T16:23:36.969Z"
+    },
+    {
+      "id": "sec_proj_test_1790896442450_3",
+      "projectId": "proj_test_1790896442450",
+      "category": "apis",
+      "toolName": "Stripe Global Merchant Gateway",
+      "keyLabel": "Stripe Merchant Dashboard",
+      "usernameOrEmail": "sarah_1790896442449@cyberdyne-defense.org",
+      "loginUrl": "https://dashboard.stripe.com/login",
+      "encryptedValue": "2430520e70fa80303bb7212108b5795ca055e3c65fbfef6381",
+      "iv": "d4e3fcfec2652f3ea46c842c",
+      "authTag": "f3f83f803c3cd72d2019df5eae64052c",
+      "isClientVisible": true,
+      "notes": "Access to Stripe merchant accounts, instant card settlement analytics, and billing webhook endpoints.",
+      "updatedAt": "2026-10-05T16:23:36.969Z"
+    },
+    {
+      "id": "sec_proj_test_1790896442450_4",
+      "projectId": "proj_test_1790896442450",
+      "category": "apis",
+      "toolName": "NOWPayments Crypto Settlement",
+      "keyLabel": "Crypto Custody & IPN Engine",
+      "usernameOrEmail": "sarah_1790896442449@cyberdyne-defense.org",
+      "loginUrl": "https://account.nowpayments.io/login",
+      "encryptedValue": "88670cce4b6031152371639987c8e932222ea6dbccfa291917e23509",
+      "iv": "85ce59d71880dde966ee2ef1",
+      "authTag": "a9497e8daffb53ef2672847e59f0fc4f",
+      "isClientVisible": true,
+      "notes": "Instant multi-chain crypto settlement dashboard for BTC, ETH, and USDT payments.",
+      "updatedAt": "2026-10-05T16:23:36.969Z"
+    },
+    {
+      "id": "sec_proj_test_1790896442450_5",
+      "projectId": "proj_test_1790896442450",
+      "category": "domain_dns",
+      "toolName": "Cloudflare Zero Trust & Edge DNS",
+      "keyLabel": "DNS Management Console & WAF Firewall",
+      "usernameOrEmail": "sarah_1790896442449@cyberdyne-defense.org",
+      "loginUrl": "https://dash.cloudflare.com/login",
+      "encryptedValue": "6876723f1516f3f1a611fa5eab33e67ed276c8d77aa6d415b4d5f82436a3",
+      "iv": "4782ce51b35d2417452534a8",
+      "authTag": "485357ba8de82cfe7e6df0cc5f1a0706",
+      "isClientVisible": true,
+      "notes": "Edge firewall rules, DDoS mitigation, SSL certificates, and custom apex domain DNS routing.",
+      "updatedAt": "2026-10-05T16:23:36.969Z"
+    },
+    {
+      "id": "sec_proj_test_1790896442450_6",
+      "projectId": "proj_test_1790896442450",
+      "category": "repositories",
+      "toolName": "GitHub Enterprise Repository",
+      "keyLabel": "Source Code & CI/CD Pipeline Token",
+      "usernameOrEmail": "apex-robot-deployer",
+      "loginUrl": "https://github.com/login",
+      "encryptedValue": "9c1401d9c0df063dc0ad3488aa2bb3ad7c0cd5a984b4abc31156964f82c3f6db58e9c33a72",
+      "iv": "9ca7a9fe6b36b84e9a174e89",
+      "authTag": "ba8f779110cba82b09446e69e0c0fbab",
+      "isClientVisible": true,
+      "notes": "Full read/write repository access to source code, branch protections, and automated GitHub Actions workflows.",
+      "updatedAt": "2026-10-05T16:23:36.969Z"
+    },
+    {
+      "id": "sec_proj_test_1790896442450_7",
+      "projectId": "proj_test_1790896442450",
+      "category": "apis",
+      "toolName": "Resend Transactional Mailer",
+      "keyLabel": "Email Dispatch API & SMTP Relay",
+      "usernameOrEmail": "sarah_1790896442449@cyberdyne-defense.org",
+      "loginUrl": "https://resend.com/login",
+      "encryptedValue": "0f31c8ae759fd918cd4a162ad41b2c488d8a91c3c551f1174ef618ce1e2fed6a2baddee75c",
+      "iv": "67505d2172a172e70e69049b",
+      "authTag": "b06fbb70f22a52d8d45f9b830aa45e51",
+      "isClientVisible": true,
+      "notes": "Transactional notification system, magic login links dispatch, and domain DKIM/SPF verification.",
+      "updatedAt": "2026-10-05T16:23:36.969Z"
+    },
+    {
+      "id": "sec_proj_test_1790896442450_8",
+      "projectId": "proj_test_1790896442450",
+      "category": "staging_auth",
+      "toolName": "WebMuse Staging Sandbox Gate",
+      "keyLabel": "QA Staging Environment Access",
+      "usernameOrEmail": "partner-qa",
+      "loginUrl": "https://staging.apex-protocol.webmuse.tech",
+      "encryptedValue": "b17be5e22573942ca0e0f8aeccd6239bcfc9c0057e6177d1356638f00ae1",
+      "iv": "09d33723fabe4408a8b60d0b",
+      "authTag": "fc6ec4c68e474041faf483d8bdb73099",
+      "isClientVisible": true,
+      "notes": "HTTP Basic Auth credentials to unlock the staging sandbox environment on preview builds.",
+      "updatedAt": "2026-10-05T16:23:36.969Z"
+    },
+    {
+      "id": "sec_proj_test_1790896442450_9",
+      "projectId": "proj_test_1790896442450",
+      "category": "infrastructure",
+      "toolName": "Sentry Telemetry & Error APM",
+      "keyLabel": "Application Performance Monitoring",
+      "usernameOrEmail": "sarah_1790896442449@cyberdyne-defense.org",
+      "loginUrl": "https://sentry.io/auth/login",
+      "encryptedValue": "2575f6f5511fe5cfa6e880dc80739d06d8444b8c072af7bd993ccf4b3c",
+      "iv": "f8b1ce8c356525885203d200",
+      "authTag": "a8cb90f530a3a102682d20edd513736b",
+      "isClientVisible": true,
+      "notes": "Real-time crash diagnostics, distributed tracing, and user session replay monitoring.",
+      "updatedAt": "2026-10-05T16:23:36.969Z"
+    },
+    {
+      "id": "sec_proj_test_1790897350894_1",
+      "projectId": "proj_test_1790897350894",
+      "category": "infrastructure",
+      "toolName": "Vercel Enterprise Edge Hosting",
+      "keyLabel": "Production Deployment & Cloud Console",
+      "usernameOrEmail": "sarah_1790897350893@cyberdyne-defense.org",
+      "loginUrl": "https://vercel.com/login",
+      "encryptedValue": "76f190d9d058cfb6b22fb3aa1f6945cae4540fa2ce027d134c68",
+      "iv": "b497af106ff533a2c7b068e8",
+      "authTag": "4885f0f52a762af854009fa2f9d3b10a",
+      "isClientVisible": true,
+      "notes": "Master credentials for Next.js 16 production edge deployments, environment variables, and CDN invalidation.",
+      "updatedAt": "2026-10-05T16:23:36.973Z"
+    },
+    {
+      "id": "sec_proj_test_1790897350894_2",
+      "projectId": "proj_test_1790897350894",
+      "category": "database",
+      "toolName": "Supabase Cloud PostgreSQL",
+      "keyLabel": "PostgreSQL Database Master Password",
+      "usernameOrEmail": "postgres.apex",
+      "loginUrl": "https://supabase.com/dashboard",
+      "encryptedValue": "ec64e9b5278c78bad6e183fd4d5bb52fa07f9623514ab29c0f1d7995",
+      "iv": "5d78426f6864c86aca22509e",
+      "authTag": "dead09eef20513c0c73ffcfd7769ac28",
+      "isClientVisible": true,
+      "notes": "Realtime database connection, Row Level Security policies, and SQL editor console access.",
+      "updatedAt": "2026-10-05T16:23:36.973Z"
+    },
+    {
+      "id": "sec_proj_test_1790897350894_3",
+      "projectId": "proj_test_1790897350894",
+      "category": "apis",
+      "toolName": "Stripe Global Merchant Gateway",
+      "keyLabel": "Stripe Merchant Dashboard",
+      "usernameOrEmail": "sarah_1790897350893@cyberdyne-defense.org",
+      "loginUrl": "https://dashboard.stripe.com/login",
+      "encryptedValue": "c4e83800de513ca334cfa02dbf55a369605dc9b711ede6f5d3",
+      "iv": "633a4317bd718aab5dff2d02",
+      "authTag": "b4052b2d0b40dfbaf455524ebaa39054",
+      "isClientVisible": true,
+      "notes": "Access to Stripe merchant accounts, instant card settlement analytics, and billing webhook endpoints.",
+      "updatedAt": "2026-10-05T16:23:36.973Z"
+    },
+    {
+      "id": "sec_proj_test_1790897350894_4",
+      "projectId": "proj_test_1790897350894",
+      "category": "apis",
+      "toolName": "NOWPayments Crypto Settlement",
+      "keyLabel": "Crypto Custody & IPN Engine",
+      "usernameOrEmail": "sarah_1790897350893@cyberdyne-defense.org",
+      "loginUrl": "https://account.nowpayments.io/login",
+      "encryptedValue": "434f14d8235349b02a9f04d3ac5cd90ff914fb7eaef70f49ce7cfbd0",
+      "iv": "42366628f4e9014f66752849",
+      "authTag": "407f77aaea905390417733b1abbdbbce",
+      "isClientVisible": true,
+      "notes": "Instant multi-chain crypto settlement dashboard for BTC, ETH, and USDT payments.",
+      "updatedAt": "2026-10-05T16:23:36.973Z"
+    },
+    {
+      "id": "sec_proj_test_1790897350894_5",
+      "projectId": "proj_test_1790897350894",
+      "category": "domain_dns",
+      "toolName": "Cloudflare Zero Trust & Edge DNS",
+      "keyLabel": "DNS Management Console & WAF Firewall",
+      "usernameOrEmail": "sarah_1790897350893@cyberdyne-defense.org",
+      "loginUrl": "https://dash.cloudflare.com/login",
+      "encryptedValue": "71ebfa42854f651f0e26294a966e4362ff6b87fb7c70b2e397a430840b17",
+      "iv": "d0d0c2dc00f0c0c464450e09",
+      "authTag": "4a5c13a186a331f6fcd85c5f8235104e",
+      "isClientVisible": true,
+      "notes": "Edge firewall rules, DDoS mitigation, SSL certificates, and custom apex domain DNS routing.",
+      "updatedAt": "2026-10-05T16:23:36.973Z"
+    },
+    {
+      "id": "sec_proj_test_1790897350894_6",
+      "projectId": "proj_test_1790897350894",
+      "category": "repositories",
+      "toolName": "GitHub Enterprise Repository",
+      "keyLabel": "Source Code & CI/CD Pipeline Token",
+      "usernameOrEmail": "apex-robot-deployer",
+      "loginUrl": "https://github.com/login",
+      "encryptedValue": "45ce0865af40e68106d145a00569e63e05964e2582d55d4cf626df03aaa1569ba2f8486d95",
+      "iv": "1bb1e281b06cabea6fac3824",
+      "authTag": "97ab8601c50c0db9de5f3178eaef329d",
+      "isClientVisible": true,
+      "notes": "Full read/write repository access to source code, branch protections, and automated GitHub Actions workflows.",
+      "updatedAt": "2026-10-05T16:23:36.973Z"
+    },
+    {
+      "id": "sec_proj_test_1790897350894_7",
+      "projectId": "proj_test_1790897350894",
+      "category": "apis",
+      "toolName": "Resend Transactional Mailer",
+      "keyLabel": "Email Dispatch API & SMTP Relay",
+      "usernameOrEmail": "sarah_1790897350893@cyberdyne-defense.org",
+      "loginUrl": "https://resend.com/login",
+      "encryptedValue": "df7d0f78a33f0a91e23262c4d0475a672867e94ae39815c04301f48ff6240621036ee45b49",
+      "iv": "3f55a14afc70e9929cde7756",
+      "authTag": "50051d920ba44e70aa0db081c370f33b",
+      "isClientVisible": true,
+      "notes": "Transactional notification system, magic login links dispatch, and domain DKIM/SPF verification.",
+      "updatedAt": "2026-10-05T16:23:36.973Z"
+    },
+    {
+      "id": "sec_proj_test_1790897350894_8",
+      "projectId": "proj_test_1790897350894",
+      "category": "staging_auth",
+      "toolName": "WebMuse Staging Sandbox Gate",
+      "keyLabel": "QA Staging Environment Access",
+      "usernameOrEmail": "partner-qa",
+      "loginUrl": "https://staging.apex-protocol.webmuse.tech",
+      "encryptedValue": "543331fd5001c1fc3b249c3810151f3ce3e7de40e47ee0680693e3bc7384",
+      "iv": "4688e9976a3c7221bf98d058",
+      "authTag": "313461a5324ad607c2103d0b539429bf",
+      "isClientVisible": true,
+      "notes": "HTTP Basic Auth credentials to unlock the staging sandbox environment on preview builds.",
+      "updatedAt": "2026-10-05T16:23:36.973Z"
+    },
+    {
+      "id": "sec_proj_test_1790897350894_9",
+      "projectId": "proj_test_1790897350894",
+      "category": "infrastructure",
+      "toolName": "Sentry Telemetry & Error APM",
+      "keyLabel": "Application Performance Monitoring",
+      "usernameOrEmail": "sarah_1790897350893@cyberdyne-defense.org",
+      "loginUrl": "https://sentry.io/auth/login",
+      "encryptedValue": "7a6224714d3d9bccd2fa223310ec05e4fc5e4bee3f0244afe0ce3b9efc",
+      "iv": "3576dc02952764622e6082b0",
+      "authTag": "a2239317541c055feee86930430257b6",
+      "isClientVisible": true,
+      "notes": "Real-time crash diagnostics, distributed tracing, and user session replay monitoring.",
+      "updatedAt": "2026-10-05T16:23:36.973Z"
+    },
+    {
+      "id": "sec_proj_1790898412123_z20n_1",
+      "projectId": "proj_1790898412123_z20n",
+      "category": "infrastructure",
+      "toolName": "Vercel Enterprise Edge Hosting",
+      "keyLabel": "Production Deployment & Cloud Console",
+      "usernameOrEmail": "david@vanguard.io",
+      "loginUrl": "https://vercel.com/login",
+      "encryptedValue": "91c7cda7c67f2eccb345773262423759236dd3e7bc25da9d568e",
+      "iv": "1aace26a49a82d76870b852e",
+      "authTag": "ac188795f9060b49757ad2675e5c074c",
+      "isClientVisible": true,
+      "notes": "Master credentials for Next.js 16 production edge deployments, environment variables, and CDN invalidation.",
+      "updatedAt": "2026-10-05T16:23:36.974Z"
+    },
+    {
+      "id": "sec_proj_1790898412123_z20n_2",
+      "projectId": "proj_1790898412123_z20n",
+      "category": "database",
+      "toolName": "Supabase Cloud PostgreSQL",
+      "keyLabel": "PostgreSQL Database Master Password",
+      "usernameOrEmail": "postgres.apex",
+      "loginUrl": "https://supabase.com/dashboard",
+      "encryptedValue": "4fa6b0ed4ecaf35da77438ba7fb7d96148904773a9d509d9905dbad2",
+      "iv": "38a11860a1134e0ce393794b",
+      "authTag": "94a4da28a98a5f43131564f32c514060",
+      "isClientVisible": true,
+      "notes": "Realtime database connection, Row Level Security policies, and SQL editor console access.",
+      "updatedAt": "2026-10-05T16:23:36.974Z"
+    },
+    {
+      "id": "sec_proj_1790898412123_z20n_3",
+      "projectId": "proj_1790898412123_z20n",
+      "category": "apis",
+      "toolName": "Stripe Global Merchant Gateway",
+      "keyLabel": "Stripe Merchant Dashboard",
+      "usernameOrEmail": "david@vanguard.io",
+      "loginUrl": "https://dashboard.stripe.com/login",
+      "encryptedValue": "43fb1484adc82f72ccb97f7616508d547d46511354132a6905",
+      "iv": "316519bc3b00ce1169249b2d",
+      "authTag": "6e91a9c5f94c5c0e839c5eed00b97c21",
+      "isClientVisible": true,
+      "notes": "Access to Stripe merchant accounts, instant card settlement analytics, and billing webhook endpoints.",
+      "updatedAt": "2026-10-05T16:23:36.974Z"
+    },
+    {
+      "id": "sec_proj_1790898412123_z20n_4",
+      "projectId": "proj_1790898412123_z20n",
+      "category": "apis",
+      "toolName": "NOWPayments Crypto Settlement",
+      "keyLabel": "Crypto Custody & IPN Engine",
+      "usernameOrEmail": "david@vanguard.io",
+      "loginUrl": "https://account.nowpayments.io/login",
+      "encryptedValue": "3b3876be11dc7322ee096e3c9ae660a923d9f3ca05c47dd6874f7dbc",
+      "iv": "64777ff6fa42b941af716a6e",
+      "authTag": "3ad4bf882994d938ab5a7db5f722d8ca",
+      "isClientVisible": true,
+      "notes": "Instant multi-chain crypto settlement dashboard for BTC, ETH, and USDT payments.",
+      "updatedAt": "2026-10-05T16:23:36.974Z"
+    },
+    {
+      "id": "sec_proj_1790898412123_z20n_5",
+      "projectId": "proj_1790898412123_z20n",
+      "category": "domain_dns",
+      "toolName": "Cloudflare Zero Trust & Edge DNS",
+      "keyLabel": "DNS Management Console & WAF Firewall",
+      "usernameOrEmail": "david@vanguard.io",
+      "loginUrl": "https://dash.cloudflare.com/login",
+      "encryptedValue": "d5052aa8cfb2fa126f1c8e54cfaeadccc039c0d1d65f95d0e4b0fd51bd78",
+      "iv": "fb6e6c6bbfb960067014a775",
+      "authTag": "3dfcdb609f68c288ed7940f466e94689",
+      "isClientVisible": true,
+      "notes": "Edge firewall rules, DDoS mitigation, SSL certificates, and custom apex domain DNS routing.",
+      "updatedAt": "2026-10-05T16:23:36.974Z"
+    },
+    {
+      "id": "sec_proj_1790898412123_z20n_6",
+      "projectId": "proj_1790898412123_z20n",
+      "category": "repositories",
+      "toolName": "GitHub Enterprise Repository",
+      "keyLabel": "Source Code & CI/CD Pipeline Token",
+      "usernameOrEmail": "apex-robot-deployer",
+      "loginUrl": "https://github.com/login",
+      "encryptedValue": "7206b4896692506f13c6b4a20291df44d011e282f2a9b03fdf7968729d62851655ec24c281",
+      "iv": "ceedc8823e457b0c13a2cc95",
+      "authTag": "829533278986d06b02872ad3647a75bc",
+      "isClientVisible": true,
+      "notes": "Full read/write repository access to source code, branch protections, and automated GitHub Actions workflows.",
+      "updatedAt": "2026-10-05T16:23:36.974Z"
+    },
+    {
+      "id": "sec_proj_1790898412123_z20n_7",
+      "projectId": "proj_1790898412123_z20n",
+      "category": "apis",
+      "toolName": "Resend Transactional Mailer",
+      "keyLabel": "Email Dispatch API & SMTP Relay",
+      "usernameOrEmail": "david@vanguard.io",
+      "loginUrl": "https://resend.com/login",
+      "encryptedValue": "24161cc1942fcbf8ce33574627c02c9281b6d1c623897df9f60944d0da8f42f40b060a31e9",
+      "iv": "294896dfbb1a0110dcbbb890",
+      "authTag": "1ef407c9f322817ffc0dee7ae503ef87",
+      "isClientVisible": true,
+      "notes": "Transactional notification system, magic login links dispatch, and domain DKIM/SPF verification.",
+      "updatedAt": "2026-10-05T16:23:36.974Z"
+    },
+    {
+      "id": "sec_proj_1790898412123_z20n_8",
+      "projectId": "proj_1790898412123_z20n",
+      "category": "staging_auth",
+      "toolName": "WebMuse Staging Sandbox Gate",
+      "keyLabel": "QA Staging Environment Access",
+      "usernameOrEmail": "partner-qa",
+      "loginUrl": "https://staging.apex-protocol.webmuse.tech",
+      "encryptedValue": "3c7a325bcd04049614eed7b8fda92a935c805dea81405e7070542ee1d664",
+      "iv": "ac019e8245d4724c6e2c15c0",
+      "authTag": "e832edafa20d0a7c3109441b38fe8253",
+      "isClientVisible": true,
+      "notes": "HTTP Basic Auth credentials to unlock the staging sandbox environment on preview builds.",
+      "updatedAt": "2026-10-05T16:23:36.974Z"
+    },
+    {
+      "id": "sec_proj_1790898412123_z20n_9",
+      "projectId": "proj_1790898412123_z20n",
+      "category": "infrastructure",
+      "toolName": "Sentry Telemetry & Error APM",
+      "keyLabel": "Application Performance Monitoring",
+      "usernameOrEmail": "david@vanguard.io",
+      "loginUrl": "https://sentry.io/auth/login",
+      "encryptedValue": "18a4f05e58c29829f2a3dd2d7915da24e424505135e3bed4632461929b",
+      "iv": "70e8206f09bf92d8477b8fba",
+      "authTag": "47b4f2e98123c43ed393046fabfee8d2",
+      "isClientVisible": true,
+      "notes": "Real-time crash diagnostics, distributed tracing, and user session replay monitoring.",
+      "updatedAt": "2026-10-05T16:23:36.974Z"
+    },
+    {
+      "id": "sec_proj_test_1791041087698_1",
+      "projectId": "proj_test_1791041087698",
+      "category": "infrastructure",
+      "toolName": "Vercel Enterprise Edge Hosting",
+      "keyLabel": "Production Deployment & Cloud Console",
+      "usernameOrEmail": "sarah_1791041087697@cyberdyne-defense.org",
+      "loginUrl": "https://vercel.com/login",
+      "encryptedValue": "fdaa19a5df9ab5f248172705b3a7be98f5e85d2a146293f8cd74",
+      "iv": "b4673db43523788f1104b77f",
+      "authTag": "a43770a1b9fb0daccbec5b62ee16ae69",
+      "isClientVisible": true,
+      "notes": "Master credentials for Next.js 16 production edge deployments, environment variables, and CDN invalidation.",
+      "updatedAt": "2026-10-05T16:23:36.975Z"
+    },
+    {
+      "id": "sec_proj_test_1791041087698_2",
+      "projectId": "proj_test_1791041087698",
+      "category": "database",
+      "toolName": "Supabase Cloud PostgreSQL",
+      "keyLabel": "PostgreSQL Database Master Password",
+      "usernameOrEmail": "postgres.apex",
+      "loginUrl": "https://supabase.com/dashboard",
+      "encryptedValue": "809a236786b030fc55ba3dbb5a62f62874403b00188705bfe9fc7547",
+      "iv": "39d78a411c3578e6d9b3088b",
+      "authTag": "f5d1012289652e41b67586b554cb0c89",
+      "isClientVisible": true,
+      "notes": "Realtime database connection, Row Level Security policies, and SQL editor console access.",
+      "updatedAt": "2026-10-05T16:23:36.975Z"
+    },
+    {
+      "id": "sec_proj_test_1791041087698_3",
+      "projectId": "proj_test_1791041087698",
+      "category": "apis",
+      "toolName": "Stripe Global Merchant Gateway",
+      "keyLabel": "Stripe Merchant Dashboard",
+      "usernameOrEmail": "sarah_1791041087697@cyberdyne-defense.org",
+      "loginUrl": "https://dashboard.stripe.com/login",
+      "encryptedValue": "d4e31311dc82f7538c1620510e0772e5c11318bd6584983a3a",
+      "iv": "a13b76401179829d59913511",
+      "authTag": "bfbebbdba45eeb4b736862ac1915ab0b",
+      "isClientVisible": true,
+      "notes": "Access to Stripe merchant accounts, instant card settlement analytics, and billing webhook endpoints.",
+      "updatedAt": "2026-10-05T16:23:36.975Z"
+    },
+    {
+      "id": "sec_proj_test_1791041087698_4",
+      "projectId": "proj_test_1791041087698",
+      "category": "apis",
+      "toolName": "NOWPayments Crypto Settlement",
+      "keyLabel": "Crypto Custody & IPN Engine",
+      "usernameOrEmail": "sarah_1791041087697@cyberdyne-defense.org",
+      "loginUrl": "https://account.nowpayments.io/login",
+      "encryptedValue": "ea64af60ae78e43b462643dc278d1e96f5ce8c7449e454a1d3c4054b",
+      "iv": "c9a9fa0b641d04c7c00efa1b",
+      "authTag": "887e55418c8f8fb5fc0ab44c6abbbcaa",
+      "isClientVisible": true,
+      "notes": "Instant multi-chain crypto settlement dashboard for BTC, ETH, and USDT payments.",
+      "updatedAt": "2026-10-05T16:23:36.975Z"
+    },
+    {
+      "id": "sec_proj_test_1791041087698_5",
+      "projectId": "proj_test_1791041087698",
+      "category": "domain_dns",
+      "toolName": "Cloudflare Zero Trust & Edge DNS",
+      "keyLabel": "DNS Management Console & WAF Firewall",
+      "usernameOrEmail": "sarah_1791041087697@cyberdyne-defense.org",
+      "loginUrl": "https://dash.cloudflare.com/login",
+      "encryptedValue": "f916f5b249411117f5a30c4ddbd06368d5118a4478c594868e245126e29d",
+      "iv": "3564fcf3a131bd037d73322c",
+      "authTag": "0ec837c22732baf6bd861c5ba7df4b0c",
+      "isClientVisible": true,
+      "notes": "Edge firewall rules, DDoS mitigation, SSL certificates, and custom apex domain DNS routing.",
+      "updatedAt": "2026-10-05T16:23:36.975Z"
+    },
+    {
+      "id": "sec_proj_test_1791041087698_6",
+      "projectId": "proj_test_1791041087698",
+      "category": "repositories",
+      "toolName": "GitHub Enterprise Repository",
+      "keyLabel": "Source Code & CI/CD Pipeline Token",
+      "usernameOrEmail": "apex-robot-deployer",
+      "loginUrl": "https://github.com/login",
+      "encryptedValue": "472b0d1ba73ec37c74f6a75b86fa83b0a1f81b444f2c5718f29e4b00855fb911263b6026f4",
+      "iv": "ddc4f0baf9392984b0967ac6",
+      "authTag": "0287047ae980b4d07d2502d2661712d6",
+      "isClientVisible": true,
+      "notes": "Full read/write repository access to source code, branch protections, and automated GitHub Actions workflows.",
+      "updatedAt": "2026-10-05T16:23:36.975Z"
+    },
+    {
+      "id": "sec_proj_test_1791041087698_7",
+      "projectId": "proj_test_1791041087698",
+      "category": "apis",
+      "toolName": "Resend Transactional Mailer",
+      "keyLabel": "Email Dispatch API & SMTP Relay",
+      "usernameOrEmail": "sarah_1791041087697@cyberdyne-defense.org",
+      "loginUrl": "https://resend.com/login",
+      "encryptedValue": "c8d4a78560343b80bda26bc5385db8211a7dd3f4eeffea526c46b3f781b005048978a0408c",
+      "iv": "2846199e351bea28babeda70",
+      "authTag": "5a50b2883333565dcb6ee0b93be6572f",
+      "isClientVisible": true,
+      "notes": "Transactional notification system, magic login links dispatch, and domain DKIM/SPF verification.",
+      "updatedAt": "2026-10-05T16:23:36.975Z"
+    },
+    {
+      "id": "sec_proj_test_1791041087698_8",
+      "projectId": "proj_test_1791041087698",
+      "category": "staging_auth",
+      "toolName": "WebMuse Staging Sandbox Gate",
+      "keyLabel": "QA Staging Environment Access",
+      "usernameOrEmail": "partner-qa",
+      "loginUrl": "https://staging.apex-protocol.webmuse.tech",
+      "encryptedValue": "487484288bb86d63fb55be648a2768d90915e843d3d900a007f115367278",
+      "iv": "87e64f8533677ed8cc817f67",
+      "authTag": "68afb4c1112acbd475256f05d17c63f3",
+      "isClientVisible": true,
+      "notes": "HTTP Basic Auth credentials to unlock the staging sandbox environment on preview builds.",
+      "updatedAt": "2026-10-05T16:23:36.975Z"
+    },
+    {
+      "id": "sec_proj_test_1791041087698_9",
+      "projectId": "proj_test_1791041087698",
+      "category": "infrastructure",
+      "toolName": "Sentry Telemetry & Error APM",
+      "keyLabel": "Application Performance Monitoring",
+      "usernameOrEmail": "sarah_1791041087697@cyberdyne-defense.org",
+      "loginUrl": "https://sentry.io/auth/login",
+      "encryptedValue": "a8593d9f19a21fe2f5036febfb2f3a839c055c0591091707856826e48d",
+      "iv": "e71f6701099a57401d46e92c",
+      "authTag": "2b08ad090e74efa4cb52527fc2f5018a",
+      "isClientVisible": true,
+      "notes": "Real-time crash diagnostics, distributed tracing, and user session replay monitoring.",
+      "updatedAt": "2026-10-05T16:23:36.975Z"
     }
   ],
   "payments": [
@@ -2357,9 +2906,41 @@
         "addonId": "addon_speed_perf",
         "addonTitle": "Speed & Core Web Vitals Optimization"
       }
+    },
+    {
+      "id": "pay_addon_1791217463674_d0xn",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_addon_1791217463674_rvgd",
+      "phaseNumber": 7,
+      "gateway": "nowpayments",
+      "amount": 450,
+      "currency": "USD",
+      "status": "confirmed",
+      "txHashOrRef": "tx_e2e_1791217463667",
+      "payerEmail": "client@apexlabs.io",
+      "createdAt": "2026-10-05T16:24:23.674Z",
+      "confirmedAt": "2026-10-05T16:24:23.674Z",
+      "metadata": {
+        "addonId": "addon_speed_perf",
+        "addonTitle": "Speed & Core Web Vitals Optimization"
+      }
     }
   ],
   "reviewPins": [
+    {
+      "id": "pin_1791217463547_4eu2",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_03_engineering",
+      "authorEmail": "client@apexlabs.io",
+      "authorName": "Alex Vance",
+      "xPercent": 55.4,
+      "yPercent": 32.1,
+      "viewportWidth": 1440,
+      "comment": "Increase contrast on depth-of-market orderbook typography for OLED screens",
+      "severity": "tweak",
+      "status": "resolved",
+      "createdAt": "2026-10-05T16:24:23.547Z"
+    },
     {
       "id": "pin_1791215494678_021r",
       "projectId": "proj_apex_01",
@@ -2419,6 +3000,132 @@
   ],
   "activityLogs": [
     {
+      "id": "act_1791217463796_xftbg",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "client@apexlabs.io",
+      "action": "ADDON_SERVICE_PURCHASED",
+      "details": "Purchased Add-on \"Speed & Core Web Vitals Optimization\" via NOWPAYMENTS (Ref: tx_e2e_1791217463667). Phase 7 micro-milestone initialized.",
+      "timestamp": "2026-10-05T16:24:23.674Z"
+    },
+    {
+      "id": "act_1791217463629_qncm3",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "WARRANTY_TICKET_SUBMITTED",
+      "details": "SLA Warranty Ticket \"E2E Test: WebSocket heartbeat timeout on edge network\" filed [Priority: medium]. Assigned to engineering triage.",
+      "timestamp": "2026-10-05T16:24:23.629Z"
+    },
+    {
+      "id": "act_1791217463564_3ick1",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "martins@webmuse.tech",
+      "action": "REVIEW_PIN_RESOLVED",
+      "details": "Staging feedback marker #4eu2 marked RESOLVED by martins@webmuse.tech.",
+      "timestamp": "2026-10-05T16:24:23.564Z"
+    },
+    {
+      "id": "act_1791217463547_igwev",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "REVIEW_PIN_DROPPED",
+      "details": "Staging feedback marker #4eu2 placed [TWEAK]: \"Increase contrast on depth-of-market orderbook typography fo\"",
+      "timestamp": "2026-10-05T16:24:23.547Z"
+    },
+    {
+      "id": "act_1791217463510_xo72x",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 2 (UI/UX Design Architecture & Design System) updated to completed. Client approved Figma deck and design tokens",
+      "timestamp": "2026-10-05T16:24:23.510Z"
+    },
+    {
+      "id": "act_1791217463455_7wip1",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MAGIC_INVITE_DISPATCHED",
+      "details": "Fresh magic token generated for client Alex Vance (client@apexlabs.io).",
+      "timestamp": "2026-10-05T16:24:23.455Z"
+    },
+    {
+      "id": "act_1791217417255_l19ed",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Marteen Mubaraq",
+      "action": "REVIEW_PIN_DELETED",
+      "details": "Feedback marker #lzio removed from staging review deck.",
+      "timestamp": "2026-10-05T16:23:37.255Z"
+    },
+    {
+      "id": "act_1791217417175_v35lk",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Marteen Mubaraq",
+      "action": "REVIEW_PIN_RESOLVED",
+      "details": "Staging feedback marker #lzio marked RESOLVED by Marteen Mubaraq.",
+      "timestamp": "2026-10-05T16:23:37.177Z"
+    },
+    {
+      "id": "act_1791217417157_65w2y",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "REVIEW_PIN_DROPPED",
+      "details": "Staging feedback marker #lzio placed [BUG]: \"The mempool gas fee estimator widget requires high-contrast \"",
+      "timestamp": "2026-10-05T16:23:37.157Z"
+    },
+    {
+      "id": "act_1791217417107_44bob",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.tech",
+      "action": "VAULT_SECRET_DELETED",
+      "details": "Credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) permanently purged from AES-256 vault.",
+      "timestamp": "2026-10-05T16:23:37.107Z"
+    },
+    {
+      "id": "act_1791217417068_y0v0n",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.tech",
+      "action": "VAULT_SECRET_UPDATED",
+      "details": "Updated credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) in AES-256 vault.",
+      "timestamp": "2026-10-05T16:23:37.068Z"
+    },
+    {
+      "id": "act_1791217417044_l5r40",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.tech",
+      "action": "VAULT_SECRET_CREATED",
+      "details": "Encrypted credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) committed to AES-256 vault. Visible to client: No (Agency Only).",
+      "timestamp": "2026-10-05T16:23:37.044Z"
+    },
+    {
+      "id": "act_1791217417022_fh9sz",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.tech",
+      "action": "VAULT_SECRET_ACCESSED",
+      "details": "Decrypted credential \"Transaction Pooler URL\" (Supabase PostgreSQL) viewed via hardware-grade AES-256-GCM.",
+      "timestamp": "2026-10-05T16:23:37.022Z"
+    },
+    {
+      "id": "act_1791217417005_clwpf",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "client@apexlabs.io",
+      "action": "VAULT_SECRET_ACCESSED",
+      "details": "Decrypted credential \"Staging Admin Password\" (Staging Vercel Preview) viewed via hardware-grade AES-256-GCM.",
+      "timestamp": "2026-10-05T16:23:37.005Z"
+    },
+    {
       "id": "act_1791215821597_rk0bd",
       "projectId": "proj_apex_01",
       "actor": "agency",
@@ -2467,9 +3174,9 @@
       "id": "act_1791215494818_3ij35",
       "projectId": "proj_apex_01",
       "actor": "agency",
-      "actorName": "martins@webmuse.dev",
+      "actorName": "martins@webmuse.tech",
       "action": "REVIEW_PIN_RESOLVED",
-      "details": "Staging feedback marker #021r marked RESOLVED by martins@webmuse.dev.",
+      "details": "Staging feedback marker #021r marked RESOLVED by martins@webmuse.tech.",
       "timestamp": "2026-10-05T15:51:34.818Z"
     },
     {
@@ -2566,9 +3273,9 @@
       "id": "act_1791214626993_tv7qm",
       "projectId": "proj_apex_01",
       "actor": "agency",
-      "actorName": "martins@webmuse.dev",
+      "actorName": "martins@webmuse.tech",
       "action": "REVIEW_PIN_RESOLVED",
-      "details": "Staging feedback marker #a0eq marked RESOLVED by martins@webmuse.dev.",
+      "details": "Staging feedback marker #a0eq marked RESOLVED by martins@webmuse.tech.",
       "timestamp": "2026-10-05T15:37:06.993Z"
     },
     {
@@ -2620,9 +3327,9 @@
       "id": "act_1791214185364_fwa9u",
       "projectId": "proj_apex_01",
       "actor": "agency",
-      "actorName": "martins@webmuse.dev",
+      "actorName": "martins@webmuse.tech",
       "action": "REVIEW_PIN_RESOLVED",
-      "details": "Staging feedback marker #ayd2 marked RESOLVED by martins@webmuse.dev.",
+      "details": "Staging feedback marker #ayd2 marked RESOLVED by martins@webmuse.tech.",
       "timestamp": "2026-10-05T15:29:45.364Z"
     },
     {
@@ -2658,7 +3365,7 @@
       "actor": "agency",
       "actorName": "WebMuse Lead Engineer",
       "action": "REVIEW_PIN_REOPENED",
-      "details": "Staging feedback marker #1vtb marked MARTINS@WEBMUSE.DEV by Engineering team.",
+      "details": "Staging feedback marker #1vtb marked MARTINS@WEBMUSE.TECH by Engineering team.",
       "timestamp": "2026-10-05T15:27:57.586Z"
     },
     {
@@ -2791,7 +3498,7 @@
       "id": "act_1791199997899_07r6u",
       "projectId": "proj_apex_01",
       "actor": "agency",
-      "actorName": "admin@webmuse.dev",
+      "actorName": "admin@webmuse.tech",
       "action": "VAULT_SECRET_DELETED",
       "details": "Credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) permanently purged from AES-256 vault.",
       "timestamp": "2026-10-05T11:33:17.899Z"
@@ -2800,7 +3507,7 @@
       "id": "act_1791199997826_9h7yl",
       "projectId": "proj_apex_01",
       "actor": "agency",
-      "actorName": "admin@webmuse.dev",
+      "actorName": "admin@webmuse.tech",
       "action": "VAULT_SECRET_UPDATED",
       "details": "Updated credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) in AES-256 vault.",
       "timestamp": "2026-10-05T11:33:17.826Z"
@@ -2809,7 +3516,7 @@
       "id": "act_1791199997789_uq15g",
       "projectId": "proj_apex_01",
       "actor": "agency",
-      "actorName": "admin@webmuse.dev",
+      "actorName": "admin@webmuse.tech",
       "action": "VAULT_SECRET_CREATED",
       "details": "Encrypted credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) committed to AES-256 vault. Visible to client: No (Agency Only).",
       "timestamp": "2026-10-05T11:33:17.789Z"
@@ -2818,7 +3525,7 @@
       "id": "act_1791199997769_xnvys",
       "projectId": "proj_apex_01",
       "actor": "agency",
-      "actorName": "admin@webmuse.dev",
+      "actorName": "admin@webmuse.tech",
       "action": "VAULT_SECRET_ACCESSED",
       "details": "Decrypted credential \"Transaction Pooler URL\" (Supabase PostgreSQL) viewed via hardware-grade AES-256-GCM.",
       "timestamp": "2026-10-05T11:33:17.769Z"
@@ -2863,7 +3570,7 @@
       "id": "act_1791198089449_heccq",
       "projectId": "proj_apex_01",
       "actor": "agency",
-      "actorName": "admin@webmuse.dev",
+      "actorName": "admin@webmuse.tech",
       "action": "VAULT_SECRET_DELETED",
       "details": "Credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) permanently purged from AES-256 vault.",
       "timestamp": "2026-10-05T11:01:29.449Z"
@@ -2872,7 +3579,7 @@
       "id": "act_1791198089444_wm2p0",
       "projectId": "proj_apex_01",
       "actor": "agency",
-      "actorName": "admin@webmuse.dev",
+      "actorName": "admin@webmuse.tech",
       "action": "VAULT_SECRET_UPDATED",
       "details": "Updated credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) in AES-256 vault.",
       "timestamp": "2026-10-05T11:01:29.444Z"
@@ -2881,7 +3588,7 @@
       "id": "act_1791198089405_md58b",
       "projectId": "proj_apex_01",
       "actor": "agency",
-      "actorName": "admin@webmuse.dev",
+      "actorName": "admin@webmuse.tech",
       "action": "VAULT_SECRET_CREATED",
       "details": "Encrypted credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) committed to AES-256 vault. Visible to client: No (Agency Only).",
       "timestamp": "2026-10-05T11:01:29.406Z"
@@ -2890,7 +3597,7 @@
       "id": "act_1791198089394_vfmts",
       "projectId": "proj_apex_01",
       "actor": "agency",
-      "actorName": "admin@webmuse.dev",
+      "actorName": "admin@webmuse.tech",
       "action": "VAULT_SECRET_ACCESSED",
       "details": "Decrypted credential \"Transaction Pooler URL\" (Supabase PostgreSQL) viewed via hardware-grade AES-256-GCM.",
       "timestamp": "2026-10-05T11:01:29.394Z"
@@ -3494,6 +4201,46 @@
       "message": "⚡ [ADD-ON PURCHASE CONFIRMED]: The client successfully acquired \"Speed & Core Web Vitals Optimization\" (USD 450).\n\nA new micro-sprint Phase 7 has been automatically spun up in the pipeline with 4 tracked deliverables!",
       "timestamp": "2026-10-05T15:51:34.847Z",
       "read": false
+    },
+    {
+      "id": "msg_1791217417157_lbzv",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Staging Review Studio",
+      "message": "🔴 [STAGING FEEDBACK PIN #lzio]: \"The mempool gas fee estimator widget requires high-contrast typography in dark mode.\" dropped at (42.8%, 23.5%) on 1440px viewport.",
+      "timestamp": "2026-10-05T16:23:37.157Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791217463547_a7wx",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Staging Review Studio",
+      "message": "🟡 [STAGING FEEDBACK PIN #4eu2]: \"Increase contrast on depth-of-market orderbook typography for OLED screens\" dropped at (55.4%, 32.1%) on 1440px viewport.",
+      "timestamp": "2026-10-05T16:24:23.547Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791217463629_8wyj",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Warranty SLA Dispatcher",
+      "message": "🛡️ [WARRANTY PRIORITY TICKET - MEDIUM]: E2E Test: WebSocket heartbeat timeout on edge network\n\nInvestigating keepalive intervals during mobile sleep state.",
+      "timestamp": "2026-10-05T16:24:23.629Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791217463674_qx0x",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "WebMuse Financial Sentinel",
+      "senderRole": "Autonomous Escrow Daemon",
+      "message": "⚡ [ADD-ON PURCHASE CONFIRMED]: The client successfully acquired \"Speed & Core Web Vitals Optimization\" (USD 450).\n\nA new micro-sprint Phase 7 has been automatically spun up in the pipeline with 4 tracked deliverables!",
+      "timestamp": "2026-10-05T16:24:23.674Z",
+      "read": false
     }
   ],
   "incidentReports": [
@@ -3509,6 +4256,17 @@
     }
   ],
   "warrantyTickets": [
+    {
+      "id": "ticket_1791217463629_htnt",
+      "projectId": "proj_apex_01",
+      "authorEmail": "client@apexlabs.io",
+      "authorName": "Alex Vance",
+      "title": "E2E Test: WebSocket heartbeat timeout on edge network",
+      "description": "Investigating keepalive intervals during mobile sleep state.",
+      "priority": "medium",
+      "status": "submitted",
+      "createdAt": "2026-10-05T16:24:23.629Z"
+    },
     {
       "id": "ticket_1791215494835_ztls",
       "projectId": "proj_apex_01",

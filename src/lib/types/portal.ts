@@ -182,6 +182,8 @@ export interface VaultSecret {
   category: VaultCategory;
   toolName: string;
   keyLabel: string;
+  usernameOrEmail?: string;
+  loginUrl?: string;
   encryptedValue: string;
   iv: string;
   authTag: string;
