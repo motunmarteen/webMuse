@@ -10,6 +10,9 @@ import {
 } from '@/lib/server/store';
 import { AdminNavbar } from '@/components/admin/AdminNavbar';
 import { MilestoneControlPanel } from '@/components/admin/MilestoneControlPanel';
+import { AdminChatPanel } from '@/components/admin/AdminChatPanel';
+import { BlackBoxVault } from '@/components/portal/BlackBoxVault';
+import { ImpersonateButton } from '@/components/admin/ImpersonateButton';
 import {
   ArrowLeft,
   ExternalLink,
@@ -20,6 +23,14 @@ import {
   Activity,
   Shield,
   Key,
+  Globe,
+  CreditCard,
+  Award,
+  Radio,
+  CheckCircle2,
+  Clock,
+  Monitor,
+  ShieldCheck,
 } from 'lucide-react';
 
 export default async function AdminProjectDetailPage({
@@ -124,8 +135,15 @@ export default async function AdminProjectDetailPage({
               </p>
             </div>
 
-            {/* Quick External Links */}
+            {/* Quick External Links & Impersonate Button */}
             <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
+              <ImpersonateButton
+                projectId={project.id}
+                projectSlug={project.slug}
+                clientName={client?.name}
+                variant="banner"
+              />
+
               {project.stagingUrl && (
                 <a
                   href={project.stagingUrl}
@@ -162,6 +180,60 @@ export default async function AdminProjectDetailPage({
                 </a>
               )}
             </div>
+          </div>
+        </div>
+
+        {/* Admin Executive Client Journey Tracker HUD */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-mono">
+          <div className="p-4 rounded-xl bg-card-bg border border-card-border space-y-1">
+            <span className="text-[10px] text-text-muted uppercase">1. Scope Sign-off</span>
+            <div className="font-bold text-sm flex items-center gap-1.5">
+              {project.prd.signedOffAt ? (
+                <span className="text-emerald-400 flex items-center gap-1">
+                  <CheckCircle2 className="w-4 h-4" /> Signed &amp; Locked
+                </span>
+              ) : (
+                <span className="text-amber-400 flex items-center gap-1">
+                  <Clock className="w-4 h-4 animate-pulse" /> Awaiting Client Signature
+                </span>
+              )}
+            </div>
+            <p className="text-[11px] text-text-muted">
+              {project.prd.signedOffAt ? `By ${project.prd.signedOffBy}` : 'Scope v1.0 baseline review'}
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-card-bg border border-card-border space-y-1">
+            <span className="text-[10px] text-text-muted uppercase">2. Active Sprint</span>
+            <div className="font-bold text-sm text-electric-blue flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-electric-blue animate-pulse" />
+              Phase 0{project.currentPhaseIndex + 1} Sprinted
+            </div>
+            <p className="text-[11px] text-text-muted line-clamp-1">
+              {project.milestones[project.currentPhaseIndex]?.title || 'Conception'}
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-card-bg border border-card-border space-y-1">
+            <span className="text-[10px] text-text-muted uppercase">3. Live Staging Deck</span>
+            <div className="font-bold text-sm text-white flex items-center gap-1.5">
+              <Monitor className="w-4 h-4 text-cyan-400" />
+              <span>Ready for QA</span>
+            </div>
+            <p className="text-[11px] text-text-muted">
+              Viewport modes: Desktop, Tablet, Mobile
+            </p>
+          </div>
+
+          <div className="p-4 rounded-xl bg-card-bg border border-card-border space-y-1">
+            <span className="text-[10px] text-text-muted uppercase">4. Warranty &amp; Handoff</span>
+            <div className="font-bold text-sm text-purple-300 flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-purple-400" />
+              <span>{project.warrantyDaysRemaining ?? 27} Days SLA</span>
+            </div>
+            <p className="text-[11px] text-text-muted">
+              Hotline open for bug tickets
+            </p>
           </div>
         </div>
 
@@ -210,44 +282,97 @@ export default async function AdminProjectDetailPage({
             </div>
           </div>
 
-          {/* Black Box Vault Secrets Summary */}
-          <div className="glassmorphism-card rounded-2xl p-6 border border-card-border space-y-4 text-xs">
-            <div className="flex items-center justify-between pb-3 border-b border-card-border">
-              <div className="flex items-center gap-2 font-bold text-text-title uppercase tracking-wider">
-                <Database className="w-4 h-4 text-electric-blue" />
-                <span>Black Box Vault Credential Registry</span>
-              </div>
-              <span className="text-[10px] text-emerald-400">
-                {secrets.length} Secrets Encrypted (AES-256)
-              </span>
-            </div>
-
-            {secrets.length === 0 ? (
-              <p className="text-text-muted text-[11px] py-4">
-                No technical secrets or staging keys stored yet for this project.
-              </p>
-            ) : (
-              <div className="space-y-2">
-                {secrets.map((sec) => (
-                  <div
-                    key={sec.id}
-                    className="p-3 rounded-xl border border-card-border bg-card-bg/50 flex items-center justify-between text-[11px]"
-                  >
-                    <div>
-                      <div className="text-foreground font-semibold">{sec.toolName}</div>
-                      <div className="text-text-muted text-[10px]">
-                        {sec.keyLabel} • Category: {sec.category}
-                      </div>
-                    </div>
-                    <span className="text-[10px] text-electric-blue font-mono px-2 py-0.5 rounded bg-card-bg border border-card-border">
-                      {sec.isClientVisible ? 'CLIENT VISIBLE' : 'AGENCY ONLY'}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
+          {/* Interactive Black Box Vault */}
+          <div className="col-span-full">
+            <BlackBoxVault project={project} isAdmin={true} />
           </div>
         </div>
+
+        {/* Infrastructure, SaaS Subscriptions & Annual Retainer Control */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+          {/* Domains */}
+          <div className="glassmorphism-card rounded-2xl p-6 border border-card-border space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-card-border">
+              <div className="flex items-center gap-2 font-bold text-text-title">
+                <Globe className="w-4 h-4 text-electric-blue" />
+                <span>Domains &amp; SSL</span>
+              </div>
+              <span className="text-[10px] text-emerald-400">
+                {(project.domains || []).length} Active
+              </span>
+            </div>
+            <div className="space-y-2">
+              {(project.domains || []).map((dom) => (
+                <div
+                  key={dom.id}
+                  className="p-2.5 rounded-xl border border-card-border bg-card-bg/50 space-y-1 text-[11px]"
+                >
+                  <div className="font-bold text-foreground">{dom.domain}</div>
+                  <div className="text-[10px] text-text-muted flex items-center justify-between">
+                    <span>Exp: {new Date(dom.expiresAt).toLocaleDateString()}</span>
+                    <span className="text-emerald-400">SSL {dom.sslStatus}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Subscriptions */}
+          <div className="glassmorphism-card rounded-2xl p-6 border border-card-border space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-card-border">
+              <div className="flex items-center gap-2 font-bold text-text-title">
+                <CreditCard className="w-4 h-4 text-electric-blue" />
+                <span>SaaS Subscriptions</span>
+              </div>
+              <span className="text-[10px] text-electric-blue">
+                {(project.subscriptions || []).length} Monitored
+              </span>
+            </div>
+            <div className="space-y-2">
+              {(project.subscriptions || []).slice(0, 3).map((sub) => (
+                <div
+                  key={sub.id}
+                  className="p-2.5 rounded-xl border border-card-border bg-card-bg/50 space-y-1 text-[11px]"
+                >
+                  <div className="font-bold text-foreground flex items-center justify-between">
+                    <span>{sub.name}</span>
+                    <span className="text-text-muted text-[10px]">${sub.costUsd}/mo</span>
+                  </div>
+                  <div className="text-[10px] text-text-muted">
+                    Renews: {new Date(sub.renewDate).toLocaleDateString()}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Annual Retainer */}
+          <div className="glassmorphism-card rounded-2xl p-6 border border-card-border space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-card-border">
+              <div className="flex items-center gap-2 font-bold text-text-title">
+                <Award className="w-4 h-4 text-electric-blue" />
+                <span>Annual SLA Retainer</span>
+              </div>
+              <span className="text-[10px] text-emerald-400 uppercase">
+                {project.maintenanceRetainer?.status || 'Active'}
+              </span>
+            </div>
+            <div className="p-3 rounded-xl border border-card-border bg-card-bg/50 space-y-2 text-[11px]">
+              <div className="font-bold text-foreground">
+                {project.maintenanceRetainer?.tierName || 'WebMuse Mission Critical 24/7 SLA'}
+              </div>
+              <div className="text-[10px] text-text-muted">
+                {project.maintenanceRetainer?.slaResponseTime}
+              </div>
+              <div className="text-[10px] text-electric-blue">
+                ${project.maintenanceRetainer?.annualCostUsd?.toLocaleString()} / year (₦{project.maintenanceRetainer?.annualCostNgn?.toLocaleString()})
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Agency Client Direct Comms Chat */}
+        <AdminChatPanel project={project} client={client} adminEmail={session.email} />
 
         {/* Project Audit Log Stream */}
         <section className="glassmorphism-card rounded-2xl p-6 border border-card-border space-y-4">

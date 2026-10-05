@@ -480,9 +480,9 @@ export default function InnovationGallery() {
               Illustrative concept case studies
             </p>
           </div>
-          {/* Project Toggles */}
-          <div className="w-full lg:w-auto overflow-x-auto no-scrollbar py-2 -my-2 flex justify-start mt-8 lg:mt-0">
-            <div className="flex gap-2 border border-card-border rounded-full p-1 bg-card-bg shrink-0 lg:ml-auto">
+          {/* Project Toggles - All Visible at Once */}
+          <div className="w-full lg:w-auto py-2 -my-2 flex justify-start mt-8 lg:mt-0">
+            <div className="flex flex-wrap gap-2 border border-card-border rounded-2xl sm:rounded-full p-1 bg-card-bg lg:ml-auto">
               {PROJECTS_DATA.map((proj, idx) => (
                 <button
                   key={proj.id}
@@ -561,8 +561,8 @@ export default function InnovationGallery() {
               })}
             </div>
 
-            {/* Narrative Step selector row (Mobile swipeable ribbon) */}
-            <div className="flex lg:hidden overflow-x-auto no-scrollbar gap-2 mt-6 pb-2 shrink-0 w-full">
+            {/* Narrative Step selector row */}
+            <div className="flex flex-wrap lg:hidden gap-2 mt-6 pb-2 w-full">
               {currentProject.steps.map((step, idx) => {
                 const StepIcon = step.icon;
                 const isActive = idx === activeStepIdx;

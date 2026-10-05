@@ -122,13 +122,13 @@ export function DocumentEnclave({
         </div>
       </div>
 
-      {/* Category Filter Chips */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-2 text-xs">
+      {/* Category Filter Chips - All Visible at Once */}
+      <div className="flex flex-wrap items-center gap-1.5 pb-2 text-xs">
         {categories.map((cat) => (
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-3 py-1.5 rounded-xl whitespace-nowrap transition-all border ${
+            className={`px-3 py-1.5 rounded-xl transition-all border ${
               selectedCategory === cat.id
                 ? 'bg-electric-blue/15 border-electric-blue text-electric-blue font-bold shadow-sm'
                 : 'border-card-border bg-card-bg/60 text-text-muted hover:text-foreground'

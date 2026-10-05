@@ -125,8 +125,8 @@ export function ProjectDataGrid({ projects }: { projects: ProjectWithClient[] })
           />
         </div>
 
-        {/* Phase Filter Tabs */}
-        <div className="flex items-center gap-1 overflow-x-auto pb-1 md:pb-0 font-mono text-xs">
+        {/* Phase Filter Tabs - All Visible at Once */}
+        <div className="flex flex-wrap items-center gap-1 pb-1 md:pb-0 font-mono text-xs">
           {[
             { id: 'all', label: 'All' },
             { id: 'phase1', label: 'Ph 1: PRD' },
@@ -251,7 +251,7 @@ export function ProjectDataGrid({ projects }: { projects: ProjectWithClient[] })
                     <button
                       onClick={() => handleImpersonate(project.id)}
                       disabled={impersonatingId === project.id}
-                      className="flex-1 lg:flex-none flex items-center justify-center gap-1 px-3 py-1.5 rounded-xl border border-card-border bg-card-bg text-text-muted hover:text-foreground font-mono text-[11px] transition-colors disabled:opacity-50"
+                      className="flex-1 lg:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl border border-electric-blue/50 bg-electric-blue/15 text-electric-blue hover:bg-electric-blue/25 font-mono text-[11px] font-semibold transition-all disabled:opacity-50 shadow-sm"
                       title="Open portal as this client in new tab"
                     >
                       {impersonatingId === project.id ? (
@@ -259,7 +259,7 @@ export function ProjectDataGrid({ projects }: { projects: ProjectWithClient[] })
                       ) : (
                         <Eye className="w-3 h-3 text-electric-blue" />
                       )}
-                      <span>Impersonate</span>
+                      <span>Impersonate Client</span>
                     </button>
 
                     <button

@@ -436,7 +436,7 @@ export default function Booking({ initialDescription, onClearDescription }: Book
                         <span className="text-[10px] font-mono uppercase tracking-widest text-text-muted block mb-2.5">
                           Select Date
                         </span>
-                        <div className="flex gap-2 overflow-x-auto pb-2">
+                        <div className="flex flex-wrap gap-2 pb-2">
                           {dates.map((d) => {
                             const isSelected = selectedDate === d.raw;
                             return (
@@ -448,7 +448,7 @@ export default function Booking({ initialDescription, onClearDescription }: Book
                                 }}
                                 onMouseEnter={() => setCursorType("pointer")}
                                 onMouseLeave={() => setCursorType("default")}
-                                className={`flex flex-col items-center justify-center min-w-[75px] py-3 rounded-xl border text-center shrink-0 transition-all ${
+                                className={`flex flex-col items-center justify-center flex-1 sm:flex-initial min-w-[70px] py-3 rounded-xl border text-center transition-all ${
                                   isSelected
                                     ? "bg-foreground text-background border-foreground"
                                     : "bg-card-bg border-card-border text-text-muted hover:text-foreground hover:bg-card-bg/80"

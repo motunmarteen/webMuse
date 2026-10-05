@@ -337,8 +337,8 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Categories Tab Selector */}
-        <div className="flex overflow-x-auto no-scrollbar flex-nowrap pb-4 border-b border-card-border gap-2 mb-10 shrink-0 w-full">
+        {/* Categories Tab Selector - All Visible at Once */}
+        <div className="flex flex-wrap items-center pb-4 border-b border-card-border gap-2 mb-10 w-full">
           {SERVICES_DATA.map((cat) => {
             const Icon = cat.icon;
             const isActive = cat.id === activeCategory;
@@ -351,7 +351,7 @@ export default function Services() {
                 }}
                 onMouseEnter={() => setCursorType("pointer")}
                 onMouseLeave={() => setCursorType("default")}
-                className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-mono font-semibold uppercase tracking-wider transition-all duration-300 border shrink-0 ${
+                className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-mono font-semibold uppercase tracking-wider transition-all duration-300 border ${
                   isActive
                     ? "bg-foreground text-background border-foreground"
                     : "bg-card-bg text-text-muted border-card-border hover:text-foreground hover:bg-card-bg/80"

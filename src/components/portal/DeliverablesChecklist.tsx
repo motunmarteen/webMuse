@@ -18,6 +18,7 @@ interface DeliverablesChecklistProps {
   stagingUrl?: string;
   repoUrl?: string;
   designUrl?: string;
+  onOpenCheckout?: (milestone: Milestone) => void;
 }
 
 export function DeliverablesChecklist({
@@ -26,6 +27,7 @@ export function DeliverablesChecklist({
   stagingUrl,
   repoUrl,
   designUrl,
+  onOpenCheckout,
 }: DeliverablesChecklistProps) {
   const getStatusBadge = (status: DeliverableStatus) => {
     switch (status) {
@@ -77,7 +79,7 @@ export function DeliverablesChecklist({
       </div>
 
       {isLocked ? (
-        <div className="glassmorphism-card rounded-2xl p-8 border border-card-border text-center space-y-3">
+        <div className="glassmorphism-card rounded-2xl p-8 border border-card-border text-center space-y-4">
           <div className="w-12 h-12 rounded-2xl bg-card-bg border border-card-border flex items-center justify-center text-text-muted mx-auto">
             <Lock className="w-5 h-5 text-electric-blue" />
           </div>
@@ -85,8 +87,16 @@ export function DeliverablesChecklist({
             Deliverables Gated Behind Phase Lock
           </div>
           <p className="text-xs text-text-muted max-w-sm mx-auto font-light leading-relaxed">
-            The sprint deliverables for Phase 0{milestone.phaseNumber} will become interactive once this milestone is officially unlocked and activated.
+            The sprint deliverables for Phase 0{milestone.phaseNumber} will become interactive once this milestone is officially settled and activated.
           </p>
+          {onOpenCheckout && (
+            <button
+              onClick={() => onOpenCheckout(milestone)}
+              className="px-5 py-2.5 rounded-xl bg-electric-blue text-background font-bold text-xs hover:bg-electric-blue/90 shadow-md shadow-electric-blue/20 transition-all active:scale-95 inline-flex items-center gap-2"
+            >
+              <span>Settle Milestone Payment &amp; Unlock (${milestone.costUsd?.toLocaleString()})</span>
+            </button>
+          )}
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

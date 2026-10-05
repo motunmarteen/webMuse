@@ -32,6 +32,14 @@
       "company": "Vanguard Robotics",
       "createdAt": "2026-10-01T23:46:52.123Z",
       "updatedAt": "2026-10-01T23:46:52.123Z"
+    },
+    {
+      "id": "cli_test_1791041087697",
+      "name": "Sarah Connor",
+      "email": "sarah_1791041087697@cyberdyne-defense.org",
+      "company": "Cyberdyne Systems Defense",
+      "createdAt": "2026-10-03T15:24:47.697Z",
+      "updatedAt": "2026-10-03T15:24:47.698Z"
     }
   ],
   "projects": [
@@ -43,7 +51,7 @@
       "tagline": "Autonomous Algorithmic Trading & Liquidity Engine",
       "description": "High-performance institutional DeFi execution portal featuring AI-driven multi-chain arbitrage, mempool telemetry, and biometric authorization.",
       "status": "active",
-      "currentPhaseIndex": 0,
+      "currentPhaseIndex": 2,
       "techStack": [
         "Next.js 16",
         "React 19",
@@ -104,10 +112,10 @@
           "99.99% uptime during high-volatility market events",
           "100% adherence to scope baseline agreed upon in Milestone 1"
         ],
-        "signedOffAt": "2026-10-02T00:14:30.019Z",
-        "signedOffBy": "motun marteen",
-        "signedOffIp": "::1",
-        "signatureHash": "bb741beb7e320d520c94c96dd195dbdcef12b4d9df5944709d908083deb24f77"
+        "signedOffAt": "2026-10-05T15:51:34.588Z",
+        "signedOffBy": "Alex Vance",
+        "signedOffIp": "127.0.0.1",
+        "signatureHash": "b34c1b6f52734159aae54049471b80149e8ff0b8e40aa965db13396563ff9a72"
       },
       "milestones": [
         {
@@ -153,7 +161,7 @@
           "description": "Dark-mode cyberpunk visual system, component tokens, interactive prototype walkthrough, and micro-interaction specs.",
           "costUsd": 4000,
           "costNgn": 6000000,
-          "status": "locked",
+          "status": "completed",
           "targetCompletionDays": 14,
           "deliverables": [
             {
@@ -171,7 +179,12 @@
               "title": "Mobile & Tablet Viewport Responsive Specs",
               "status": "backlog"
             }
-          ]
+          ],
+          "paidAt": "2026-10-05T10:36:20.619Z",
+          "unlockedAt": "2026-10-05T10:36:20.619Z",
+          "paymentTxRef": "TEST_INTENT_REF_1791196580601",
+          "paymentGateway": "nowpayments",
+          "completedAt": "2026-10-05T15:51:34.670Z"
         },
         {
           "id": "ms_03_engineering",
@@ -183,7 +196,7 @@
           "description": "Implementation of responsive Next.js frontend, Supabase real-time subscriptions, API connectivity, and trading bot execution hooks.",
           "costUsd": 7000,
           "costNgn": 10500000,
-          "status": "locked",
+          "status": "in_progress",
           "targetCompletionDays": 21,
           "deliverables": [
             {
@@ -201,7 +214,11 @@
               "title": "FastAPI Execution Sidecar Connectivity",
               "status": "backlog"
             }
-          ]
+          ],
+          "paidAt": "2026-10-05T12:20:46.260Z",
+          "unlockedAt": "2026-10-05T12:20:46.260Z",
+          "paymentTxRef": "0x42765ed161ba9a24891b99d6c44e5e064770cff4522ed036b81978935636da37",
+          "paymentGateway": "nowpayments"
         },
         {
           "id": "ms_04_qa",
@@ -262,10 +279,297 @@
               "status": "backlog"
             }
           ]
+        },
+        {
+          "id": "ms_06_addon_rev",
+          "projectId": "proj_apex_01",
+          "orderIndex": 5,
+          "phaseNumber": 6,
+          "title": "[Add-on] Additional Revision Sprint",
+          "subtitle": "Rapid 48-Hour UI/UX Polish & Refinement",
+          "description": "Dedicated 48-hour engineering cycle for non-scope UI iterations, micro-interaction tuning, and styling updates.",
+          "costUsd": 350,
+          "costNgn": 500000,
+          "status": "in_progress",
+          "targetCompletionDays": 2,
+          "paidAt": "2026-10-05T14:17:11.304Z",
+          "unlockedAt": "2026-10-05T14:17:11.304Z",
+          "paymentTxRef": "tx_addon_settlement_01",
+          "paymentGateway": "nowpayments",
+          "deliverables": [
+            {
+              "id": "del_addon_01",
+              "title": "Custom design tweaks & styling refinements",
+              "status": "in_progress",
+              "updatedAt": "2026-10-05T15:00:00.000Z"
+            },
+            {
+              "id": "del_addon_02",
+              "title": "Figma layout updates & responsive token syncing",
+              "status": "in_progress",
+              "updatedAt": "2026-10-05T15:00:00.000Z"
+            },
+            {
+              "id": "del_addon_03",
+              "title": "Production hotfix deployment & visual verification",
+              "status": "in_progress",
+              "updatedAt": "2026-10-05T15:00:00.000Z"
+            }
+          ]
         }
       ],
       "createdAt": "2026-10-01T18:08:09.626Z",
-      "updatedAt": "2026-10-02T00:14:30.019Z"
+      "updatedAt": "2026-10-05T15:51:35.038Z",
+      "domains": [
+        {
+          "id": "dom_proj_apex_01_1",
+          "domain": "apexprotocol.io",
+          "registrar": "Cloudflare Registrar",
+          "registeredAt": "2025-10-18T00:00:00.000Z",
+          "expiresAt": "2027-10-18T00:00:00.000Z",
+          "autoRenew": true,
+          "annualRenewalCostUsd": 14.5,
+          "sslStatus": "active",
+          "sslIssuer": "Cloudflare Edge ECC CA-3",
+          "sslExpiresAt": "2027-04-18T00:00:00.000Z",
+          "nameservers": [
+            "ashley.ns.cloudflare.com",
+            "vance.ns.cloudflare.com"
+          ],
+          "status": "healthy"
+        },
+        {
+          "id": "dom_proj_apex_01_2",
+          "domain": "staging.apex-protocol.webmuse.dev",
+          "registrar": "WebMuse Cloudflare Edge DNS",
+          "registeredAt": "2026-01-10T00:00:00.000Z",
+          "expiresAt": "2028-01-10T00:00:00.000Z",
+          "autoRenew": true,
+          "annualRenewalCostUsd": 0,
+          "sslStatus": "active",
+          "sslIssuer": "Let's Encrypt Authority X3",
+          "sslExpiresAt": "2027-01-10T00:00:00.000Z",
+          "nameservers": [
+            "ns1.webmuse.dev",
+            "ns2.webmuse.dev"
+          ],
+          "status": "healthy"
+        }
+      ],
+      "tools": [
+        {
+          "id": "tool_nextjs",
+          "name": "Next.js 16 (App Router)",
+          "category": "frontend",
+          "purpose": "React 19 Server Components, Edge Rendering & Dynamic Streaming",
+          "tier": "Production Framework",
+          "version": "16.2.10",
+          "status": "operational",
+          "docsUrl": "https://nextjs.org/docs"
+        },
+        {
+          "id": "tool_supabase",
+          "name": "Supabase Realtime PostgreSQL",
+          "category": "database",
+          "purpose": "Relational database, row-level security (RLS), real-time WebSockets",
+          "tier": "Pro Dedicated Cluster",
+          "version": "PostgreSQL 16.2",
+          "status": "operational",
+          "docsUrl": "https://supabase.com/docs"
+        },
+        {
+          "id": "tool_vercel",
+          "name": "Vercel Edge Network",
+          "category": "hosting",
+          "purpose": "Zero-cold-start Edge middleware, global CDN & serverless compute",
+          "tier": "Pro Team Enterprise",
+          "status": "operational",
+          "docsUrl": "https://vercel.com/docs"
+        },
+        {
+          "id": "tool_cloudflare",
+          "name": "Cloudflare Zero Trust & WAF",
+          "category": "security",
+          "purpose": "DDoS mitigation, TLS 1.3 edge termination, DNS & Bot Management",
+          "tier": "Pro Zone + WAF Rules",
+          "status": "operational",
+          "docsUrl": "https://cloudflare.com"
+        },
+        {
+          "id": "tool_resend",
+          "name": "Resend Transactional SMTP",
+          "category": "messaging",
+          "purpose": "Cryptographic magic link dispatch, transactional notifications, DKIM/SPF",
+          "tier": "Scale Tier",
+          "status": "operational",
+          "docsUrl": "https://resend.com"
+        },
+        {
+          "id": "tool_tailwind",
+          "name": "Tailwind CSS v4 & Framer Motion",
+          "category": "design",
+          "purpose": "Cyberpunk design tokens, hardware-accelerated animations",
+          "tier": "Design System",
+          "version": "v4.0.0",
+          "status": "operational"
+        },
+        {
+          "id": "tool_openai",
+          "name": "OpenAI GPT-4o Omni API",
+          "category": "ai",
+          "purpose": "Contextual AI intelligence, algorithmic analysis, automated summarization",
+          "tier": "Tier 4 Production Org",
+          "status": "operational",
+          "docsUrl": "https://platform.openai.com"
+        },
+        {
+          "id": "tool_sentry",
+          "name": "Sentry Telemetry & Error APM",
+          "category": "analytics",
+          "purpose": "Real-time crash diagnostics, performance tracing, session replays",
+          "tier": "Team Plan",
+          "status": "operational",
+          "docsUrl": "https://sentry.io"
+        }
+      ],
+      "subscriptions": [
+        {
+          "id": "sub_supabase",
+          "name": "Supabase Pro Database Cluster",
+          "provider": "Supabase Inc.",
+          "category": "database",
+          "billingCycle": "monthly",
+          "costUsd": 25,
+          "costNgn": 37500,
+          "renewDate": "2026-11-15T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "loginUrl": "https://supabase.com/dashboard"
+        },
+        {
+          "id": "sub_vercel",
+          "name": "Vercel Pro Team Hosting",
+          "provider": "Vercel Inc.",
+          "category": "hosting",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2026-12-01T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "loginUrl": "https://vercel.com"
+        },
+        {
+          "id": "sub_cloudflare",
+          "name": "Cloudflare Pro Zone & WAF",
+          "provider": "Cloudflare",
+          "category": "hosting",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2026-10-28T00:00:00.000Z",
+          "status": "renewing_soon",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "actionRequired": "Scheduled renewal via WebMuse master billing profile."
+        },
+        {
+          "id": "sub_resend",
+          "name": "Resend Scale Email Delivery",
+          "provider": "Resend Inc.",
+          "category": "email_sms",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2027-01-10T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency"
+        },
+        {
+          "id": "sub_openai",
+          "name": "OpenAI Compute API Quota",
+          "provider": "OpenAI LLC",
+          "category": "ai_compute",
+          "billingCycle": "monthly",
+          "costUsd": 120,
+          "costNgn": 180000,
+          "renewDate": "2026-11-01T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "client",
+          "paymentCardLast4": "4190"
+        },
+        {
+          "id": "sub_sentry",
+          "name": "Sentry Performance Telemetry",
+          "provider": "Functional Software Inc.",
+          "category": "monitoring",
+          "billingCycle": "monthly",
+          "costUsd": 26,
+          "costNgn": 39000,
+          "renewDate": "2026-11-30T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency"
+        }
+      ],
+      "maintenanceRetainer": {
+        "tier": "mission_critical",
+        "tierName": "WebMuse Mission Critical 24/7 SLA",
+        "billingPeriod": "yearly",
+        "annualCostUsd": 5000,
+        "annualCostNgn": 7500000,
+        "status": "active",
+        "expiresAt": "2027-10-05T08:55:21.286Z",
+        "slaResponseTime": "< 2 Hours Emergency SLA Guarantee",
+        "uptimeGuarantee": "99.99%",
+        "lastPaymentRef": "TEST_WIRE_REF_1791190521283",
+        "contractRef": "WM-SLA-APEX-PROTOCOL-2026",
+        "includedFeatures": [
+          "24/7/365 Real-Time Uptime & Server Sentinel",
+          "Weekly automated dependency upgrades & security patch vetting",
+          "Daily zero-downtime database backups & bi-weekly recovery drills",
+          "Direct priority channel to WebMuse Senior Cloud Engineers",
+          "15 hours / month included engineering tweaks & hotfixes",
+          "Cloudflare Edge WAF firewall tuning & anti-DDoS mitigation",
+          "Quarterly Lighthouse 100/100 Core Web Vitals re-tuning",
+          "Domain registration & SSL certificate auto-management"
+        ]
+      },
+      "healthSentinel": {
+        "uptimePercentage": 99.98,
+        "avgLatencyMs": 34,
+        "sslGrade": "A+",
+        "edgeNodesActive": 284,
+        "lastChecked": "2026-10-05T08:55:21.265Z",
+        "status": "optimal"
+      },
+      "backups": [
+        {
+          "id": "bk_proj_apex_01_01",
+          "timestamp": "2026-10-05T04:55:21.265Z",
+          "sizeBytes": "48.2 MB",
+          "snapshotType": "automated_daily",
+          "retentionDays": 30,
+          "status": "verified"
+        },
+        {
+          "id": "bk_proj_apex_01_02",
+          "timestamp": "2026-10-04T04:55:21.265Z",
+          "sizeBytes": "47.9 MB",
+          "snapshotType": "automated_daily",
+          "retentionDays": 30,
+          "status": "verified"
+        },
+        {
+          "id": "bk_proj_apex_01_03",
+          "timestamp": "2026-10-03T04:55:21.265Z",
+          "sizeBytes": "46.1 MB",
+          "snapshotType": "pre_deployment",
+          "retentionDays": 60,
+          "status": "verified"
+        }
+      ]
     },
     {
       "id": "proj_test_1790896442450",
@@ -347,7 +651,257 @@
         }
       ],
       "createdAt": "2026-10-01T23:14:02.450Z",
-      "updatedAt": "2026-10-01T23:14:02.450Z"
+      "updatedAt": "2026-10-01T23:14:02.450Z",
+      "domains": [
+        {
+          "id": "dom_proj_test_1790896442450_1",
+          "domain": "cyberdyne-threat-monitor-2449.com",
+          "registrar": "Cloudflare Registrar",
+          "registeredAt": "2025-10-18T00:00:00.000Z",
+          "expiresAt": "2027-10-18T00:00:00.000Z",
+          "autoRenew": true,
+          "annualRenewalCostUsd": 14.5,
+          "sslStatus": "active",
+          "sslIssuer": "Cloudflare Edge ECC CA-3",
+          "sslExpiresAt": "2027-04-18T00:00:00.000Z",
+          "nameservers": [
+            "ashley.ns.cloudflare.com",
+            "vance.ns.cloudflare.com"
+          ],
+          "status": "healthy"
+        },
+        {
+          "id": "dom_proj_test_1790896442450_2",
+          "domain": "staging.cyberdyne-threat-monitor-2449.webmuse.dev",
+          "registrar": "WebMuse Cloudflare Edge DNS",
+          "registeredAt": "2026-01-10T00:00:00.000Z",
+          "expiresAt": "2028-01-10T00:00:00.000Z",
+          "autoRenew": true,
+          "annualRenewalCostUsd": 0,
+          "sslStatus": "active",
+          "sslIssuer": "Let's Encrypt Authority X3",
+          "sslExpiresAt": "2027-01-10T00:00:00.000Z",
+          "nameservers": [
+            "ns1.webmuse.dev",
+            "ns2.webmuse.dev"
+          ],
+          "status": "healthy"
+        }
+      ],
+      "tools": [
+        {
+          "id": "tool_nextjs",
+          "name": "Next.js 16 (App Router)",
+          "category": "frontend",
+          "purpose": "React 19 Server Components, Edge Rendering & Dynamic Streaming",
+          "tier": "Production Framework",
+          "version": "16.2.10",
+          "status": "operational",
+          "docsUrl": "https://nextjs.org/docs"
+        },
+        {
+          "id": "tool_supabase",
+          "name": "Supabase Realtime PostgreSQL",
+          "category": "database",
+          "purpose": "Relational database, row-level security (RLS), real-time WebSockets",
+          "tier": "Pro Dedicated Cluster",
+          "version": "PostgreSQL 16.2",
+          "status": "operational",
+          "docsUrl": "https://supabase.com/docs"
+        },
+        {
+          "id": "tool_vercel",
+          "name": "Vercel Edge Network",
+          "category": "hosting",
+          "purpose": "Zero-cold-start Edge middleware, global CDN & serverless compute",
+          "tier": "Pro Team Enterprise",
+          "status": "operational",
+          "docsUrl": "https://vercel.com/docs"
+        },
+        {
+          "id": "tool_cloudflare",
+          "name": "Cloudflare Zero Trust & WAF",
+          "category": "security",
+          "purpose": "DDoS mitigation, TLS 1.3 edge termination, DNS & Bot Management",
+          "tier": "Pro Zone + WAF Rules",
+          "status": "operational",
+          "docsUrl": "https://cloudflare.com"
+        },
+        {
+          "id": "tool_resend",
+          "name": "Resend Transactional SMTP",
+          "category": "messaging",
+          "purpose": "Cryptographic magic link dispatch, transactional notifications, DKIM/SPF",
+          "tier": "Scale Tier",
+          "status": "operational",
+          "docsUrl": "https://resend.com"
+        },
+        {
+          "id": "tool_tailwind",
+          "name": "Tailwind CSS v4 & Framer Motion",
+          "category": "design",
+          "purpose": "Cyberpunk design tokens, hardware-accelerated animations",
+          "tier": "Design System",
+          "version": "v4.0.0",
+          "status": "operational"
+        },
+        {
+          "id": "tool_openai",
+          "name": "OpenAI GPT-4o Omni API",
+          "category": "ai",
+          "purpose": "Contextual AI intelligence, algorithmic analysis, automated summarization",
+          "tier": "Tier 4 Production Org",
+          "status": "operational",
+          "docsUrl": "https://platform.openai.com"
+        },
+        {
+          "id": "tool_sentry",
+          "name": "Sentry Telemetry & Error APM",
+          "category": "analytics",
+          "purpose": "Real-time crash diagnostics, performance tracing, session replays",
+          "tier": "Team Plan",
+          "status": "operational",
+          "docsUrl": "https://sentry.io"
+        }
+      ],
+      "subscriptions": [
+        {
+          "id": "sub_supabase",
+          "name": "Supabase Pro Database Cluster",
+          "provider": "Supabase Inc.",
+          "category": "database",
+          "billingCycle": "monthly",
+          "costUsd": 25,
+          "costNgn": 37500,
+          "renewDate": "2026-11-15T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "loginUrl": "https://supabase.com/dashboard"
+        },
+        {
+          "id": "sub_vercel",
+          "name": "Vercel Pro Team Hosting",
+          "provider": "Vercel Inc.",
+          "category": "hosting",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2026-12-01T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "loginUrl": "https://vercel.com"
+        },
+        {
+          "id": "sub_cloudflare",
+          "name": "Cloudflare Pro Zone & WAF",
+          "provider": "Cloudflare",
+          "category": "hosting",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2026-10-28T00:00:00.000Z",
+          "status": "renewing_soon",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "actionRequired": "Scheduled renewal via WebMuse master billing profile."
+        },
+        {
+          "id": "sub_resend",
+          "name": "Resend Scale Email Delivery",
+          "provider": "Resend Inc.",
+          "category": "email_sms",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2027-01-10T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency"
+        },
+        {
+          "id": "sub_openai",
+          "name": "OpenAI Compute API Quota",
+          "provider": "OpenAI LLC",
+          "category": "ai_compute",
+          "billingCycle": "monthly",
+          "costUsd": 120,
+          "costNgn": 180000,
+          "renewDate": "2026-11-01T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "client",
+          "paymentCardLast4": "4190"
+        },
+        {
+          "id": "sub_sentry",
+          "name": "Sentry Performance Telemetry",
+          "provider": "Functional Software Inc.",
+          "category": "monitoring",
+          "billingCycle": "monthly",
+          "costUsd": 26,
+          "costNgn": 39000,
+          "renewDate": "2026-11-30T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency"
+        }
+      ],
+      "maintenanceRetainer": {
+        "tier": "mission_critical",
+        "tierName": "WebMuse Mission Critical 24/7 SLA",
+        "billingPeriod": "yearly",
+        "annualCostUsd": 5000,
+        "annualCostNgn": 7500000,
+        "status": "active",
+        "expiresAt": "2027-10-01T00:00:00.000Z",
+        "slaResponseTime": "< 2 Hours Emergency SLA Guarantee",
+        "uptimeGuarantee": "99.99% Availability Commitment",
+        "contractRef": "WM-SLA-CYBERDYNE-THREAT-MONITOR-2449-2026",
+        "lastPaymentRef": "WIRE_ANNUAL_SLA_2026_01",
+        "includedFeatures": [
+          "24/7/365 Real-Time Uptime & Server Sentinel",
+          "Weekly automated dependency upgrades & security patch vetting",
+          "Daily zero-downtime database backups & bi-weekly recovery drills",
+          "Direct priority channel to WebMuse Senior Cloud Engineers",
+          "15 hours / month included engineering tweaks & hotfixes",
+          "Cloudflare Edge WAF firewall tuning & anti-DDoS mitigation",
+          "Quarterly Lighthouse 100/100 Core Web Vitals re-tuning",
+          "Domain registration & SSL certificate auto-management"
+        ]
+      },
+      "healthSentinel": {
+        "uptimePercentage": 99.98,
+        "avgLatencyMs": 34,
+        "sslGrade": "A+",
+        "edgeNodesActive": 284,
+        "lastChecked": "2026-10-05T08:55:21.265Z",
+        "status": "optimal"
+      },
+      "backups": [
+        {
+          "id": "bk_proj_test_1790896442450_01",
+          "timestamp": "2026-10-05T04:55:21.265Z",
+          "sizeBytes": "48.2 MB",
+          "snapshotType": "automated_daily",
+          "retentionDays": 30,
+          "status": "verified"
+        },
+        {
+          "id": "bk_proj_test_1790896442450_02",
+          "timestamp": "2026-10-04T04:55:21.265Z",
+          "sizeBytes": "47.9 MB",
+          "snapshotType": "automated_daily",
+          "retentionDays": 30,
+          "status": "verified"
+        },
+        {
+          "id": "bk_proj_test_1790896442450_03",
+          "timestamp": "2026-10-03T04:55:21.265Z",
+          "sizeBytes": "46.1 MB",
+          "snapshotType": "pre_deployment",
+          "retentionDays": 60,
+          "status": "verified"
+        }
+      ]
     },
     {
       "id": "proj_test_1790897350894",
@@ -429,7 +983,257 @@
         }
       ],
       "createdAt": "2026-10-01T23:29:10.894Z",
-      "updatedAt": "2026-10-01T23:29:10.894Z"
+      "updatedAt": "2026-10-01T23:29:10.894Z",
+      "domains": [
+        {
+          "id": "dom_proj_test_1790897350894_1",
+          "domain": "cyberdyne-threat-monitor-0893.com",
+          "registrar": "Cloudflare Registrar",
+          "registeredAt": "2025-10-18T00:00:00.000Z",
+          "expiresAt": "2027-10-18T00:00:00.000Z",
+          "autoRenew": true,
+          "annualRenewalCostUsd": 14.5,
+          "sslStatus": "active",
+          "sslIssuer": "Cloudflare Edge ECC CA-3",
+          "sslExpiresAt": "2027-04-18T00:00:00.000Z",
+          "nameservers": [
+            "ashley.ns.cloudflare.com",
+            "vance.ns.cloudflare.com"
+          ],
+          "status": "healthy"
+        },
+        {
+          "id": "dom_proj_test_1790897350894_2",
+          "domain": "staging.cyberdyne-threat-monitor-0893.webmuse.dev",
+          "registrar": "WebMuse Cloudflare Edge DNS",
+          "registeredAt": "2026-01-10T00:00:00.000Z",
+          "expiresAt": "2028-01-10T00:00:00.000Z",
+          "autoRenew": true,
+          "annualRenewalCostUsd": 0,
+          "sslStatus": "active",
+          "sslIssuer": "Let's Encrypt Authority X3",
+          "sslExpiresAt": "2027-01-10T00:00:00.000Z",
+          "nameservers": [
+            "ns1.webmuse.dev",
+            "ns2.webmuse.dev"
+          ],
+          "status": "healthy"
+        }
+      ],
+      "tools": [
+        {
+          "id": "tool_nextjs",
+          "name": "Next.js 16 (App Router)",
+          "category": "frontend",
+          "purpose": "React 19 Server Components, Edge Rendering & Dynamic Streaming",
+          "tier": "Production Framework",
+          "version": "16.2.10",
+          "status": "operational",
+          "docsUrl": "https://nextjs.org/docs"
+        },
+        {
+          "id": "tool_supabase",
+          "name": "Supabase Realtime PostgreSQL",
+          "category": "database",
+          "purpose": "Relational database, row-level security (RLS), real-time WebSockets",
+          "tier": "Pro Dedicated Cluster",
+          "version": "PostgreSQL 16.2",
+          "status": "operational",
+          "docsUrl": "https://supabase.com/docs"
+        },
+        {
+          "id": "tool_vercel",
+          "name": "Vercel Edge Network",
+          "category": "hosting",
+          "purpose": "Zero-cold-start Edge middleware, global CDN & serverless compute",
+          "tier": "Pro Team Enterprise",
+          "status": "operational",
+          "docsUrl": "https://vercel.com/docs"
+        },
+        {
+          "id": "tool_cloudflare",
+          "name": "Cloudflare Zero Trust & WAF",
+          "category": "security",
+          "purpose": "DDoS mitigation, TLS 1.3 edge termination, DNS & Bot Management",
+          "tier": "Pro Zone + WAF Rules",
+          "status": "operational",
+          "docsUrl": "https://cloudflare.com"
+        },
+        {
+          "id": "tool_resend",
+          "name": "Resend Transactional SMTP",
+          "category": "messaging",
+          "purpose": "Cryptographic magic link dispatch, transactional notifications, DKIM/SPF",
+          "tier": "Scale Tier",
+          "status": "operational",
+          "docsUrl": "https://resend.com"
+        },
+        {
+          "id": "tool_tailwind",
+          "name": "Tailwind CSS v4 & Framer Motion",
+          "category": "design",
+          "purpose": "Cyberpunk design tokens, hardware-accelerated animations",
+          "tier": "Design System",
+          "version": "v4.0.0",
+          "status": "operational"
+        },
+        {
+          "id": "tool_openai",
+          "name": "OpenAI GPT-4o Omni API",
+          "category": "ai",
+          "purpose": "Contextual AI intelligence, algorithmic analysis, automated summarization",
+          "tier": "Tier 4 Production Org",
+          "status": "operational",
+          "docsUrl": "https://platform.openai.com"
+        },
+        {
+          "id": "tool_sentry",
+          "name": "Sentry Telemetry & Error APM",
+          "category": "analytics",
+          "purpose": "Real-time crash diagnostics, performance tracing, session replays",
+          "tier": "Team Plan",
+          "status": "operational",
+          "docsUrl": "https://sentry.io"
+        }
+      ],
+      "subscriptions": [
+        {
+          "id": "sub_supabase",
+          "name": "Supabase Pro Database Cluster",
+          "provider": "Supabase Inc.",
+          "category": "database",
+          "billingCycle": "monthly",
+          "costUsd": 25,
+          "costNgn": 37500,
+          "renewDate": "2026-11-15T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "loginUrl": "https://supabase.com/dashboard"
+        },
+        {
+          "id": "sub_vercel",
+          "name": "Vercel Pro Team Hosting",
+          "provider": "Vercel Inc.",
+          "category": "hosting",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2026-12-01T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "loginUrl": "https://vercel.com"
+        },
+        {
+          "id": "sub_cloudflare",
+          "name": "Cloudflare Pro Zone & WAF",
+          "provider": "Cloudflare",
+          "category": "hosting",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2026-10-28T00:00:00.000Z",
+          "status": "renewing_soon",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "actionRequired": "Scheduled renewal via WebMuse master billing profile."
+        },
+        {
+          "id": "sub_resend",
+          "name": "Resend Scale Email Delivery",
+          "provider": "Resend Inc.",
+          "category": "email_sms",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2027-01-10T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency"
+        },
+        {
+          "id": "sub_openai",
+          "name": "OpenAI Compute API Quota",
+          "provider": "OpenAI LLC",
+          "category": "ai_compute",
+          "billingCycle": "monthly",
+          "costUsd": 120,
+          "costNgn": 180000,
+          "renewDate": "2026-11-01T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "client",
+          "paymentCardLast4": "4190"
+        },
+        {
+          "id": "sub_sentry",
+          "name": "Sentry Performance Telemetry",
+          "provider": "Functional Software Inc.",
+          "category": "monitoring",
+          "billingCycle": "monthly",
+          "costUsd": 26,
+          "costNgn": 39000,
+          "renewDate": "2026-11-30T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency"
+        }
+      ],
+      "maintenanceRetainer": {
+        "tier": "mission_critical",
+        "tierName": "WebMuse Mission Critical 24/7 SLA",
+        "billingPeriod": "yearly",
+        "annualCostUsd": 5000,
+        "annualCostNgn": 7500000,
+        "status": "active",
+        "expiresAt": "2027-10-01T00:00:00.000Z",
+        "slaResponseTime": "< 2 Hours Emergency SLA Guarantee",
+        "uptimeGuarantee": "99.99% Availability Commitment",
+        "contractRef": "WM-SLA-CYBERDYNE-THREAT-MONITOR-0893-2026",
+        "lastPaymentRef": "WIRE_ANNUAL_SLA_2026_01",
+        "includedFeatures": [
+          "24/7/365 Real-Time Uptime & Server Sentinel",
+          "Weekly automated dependency upgrades & security patch vetting",
+          "Daily zero-downtime database backups & bi-weekly recovery drills",
+          "Direct priority channel to WebMuse Senior Cloud Engineers",
+          "15 hours / month included engineering tweaks & hotfixes",
+          "Cloudflare Edge WAF firewall tuning & anti-DDoS mitigation",
+          "Quarterly Lighthouse 100/100 Core Web Vitals re-tuning",
+          "Domain registration & SSL certificate auto-management"
+        ]
+      },
+      "healthSentinel": {
+        "uptimePercentage": 99.98,
+        "avgLatencyMs": 34,
+        "sslGrade": "A+",
+        "edgeNodesActive": 284,
+        "lastChecked": "2026-10-05T08:55:21.265Z",
+        "status": "optimal"
+      },
+      "backups": [
+        {
+          "id": "bk_proj_test_1790897350894_01",
+          "timestamp": "2026-10-05T04:55:21.265Z",
+          "sizeBytes": "48.2 MB",
+          "snapshotType": "automated_daily",
+          "retentionDays": 30,
+          "status": "verified"
+        },
+        {
+          "id": "bk_proj_test_1790897350894_02",
+          "timestamp": "2026-10-04T04:55:21.265Z",
+          "sizeBytes": "47.9 MB",
+          "snapshotType": "automated_daily",
+          "retentionDays": 30,
+          "status": "verified"
+        },
+        {
+          "id": "bk_proj_test_1790897350894_03",
+          "timestamp": "2026-10-03T04:55:21.265Z",
+          "sizeBytes": "46.1 MB",
+          "snapshotType": "pre_deployment",
+          "retentionDays": 60,
+          "status": "verified"
+        }
+      ]
     },
     {
       "id": "proj_1790898412123_z20n",
@@ -691,7 +1495,589 @@
         }
       ],
       "createdAt": "2026-10-01T23:46:52.124Z",
-      "updatedAt": "2026-10-01T23:50:08.832Z"
+      "updatedAt": "2026-10-01T23:50:08.832Z",
+      "domains": [
+        {
+          "id": "dom_proj_1790898412123_z20n_1",
+          "domain": "vanguard-autonomy-engine.com",
+          "registrar": "Cloudflare Registrar",
+          "registeredAt": "2025-10-18T00:00:00.000Z",
+          "expiresAt": "2027-10-18T00:00:00.000Z",
+          "autoRenew": true,
+          "annualRenewalCostUsd": 14.5,
+          "sslStatus": "active",
+          "sslIssuer": "Cloudflare Edge ECC CA-3",
+          "sslExpiresAt": "2027-04-18T00:00:00.000Z",
+          "nameservers": [
+            "ashley.ns.cloudflare.com",
+            "vance.ns.cloudflare.com"
+          ],
+          "status": "healthy"
+        },
+        {
+          "id": "dom_proj_1790898412123_z20n_2",
+          "domain": "staging.vanguard-autonomy-engine.webmuse.dev",
+          "registrar": "WebMuse Cloudflare Edge DNS",
+          "registeredAt": "2026-01-10T00:00:00.000Z",
+          "expiresAt": "2028-01-10T00:00:00.000Z",
+          "autoRenew": true,
+          "annualRenewalCostUsd": 0,
+          "sslStatus": "active",
+          "sslIssuer": "Let's Encrypt Authority X3",
+          "sslExpiresAt": "2027-01-10T00:00:00.000Z",
+          "nameservers": [
+            "ns1.webmuse.dev",
+            "ns2.webmuse.dev"
+          ],
+          "status": "healthy"
+        }
+      ],
+      "tools": [
+        {
+          "id": "tool_nextjs",
+          "name": "Next.js 16 (App Router)",
+          "category": "frontend",
+          "purpose": "React 19 Server Components, Edge Rendering & Dynamic Streaming",
+          "tier": "Production Framework",
+          "version": "16.2.10",
+          "status": "operational",
+          "docsUrl": "https://nextjs.org/docs"
+        },
+        {
+          "id": "tool_supabase",
+          "name": "Supabase Realtime PostgreSQL",
+          "category": "database",
+          "purpose": "Relational database, row-level security (RLS), real-time WebSockets",
+          "tier": "Pro Dedicated Cluster",
+          "version": "PostgreSQL 16.2",
+          "status": "operational",
+          "docsUrl": "https://supabase.com/docs"
+        },
+        {
+          "id": "tool_vercel",
+          "name": "Vercel Edge Network",
+          "category": "hosting",
+          "purpose": "Zero-cold-start Edge middleware, global CDN & serverless compute",
+          "tier": "Pro Team Enterprise",
+          "status": "operational",
+          "docsUrl": "https://vercel.com/docs"
+        },
+        {
+          "id": "tool_cloudflare",
+          "name": "Cloudflare Zero Trust & WAF",
+          "category": "security",
+          "purpose": "DDoS mitigation, TLS 1.3 edge termination, DNS & Bot Management",
+          "tier": "Pro Zone + WAF Rules",
+          "status": "operational",
+          "docsUrl": "https://cloudflare.com"
+        },
+        {
+          "id": "tool_resend",
+          "name": "Resend Transactional SMTP",
+          "category": "messaging",
+          "purpose": "Cryptographic magic link dispatch, transactional notifications, DKIM/SPF",
+          "tier": "Scale Tier",
+          "status": "operational",
+          "docsUrl": "https://resend.com"
+        },
+        {
+          "id": "tool_tailwind",
+          "name": "Tailwind CSS v4 & Framer Motion",
+          "category": "design",
+          "purpose": "Cyberpunk design tokens, hardware-accelerated animations",
+          "tier": "Design System",
+          "version": "v4.0.0",
+          "status": "operational"
+        },
+        {
+          "id": "tool_openai",
+          "name": "OpenAI GPT-4o Omni API",
+          "category": "ai",
+          "purpose": "Contextual AI intelligence, algorithmic analysis, automated summarization",
+          "tier": "Tier 4 Production Org",
+          "status": "operational",
+          "docsUrl": "https://platform.openai.com"
+        },
+        {
+          "id": "tool_sentry",
+          "name": "Sentry Telemetry & Error APM",
+          "category": "analytics",
+          "purpose": "Real-time crash diagnostics, performance tracing, session replays",
+          "tier": "Team Plan",
+          "status": "operational",
+          "docsUrl": "https://sentry.io"
+        }
+      ],
+      "subscriptions": [
+        {
+          "id": "sub_supabase",
+          "name": "Supabase Pro Database Cluster",
+          "provider": "Supabase Inc.",
+          "category": "database",
+          "billingCycle": "monthly",
+          "costUsd": 25,
+          "costNgn": 37500,
+          "renewDate": "2026-11-15T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "loginUrl": "https://supabase.com/dashboard"
+        },
+        {
+          "id": "sub_vercel",
+          "name": "Vercel Pro Team Hosting",
+          "provider": "Vercel Inc.",
+          "category": "hosting",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2026-12-01T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "loginUrl": "https://vercel.com"
+        },
+        {
+          "id": "sub_cloudflare",
+          "name": "Cloudflare Pro Zone & WAF",
+          "provider": "Cloudflare",
+          "category": "hosting",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2026-10-28T00:00:00.000Z",
+          "status": "renewing_soon",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "actionRequired": "Scheduled renewal via WebMuse master billing profile."
+        },
+        {
+          "id": "sub_resend",
+          "name": "Resend Scale Email Delivery",
+          "provider": "Resend Inc.",
+          "category": "email_sms",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2027-01-10T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency"
+        },
+        {
+          "id": "sub_openai",
+          "name": "OpenAI Compute API Quota",
+          "provider": "OpenAI LLC",
+          "category": "ai_compute",
+          "billingCycle": "monthly",
+          "costUsd": 120,
+          "costNgn": 180000,
+          "renewDate": "2026-11-01T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "client",
+          "paymentCardLast4": "4190"
+        },
+        {
+          "id": "sub_sentry",
+          "name": "Sentry Performance Telemetry",
+          "provider": "Functional Software Inc.",
+          "category": "monitoring",
+          "billingCycle": "monthly",
+          "costUsd": 26,
+          "costNgn": 39000,
+          "renewDate": "2026-11-30T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency"
+        }
+      ],
+      "maintenanceRetainer": {
+        "tier": "mission_critical",
+        "tierName": "WebMuse Mission Critical 24/7 SLA",
+        "billingPeriod": "yearly",
+        "annualCostUsd": 5000,
+        "annualCostNgn": 7500000,
+        "status": "active",
+        "expiresAt": "2027-10-01T00:00:00.000Z",
+        "slaResponseTime": "< 2 Hours Emergency SLA Guarantee",
+        "uptimeGuarantee": "99.99% Availability Commitment",
+        "contractRef": "WM-SLA-VANGUARD-AUTONOMY-ENGINE-2026",
+        "lastPaymentRef": "WIRE_ANNUAL_SLA_2026_01",
+        "includedFeatures": [
+          "24/7/365 Real-Time Uptime & Server Sentinel",
+          "Weekly automated dependency upgrades & security patch vetting",
+          "Daily zero-downtime database backups & bi-weekly recovery drills",
+          "Direct priority channel to WebMuse Senior Cloud Engineers",
+          "15 hours / month included engineering tweaks & hotfixes",
+          "Cloudflare Edge WAF firewall tuning & anti-DDoS mitigation",
+          "Quarterly Lighthouse 100/100 Core Web Vitals re-tuning",
+          "Domain registration & SSL certificate auto-management"
+        ]
+      },
+      "healthSentinel": {
+        "uptimePercentage": 99.98,
+        "avgLatencyMs": 34,
+        "sslGrade": "A+",
+        "edgeNodesActive": 284,
+        "lastChecked": "2026-10-05T08:55:21.265Z",
+        "status": "optimal"
+      },
+      "backups": [
+        {
+          "id": "bk_proj_1790898412123_z20n_01",
+          "timestamp": "2026-10-05T04:55:21.265Z",
+          "sizeBytes": "48.2 MB",
+          "snapshotType": "automated_daily",
+          "retentionDays": 30,
+          "status": "verified"
+        },
+        {
+          "id": "bk_proj_1790898412123_z20n_02",
+          "timestamp": "2026-10-04T04:55:21.265Z",
+          "sizeBytes": "47.9 MB",
+          "snapshotType": "automated_daily",
+          "retentionDays": 30,
+          "status": "verified"
+        },
+        {
+          "id": "bk_proj_1790898412123_z20n_03",
+          "timestamp": "2026-10-03T04:55:21.265Z",
+          "sizeBytes": "46.1 MB",
+          "snapshotType": "pre_deployment",
+          "retentionDays": 60,
+          "status": "verified"
+        }
+      ]
+    },
+    {
+      "id": "proj_test_1791041087698",
+      "clientId": "cli_test_1791041087697",
+      "title": "Cyberdyne Threat Monitor",
+      "slug": "cyberdyne-threat-monitor-7697",
+      "tagline": "Autonomous AI Risk Telemetry & Edge Defense",
+      "description": "High-speed event ingestion with biometric override circuit breakers.",
+      "status": "active",
+      "currentPhaseIndex": 0,
+      "techStack": [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS v4",
+        "Supabase"
+      ],
+      "totalBudgetUsd": 18000,
+      "totalBudgetNgn": 27000000,
+      "prd": {
+        "version": "1.0.0",
+        "title": "Cyberdyne Architecture PRD",
+        "summary": "Executive telemetry specifications.",
+        "problemStatement": "Distributed anomalous algorithmic events.",
+        "targetAudience": "Infrastructure security leads.",
+        "coreArchitecture": "Edge rendering with real-time WebSocket state.",
+        "featureMatrix": [],
+        "techStack": [
+          "Next.js 16",
+          "Supabase"
+        ],
+        "kpis": [
+          "Sub-50ms latency"
+        ]
+      },
+      "milestones": [
+        {
+          "id": "ms_01_1791041087698",
+          "projectId": "proj_test_1791041087698",
+          "orderIndex": 0,
+          "phaseNumber": 1,
+          "title": "Genesis Discovery & PRD Sign-Off",
+          "subtitle": "Foundational Scoping",
+          "description": "Threat matrix and baseline scope consensus.",
+          "costUsd": 3000,
+          "costNgn": 4500000,
+          "status": "in_progress",
+          "targetCompletionDays": 7,
+          "deliverables": [
+            {
+              "id": "del_1",
+              "title": "Architecture Matrix",
+              "status": "in_progress"
+            }
+          ]
+        },
+        {
+          "id": "ms_02_1791041087698",
+          "projectId": "proj_test_1791041087698",
+          "orderIndex": 1,
+          "phaseNumber": 2,
+          "title": "UI/UX Architecture & Design System",
+          "subtitle": "Cyberpunk Command Deck Wireframes",
+          "description": "Design tokens and clickable prototype.",
+          "costUsd": 5000,
+          "costNgn": 7500000,
+          "status": "in_progress",
+          "targetCompletionDays": 14,
+          "deliverables": [
+            {
+              "id": "del_2",
+              "title": "Interactive Wireframes",
+              "status": "backlog"
+            }
+          ],
+          "paymentTxRef": "WIRE_SETTLEMENT_REF_9918",
+          "paymentGateway": "manual",
+          "unlockedAt": "2026-10-03T15:24:47.703Z"
+        }
+      ],
+      "createdAt": "2026-10-03T15:24:47.698Z",
+      "updatedAt": "2026-10-03T15:24:47.698Z",
+      "domains": [
+        {
+          "id": "dom_proj_test_1791041087698_1",
+          "domain": "cyberdyne-threat-monitor-7697.com",
+          "registrar": "Cloudflare Registrar",
+          "registeredAt": "2025-10-18T00:00:00.000Z",
+          "expiresAt": "2027-10-18T00:00:00.000Z",
+          "autoRenew": true,
+          "annualRenewalCostUsd": 14.5,
+          "sslStatus": "active",
+          "sslIssuer": "Cloudflare Edge ECC CA-3",
+          "sslExpiresAt": "2027-04-18T00:00:00.000Z",
+          "nameservers": [
+            "ashley.ns.cloudflare.com",
+            "vance.ns.cloudflare.com"
+          ],
+          "status": "healthy"
+        },
+        {
+          "id": "dom_proj_test_1791041087698_2",
+          "domain": "staging.cyberdyne-threat-monitor-7697.webmuse.dev",
+          "registrar": "WebMuse Cloudflare Edge DNS",
+          "registeredAt": "2026-01-10T00:00:00.000Z",
+          "expiresAt": "2028-01-10T00:00:00.000Z",
+          "autoRenew": true,
+          "annualRenewalCostUsd": 0,
+          "sslStatus": "active",
+          "sslIssuer": "Let's Encrypt Authority X3",
+          "sslExpiresAt": "2027-01-10T00:00:00.000Z",
+          "nameservers": [
+            "ns1.webmuse.dev",
+            "ns2.webmuse.dev"
+          ],
+          "status": "healthy"
+        }
+      ],
+      "tools": [
+        {
+          "id": "tool_nextjs",
+          "name": "Next.js 16 (App Router)",
+          "category": "frontend",
+          "purpose": "React 19 Server Components, Edge Rendering & Dynamic Streaming",
+          "tier": "Production Framework",
+          "version": "16.2.10",
+          "status": "operational",
+          "docsUrl": "https://nextjs.org/docs"
+        },
+        {
+          "id": "tool_supabase",
+          "name": "Supabase Realtime PostgreSQL",
+          "category": "database",
+          "purpose": "Relational database, row-level security (RLS), real-time WebSockets",
+          "tier": "Pro Dedicated Cluster",
+          "version": "PostgreSQL 16.2",
+          "status": "operational",
+          "docsUrl": "https://supabase.com/docs"
+        },
+        {
+          "id": "tool_vercel",
+          "name": "Vercel Edge Network",
+          "category": "hosting",
+          "purpose": "Zero-cold-start Edge middleware, global CDN & serverless compute",
+          "tier": "Pro Team Enterprise",
+          "status": "operational",
+          "docsUrl": "https://vercel.com/docs"
+        },
+        {
+          "id": "tool_cloudflare",
+          "name": "Cloudflare Zero Trust & WAF",
+          "category": "security",
+          "purpose": "DDoS mitigation, TLS 1.3 edge termination, DNS & Bot Management",
+          "tier": "Pro Zone + WAF Rules",
+          "status": "operational",
+          "docsUrl": "https://cloudflare.com"
+        },
+        {
+          "id": "tool_resend",
+          "name": "Resend Transactional SMTP",
+          "category": "messaging",
+          "purpose": "Cryptographic magic link dispatch, transactional notifications, DKIM/SPF",
+          "tier": "Scale Tier",
+          "status": "operational",
+          "docsUrl": "https://resend.com"
+        },
+        {
+          "id": "tool_tailwind",
+          "name": "Tailwind CSS v4 & Framer Motion",
+          "category": "design",
+          "purpose": "Cyberpunk design tokens, hardware-accelerated animations",
+          "tier": "Design System",
+          "version": "v4.0.0",
+          "status": "operational"
+        },
+        {
+          "id": "tool_openai",
+          "name": "OpenAI GPT-4o Omni API",
+          "category": "ai",
+          "purpose": "Contextual AI intelligence, algorithmic analysis, automated summarization",
+          "tier": "Tier 4 Production Org",
+          "status": "operational",
+          "docsUrl": "https://platform.openai.com"
+        },
+        {
+          "id": "tool_sentry",
+          "name": "Sentry Telemetry & Error APM",
+          "category": "analytics",
+          "purpose": "Real-time crash diagnostics, performance tracing, session replays",
+          "tier": "Team Plan",
+          "status": "operational",
+          "docsUrl": "https://sentry.io"
+        }
+      ],
+      "subscriptions": [
+        {
+          "id": "sub_supabase",
+          "name": "Supabase Pro Database Cluster",
+          "provider": "Supabase Inc.",
+          "category": "database",
+          "billingCycle": "monthly",
+          "costUsd": 25,
+          "costNgn": 37500,
+          "renewDate": "2026-11-15T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "loginUrl": "https://supabase.com/dashboard"
+        },
+        {
+          "id": "sub_vercel",
+          "name": "Vercel Pro Team Hosting",
+          "provider": "Vercel Inc.",
+          "category": "hosting",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2026-12-01T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "loginUrl": "https://vercel.com"
+        },
+        {
+          "id": "sub_cloudflare",
+          "name": "Cloudflare Pro Zone & WAF",
+          "provider": "Cloudflare",
+          "category": "hosting",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2026-10-28T00:00:00.000Z",
+          "status": "renewing_soon",
+          "managedBy": "agency",
+          "paymentCardLast4": "8821",
+          "actionRequired": "Scheduled renewal via WebMuse master billing profile."
+        },
+        {
+          "id": "sub_resend",
+          "name": "Resend Scale Email Delivery",
+          "provider": "Resend Inc.",
+          "category": "email_sms",
+          "billingCycle": "monthly",
+          "costUsd": 20,
+          "costNgn": 30000,
+          "renewDate": "2027-01-10T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency"
+        },
+        {
+          "id": "sub_openai",
+          "name": "OpenAI Compute API Quota",
+          "provider": "OpenAI LLC",
+          "category": "ai_compute",
+          "billingCycle": "monthly",
+          "costUsd": 120,
+          "costNgn": 180000,
+          "renewDate": "2026-11-01T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "client",
+          "paymentCardLast4": "4190"
+        },
+        {
+          "id": "sub_sentry",
+          "name": "Sentry Performance Telemetry",
+          "provider": "Functional Software Inc.",
+          "category": "monitoring",
+          "billingCycle": "monthly",
+          "costUsd": 26,
+          "costNgn": 39000,
+          "renewDate": "2026-11-30T00:00:00.000Z",
+          "status": "active",
+          "managedBy": "agency"
+        }
+      ],
+      "maintenanceRetainer": {
+        "tier": "mission_critical",
+        "tierName": "WebMuse Mission Critical 24/7 SLA",
+        "billingPeriod": "yearly",
+        "annualCostUsd": 5000,
+        "annualCostNgn": 7500000,
+        "status": "active",
+        "expiresAt": "2027-10-01T00:00:00.000Z",
+        "slaResponseTime": "< 2 Hours Emergency SLA Guarantee",
+        "uptimeGuarantee": "99.99% Availability Commitment",
+        "contractRef": "WM-SLA-CYBERDYNE-THREAT-MONITOR-7697-2026",
+        "lastPaymentRef": "WIRE_ANNUAL_SLA_2026_01",
+        "includedFeatures": [
+          "24/7/365 Real-Time Uptime & Server Sentinel",
+          "Weekly automated dependency upgrades & security patch vetting",
+          "Daily zero-downtime database backups & bi-weekly recovery drills",
+          "Direct priority channel to WebMuse Senior Cloud Engineers",
+          "15 hours / month included engineering tweaks & hotfixes",
+          "Cloudflare Edge WAF firewall tuning & anti-DDoS mitigation",
+          "Quarterly Lighthouse 100/100 Core Web Vitals re-tuning",
+          "Domain registration & SSL certificate auto-management"
+        ]
+      },
+      "healthSentinel": {
+        "uptimePercentage": 99.98,
+        "avgLatencyMs": 34,
+        "sslGrade": "A+",
+        "edgeNodesActive": 284,
+        "lastChecked": "2026-10-05T08:55:21.265Z",
+        "status": "optimal"
+      },
+      "backups": [
+        {
+          "id": "bk_proj_test_1791041087698_01",
+          "timestamp": "2026-10-05T04:55:21.265Z",
+          "sizeBytes": "48.2 MB",
+          "snapshotType": "automated_daily",
+          "retentionDays": 30,
+          "status": "verified"
+        },
+        {
+          "id": "bk_proj_test_1791041087698_02",
+          "timestamp": "2026-10-04T04:55:21.265Z",
+          "sizeBytes": "47.9 MB",
+          "snapshotType": "automated_daily",
+          "retentionDays": 30,
+          "status": "verified"
+        },
+        {
+          "id": "bk_proj_test_1791041087698_03",
+          "timestamp": "2026-10-03T04:55:21.265Z",
+          "sizeBytes": "46.1 MB",
+          "snapshotType": "pre_deployment",
+          "retentionDays": 60,
+          "status": "verified"
+        }
+      ]
     }
   ],
   "magicTokens": [
@@ -723,13 +2109,67 @@
       "createdAt": 1790898412124
     },
     {
-      "tokenHash": "31a8ad0805cbeda4214b4243b284ce1078b4e6b385f50d7c2d2875fbc1d7f0ac",
-      "rawTokenPreview": "0497bc10",
+      "tokenHash": "ea6b9fc4c5cd8d440444caf5889ba456d86adc29f90e078bc75203cda9c913e0",
+      "rawTokenPreview": "d5d1d35c",
+      "email": "sarah_1791041087697@cyberdyne-defense.org",
+      "projectId": "proj_test_1791041087698",
+      "expiresAt": 1791645887699,
+      "used": false,
+      "createdAt": 1791041087699
+    },
+    {
+      "tokenHash": "b2c87797026886237a761a8ec62ef97cafd9ec4c44f6e39167c60f4109d28592",
+      "rawTokenPreview": "61a1c449",
       "email": "client@apexlabs.io",
       "projectId": "proj_apex_01",
-      "expiresAt": 1790900463800,
+      "expiresAt": 1791199818223,
       "used": true,
-      "createdAt": 1790899563800
+      "createdAt": 1791198918223
+    },
+    {
+      "tokenHash": "2198f6a8318ca2fcf82940a381fdf1450b25ddab00cc69ae0d8501c6bcd07387",
+      "rawTokenPreview": "e8339a82",
+      "email": "client@apexlabs.io",
+      "projectId": "proj_apex_01",
+      "expiresAt": 1791818821953,
+      "used": true,
+      "createdAt": 1791214021953
+    },
+    {
+      "tokenHash": "a8dd2137e581b902640ba12d971cf12d720acd316e8e5f89ae85f7f0d210d47a",
+      "rawTokenPreview": "8cdabe19",
+      "email": "client@apexlabs.io",
+      "projectId": "proj_apex_01",
+      "expiresAt": 1791818877465,
+      "used": true,
+      "createdAt": 1791214077465
+    },
+    {
+      "tokenHash": "37e3ace39fc31c9ff341e23bc68231d1f85c50ac9cfc7b0b87749123fed15bbc",
+      "rawTokenPreview": "813cb6f9",
+      "email": "client@apexlabs.io",
+      "projectId": "proj_apex_01",
+      "expiresAt": 1791818985241,
+      "used": true,
+      "createdAt": 1791214185241
+    },
+    {
+      "tokenHash": "db317a4f32be4a9a3e9bed3c46751de2cc7de28f40a68c29ba5eede9c1f657c6",
+      "rawTokenPreview": "d9595cd3",
+      "email": "client@apexlabs.io",
+      "projectId": "proj_apex_01",
+      "expiresAt": 1791819426575,
+      "used": true,
+      "createdAt": 1791214626575
+    },
+    {
+      "tokenHash": "dba0dc3cc7666f4e76bab567d14c6bfcb722775c481fdfd52825c98ae1b6219b",
+      "rawTokenPreview": "5c2272c9",
+      "email": "client@apexlabs.io",
+      "projectId": "proj_apex_01",
+      "expiresAt": 1791820294458,
+      "used": true,
+      "createdAt": 1791215494458
     }
   ],
   "vaultSecrets": [
@@ -773,9 +2213,796 @@
       "updatedAt": "2026-10-01T18:08:09.626Z"
     }
   ],
-  "payments": [],
-  "reviewPins": [],
+  "payments": [
+    {
+      "id": "pay_1791192491691_n9gh7",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_02_design",
+      "phaseNumber": 2,
+      "gateway": "nowpayments",
+      "amount": 4000,
+      "currency": "USDT",
+      "status": "confirmed",
+      "txHashOrRef": "TEST_INTENT_REF_1791192491681",
+      "payerEmail": "alex@apexlabs.io",
+      "metadata": {
+        "network": "TRC20",
+        "blockchainConfirmation": 19
+      },
+      "createdAt": "2026-10-05T09:28:11.691Z",
+      "confirmedAt": "2026-10-05T09:28:11.698Z"
+    },
+    {
+      "id": "pay_1791196580609_oyplf",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_02_design",
+      "phaseNumber": 2,
+      "gateway": "nowpayments",
+      "amount": 4000,
+      "currency": "USDT",
+      "status": "confirmed",
+      "txHashOrRef": "TEST_INTENT_REF_1791196580601",
+      "payerEmail": "alex@apexlabs.io",
+      "metadata": {
+        "network": "TRC20",
+        "blockchainConfirmation": 19
+      },
+      "createdAt": "2026-10-05T10:36:20.609Z",
+      "confirmedAt": "2026-10-05T10:36:20.619Z"
+    },
+    {
+      "id": "pay_1791202846260_npyyn",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_03_engineering",
+      "phaseNumber": 3,
+      "gateway": "nowpayments",
+      "amount": 7000,
+      "currency": "USDT",
+      "status": "confirmed",
+      "txHashOrRef": "0x42765ed161ba9a24891b99d6c44e5e064770cff4522ed036b81978935636da37",
+      "payerEmail": "client@apexlabs.io",
+      "metadata": {
+        "simulation": true,
+        "confirmedVia": "multi-rail-checkout"
+      },
+      "createdAt": "2026-10-05T12:20:46.260Z",
+      "confirmedAt": "2026-10-05T12:20:46.260Z"
+    },
+    {
+      "id": "pay_addon_1791209831304_qa36",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_addon_1791209831304_t13k",
+      "phaseNumber": 6,
+      "gateway": "nowpayments",
+      "amount": 350,
+      "currency": "USD",
+      "status": "confirmed",
+      "txHashOrRef": "tx_addon_test_1791209831292",
+      "payerEmail": "alex@apexlabs.io",
+      "createdAt": "2026-10-05T14:17:11.304Z",
+      "confirmedAt": "2026-10-05T14:17:11.304Z",
+      "metadata": {
+        "addonId": "addon_rev_sprint",
+        "addonTitle": "Additional Revision Sprint"
+      }
+    },
+    {
+      "id": "pay_addon_1791212162613_ou8d",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_addon_1791212162613_zop3",
+      "phaseNumber": 6,
+      "gateway": "nowpayments",
+      "amount": 350,
+      "currency": "USD",
+      "status": "confirmed",
+      "txHashOrRef": "tx_addon_test_1791212162593",
+      "payerEmail": "alex@apexlabs.io",
+      "createdAt": "2026-10-05T14:56:02.613Z",
+      "confirmedAt": "2026-10-05T14:56:02.613Z",
+      "metadata": {
+        "addonId": "addon_rev_sprint",
+        "addonTitle": "Additional Revision Sprint"
+      }
+    },
+    {
+      "id": "pay_addon_1791214185536_pn2r",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_addon_1791214185536_n6u5",
+      "phaseNumber": 7,
+      "gateway": "nowpayments",
+      "amount": 450,
+      "currency": "USD",
+      "status": "confirmed",
+      "txHashOrRef": "tx_e2e_1791214185512",
+      "payerEmail": "client@apexlabs.io",
+      "createdAt": "2026-10-05T15:29:45.536Z",
+      "confirmedAt": "2026-10-05T15:29:45.536Z",
+      "metadata": {
+        "addonId": "addon_speed_perf",
+        "addonTitle": "Speed & Core Web Vitals Optimization"
+      }
+    },
+    {
+      "id": "pay_addon_1791214627166_r9gw",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_addon_1791214627166_3r3p",
+      "phaseNumber": 7,
+      "gateway": "nowpayments",
+      "amount": 450,
+      "currency": "USD",
+      "status": "confirmed",
+      "txHashOrRef": "tx_e2e_1791214627160",
+      "payerEmail": "client@apexlabs.io",
+      "createdAt": "2026-10-05T15:37:07.166Z",
+      "confirmedAt": "2026-10-05T15:37:07.166Z",
+      "metadata": {
+        "addonId": "addon_speed_perf",
+        "addonTitle": "Speed & Core Web Vitals Optimization"
+      }
+    },
+    {
+      "id": "pay_addon_1791215494847_g829",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_addon_1791215494847_fe6r",
+      "phaseNumber": 7,
+      "gateway": "nowpayments",
+      "amount": 450,
+      "currency": "USD",
+      "status": "confirmed",
+      "txHashOrRef": "tx_e2e_1791215494843",
+      "payerEmail": "client@apexlabs.io",
+      "createdAt": "2026-10-05T15:51:34.847Z",
+      "confirmedAt": "2026-10-05T15:51:34.847Z",
+      "metadata": {
+        "addonId": "addon_speed_perf",
+        "addonTitle": "Speed & Core Web Vitals Optimization"
+      }
+    }
+  ],
+  "reviewPins": [
+    {
+      "id": "pin_1791215494678_021r",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_03_engineering",
+      "authorEmail": "client@apexlabs.io",
+      "authorName": "Alex Vance",
+      "xPercent": 55.4,
+      "yPercent": 32.1,
+      "viewportWidth": 1440,
+      "comment": "Increase contrast on depth-of-market orderbook typography for OLED screens",
+      "severity": "tweak",
+      "status": "resolved",
+      "createdAt": "2026-10-05T15:51:34.678Z"
+    },
+    {
+      "id": "pin_1791214626948_a0eq",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_03_engineering",
+      "authorEmail": "client@apexlabs.io",
+      "authorName": "Alex Vance",
+      "xPercent": 55.4,
+      "yPercent": 32.1,
+      "viewportWidth": 1440,
+      "comment": "Increase contrast on depth-of-market orderbook typography for OLED screens",
+      "severity": "tweak",
+      "status": "resolved",
+      "createdAt": "2026-10-05T15:37:06.948Z"
+    },
+    {
+      "id": "pin_1791214185333_ayd2",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_03_engineering",
+      "authorEmail": "client@apexlabs.io",
+      "authorName": "Alex Vance",
+      "xPercent": 55.4,
+      "yPercent": 32.1,
+      "viewportWidth": 1440,
+      "comment": "Increase contrast on depth-of-market orderbook typography for OLED screens",
+      "severity": "tweak",
+      "status": "resolved",
+      "createdAt": "2026-10-05T15:29:45.333Z"
+    },
+    {
+      "id": "pin_1791214077530_1vtb",
+      "projectId": "proj_apex_01",
+      "milestoneId": "ms_03_engineering",
+      "authorEmail": "client@apexlabs.io",
+      "authorName": "Alex Vance",
+      "xPercent": 55.4,
+      "yPercent": 32.1,
+      "viewportWidth": 1440,
+      "comment": "Increase contrast on depth-of-market orderbook typography for OLED screens",
+      "severity": "tweak",
+      "status": "resolved",
+      "createdAt": "2026-10-05T15:27:57.530Z"
+    }
+  ],
   "activityLogs": [
+    {
+      "id": "act_1791215821597_rk0bd",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "WebMuse Lead Engineer",
+      "action": "REVIEW_PIN_RESOLVED",
+      "details": "Staging feedback marker #1vtb marked RESOLVED by WebMuse Lead Engineer.",
+      "timestamp": "2026-10-05T15:57:01.597Z"
+    },
+    {
+      "id": "act_1791215820449_towag",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "WebMuse Lead Engineer",
+      "action": "REVIEW_PIN_REOPENED",
+      "details": "Staging feedback marker #1vtb marked OPEN by WebMuse Lead Engineer.",
+      "timestamp": "2026-10-05T15:57:00.449Z"
+    },
+    {
+      "id": "act_1791215799840_n1av5",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "WebMuse Lead Engineer",
+      "action": "REVIEW_PIN_RESOLVED",
+      "details": "Staging feedback marker #1vtb marked RESOLVED by WebMuse Lead Engineer.",
+      "timestamp": "2026-10-05T15:56:39.840Z"
+    },
+    {
+      "id": "act_1791215495023_6mcug",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "client@apexlabs.io",
+      "action": "ADDON_SERVICE_PURCHASED",
+      "details": "Purchased Add-on \"Speed & Core Web Vitals Optimization\" via NOWPAYMENTS (Ref: tx_e2e_1791215494843). Phase 7 micro-milestone initialized.",
+      "timestamp": "2026-10-05T15:51:34.847Z"
+    },
+    {
+      "id": "act_1791215494835_64d5z",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "WARRANTY_TICKET_SUBMITTED",
+      "details": "SLA Warranty Ticket \"E2E Test: WebSocket heartbeat timeout on edge network\" filed [Priority: medium]. Assigned to engineering triage.",
+      "timestamp": "2026-10-05T15:51:34.835Z"
+    },
+    {
+      "id": "act_1791215494818_3ij35",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "martins@webmuse.dev",
+      "action": "REVIEW_PIN_RESOLVED",
+      "details": "Staging feedback marker #021r marked RESOLVED by martins@webmuse.dev.",
+      "timestamp": "2026-10-05T15:51:34.818Z"
+    },
+    {
+      "id": "act_1791215494678_u747u",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "REVIEW_PIN_DROPPED",
+      "details": "Staging feedback marker #021r placed [TWEAK]: \"Increase contrast on depth-of-market orderbook typography fo\"",
+      "timestamp": "2026-10-05T15:51:34.678Z"
+    },
+    {
+      "id": "act_1791215494670_3wh4x",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 2 (UI/UX Design Architecture & Design System) updated to completed. Client approved Figma deck and design tokens",
+      "timestamp": "2026-10-05T15:51:34.670Z"
+    },
+    {
+      "id": "act_1791215494458_yu400",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MAGIC_INVITE_DISPATCHED",
+      "details": "Fresh magic token generated for client Alex Vance (client@apexlabs.io).",
+      "timestamp": "2026-10-05T15:51:34.458Z"
+    },
+    {
+      "id": "act_1791215202523_dr8y9",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "WebMuse Lead Engineer",
+      "action": "REVIEW_PIN_REOPENED",
+      "details": "Staging feedback marker #1vtb marked OPEN by WebMuse Lead Engineer.",
+      "timestamp": "2026-10-05T15:46:42.523Z"
+    },
+    {
+      "id": "act_1791215187859_h2u2n",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "WebMuse Lead Engineer",
+      "action": "REVIEW_PIN_RESOLVED",
+      "details": "Staging feedback marker #1vtb marked RESOLVED by WebMuse Lead Engineer.",
+      "timestamp": "2026-10-05T15:46:27.859Z"
+    },
+    {
+      "id": "act_1791215184024_t1gt8",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "WebMuse Lead Engineer",
+      "action": "REVIEW_PIN_REOPENED",
+      "details": "Staging feedback marker #1vtb marked OPEN by WebMuse Lead Engineer.",
+      "timestamp": "2026-10-05T15:46:24.024Z"
+    },
+    {
+      "id": "act_1791215176917_wxc35",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "WebMuse Lead Engineer",
+      "action": "REVIEW_PIN_RESOLVED",
+      "details": "Staging feedback marker #1vtb marked RESOLVED by WebMuse Lead Engineer.",
+      "timestamp": "2026-10-05T15:46:16.917Z"
+    },
+    {
+      "id": "act_1791215120325_2ss5r",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "WebMuse Lead Engineer",
+      "action": "REVIEW_PIN_REOPENED",
+      "details": "Staging feedback marker #1vtb marked OPEN by WebMuse Lead Engineer.",
+      "timestamp": "2026-10-05T15:45:20.325Z"
+    },
+    {
+      "id": "act_1791214627372_q2liq",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "client@apexlabs.io",
+      "action": "ADDON_SERVICE_PURCHASED",
+      "details": "Purchased Add-on \"Speed & Core Web Vitals Optimization\" via NOWPAYMENTS (Ref: tx_e2e_1791214627160). Phase 7 micro-milestone initialized.",
+      "timestamp": "2026-10-05T15:37:07.166Z"
+    },
+    {
+      "id": "act_1791214627143_163t9",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "WARRANTY_TICKET_SUBMITTED",
+      "details": "SLA Warranty Ticket \"E2E Test: WebSocket heartbeat timeout on edge network\" filed [Priority: medium]. Assigned to engineering triage.",
+      "timestamp": "2026-10-05T15:37:07.143Z"
+    },
+    {
+      "id": "act_1791214626993_tv7qm",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "martins@webmuse.dev",
+      "action": "REVIEW_PIN_RESOLVED",
+      "details": "Staging feedback marker #a0eq marked RESOLVED by martins@webmuse.dev.",
+      "timestamp": "2026-10-05T15:37:06.993Z"
+    },
+    {
+      "id": "act_1791214626948_j9t30",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "REVIEW_PIN_DROPPED",
+      "details": "Staging feedback marker #a0eq placed [TWEAK]: \"Increase contrast on depth-of-market orderbook typography fo\"",
+      "timestamp": "2026-10-05T15:37:06.948Z"
+    },
+    {
+      "id": "act_1791214626929_x43ko",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 2 (UI/UX Design Architecture & Design System) updated to completed. Client approved Figma deck and design tokens",
+      "timestamp": "2026-10-05T15:37:06.929Z"
+    },
+    {
+      "id": "act_1791214626575_w3bls",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MAGIC_INVITE_DISPATCHED",
+      "details": "Fresh magic token generated for client Alex Vance (client@apexlabs.io).",
+      "timestamp": "2026-10-05T15:37:06.575Z"
+    },
+    {
+      "id": "act_1791214185746_73mgw",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "client@apexlabs.io",
+      "action": "ADDON_SERVICE_PURCHASED",
+      "details": "Purchased Add-on \"Speed & Core Web Vitals Optimization\" via NOWPAYMENTS (Ref: tx_e2e_1791214185512). Phase 7 micro-milestone initialized.",
+      "timestamp": "2026-10-05T15:29:45.536Z"
+    },
+    {
+      "id": "act_1791214185429_81744",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "WARRANTY_TICKET_SUBMITTED",
+      "details": "SLA Warranty Ticket \"E2E Test: WebSocket heartbeat timeout on edge network\" filed [Priority: medium]. Assigned to engineering triage.",
+      "timestamp": "2026-10-05T15:29:45.429Z"
+    },
+    {
+      "id": "act_1791214185364_fwa9u",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "martins@webmuse.dev",
+      "action": "REVIEW_PIN_RESOLVED",
+      "details": "Staging feedback marker #ayd2 marked RESOLVED by martins@webmuse.dev.",
+      "timestamp": "2026-10-05T15:29:45.364Z"
+    },
+    {
+      "id": "act_1791214185333_3x2lb",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "REVIEW_PIN_DROPPED",
+      "details": "Staging feedback marker #ayd2 placed [TWEAK]: \"Increase contrast on depth-of-market orderbook typography fo\"",
+      "timestamp": "2026-10-05T15:29:45.333Z"
+    },
+    {
+      "id": "act_1791214185312_gdnik",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 2 (UI/UX Design Architecture & Design System) updated to completed. Client approved Figma deck and design tokens",
+      "timestamp": "2026-10-05T15:29:45.313Z"
+    },
+    {
+      "id": "act_1791214185241_anzhf",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MAGIC_INVITE_DISPATCHED",
+      "details": "Fresh magic token generated for client Alex Vance (client@apexlabs.io).",
+      "timestamp": "2026-10-05T15:29:45.241Z"
+    },
+    {
+      "id": "act_1791214077586_abrad",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "WebMuse Lead Engineer",
+      "action": "REVIEW_PIN_REOPENED",
+      "details": "Staging feedback marker #1vtb marked MARTINS@WEBMUSE.DEV by Engineering team.",
+      "timestamp": "2026-10-05T15:27:57.586Z"
+    },
+    {
+      "id": "act_1791214077530_kydjl",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "REVIEW_PIN_DROPPED",
+      "details": "Staging feedback marker #1vtb placed [TWEAK]: \"Increase contrast on depth-of-market orderbook typography fo\"",
+      "timestamp": "2026-10-05T15:27:57.530Z"
+    },
+    {
+      "id": "act_1791214077513_vr5f4",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 2 (UI/UX Design Architecture & Design System) updated to completed. Client approved Figma deck and design tokens",
+      "timestamp": "2026-10-05T15:27:57.513Z"
+    },
+    {
+      "id": "act_1791214077465_5eewg",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MAGIC_INVITE_DISPATCHED",
+      "details": "Fresh magic token generated for client Alex Vance (client@apexlabs.io).",
+      "timestamp": "2026-10-05T15:27:57.466Z"
+    },
+    {
+      "id": "act_1791214022059_v9b5x",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 2 (UI/UX Design Architecture & Design System) updated to in_progress. ",
+      "timestamp": "2026-10-05T15:27:02.059Z"
+    },
+    {
+      "id": "act_1791214021954_d9ht3",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MAGIC_INVITE_DISPATCHED",
+      "details": "Fresh magic token generated for client Alex Vance (client@apexlabs.io).",
+      "timestamp": "2026-10-05T15:27:01.954Z"
+    },
+    {
+      "id": "act_1791212162714_edzow",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "alex@apexlabs.io",
+      "action": "ADDON_SERVICE_PURCHASED",
+      "details": "Purchased Add-on \"Additional Revision Sprint\" via NOWPAYMENTS (Ref: tx_addon_test_1791212162593). Phase 6 micro-milestone initialized.",
+      "timestamp": "2026-10-05T14:56:02.613Z"
+    },
+    {
+      "id": "act_1791212162407_mak7z",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "WARRANTY_TICKET_SUBMITTED",
+      "details": "SLA Warranty Ticket \"High-frequency latency spike on Arbitrum orderbook worker\" filed [Priority: high]. Assigned to engineering triage.",
+      "timestamp": "2026-10-05T14:56:02.407Z"
+    },
+    {
+      "id": "act_1791209831546_fxnpd",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "alex@apexlabs.io",
+      "action": "ADDON_SERVICE_PURCHASED",
+      "details": "Purchased Add-on \"Additional Revision Sprint\" via NOWPAYMENTS (Ref: tx_addon_test_1791209831292). Phase 6 micro-milestone initialized.",
+      "timestamp": "2026-10-05T14:17:11.304Z"
+    },
+    {
+      "id": "act_1791209831166_1slrz",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "WARRANTY_TICKET_SUBMITTED",
+      "details": "SLA Warranty Ticket \"High-frequency latency spike on Arbitrum orderbook worker\" filed [Priority: high]. Assigned to engineering triage.",
+      "timestamp": "2026-10-05T14:17:11.166Z"
+    },
+    {
+      "id": "act_1791202846260_8olgp",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "client@apexlabs.io",
+      "action": "MILESTONE_PAYMENT_CONFIRMED",
+      "details": "Settled USDT 7,000 for Phase 03 (Core Engine Sprint & Full-Stack Build) via NOWPAYMENTS. Ref: 0x42765ed161ba9a24891b99d6c44e5e064770cff4522ed036b81978935636da37",
+      "timestamp": "2026-10-05T12:20:46.260Z"
+    },
+    {
+      "id": "act_1791200744234_j9tv0",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Motun Marteen",
+      "action": "SCOPE_BASELINE_SIGNED_OFF",
+      "details": "Client approved Scope v1.0.0 baseline. Cryptographic signature locked: ec38ed67735351d8...",
+      "timestamp": "2026-10-05T11:45:44.234Z"
+    },
+    {
+      "id": "act_1791199998040_ee8pl",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Marteen Mubaraq",
+      "action": "REVIEW_PIN_DELETED",
+      "details": "Feedback marker #egcx removed from staging review deck.",
+      "timestamp": "2026-10-05T11:33:18.040Z"
+    },
+    {
+      "id": "act_1791199997954_vc3xz",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Marteen Mubaraq",
+      "action": "REVIEW_PIN_RESOLVED",
+      "details": "Staging feedback marker #egcx marked RESOLVED by Marteen Mubaraq.",
+      "timestamp": "2026-10-05T11:33:17.954Z"
+    },
+    {
+      "id": "act_1791199997940_v5fkk",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "REVIEW_PIN_DROPPED",
+      "details": "Staging feedback marker #egcx placed [BUG]: \"The mempool gas fee estimator widget requires high-contrast \"",
+      "timestamp": "2026-10-05T11:33:17.940Z"
+    },
+    {
+      "id": "act_1791199997899_07r6u",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.dev",
+      "action": "VAULT_SECRET_DELETED",
+      "details": "Credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) permanently purged from AES-256 vault.",
+      "timestamp": "2026-10-05T11:33:17.899Z"
+    },
+    {
+      "id": "act_1791199997826_9h7yl",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.dev",
+      "action": "VAULT_SECRET_UPDATED",
+      "details": "Updated credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) in AES-256 vault.",
+      "timestamp": "2026-10-05T11:33:17.826Z"
+    },
+    {
+      "id": "act_1791199997789_uq15g",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.dev",
+      "action": "VAULT_SECRET_CREATED",
+      "details": "Encrypted credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) committed to AES-256 vault. Visible to client: No (Agency Only).",
+      "timestamp": "2026-10-05T11:33:17.789Z"
+    },
+    {
+      "id": "act_1791199997769_xnvys",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.dev",
+      "action": "VAULT_SECRET_ACCESSED",
+      "details": "Decrypted credential \"Transaction Pooler URL\" (Supabase PostgreSQL) viewed via hardware-grade AES-256-GCM.",
+      "timestamp": "2026-10-05T11:33:17.769Z"
+    },
+    {
+      "id": "act_1791199997751_2sdta",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "client@apexlabs.io",
+      "action": "VAULT_SECRET_ACCESSED",
+      "details": "Decrypted credential \"Staging Admin Password\" (Staging Vercel Preview) viewed via hardware-grade AES-256-GCM.",
+      "timestamp": "2026-10-05T11:33:17.751Z"
+    },
+    {
+      "id": "act_1791198089488_3qjtt",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Marteen Mubaraq",
+      "action": "REVIEW_PIN_DELETED",
+      "details": "Feedback marker #ackg removed from staging review deck.",
+      "timestamp": "2026-10-05T11:01:29.488Z"
+    },
+    {
+      "id": "act_1791198089471_qebrb",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Marteen Mubaraq",
+      "action": "REVIEW_PIN_RESOLVED",
+      "details": "Staging feedback marker #ackg marked RESOLVED by Marteen Mubaraq.",
+      "timestamp": "2026-10-05T11:01:29.471Z"
+    },
+    {
+      "id": "act_1791198089459_1reho",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "REVIEW_PIN_DROPPED",
+      "details": "Staging feedback marker #ackg placed [BUG]: \"The mempool gas fee estimator widget requires high-contrast \"",
+      "timestamp": "2026-10-05T11:01:29.459Z"
+    },
+    {
+      "id": "act_1791198089449_heccq",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.dev",
+      "action": "VAULT_SECRET_DELETED",
+      "details": "Credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) permanently purged from AES-256 vault.",
+      "timestamp": "2026-10-05T11:01:29.449Z"
+    },
+    {
+      "id": "act_1791198089444_wm2p0",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.dev",
+      "action": "VAULT_SECRET_UPDATED",
+      "details": "Updated credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) in AES-256 vault.",
+      "timestamp": "2026-10-05T11:01:29.444Z"
+    },
+    {
+      "id": "act_1791198089405_md58b",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.dev",
+      "action": "VAULT_SECRET_CREATED",
+      "details": "Encrypted credential \"STRIPE_RESTRICTED_KEY\" (Stripe Global Gateway) committed to AES-256 vault. Visible to client: No (Agency Only).",
+      "timestamp": "2026-10-05T11:01:29.406Z"
+    },
+    {
+      "id": "act_1791198089394_vfmts",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "admin@webmuse.dev",
+      "action": "VAULT_SECRET_ACCESSED",
+      "details": "Decrypted credential \"Transaction Pooler URL\" (Supabase PostgreSQL) viewed via hardware-grade AES-256-GCM.",
+      "timestamp": "2026-10-05T11:01:29.394Z"
+    },
+    {
+      "id": "act_1791198089380_b0qcl",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "client@apexlabs.io",
+      "action": "VAULT_SECRET_ACCESSED",
+      "details": "Decrypted credential \"Staging Admin Password\" (Staging Vercel Preview) viewed via hardware-grade AES-256-GCM.",
+      "timestamp": "2026-10-05T11:01:29.380Z"
+    },
+    {
+      "id": "act_1791196580619_jkrnr",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "alex@apexlabs.io",
+      "action": "MILESTONE_PAYMENT_CONFIRMED",
+      "details": "Settled USDT 4,000 for Phase 02 (UI/UX Design Architecture & Design System) via NOWPAYMENTS. Ref: TEST_INTENT_REF_1791196580601",
+      "timestamp": "2026-10-05T10:36:20.619Z"
+    },
+    {
+      "id": "act_1791192491698_5qgby",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "alex@apexlabs.io",
+      "action": "MILESTONE_PAYMENT_CONFIRMED",
+      "details": "Settled USDT 4,000 for Phase 02 (UI/UX Design Architecture & Design System) via NOWPAYMENTS. Ref: TEST_INTENT_REF_1791192491681",
+      "timestamp": "2026-10-05T09:28:11.698Z"
+    },
+    {
+      "id": "act_1791191856605_odjkb",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Marteen Mubaraq",
+      "action": "CHAT_MESSAGE_DISPATCHED",
+      "details": "Agency team sent message: \"still working on it\"",
+      "timestamp": "2026-10-05T09:17:36.605Z"
+    },
+    {
+      "id": "act_1791191676867_r07zg",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "CHAT_MESSAGE_DISPATCHED",
+      "details": "Client sent message: \"🚀 What is the current status of Milestone 1 deliverables?\"",
+      "timestamp": "2026-10-05T09:14:36.867Z"
+    },
+    {
+      "id": "act_1791190521329_z3hi4",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "alex@apexlabs.io",
+      "action": "EMERGENCY_INCIDENT_REPORTED",
+      "details": "Incident reported: \"Automated Test Incident: Latency spike simulation\" [Severity: high]. On-call leads paged.",
+      "timestamp": "2026-10-05T08:55:21.329Z"
+    },
+    {
+      "id": "act_1791190521286_e1o7l",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Client System",
+      "action": "MAINTENANCE_RETAINER_SUBSCRIBED",
+      "details": "Subscribed to WebMuse Mission Critical 24/7 SLA ($5,000/yr). Ref: TEST_WIRE_REF_1791190521283",
+      "timestamp": "2026-10-05T08:55:21.324Z"
+    },
+    {
+      "id": "act_1791190521277_0zicw",
+      "projectId": "proj_apex_01",
+      "actor": "agency",
+      "actorName": "Marteen Mubaraq",
+      "action": "CHAT_MESSAGE_DISPATCHED",
+      "details": "Agency team sent message: \"Confirmed Alex! Cloudflare edge propagation is set for zero-...\"",
+      "timestamp": "2026-10-05T08:55:21.277Z"
+    },
+    {
+      "id": "act_1791190521274_o8e3c",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "CHAT_MESSAGE_DISPATCHED",
+      "details": "Client sent message: \"Testing direct agency chat: Need confirmation on SSL cutover...\"",
+      "timestamp": "2026-10-05T08:55:21.274Z"
+    },
+    {
+      "id": "act_signoff_1791041102192",
+      "projectId": "proj_apex_01",
+      "actor": "client",
+      "actorName": "Alex Vance",
+      "action": "SCOPE_BASELINE_SIGNED_OFF",
+      "details": "Client approved Scope v1.0.0 baseline. Cryptographic signature locked: 991b640b3ad58ea1...",
+      "timestamp": "2026-10-03T15:25:02.187Z"
+    },
+    {
+      "id": "act_1791041087703_override",
+      "projectId": "proj_test_1791041087698",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "MILESTONE_OVERRIDE",
+      "details": "Phase 2 marked Paid & Unlocked via offline bank wire.",
+      "timestamp": "2026-10-03T15:24:47.703Z"
+    },
+    {
+      "id": "act_1791041087699",
+      "projectId": "proj_test_1791041087698",
+      "actor": "agency",
+      "actorName": "Agency Administrator",
+      "action": "PROJECT_GENESIS",
+      "details": "Created project \"Cyberdyne Threat Monitor\" for Sarah Connor.",
+      "timestamp": "2026-10-03T15:24:47.699Z"
+    },
     {
       "id": "act_1790900070020_f1jfm",
       "projectId": "proj_apex_01",
@@ -991,6 +3218,462 @@
       "action": "PROJECT_INITIALIZED",
       "details": "Project workspace provisioned and Genesis PRD draft initialized.",
       "timestamp": "2026-10-01T18:08:09.626Z"
+    }
+  ],
+  "chatMessages": [
+    {
+      "id": "msg_01",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "Marteen Mubaraq",
+      "senderRole": "WebMuse Lead Architect",
+      "message": "Welcome to your private WebMuse Command Center, Alex. We have provisioned your project environment, initialized your 12-Document Enclave, and mapped out Milestone 1 (Discovery & Genesis PRD). You can review all deliverables and chat with our team here anytime.",
+      "timestamp": "2026-10-03T08:55:21.264Z",
+      "read": true
+    },
+    {
+      "id": "msg_02",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Apex Labs Inc.",
+      "message": "Thanks Marteen! The Genesis PRD looks exceptionally detailed. I reviewed the mempool telemetry specs. Will the domain apexprotocol.io be automatically connected through Cloudflare SSL?",
+      "timestamp": "2026-10-04T06:55:21.264Z",
+      "read": true
+    },
+    {
+      "id": "msg_03",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "WebMuse Infrastructure",
+      "senderRole": "DevOps & Edge Lead",
+      "message": "Yes, exactly! We have pre-configured Cloudflare Enterprise Edge DNS with full TLS 1.3 encryption. You can monitor domain expiration and our SaaS subscription dates directly in your new \"Infrastructure & Subscriptions\" tab.",
+      "timestamp": "2026-10-04T18:55:21.265Z",
+      "read": true
+    },
+    {
+      "id": "msg_1791190521273_8olk",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Apex Labs Inc. Sponsor",
+      "message": "Testing direct agency chat: Need confirmation on SSL cutover timing.",
+      "timestamp": "2026-10-05T08:55:21.273Z",
+      "read": true,
+      "attachments": []
+    },
+    {
+      "id": "msg_1791190521277_de3l",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "Marteen Mubaraq",
+      "senderRole": "WebMuse Lead Architect",
+      "message": "Confirmed Alex! Cloudflare edge propagation is set for zero-downtime cutover.",
+      "timestamp": "2026-10-05T08:55:21.277Z",
+      "read": true,
+      "attachments": []
+    },
+    {
+      "id": "msg_1791190521329_cv5s",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "alex@apexlabs.io",
+      "senderRole": "Critical Incident Dispatcher",
+      "message": "🚨 [EMERGENCY INCIDENT DEPLOYED - HIGH]: Automated Test Incident: Latency spike simulation\n\nDetails: Testing emergency escalation hotline and chat alert dispatching.",
+      "timestamp": "2026-10-05T08:55:21.329Z",
+      "read": true
+    },
+    {
+      "id": "msg_1791191676867_2ubr",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Apex Labs Inc. Partner",
+      "message": "🚀 What is the current status of Milestone 1 deliverables?",
+      "timestamp": "2026-10-05T09:14:36.867Z",
+      "read": true,
+      "attachments": []
+    },
+    {
+      "id": "msg_1791191856605_haxj",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "Marteen Mubaraq",
+      "senderRole": "WebMuse Lead Architect",
+      "message": "still working on it",
+      "timestamp": "2026-10-05T09:17:36.605Z",
+      "read": false,
+      "attachments": []
+    },
+    {
+      "id": "msg_1791192491769_mih3",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "WebMuse Financial Sentinel",
+      "senderRole": "Settlement Engine",
+      "message": "💎 PAYMENT SETTLED: Phase 02 (UI/UX Design Architecture & Design System) has been verified on-chain / via NOWPAYMENTS.\n\nDeliverables are unlocked, Phase Gatekeeper lifted, and Invoice Document #12 generated. Tx Ref: TEST_INTENT_REF_1791192491681",
+      "timestamp": "2026-10-05T09:28:11.698Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791196580697_80k4",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "WebMuse Financial Sentinel",
+      "senderRole": "Settlement Engine",
+      "message": "💎 PAYMENT SETTLED: Phase 02 (UI/UX Design Architecture & Design System) has been verified on-chain / via NOWPAYMENTS.\n\nDeliverables are unlocked, Phase Gatekeeper lifted, and Invoice Document #12 generated. Tx Ref: TEST_INTENT_REF_1791196580601",
+      "timestamp": "2026-10-05T10:36:20.619Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791198089459_a1ja",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Staging Review Studio",
+      "message": "🔴 [STAGING FEEDBACK PIN #ackg]: \"The mempool gas fee estimator widget requires high-contrast typography in dark mode.\" dropped at (42.8%, 23.5%) on 1440px viewport.",
+      "timestamp": "2026-10-05T11:01:29.459Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791199997940_1aow",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Staging Review Studio",
+      "message": "🔴 [STAGING FEEDBACK PIN #egcx]: \"The mempool gas fee estimator widget requires high-contrast typography in dark mode.\" dropped at (42.8%, 23.5%) on 1440px viewport.",
+      "timestamp": "2026-10-05T11:33:17.940Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791202846260_lnxd",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "WebMuse Financial Sentinel",
+      "senderRole": "Settlement Engine",
+      "message": "💎 PAYMENT SETTLED: Phase 03 (Core Engine Sprint & Full-Stack Build) has been verified on-chain / via NOWPAYMENTS.\n\nDeliverables are unlocked, Phase Gatekeeper lifted, and Invoice Document #12 generated. Tx Ref: 0x42765ed161ba9a24891b99d6c44e5e064770cff4522ed036b81978935636da37",
+      "timestamp": "2026-10-05T12:20:46.260Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791209831166_btpn",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Warranty SLA Dispatcher",
+      "message": "🛡️ [WARRANTY PRIORITY TICKET - HIGH]: High-frequency latency spike on Arbitrum orderbook worker\n\nDuring peak mempool volatility, latency jumped to 140ms. Expected sub-25ms execution.",
+      "timestamp": "2026-10-05T14:17:11.166Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791209831304_ykqv",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "WebMuse Financial Sentinel",
+      "senderRole": "Autonomous Escrow Daemon",
+      "message": "⚡ [ADD-ON PURCHASE CONFIRMED]: The client successfully acquired \"Additional Revision Sprint\" (USD 350).\n\nA new micro-sprint Phase 6 has been automatically spun up in the pipeline with 3 tracked deliverables!",
+      "timestamp": "2026-10-05T14:17:11.304Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791212162407_thp2",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Warranty SLA Dispatcher",
+      "message": "🛡️ [WARRANTY PRIORITY TICKET - HIGH]: High-frequency latency spike on Arbitrum orderbook worker\n\nDuring peak mempool volatility, latency jumped to 140ms. Expected sub-25ms execution.",
+      "timestamp": "2026-10-05T14:56:02.407Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791212162613_dih5",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "WebMuse Financial Sentinel",
+      "senderRole": "Autonomous Escrow Daemon",
+      "message": "⚡ [ADD-ON PURCHASE CONFIRMED]: The client successfully acquired \"Additional Revision Sprint\" (USD 350).\n\nA new micro-sprint Phase 6 has been automatically spun up in the pipeline with 3 tracked deliverables!",
+      "timestamp": "2026-10-05T14:56:02.613Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791214077530_1ops",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Staging Review Studio",
+      "message": "🟡 [STAGING FEEDBACK PIN #1vtb]: \"Increase contrast on depth-of-market orderbook typography for OLED screens\" dropped at (55.4%, 32.1%) on 1440px viewport.",
+      "timestamp": "2026-10-05T15:27:57.530Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791214185333_r44o",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Staging Review Studio",
+      "message": "🟡 [STAGING FEEDBACK PIN #ayd2]: \"Increase contrast on depth-of-market orderbook typography for OLED screens\" dropped at (55.4%, 32.1%) on 1440px viewport.",
+      "timestamp": "2026-10-05T15:29:45.333Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791214185429_wawx",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Warranty SLA Dispatcher",
+      "message": "🛡️ [WARRANTY PRIORITY TICKET - MEDIUM]: E2E Test: WebSocket heartbeat timeout on edge network\n\nInvestigating keepalive intervals during mobile sleep state.",
+      "timestamp": "2026-10-05T15:29:45.429Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791214185536_q0ul",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "WebMuse Financial Sentinel",
+      "senderRole": "Autonomous Escrow Daemon",
+      "message": "⚡ [ADD-ON PURCHASE CONFIRMED]: The client successfully acquired \"Speed & Core Web Vitals Optimization\" (USD 450).\n\nA new micro-sprint Phase 7 has been automatically spun up in the pipeline with 4 tracked deliverables!",
+      "timestamp": "2026-10-05T15:29:45.536Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791214626948_ldjz",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Staging Review Studio",
+      "message": "🟡 [STAGING FEEDBACK PIN #a0eq]: \"Increase contrast on depth-of-market orderbook typography for OLED screens\" dropped at (55.4%, 32.1%) on 1440px viewport.",
+      "timestamp": "2026-10-05T15:37:06.948Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791214627143_hmy5",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Warranty SLA Dispatcher",
+      "message": "🛡️ [WARRANTY PRIORITY TICKET - MEDIUM]: E2E Test: WebSocket heartbeat timeout on edge network\n\nInvestigating keepalive intervals during mobile sleep state.",
+      "timestamp": "2026-10-05T15:37:07.143Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791214627166_pfwe",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "WebMuse Financial Sentinel",
+      "senderRole": "Autonomous Escrow Daemon",
+      "message": "⚡ [ADD-ON PURCHASE CONFIRMED]: The client successfully acquired \"Speed & Core Web Vitals Optimization\" (USD 450).\n\nA new micro-sprint Phase 7 has been automatically spun up in the pipeline with 4 tracked deliverables!",
+      "timestamp": "2026-10-05T15:37:07.166Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791215494678_8ol2",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Staging Review Studio",
+      "message": "🟡 [STAGING FEEDBACK PIN #021r]: \"Increase contrast on depth-of-market orderbook typography for OLED screens\" dropped at (55.4%, 32.1%) on 1440px viewport.",
+      "timestamp": "2026-10-05T15:51:34.678Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791215494835_k28d",
+      "projectId": "proj_apex_01",
+      "sender": "client",
+      "senderName": "Alex Vance",
+      "senderRole": "Warranty SLA Dispatcher",
+      "message": "🛡️ [WARRANTY PRIORITY TICKET - MEDIUM]: E2E Test: WebSocket heartbeat timeout on edge network\n\nInvestigating keepalive intervals during mobile sleep state.",
+      "timestamp": "2026-10-05T15:51:34.835Z",
+      "read": false
+    },
+    {
+      "id": "msg_1791215494847_eof9",
+      "projectId": "proj_apex_01",
+      "sender": "agency",
+      "senderName": "WebMuse Financial Sentinel",
+      "senderRole": "Autonomous Escrow Daemon",
+      "message": "⚡ [ADD-ON PURCHASE CONFIRMED]: The client successfully acquired \"Speed & Core Web Vitals Optimization\" (USD 450).\n\nA new micro-sprint Phase 7 has been automatically spun up in the pipeline with 4 tracked deliverables!",
+      "timestamp": "2026-10-05T15:51:34.847Z",
+      "read": false
+    }
+  ],
+  "incidentReports": [
+    {
+      "id": "inc_1791190521329_m0ob",
+      "projectId": "proj_apex_01",
+      "reportedBy": "alex@apexlabs.io",
+      "title": "Automated Test Incident: Latency spike simulation",
+      "description": "Testing emergency escalation hotline and chat alert dispatching.",
+      "severity": "high",
+      "status": "investigating",
+      "createdAt": "2026-10-05T08:55:21.329Z"
+    }
+  ],
+  "warrantyTickets": [
+    {
+      "id": "ticket_1791215494835_ztls",
+      "projectId": "proj_apex_01",
+      "authorEmail": "client@apexlabs.io",
+      "authorName": "Alex Vance",
+      "title": "E2E Test: WebSocket heartbeat timeout on edge network",
+      "description": "Investigating keepalive intervals during mobile sleep state.",
+      "priority": "medium",
+      "status": "submitted",
+      "createdAt": "2026-10-05T15:51:34.835Z"
+    },
+    {
+      "id": "ticket_1791214627143_tgoy",
+      "projectId": "proj_apex_01",
+      "authorEmail": "client@apexlabs.io",
+      "authorName": "Alex Vance",
+      "title": "E2E Test: WebSocket heartbeat timeout on edge network",
+      "description": "Investigating keepalive intervals during mobile sleep state.",
+      "priority": "medium",
+      "status": "submitted",
+      "createdAt": "2026-10-05T15:37:07.143Z"
+    },
+    {
+      "id": "ticket_1791214185429_5ygf",
+      "projectId": "proj_apex_01",
+      "authorEmail": "client@apexlabs.io",
+      "authorName": "Alex Vance",
+      "title": "E2E Test: WebSocket heartbeat timeout on edge network",
+      "description": "Investigating keepalive intervals during mobile sleep state.",
+      "priority": "medium",
+      "status": "submitted",
+      "createdAt": "2026-10-05T15:29:45.429Z"
+    },
+    {
+      "id": "ticket_1791212162406_3ryf",
+      "projectId": "proj_apex_01",
+      "authorEmail": "alex@apexlabs.io",
+      "authorName": "Alex Vance",
+      "title": "High-frequency latency spike on Arbitrum orderbook worker",
+      "description": "During peak mempool volatility, latency jumped to 140ms. Expected sub-25ms execution.",
+      "priority": "high",
+      "status": "resolved",
+      "createdAt": "2026-10-05T14:56:02.407Z",
+      "resolvedAt": "2026-10-05T14:56:02.543Z"
+    },
+    {
+      "id": "ticket_1791209831166_x60o",
+      "projectId": "proj_apex_01",
+      "authorEmail": "alex@apexlabs.io",
+      "authorName": "Alex Vance",
+      "title": "High-frequency latency spike on Arbitrum orderbook worker",
+      "description": "During peak mempool volatility, latency jumped to 140ms. Expected sub-25ms execution.",
+      "priority": "high",
+      "status": "resolved",
+      "createdAt": "2026-10-05T14:17:11.166Z",
+      "resolvedAt": "2026-10-05T14:17:11.214Z"
+    }
+  ],
+  "addonServices": [
+    {
+      "id": "addon_rev_sprint",
+      "title": "Additional Revision Sprint",
+      "tagline": "Rapid 48-Hour UI/UX Polish & Refinement",
+      "description": "Dedicated 48-hour engineering cycle for non-scope UI iterations, micro-interaction tuning, and styling updates.",
+      "category": "performance",
+      "costUsd": 350,
+      "costNgn": 500000,
+      "estimatedTurnaroundDays": 2,
+      "deliverables": [
+        "Custom design tweaks",
+        "Figma layout updates",
+        "Production patch deployment"
+      ],
+      "icon": "Sparkles",
+      "status": "available"
+    },
+    {
+      "id": "addon_ai_assistant",
+      "title": "AI Assistant Integration Sprint",
+      "tagline": "Contextual RAG Assistant & Chatbot Shell",
+      "description": "Embed a high-intelligence autonomous AI agent trained specifically on client domain documentation and user workflows.",
+      "category": "ai",
+      "costUsd": 1200,
+      "costNgn": 1800000,
+      "estimatedTurnaroundDays": 5,
+      "deliverables": [
+        "Vector embeddings pipeline",
+        "Custom chat UI",
+        "Streaming response engine",
+        "Admin prompt control"
+      ],
+      "icon": "Bot",
+      "status": "available"
+    },
+    {
+      "id": "addon_speed_perf",
+      "title": "Speed & Core Web Vitals Optimization",
+      "tagline": "Sub-Second Edge Latency & 99+ Lighthouse",
+      "description": "Deep optimization pass targeting 100/100 Lighthouse performance, edge asset caching, dynamic image compression, and bundle minification.",
+      "category": "performance",
+      "costUsd": 450,
+      "costNgn": 650000,
+      "estimatedTurnaroundDays": 3,
+      "deliverables": [
+        "Lighthouse 95+ audit pass",
+        "Brotli/Gzip compression tuning",
+        "Edge CDN cache rules",
+        "Bundle tree-shaking"
+      ],
+      "icon": "Zap",
+      "status": "available"
+    },
+    {
+      "id": "addon_seo_schema",
+      "title": "SEO & Structured Data Package",
+      "tagline": "Semantic Rich Snippets & OpenGraph Dominance",
+      "description": "Comprehensive technical SEO setup with dynamic OpenGraph banner generation, JSON-LD structured schema markup, and Google Search Console validation.",
+      "category": "performance",
+      "costUsd": 600,
+      "costNgn": 900000,
+      "estimatedTurnaroundDays": 3,
+      "deliverables": [
+        "Dynamic OG image generator",
+        "JSON-LD schema graph",
+        "Automated sitemap.xml & robots.txt",
+        "Canonical URL management"
+      ],
+      "icon": "Search",
+      "status": "available"
+    },
+    {
+      "id": "addon_security_audit",
+      "title": "Enterprise Penetration Test & Security Hardening",
+      "tagline": "OWASP Top 10 Hardening & Threat Analysis",
+      "description": "Rigorous penetration testing cycle validating API rate-limiting, CSRF shields, SQL injection immunity, and timing attack resistance.",
+      "category": "security",
+      "costUsd": 850,
+      "costNgn": 1250000,
+      "estimatedTurnaroundDays": 4,
+      "deliverables": [
+        "Automated DAST & SAST scans",
+        "Security headers audit (CSP, HSTS)",
+        "Vulnerability mitigation patch",
+        "Formal security sign-off report"
+      ],
+      "icon": "ShieldCheck",
+      "status": "available"
+    },
+    {
+      "id": "addon_pwa_mobile",
+      "title": "Custom Mobile PWA Shell",
+      "tagline": "Installable App Experience with Offline Cache",
+      "description": "Turn your web platform into an installable progressive web app (PWA) with custom splash screen, app manifest, and offline service worker caching.",
+      "category": "mobile",
+      "costUsd": 750,
+      "costNgn": 1100000,
+      "estimatedTurnaroundDays": 4,
+      "deliverables": [
+        "Manifest.json & icon suite",
+        "Offline service worker cache",
+        "Add-to-homescreen prompt",
+        "Push notification hook"
+      ],
+      "icon": "Smartphone",
+      "status": "available"
     }
   ]
 }

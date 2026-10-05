@@ -8,12 +8,14 @@ interface DynamicStatusBannerProps {
   project: Project;
   activeMilestone: Milestone;
   onOpenPRD?: () => void;
+  onOpenCheckout?: (milestone: Milestone) => void;
 }
 
 export function DynamicStatusBanner({
   project,
   activeMilestone,
   onOpenPRD,
+  onOpenCheckout,
 }: DynamicStatusBannerProps) {
   const isPrdSignedOff = !!project.prd.signedOffAt;
   const isPhase1 = project.currentPhaseIndex === 0;
@@ -76,6 +78,16 @@ export function DynamicStatusBanner({
               </p>
             </div>
           </div>
+
+          {onOpenCheckout && (
+            <button
+              onClick={() => onOpenCheckout(activeMilestone)}
+              className="px-4 py-2.5 rounded-xl bg-electric-blue hover:bg-electric-blue/90 text-background text-xs font-bold uppercase tracking-wider flex items-center gap-2 shrink-0 transition-all shadow-lg hover:shadow-electric-blue/20"
+            >
+              <span>Pay &amp; Unlock Phase 0{activeMilestone.phaseNumber}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          )}
         </div>
       </div>
     );

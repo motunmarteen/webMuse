@@ -123,6 +123,13 @@ export interface Project {
   prd: PRDDocument;
   milestones: Milestone[];
   documents?: AgencyDocument[];
+  domains?: DomainRecord[];
+  tools?: ToolItem[];
+  subscriptions?: SubscriptionService[];
+  maintenanceRetainer?: MaintenanceRetainer;
+  healthSentinel?: HealthSentinel;
+  backups?: BackupRecord[];
+  chatMessages?: ChatMessage[];
   warrantyDaysRemaining?: number;
   createdAt: string;
   updatedAt: string;
@@ -222,4 +229,189 @@ export interface ActivityLog {
   action: string;
   details: string;
   timestamp: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  projectId: string;
+  sender: 'client' | 'agency';
+  senderName: string;
+  senderRole: string; // e.g. "WebMuse Lead Architect", "Apex Labs Project Owner"
+  message: string;
+  timestamp: string;
+  read: boolean;
+  attachments?: { name: string; url: string; size?: string }[];
+}
+
+export interface DomainRecord {
+  id: string;
+  domain: string;
+  registrar: string;
+  registeredAt: string;
+  expiresAt: string; // ISO date
+  autoRenew: boolean;
+  annualRenewalCostUsd: number;
+  sslStatus: 'active' | 'expiring_soon' | 'expired';
+  sslIssuer: string;
+  sslExpiresAt: string;
+  nameservers: string[];
+  status: 'healthy' | 'warning' | 'critical';
+}
+
+export type ToolCategory =
+  | 'frontend'
+  | 'backend'
+  | 'database'
+  | 'hosting'
+  | 'security'
+  | 'ai'
+  | 'analytics'
+  | 'messaging'
+  | 'design';
+
+export interface ToolItem {
+  id: string;
+  name: string;
+  category: ToolCategory;
+  purpose: string;
+  tier: string;
+  version?: string;
+  status: 'operational' | 'upgraded' | 'monitoring';
+  docsUrl?: string;
+  iconName?: string;
+}
+
+export interface SubscriptionService {
+  id: string;
+  name: string;
+  provider: string;
+  category: 'database' | 'hosting' | 'ai_compute' | 'domain' | 'email_sms' | 'monitoring';
+  billingCycle: 'monthly' | 'yearly';
+  costUsd: number;
+  costNgn: number;
+  renewDate: string; // ISO date
+  status: 'active' | 'renewing_soon' | 'expired';
+  managedBy: 'agency' | 'client';
+  paymentCardLast4?: string;
+  actionRequired?: string;
+  loginUrl?: string;
+}
+
+export type MaintenanceTier = 'standard' | 'mission_critical' | 'enterprise';
+
+export interface MaintenanceRetainer {
+  tier: MaintenanceTier;
+  tierName: string;
+  billingPeriod: 'yearly';
+  annualCostUsd: number;
+  annualCostNgn: number;
+  status: 'active' | 'due_soon' | 'unsubscribed';
+  expiresAt?: string;
+  slaResponseTime: string;
+  includedFeatures: string[];
+  uptimeGuarantee: string;
+  lastPaymentRef?: string;
+  contractRef?: string;
+}
+
+export interface HealthSentinel {
+  uptimePercentage: number;
+  avgLatencyMs: number;
+  sslGrade: string; // 'A+'
+  edgeNodesActive: number;
+  lastChecked: string;
+  status: 'optimal' | 'degraded' | 'incident';
+}
+
+export interface BackupRecord {
+  id: string;
+  timestamp: string;
+  sizeBytes: string;
+  snapshotType: 'automated_daily' | 'pre_deployment' | 'database_wal';
+  retentionDays: number;
+  status: 'verified' | 'in_progress';
+}
+
+export interface IncidentReport {
+  id: string;
+  projectId: string;
+  reportedBy: string;
+  title: string;
+  description: string;
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  status: 'investigating' | 'mitigating' | 'resolved';
+  createdAt: string;
+  resolvedAt?: string;
+}
+
+export interface LoomWalkthrough {
+  id: string;
+  title: string;
+  duration: string;
+  url: string;
+  speaker: string;
+  category: 'architecture' | 'deployment' | 'cms_guide';
+}
+
+export interface EnvVariableSpec {
+  key: string;
+  category: string;
+  description: string;
+  sampleValue: string;
+  isSecret: boolean;
+}
+
+export interface BrandAssetItem {
+  name: string;
+  format: string;
+  size: string;
+  downloadUrl: string;
+}
+
+export interface HandoffSafePackage {
+  isUnlocked: boolean;
+  unlockedAt?: string;
+  repoTransferUrl?: string;
+  repoTransferInstructions: string[];
+  envManifest: EnvVariableSpec[];
+  loomWalkthroughs: LoomWalkthrough[];
+  brandAssets: BrandAssetItem[];
+  warrantyDaysRemaining: number;
+  warrantyStatus: 'active' | 'expiring_soon' | 'expired';
+  warrantyEndDate: string;
+}
+
+export interface AddonServiceItem {
+  id: string;
+  title: string;
+  tagline: string;
+  description: string;
+  category: 'ai' | 'performance' | 'security' | 'i18n' | 'mobile';
+  costUsd: number;
+  costNgn: number;
+  estimatedTurnaroundDays: number;
+  deliverables: string[];
+  icon: string;
+  status?: 'available' | 'purchased' | 'in_progress';
+}
+
+export interface WarrantyTicket {
+  id: string;
+  projectId: string;
+  authorEmail: string;
+  authorName: string;
+  title: string;
+  description: string;
+  priority: 'low' | 'medium' | 'high' | 'critical';
+  status: 'submitted' | 'triaged' | 'in_progress' | 'resolved';
+  createdAt: string;
+  resolvedAt?: string;
+}
+
+export interface MusePilotMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: string;
+  citations?: string[];
 }
