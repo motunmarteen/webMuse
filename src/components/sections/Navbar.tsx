@@ -21,6 +21,8 @@ const NAV_ITEMS = [
 ];
 
 const MORE_ITEMS = [
+  { label: "Client Portal", href: "/portal/login" },
+  { label: "Admin Enclave", href: "/admin" },
   { label: "Blog", href: "/insights" },
   { label: "Our Process", href: "#process" },
   { label: "Constellation", href: "#universe" },

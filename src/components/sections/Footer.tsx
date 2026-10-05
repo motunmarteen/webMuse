@@ -97,6 +97,8 @@ export default function Footer() {
               Resources
             </h4>
             <ul className="flex flex-col gap-2.5 text-xs text-text-muted font-mono">
+              <li><Link href="/portal/login" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors text-electric-blue">Client Portal</Link></li>
+              <li><Link href="/admin" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Agency Admin Deck</Link></li>
               <li><Link href="/case-study" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Case Study</Link></li>
               <li><Link href="/career-path" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Career Path</Link></li>
               <li><Link href="/partners" onMouseEnter={() => setCursorType("pointer")} onMouseLeave={() => setCursorType("default")} className="hover:text-foreground transition-colors">Partners</Link></li>
