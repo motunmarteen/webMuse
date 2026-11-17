@@ -137,15 +137,15 @@ export const CASE_STUDIES: CaseStudySummary[] = [
   },
   {
     slug: "seth-hse",
-    title: "Seth HSE",
+    title: "SETH HSE",
     tagline:
-      "Engineering a high-risk enterprise safety platform — geofenced anti-spoof compliance, dynamic safety protocols, and a 15-module strict modular monolith.",
-    category: "Enterprise Safety & Compliance Platform",
-    stack: ["Node.js / Express", "PostgreSQL / RLS", "Flutter", "Next.js", "Redis"],
+      "Turning tower-site safety work into records you can prove — zone-based dispatch, live-camera and geofence clock-in, a report review workflow with a permanent edit history, built-in training, analytics and chat, on the web and an offline-first Android app.",
+    category: "Tower-Site Safety Operations Platform",
+    stack: ["Flutter", "Next.js", "Node.js / TypeScript", "PostgreSQL / PostGIS", "Redis"],
     metrics: [
-      { label: "Bounded modules", value: "15" },
-      { label: "Privacy posture", value: "NDPR + GDPR" },
-      { label: "Cross-module code import", value: "0 ms" },
+      { label: "Surfaces", value: "Web + Android + API" },
+      { label: "Bounded modules", value: "23" },
+      { label: "Automated tests", value: "1,000+" },
     ],
     live: true,
   },
