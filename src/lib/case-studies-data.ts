@@ -25,7 +25,7 @@ export const CASE_STUDIES: CaseStudySummary[] = [
   },
   {
     slug: "drollers",
-    title: "Drollers (Stayqs99)",
+    title: "Drollers",
     tagline:
       "A mathematical staking platform that runs itself on a clock — verified sessions built at fixed times, automatic entry, results settled from real data, fees only on profit, and a public record of every selection.",
     category: "Mathematical Staking & Verification Platform",

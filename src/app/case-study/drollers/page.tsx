@@ -5,11 +5,11 @@ import { CaseStudyTemplate, type CaseStudyContent } from "@/components/case-stud
 export const metadata: Metadata = {
   title: "Drollers — Engineering a Mathematical Staking Platform That Runs Itself",
   description:
-    "How WEBMUSE engineered Drollers (formerly Stayqs99): a quantitative selection and staking-cycle platform that builds a verified session on a clock, enters members automatically, settles from real results, charges only on profit and publishes its own record — six pure engines, a provenance-tagged fact ledger and a credits wallet.",
+    "How WEBMUSE engineered Drollers: a quantitative selection and staking-cycle platform that builds a verified session on a clock, enters members automatically, settles from real results, charges only on profit and publishes its own record — six pure engines, a provenance-tagged fact ledger and a credits wallet.",
 };
 
 const content: CaseStudyContent = {
-  eyebrow: "Case Study · Drollers (formerly Stayqs99) · Live",
+  eyebrow: "Case Study · Drollers · Live",
   title: "A mathematical staking platform that runs itself on a clock — and shows its record.",
   intro:
     "Drollers applies quantitative selection and staking mathematics to event-market data. It builds a verified session at fixed times, enters members automatically, settles from real results, charges only on profit, and publishes how it actually performs. Behind it sit six pure engines, a provenance-tagged fact ledger and a credits wallet, all engineered by WEBMUSE from the first model to the live Telegram channel.",
