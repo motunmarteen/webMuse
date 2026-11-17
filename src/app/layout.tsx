@@ -17,8 +17,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const SITE_URL = "https://www.webmuse.tech";
-const SITE_TITLE = "WEBMUSE | Software & Web Studio in Lagos, Nigeria & UK";
-const SITE_DESCRIPTION = "WEBMUSE builds websites, apps, and software for clients in Lagos, Nigeria and the UK, turning ideas into real digital products.";
+const SITE_TITLE = "WEBMUSE | Software & Web Studio in Lagos, Nigeria — Working Remotely Worldwide";
+const SITE_DESCRIPTION = "WEBMUSE builds websites, apps, and software from Lagos, Nigeria, for clients at home and remotely worldwide, turning ideas into real digital products.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
     "software development Nigeria",
     "web development Lagos",
     "software company Lagos",
-    "web development company UK",
-    "software development agency UK",
+    "remote software development",
+    "software development agency Nigeria",
     "app development Nigeria",
     "Innovation Studio",
     "Software Engineering",
@@ -78,8 +78,8 @@ const ORGANIZATION_JSON_LD = {
       name: "Nigeria",
     },
     {
-      "@type": "Country",
-      name: "United Kingdom",
+      "@type": "AdministrativeArea",
+      name: "Worldwide (remote)",
     },
   ],
   address: {

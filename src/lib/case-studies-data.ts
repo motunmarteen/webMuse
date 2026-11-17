@@ -27,8 +27,8 @@ export const CASE_STUDIES: CaseStudySummary[] = [
     slug: "drollers",
     title: "Drollers (Stayqs99)",
     tagline:
-      "A disciplined staking platform that runs itself on a clock — verified slips built at fixed times, automatic entry at kick-off, results settled from real data, fees only on profit, and a public record of every pick.",
-    category: "Automated Staking & Verification Platform",
+      "A mathematical staking platform that runs itself on a clock — verified sessions built at fixed times, automatic entry, results settled from real data, fees only on profit, and a public record of every selection.",
+    category: "Mathematical Staking & Verification Platform",
     stack: ["Python 3.12", "FastAPI", "PostgreSQL", "React / Vite PWA", "AWS"],
     metrics: [
       { label: "Live products", value: "6" },
@@ -41,13 +41,13 @@ export const CASE_STUDIES: CaseStudySummary[] = [
     slug: "freetles",
     title: "Freetles",
     tagline:
-      "Architecting a zero-server-transit browser utility suite — Turborepo monorepo, intent-routed NLP second front door, WebAssembly client processing, and offline-capable PWA architecture.",
-    category: "Client-Side Utility & AI Automation Platform",
-    stack: ["Next.js 15", "Turborepo", "TypeScript", "WebAssembly", "IndexedDB"],
+      "Describe the problem, and the right tool opens. A free, private, offline-capable toolbox where files never leave the device — a typed tool registry, deterministic intent routing and client-side processing.",
+    category: "Private Browser Tools & Intent Routing",
+    stack: ["Next.js", "pnpm / Turborepo", "TypeScript", "WebAssembly", "Service Worker"],
     metrics: [
-      { label: "Catalog target", value: "350+ tools" },
+      { label: "Tools live", value: "27" },
       { label: "Server file transit", value: "0 bytes" },
-      { label: "Routing modes", value: "Dual door" },
+      { label: "Automated tests", value: "86" },
     ],
     live: true,
   },
@@ -148,6 +148,34 @@ export const CASE_STUDIES: CaseStudySummary[] = [
       { label: "Automated tests", value: "1,000+" },
     ],
     live: true,
+  },
+  {
+    slug: "copyrail",
+    title: "CopyRail",
+    tagline:
+      "Trade-copying infrastructure for Deriv MT5 — one signature per signal, a sub-millisecond software hot path, sealed credential intake and a hosted terminal fleet, copying a master account to many followers without ever holding their funds.",
+    category: "Trade-Copying Infrastructure",
+    stack: ["Python 3.12", "Ed25519", "MQL5", "FastAPI", "PostgreSQL / Redis"],
+    metrics: [
+      { label: "Relay hot path (p50)", value: "0.11 ms" },
+      { label: "Fan-out per follower", value: "~14 µs" },
+      { label: "Funds held", value: "0" },
+    ],
+    live: false,
+  },
+  {
+    slug: "gym-passport",
+    title: "Gym Passport",
+    tagline:
+      "One installable app for gyms — members clock in, pay and train, trainers run their clients, and owners watch the live floor, memberships, equipment and money. A working offline-capable prototype with local payment methods in mind.",
+    category: "Gym Management & Member Experience",
+    stack: ["Progressive Web App", "Vanilla JavaScript", "Service Worker", "QR / NFC access"],
+    metrics: [
+      { label: "Apps in one", value: "3" },
+      { label: "Payment methods", value: "4" },
+      { label: "Servers for the demo", value: "0" },
+    ],
+    live: false,
   },
   {
     slug: "stacks-token-streaming",

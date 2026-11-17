@@ -297,7 +297,7 @@ export default function AiConcierge() {
       return {
         id: `ai-${Date.now()}`,
         sender: "ai",
-        text: `Well ${namePrefix}WEBMUSE is an elite digital product engineering studio! We build high-performance Web Applications, Cross-Platform Mobile Apps, AI & Neural Agents, and Web3 Blockchain Protocols.\n\nCo-founded by Marteen Motun Mubaraq (Chief Product Architect) and Oluwatosin Florence Atere (Chief Systems Engineer), WEBMUSE operates from studio hubs in London (HQ), Lagos (Nigeria), New York, and Tokyo—delivering fast, bulletproof software built to scale effortlessly!`,
+        text: `Well ${namePrefix}WEBMUSE is an elite digital product engineering studio! We build high-performance Web Applications, Cross-Platform Mobile Apps, AI & Neural Agents, and Web3 Blockchain Protocols.\n\nFounded and led by Marteen Motun Mubaraq (Founder & Lead Product Engineer), WEBMUSE is based in Lagos, Nigeria and works with clients remotely worldwide, delivering fast, dependable software built to scale!`,
         timestamp: getFormattedTime(),
         cta: {
           label: "View Core Services",
@@ -423,7 +423,7 @@ export default function AiConcierge() {
       };
     }
 
-    // 12. LOCATIONS (LONDON, LAGOS, NY, TOKYO)
+    // 12. LOCATION (LAGOS, NIGERIA, WORKING REMOTELY)
     if (
       q.includes("where") ||
       q.includes("location") ||
@@ -437,10 +437,12 @@ export default function AiConcierge() {
       return {
         id: `ai-${Date.now()}`,
         sender: "ai",
-        text: `WEBMUSE operates globally from 4 strategic studio hubs:\n• 🇬🇧 London HQ (United Kingdom)\n• 🇳🇬 Lagos Hub (West Africa Engineering Hub)\n• 🇺🇸 New York Hub (United States)\n• 🇯🇵 Tokyo Hub (Japan)\n\nWe collaborate seamlessly with clients across all global timezones!`,
+        text: `WEBMUSE is based in Lagos, Nigeria 🇳🇬 and works remotely with clients all over the world, across every timezone.
+
+Send a message and we will set up a call at a time that suits you.`,
         timestamp: getFormattedTime(),
         cta: {
-          label: "Contact Studio Hubs",
+          label: "Contact the Studio",
           action: () => navigateAnchor("#contact"),
         },
       };

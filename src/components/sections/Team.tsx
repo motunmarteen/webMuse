@@ -29,14 +29,14 @@ interface TeamMember {
 const FOUNDERS: TeamMember[] = [
   {
     name: "Marteen Motun Mubaraq",
-    role: "Co-Founder & Chief Product Architect",
-    bio: "The pillar behind every project that comes through WEBMUSE — shaping product vision, leading engineering execution, and architecting the systems each build stands on.",
-    focus: ["Product Vision", "Engineering Leadership", "System Architecture", "Go-to-Market Alignment"],
+    role: "Founder & Lead Product Engineer",
+    bio: "Takes an idea from a blank page to a live, supported product. Marteen sets the product vision, writes the specification, engineers the web, mobile and API layers himself, and stays through deployment, hand-over and the guides that teach a team to use what was built.",
+    focus: ["Product Vision", "Full-Stack & Mobile Engineering", "System Architecture", "Delivery & Hand-over"],
     telemetry: {
       workstation: "Active / Online",
       commits: "Product, Engineering & Architecture",
       commitsLabel: "Core Focus",
-      uptime: "Go-to-Market",
+      uptime: "Idea to Live Product",
       beverage: "Espresso"
     },
     detailsPanel: {
@@ -49,30 +49,6 @@ const validateSpec = (prd) => {
 };`
     },
     avatarColor: "#0070f3"
-  },
-  {
-    name: "Oluwatosin Florence Atere",
-    role: "Co-Founder & Chief Systems Engineer",
-    bio: "Crafting intuitive, high-fidelity user experiences while engineering the resilient systems and cloud infrastructure behind them — real-time geofenced streams, micro-latency caching, and modular backend architecture. Leads UX direction, systems engineering, and cloud orchestration at WEBMUSE.",
-    focus: ["UX/UI Design", "Systems Engineering", "Cloud Orchestration", "Edge Infrastructure"],
-    telemetry: {
-      workstation: "Active / Online",
-      commits: "UX, Systems & Cloud",
-      commitsLabel: "Core Focus",
-      uptime: "DevOps",
-      beverage: "Cold Brew"
-    },
-    detailsPanel: {
-      title: "Geofence Engine Logs",
-      codeSnippet: `// Geofence Route Ingestion
-router.post('/geofence/ingress', async (req) => {
-  const { coords, org_id } = req.body;
-  const inRange = await PostGIS.checkRange(coords, org_id);
-  if (!inRange) throw new GeofenceBreachError();
-  return { status: 'SECURED' };
-});`
-    },
-    avatarColor: "#a855f7"
   }
 ];
 
@@ -115,15 +91,15 @@ export default function Team() {
             LEADERSHIP
           </span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-text-title mt-4">
-            Meet the Founders.
+            Meet the Founder.
           </h2>
           <p className="text-text-muted font-light mt-6 text-lg leading-relaxed">
-            WEBMUSE is steered by design architects and systems engineers committed to quality. We write strict specifications and deploy high-performance software fortresses.
+            WEBMUSE is led by a hands-on product engineer who owns the work from the first specification to the live system. One accountable person, from Lagos, Nigeria, working with clients remotely worldwide.
           </p>
         </div>
 
         {/* Founders Columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        <div className="grid grid-cols-1 max-w-3xl gap-8 items-stretch">
           {FOUNDERS.map((founder, idx) => {
             return (
               <div
@@ -182,7 +158,7 @@ export default function Team() {
 
                     <div>
                       <span className="text-[10px] font-mono font-bold tracking-widest text-electric-blue uppercase">
-                        CO-FOUNDER
+                        FOUNDER
                       </span>
                       <h3 className="text-2xl font-bold tracking-tight text-text-title mt-1">
                         {founder.name}

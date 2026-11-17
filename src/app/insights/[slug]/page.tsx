@@ -179,7 +179,7 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
       <footer className="border-t border-card-border px-6 lg:px-24 py-8">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="text-[10px] font-mono text-text-muted uppercase tracking-wider">
-            © {new Date().getFullYear()} WEBMUSE INC. ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()} WebMuse Limited. All rights reserved.
           </span>
           <nav aria-label="Legal" className="flex items-center gap-4 text-[10px] font-mono text-text-muted uppercase tracking-widest">
             <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>

@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/case-study",
     "/case-study/crown-wheels",
     "/case-study/drollers",
+    "/case-study/copyrail",
+    "/case-study/gym-passport",
     "/case-study/freetles",
     "/case-study/pmos",
     "/case-study/buxedge",
