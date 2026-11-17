@@ -134,76 +134,76 @@ const PROJECTS_DATA: Project[] = [
   },
   {
     id: "seth",
-    title: "Seth HSE",
-    tagline: "Enforcing Health, Safety, and Environment compliance through verified, real-time geofenced telemetry.",
-    category: "HSE Compliance & Geofencing Platform",
+    title: "SETH HSE",
+    tagline: "Turning tower-site safety work into verified, reviewed and permanently recorded evidence.",
+    category: "Tower-Site Safety Operations Platform",
     steps: [
       {
         label: "Problem",
-        title: "Regulatory Gaps & Incident Blindspots",
+        title: "Safety Work Ran on Claims, Not Evidence",
         icon: HelpCircle,
-        content: "Industrial operations struggle to enforce Health, Safety, and Environment (HSE) standards across distributed job sites. Unreported hazard logs, delayed incident warnings, and GPS spoofing lead to high compliance fines and preventable accidents.",
+        content: "Safety visits to telecom tower sites were reported by message and spreadsheet. Nobody could prove a marshal was on site, which reports had been read or sent back, or what had been changed after the fact, and weak signal broke any tool that needed a live connection.",
         mockupType: "stats",
         mockupData: {
           metrics: [
-            { label: "HSE Violations", value: "48%" },
-            { label: "Incident Lag", value: "4.5h" },
+            { label: "Proof of presence", value: "None" },
+            { label: "Report history", value: "Overwritten" },
           ]
         }
       },
       {
         label: "Research",
-        title: "Auditing Industrial Quality Gates",
+        title: "Mapping the Real Chain of Command",
         icon: Search,
-        content: "We audited 3 job sites and mapped 25-pillar engineering standards. Field workers required simple mobile onboarding, while admins demanded real-time Socket.IO incident reporting streams and Postgres/PostGIS geofenced verification loops.",
+        content: "We mapped how the organisation really works: field Marshals, one Coordinator for each zone of Nigeria, and a Super Admin at head office. The system was designed around that hierarchy, and around people who work where the signal is poor.",
         mockupType: "wireframe",
         mockupData: {
-          title: "Seth Geofenced Mesh",
-          items: ["Worker Geolocation Sync", "Real-Time Incident Stream", "RLS Org Scoping Locks"]
+          title: "Marshal, Coordinator, Super Admin",
+          items: ["Zone-based dispatch", "Verified clock-in with a live photo", "Offline-first field app"]
         }
       },
       {
         label: "UI Design",
-        title: "High-Fidelity Compliance Hub",
+        title: "One Mobile-First Experience for Every Role",
         icon: Palette,
-        content: "Designed a clean, responsive admin dashboard in Next.js. Promotes verified incident charts, active geofenced map pins (utilizing Leaflet/PostGIS), and rapid worker onboarding workflows styled with modern dark aesthetics.",
+        content: "Designed a mobile-first interface used on the web and in an Android app: a task banner with Accept or Decline, a clock-in flow with a live camera, report forms with photo and video, and Coordinator and Super Admin dashboards with a live map and analytics.",
         mockupType: "ui-dashboard",
         mockupData: {
-          title: "Seth Active Zones",
-          balance: "Lagos Hub Ops",
-          trend: "100% Compliant",
+          title: "Coordinator Dashboard",
+          balance: "Lagos Zone",
+          trend: "Reports under review",
           vaults: [
-            { name: "Port Terminal Alpha", apy: "Geofenced", active: true },
-            { name: "Warehouse Construction", apy: "Geofenced", active: true },
-            { name: "Offshore Platform B", apy: "Offline", active: false }
+            { name: "Sites waiting for a Marshal", apy: "Send one", active: true },
+            { name: "Accounts to approve", apy: "Review", active: true },
+            { name: "Flagged shifts", apy: "Decide", active: true }
           ]
         }
       },
       {
         label: "Architecture",
-        title: "Modular Monolith Backend",
+        title: "A 23-Module Monolith With Hard Rules in the Database",
         icon: Layers,
-        content: "Architected a modular Node.js/TypeScript Express backend. Secures tenant resources using shared Postgres databases with row-level security (RLS) locks, and utilizes Redis cache databases to queue real-time Socket.IO incidents.",
+        content: "A Node.js and TypeScript API organised into 23 modules with build-time boundary checks, PostgreSQL and PostGIS for geofencing, a transactional outbox for events, and database rules that no bug can bypass: one Coordinator per zone, one owner per site, and report edits that are kept forever.",
         mockupType: "system-flow",
         mockupData: {
           nodes: [
-            { label: "Next.js Web / Flutter Mobile", x: 10, y: 50 },
-            { label: "Express Mod-Monolith Router", x: 45, y: 50 },
-            { label: "PostgreSQL / PostGIS Shards", x: 80, y: 50 }
+            { label: "Next.js Web / Flutter Android", x: 10, y: 50 },
+            { label: "Node.js Modular API", x: 45, y: 50 },
+            { label: "PostgreSQL / PostGIS", x: 80, y: 50 }
           ]
         }
       },
       {
         label: "Business Results",
-        title: "Fortress Quality Standards",
+        title: "Live, Tested and Handed Over",
         icon: TrendingUp,
-        content: "Seth successfully launched its Phase-0 engineering foundation. It achieved strict NDPR and GDPR privacy compliance, lowered geolocated alert latency to under 300ms, and passed 25 rigorous approval audit gates.",
+        content: "SETH HSE is live on the web and as an Android app, backed by more than a thousand automated tests, and delivered with role-by-role illustrated guides so each Marshal, Coordinator and Super Admin can learn it step by step.",
         mockupType: "stats",
         mockupData: {
           metrics: [
-            { label: "Alert Latency", value: "<300ms" },
-            { label: "Security Gates", value: "25/25" },
-            { label: "Compliance Score", value: "100%" }
+            { label: "Modules", value: "23" },
+            { label: "Automated tests", value: "1,000+" },
+            { label: "Analytics sections", value: "16" }
           ]
         }
       }

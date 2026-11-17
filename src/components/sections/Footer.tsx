@@ -66,7 +66,7 @@ export default function Footer() {
               An elite innovation studio that transforms complex product ideas into high-performance digital reality.
             </p>
             <p className="text-text-muted/70 font-light text-xs mt-3 max-w-xs leading-relaxed">
-              Building for clients across Lagos, Nigeria and the United Kingdom.
+              Based in Lagos, Nigeria, building for clients everywhere, remotely.
             </p>
             <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-card-border bg-card-bg px-4 py-1.5 backdrop-blur-md">
               <Sparkles className="h-3.5 w-3.5 text-electric-blue" />
@@ -157,7 +157,7 @@ export default function Footer() {
         {/* Bottom Line */}
         <div className="border-t border-card-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="text-[10px] font-mono text-text-muted uppercase tracking-wider">
-            © 2026 WEBMUSE INC. ALL RIGHTS RESERVED.
+            © 2026 WebMuse Limited. All rights reserved.
           </span>
           <span className="text-[10px] font-mono text-text-muted uppercase tracking-widest flex items-center gap-1.5 glow-text-blue">
             <span className="h-1.5 w-1.5 rounded-full bg-electric-blue" />

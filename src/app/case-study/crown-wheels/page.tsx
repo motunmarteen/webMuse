@@ -650,7 +650,7 @@ EXCLUDE USING gist (
       <footer className="border-t border-card-border px-6 lg:px-24 py-8">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="text-[10px] font-mono text-text-muted uppercase tracking-wider">
-            © {new Date().getFullYear()} WEBMUSE INC. ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()} WebMuse Limited. All rights reserved.
           </span>
           <nav
             aria-label="Legal"

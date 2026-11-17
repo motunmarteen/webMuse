@@ -15,10 +15,7 @@ interface OfficeHub {
 }
 
 const OFFICE_HUBS: OfficeHub[] = [
-  { id: "london", name: "London HQ (Main Studio)", coords: { x: 44, y: 14 }, details: "Our primary studio for product architecture, design engineering, and client briefings.", staff: "London, United Kingdom" },
-  { id: "lagos", name: "Lagos Hub", coords: { x: 46, y: 26 }, details: "West Africa engineering hub, mobile application optimization, and real-time backend research.", staff: "Lagos, Nigeria" },
-  { id: "ny", name: "New York Hub", coords: { x: 25, y: 15 }, details: "Strategy partnership, US branding campaigns, and marketing support.", staff: "New York, USA" },
-  { id: "tokyo", name: "Tokyo Hub", coords: { x: 84, y: 16 }, details: "APAC user validation, local UI customisation, and mobile automation testing.", staff: "Tokyo, Japan" }
+  { id: "lagos", name: "Lagos Studio (Main)", coords: { x: 46, y: 26 }, details: "Our studio for product engineering, design and client briefings. We also work remotely with clients anywhere in the world.", staff: "Lagos, Nigeria · Remote worldwide" },
 ];
 
 const isLand = (x: number, y: number) => {
@@ -131,7 +128,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <span className="text-[9px] font-mono uppercase tracking-widest text-text-muted block">Studio Location</span>
-                    <span className="text-sm text-foreground">London, United Kingdom</span>
+                    <span className="text-sm text-foreground">Lagos, Nigeria · Remote worldwide</span>
                   </div>
                 </div>
 
@@ -282,12 +279,6 @@ export default function Contact() {
                     );
                   });
                 })}
-
-                {/* Network connection lines from London HQ to other hubs */}
-                <g stroke="rgba(0, 112, 243, 0.18)" strokeWidth="0.65" strokeDasharray="1.5 1">
-                  <line x1="44" y1="14" x2="25" y2="15" />
-                  <line x1="44" y1="14" x2="84" y2="16" />
-                </g>
 
                 {/* Office Hub connection nodes */}
                 {OFFICE_HUBS.map((hub) => (
