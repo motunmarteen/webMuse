@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/insights",
     "/case-study",
     "/case-study/crown-wheels",
-    "/case-study/stayqs99",
+    "/case-study/drollers",
     "/case-study/freetles",
     "/case-study/pmos",
     "/case-study/buxedge",
